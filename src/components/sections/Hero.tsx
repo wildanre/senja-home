@@ -43,10 +43,10 @@ export default function Hero() {
 
         {/* Call-to-Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-          <Button href="/app" variant="primary">
-            Go to App
+          <Button href="https://senja-labs.vercel.app/" variant="primary" target="_blank" rel="noopener noreferrer">
+            Get Started
           </Button>
-          <Button href="/docs" variant="secondary">
+          <Button href="https://senja.gitbook.io/senja-docs" variant="secondary" target="_blank" rel="noopener noreferrer">
             View Documentation
           </Button>
         </div>

@@ -1,9 +1,10 @@
 'use client';
 import Stepper, { Step } from "../ui/Stepper";
+import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 px-4 bg-[#FFF3E0] dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
+    <section id="how-it-works" className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}>
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-senja-brown dark:text-[#e8f0f7]">

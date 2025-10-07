@@ -81,7 +81,7 @@ export default function Stepper({
       {...rest}
     >
       <div
-        className={`mx-auto w-full max-w-md rounded-2xl shadow-xl bg-white dark:bg-[#1e293b]/80 backdrop-blur-xl border-2 border-senja-orange/20 dark:border-[#60a5fa]/40 ${stepCircleContainerClassName}`}
+        className={`mx-auto w-full max-w-md rounded-2xl shadow-xl bg-white/50 dark:bg-[#003366] backdrop-blur-xl border-2 border-senja-orange/50 dark:border-[#004488] ${stepCircleContainerClassName}`}
       >
         {title && (
           <div className="pt-8 px-8">

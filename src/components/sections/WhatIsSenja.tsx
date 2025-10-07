@@ -1,8 +1,9 @@
 import Accordion from "../ui/Accordion";
+import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 export default function WhatIsSenja() {
   return (
-    <section className="py-20 px-4 bg-white dark:bg-[#1a1a2e]">
+    <section id="what-is-senja" className={`py-20 px-4 ${BACKGROUND_PATTERNS.primary}`}>
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-senja-brown dark:text-[#e8f0f7]">
           What is Senja?
@@ -21,7 +22,6 @@ export default function WhatIsSenja() {
         <div className="mb-12">
           <Accordion 
             title="Problem" 
-            defaultOpen={true}
             titleClassName="text-3xl md:text-4xl text-senja-orange dark:text-[#60a5fa] font-bold"
           >
             <div className="space-y-6">
@@ -85,7 +85,6 @@ export default function WhatIsSenja() {
         <div>
           <Accordion 
             title="Solution" 
-            defaultOpen={false}
             titleClassName="text-3xl md:text-4xl text-senja-orange dark:text-[#60a5fa] font-bold"
           >
             <div className="space-y-6">
