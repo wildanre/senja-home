@@ -143,6 +143,20 @@
   --color-senja-brown: #5D4037;
 }
 
+.animate-orbit {
+  animation: orbit calc(var(--duration)) linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle)));
+  }
+  100% {
+    transform: rotate(calc(var(--angle) + 360deg)) translateX(var(--radius)) rotate(calc(-1 * (var(--angle) + 360deg)));
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -183,4 +197,15 @@
 
 .animate-blob {
   animation: blob 20s infinite ease-in-out;
+}
+
+/* Infinite Moving Cards Animation */
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
 }

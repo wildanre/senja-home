@@ -1,5 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import Partner from "@/components/sections/Partner";
+import Supports from "@/components/sections/Supports";
 import WhatIsSenja from "@/components/sections/WhatIsSenja";
 import HowItWorks from "@/components/sections/HowItWorks";
 import ContactAndWaitlist from "@/components/sections/ContactAndWaitlist";
@@ -41,6 +42,11 @@ const navigationItems: CardNavItem[] = [
         ariaLabel: "View our partners"
       },
       {
+        label: "Supported Assets",
+        href: "#supports",
+        ariaLabel: "View supported assets and networks"
+      },
+      {
         label: "Contact Us",
         href: "#contacts",
         ariaLabel: "Get in touch with us"
@@ -76,6 +82,7 @@ export default function Home() {
       <WhatIsSenja />
       <HowItWorks />
       <Partner />
+      <Supports />
       <TimelineSection />
       <ContactAndWaitlist />
     </main>

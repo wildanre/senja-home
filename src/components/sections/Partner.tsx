@@ -1,108 +1,61 @@
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import { InfiniteMovingPartners } from "../ui/infinite-moving-partners";
 import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 export default function Partner() {
+  const partners = [
+    {
+      name: "Kaia",
+      logo: "/partners/kaia-logo.svg",
+      href: "https://docs.kaia.io/",
+      description: "End-to-end blockchain platform as the Web3 ecosystem with over 250M+ users through the LINE messenger"
+    },
+    {
+      name: "DragonSwap",
+      logo: "/partners/dragonswaplogo.png", 
+      href: "https://dragonswap.app/",
+      description: "Leading decentralized exchange on Kaia blockchain providing liquidity and trading solutions"
+    },
+    {
+      name: "DevWeb3 Jogja",
+      logo: "/partners/devweb3jogja.jpg",
+      href: "https://devweb3jogja.xyz/",
+      description: "Web3 developer community in Yogyakarta fostering blockchain innovation and education"
+    },
+    {
+      name: "LayerZero",
+      logo: "/partners/layerzerologo.png",
+      href: "https://layerzero.network/",
+      description: "Omnichain interoperability protocol enabling seamless cross-chain applications"
+    },
+    {
+      name: "Orakl Network",
+      logo: "/partners/orakllogo.avif",
+      href: "https://orakl.network/",
+      description: "Decentralized oracle network providing secure and reliable data feeds for DeFi applications"
+    }
+  ];
+
   return (
     <section id="partners" className={`py-20 px-4 ${BACKGROUND_PATTERNS.primary}`}>
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-senja-brown dark:text-[#e8f0f7]">
-          Partnership
-        </h2>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-senja-brown dark:text-[#e8f0f7]">
+            Partnership
+          </h2>
+          <p className="text-lg md:text-xl text-senja-brown/80 dark:text-[#d0dce6] max-w-3xl mx-auto">
+            Working together with leading protocols and communities to build the future of DeFi
+          </p>
+        </div>
         
-        <div className="flex flex-col items-center space-y-12">
-          {/* Kaia Logo - Largest */}
-          <div className="flex justify-center">
-            <Link 
-              href="https://docs.kaia.io/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform duration-300 hover:scale-105"
-            >
-              <Image 
-                src="/kaia-logo.svg" 
-                alt="Kaia" 
-                width={120}
-                height={96}
-                className="h-20 md:h-24 w-auto object-contain"
-              />
-            </Link>
-          </div>
-          
-          {/* Other Partners - Smaller */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-4xl">
-            {/* Base */}
-            <div className="flex justify-center">
-              <Link 
-                href="https://base.org/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-300 hover:scale-105"
-              >
-                <Image 
-                  src="/base.png" 
-                  alt="Base" 
-                  width={80}
-                  height={56}
-                  className="h-12 md:h-14 w-auto object-contain"
-                />
-              </Link>
-            </div>
-            
-            {/* Hyperliquid */}
-            <div className="flex justify-center">
-              <Link 
-                href="https://hyperliquid.xyz/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-300 hover:scale-105"
-              >
-                <Image 
-                  src="/hyper-evm.png" 
-                  alt="Hyperliquid" 
-                  width={80}
-                  height={56}
-                  className="h-12 md:h-14 w-auto object-contain"
-                />
-              </Link>
-            </div>
-            
-            {/* Optimism */}
-            <div className="flex justify-center">
-              <Link 
-                href="https://optimism.io/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-300 hover:scale-105"
-              >
-                <Image 
-                  src="/optimism-logo.svg" 
-                  alt="Optimism" 
-                  width={80}
-                  height={56}
-                  className="h-12 md:h-14 w-auto object-contain"
-                />
-              </Link>
-            </div>
-            
-            {/* LayerZero */}
-            <div className="flex justify-center">
-              <Link 
-                href="https://layerzero.network/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-transform duration-300 hover:scale-105"
-              >
-                <Image 
-                  src="/layerzero.png" 
-                  alt="LayerZero" 
-                  width={80}
-                  height={56}
-                  className="h-12 md:h-14 w-auto object-contain"
-                />
-              </Link>
-            </div>
-          </div>
+        <div className="rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
+          <InfiniteMovingPartners
+            items={partners}
+            direction="right"
+            speed="slow"
+          />
         </div>
       </div>
     </section>
