@@ -23,7 +23,12 @@ export default function ContactAndWaitlist() {
             </h3>
 
             <div className="flex items-center space-x-4 relative z-10">
-              <div className="flex-shrink-0 bg-gradient-to-br from-orange-500 to-amber-500 dark:from-blue-500 dark:to-indigo-500 rounded-xl p-3 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+              <a 
+                href="https://x.com/SenjaLabs" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex-shrink-0 bg-gradient-to-br from-orange-500 to-amber-500 dark:from-blue-500 dark:to-indigo-500 rounded-xl p-3 shadow-lg group-hover:shadow-xl transition-all duration-300 hover:scale-110"
+              >
                 <svg
                   className="w-8 h-8 text-white"
                   fill="currentColor"
@@ -31,19 +36,11 @@ export default function ContactAndWaitlist() {
                 >
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
-              </div>
+              </a>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-slate-200 mb-1">
                   X (Twitter)
                 </h3>
-                <a
-                  href="https://x.com/SenjaLabs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-orange-600 dark:text-blue-400 hover:text-orange-700 dark:hover:text-blue-300 hover:underline transition-colors duration-200 font-medium"
-                >
-                 
-                </a>
               </div>
             </div>
           </div>
