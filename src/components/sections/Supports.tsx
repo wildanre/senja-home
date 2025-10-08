@@ -25,14 +25,14 @@ export default function Supports() {
   return (
     <section
       id="supports"
-      className={`py-20 px-4 ${BACKGROUND_PATTERNS.secondary}`}
+      className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-senja-brown dark:text-[#e8f0f7]">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-100 dark:text-[#e8f0f7]">
             Supported Assets & Networks
           </h2>
-          <p className="text-lg md:text-xl text-senja-brown/80 dark:text-[#d0dce6] max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-100/80 dark:text-[#d0dce6] max-w-3xl mx-auto">
             Multi-chain support across leading blockchains and top digital
             assets
           </p>
