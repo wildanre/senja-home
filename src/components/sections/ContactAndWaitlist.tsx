@@ -72,13 +72,15 @@ export default function ContactAndWaitlist() {
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                    disabled
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-gray-100 dark:bg-slate-600 text-gray-500 dark:text-slate-400 cursor-not-allowed transition-colors duration-200"
                     placeholder="Enter your email"
                   />
                 </div>
                 <button
                   type="submit"
-                  className=" w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold py-3 px-6 rounded-xl hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 shadow-lg"
+                  disabled
+                  className="w-full bg-gray-400 dark:bg-gray-600 text-gray-600 dark:text-gray-400 font-semibold py-3 px-6 rounded-xl cursor-not-allowed transition-all duration-200 shadow-lg"
                 >
                   Join Waitlist
                 </button>
