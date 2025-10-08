@@ -19,8 +19,9 @@ export default function Supports() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  const outerRadius = isMobile ? 180 : 240;
-  const innerRadius = isMobile ? 90 : 120;
+  const outerRadius = isMobile ? 140 : 280;
+  const innerRadius = isMobile ? 80 : 120;
+  const iconSize = isMobile ? 35 : 60;
 
   return (
     <section
@@ -28,7 +29,7 @@ export default function Supports() {
       className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-4 lg:mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-100 dark:text-[#e8f0f7]">
             Supported Assets & Networks
           </h2>
@@ -42,7 +43,7 @@ export default function Supports() {
           <div className="relative h-[600px] w-full max-w-[700px] overflow-visible flex items-center justify-center">
             {/* Inner orbit - Assets */}
             <div className="absolute inset-0">
-              <OrbitingCircles radius={innerRadius} duration={20}>
+              <OrbitingCircles radius={innerRadius} duration={20} iconSize={iconSize}>
                 <div className="flex h-16 w-16 items-center justify-center">
                   <Image
                     src="/supports/usdc.png"
@@ -54,7 +55,7 @@ export default function Supports() {
                 </div>
                 <div className="flex h-16 w-16 items-center justify-center">
                   <Image
-                    src="/supports/usdt.png"
+                    src="/supports/tether-usdt.png"
                     alt="USDT"
                     width={48}
                     height={48}
@@ -79,12 +80,21 @@ export default function Supports() {
                     className="rounded-full"
                   />
                 </div>
+                <div className="flex h-16 w-16 items-center justify-center">
+                  <Image
+                    src="/supports/idrxlogo.png"
+                    alt="IDRX"
+                    width={48}
+                    height={48}
+                    className="rounded-full"
+                  />
+                </div>
               </OrbitingCircles>
             </div>
 
             {/* Outer orbit - Networks */}
             <div className="absolute inset-0">
-              <OrbitingCircles radius={outerRadius} duration={30} reverse>
+              <OrbitingCircles radius={outerRadius} duration={30} reverse iconSize={iconSize}>
                 <div className="flex h-20 w-20 items-center justify-center">
                   <Image
                     src="/supports/base.png"
@@ -114,8 +124,17 @@ export default function Supports() {
                 </div>
                 <div className="flex h-20 w-20 items-center justify-center">
                   <Image
-                    src="/supports/wavax.png"
-                    alt="AVAX"
+                    src="/supports/ethlogo.webp"
+                    alt="ETH"
+                    width={56}
+                    height={56}
+                    className="rounded-full"
+                  />
+                </div>
+                <div className="flex h-20 w-20 items-center justify-center">
+                  <Image
+                    src="/partners/kaia-logo.svg"
+                    alt="Kaia"
                     width={56}
                     height={56}
                     className="rounded-full"

@@ -15,13 +15,13 @@ export default function Partner() {
     {
       name: "DragonSwap",
       logo: "/partners/dragonswaplogo.png", 
-      href: "https://dragonswap.app/",
+      href: "https://dgswap.io/",
       description: "Leading decentralized exchange on Kaia blockchain providing liquidity and trading solutions"
     },
     {
       name: "DevWeb3 Jogja",
       logo: "/partners/devweb3jogja.jpg",
-      href: "https://devweb3jogja.xyz/",
+      href: "https://x.com/devweb3jogja",
       description: "Web3 developer community in Yogyakarta fostering blockchain innovation and education"
     },
     {
