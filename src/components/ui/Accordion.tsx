@@ -20,43 +20,80 @@ export default function Accordion({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="mb-8 border border-senja-orange/20 dark:border-[#60a5fa]/20 rounded-lg overflow-hidden">
-      <button
+    <motion.div 
+      className="mb-8 bg-white/80 dark:bg-[#003366]/80 backdrop-blur-sm border border-senja-orange/30 dark:border-[#004488] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between p-4 text-left transition-all duration-200 hover:bg-senja-orange/5 dark:hover:bg-[#60a5fa]/5 ${titleClassName}`}
+        className={`w-full flex items-center justify-between p-6 text-left transition-all duration-300 hover:bg-gradient-to-r hover:from-senja-orange/10 hover:to-transparent dark:hover:from-[#004488]/20 dark:hover:to-transparent ${titleClassName}`}
+        whileHover={{ x: 4 }}
+        whileTap={{ scale: 0.98 }}
       >
-        <span className="font-semibold text-lg">{title}</span>
+        <span className="font-bold text-xl">{title}</span>
         <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
+          animate={{ 
+            rotate: isOpen ? 180 : 0,
+            scale: isOpen ? 1.1 : 1
+          }}
+          transition={{ 
+            duration: 0.3, 
+            ease: "easeInOut",
+            scale: { duration: 0.2 }
+          }}
           className="flex-shrink-0 ml-4"
         >
-          <svg 
-            className="w-6 h-6 text-senja-orange dark:text-[#60a5fa]" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
+          <div className="relative">
+            <motion.div
+              animate={{ 
+                boxShadow: isOpen 
+                  ? "0 0 20px rgba(217, 119, 6, 0.3)" 
+                  : "0 0 0px rgba(217, 119, 6, 0)"
+              }}
+              className="w-8 h-8 rounded-full bg-gradient-to-br from-senja-orange to-orange-600 dark:from-[#60a5fa] dark:to-[#3b82f6] flex items-center justify-center"
+            >
+              <svg 
+                className="w-4 h-4 text-white" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </motion.div>
+          </div>
         </motion.div>
-      </button>
+      </motion.button>
       
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            initial={{ height: 0, opacity: 0, y: -20 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -20 }}
+            transition={{ 
+              duration: 0.4, 
+              ease: "easeInOut",
+              opacity: { duration: 0.3 },
+              y: { duration: 0.3 }
+            }}
             className="overflow-hidden"
           >
-            <div className={`p-4 pt-0 ${contentClassName}`}>
+            <motion.div 
+              className={`p-6 pt-2 border-t border-senja-orange/20 dark:border-[#004488]/40 bg-gradient-to-b from-transparent to-senja-orange/5 dark:to-[#004488]/10 ${contentClassName}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
+            >
               {children}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

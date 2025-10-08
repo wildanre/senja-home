@@ -81,7 +81,7 @@ export default function Stepper({
       {...rest}
     >
       <div
-        className={`mx-auto w-full max-w-md rounded-2xl shadow-xl bg-white/50 dark:bg-[#003366] backdrop-blur-xl border-2 border-senja-orange/50 dark:border-[#004488] ${stepCircleContainerClassName}`}
+        className={`mx-auto w-full max-w-md min-h-[400px] max-h-[600px] rounded-2xl shadow-xl bg-white/50 dark:bg-[#003366] backdrop-blur-xl border-2 border-senja-orange/50 dark:border-[#004488] overflow-y-auto flex flex-col ${stepCircleContainerClassName}`}
       >
         {title && (
           <div className="pt-8 px-8">
@@ -131,8 +131,8 @@ export default function Stepper({
           {stepsArray[currentStep - 1]}
         </StepContentWrapper>
         {!isCompleted && (
-          <div className={`px-8 pb-8 ${footerClassName}`}>
-            <div className={`mt-10 flex ${currentStep !== 1 ? 'justify-between' : 'justify-end'}`}>
+          <div className={`px-8 pb-4 mt-auto ${footerClassName}`}>
+            <div className={`mt-4 flex ${isLastStep ? 'justify-start' : currentStep !== 1 ? 'justify-between' : 'justify-end'}`}>
               {currentStep !== 1 && (
                 <button
                   onClick={handleBack}
@@ -144,13 +144,15 @@ export default function Stepper({
                   {backButtonText}
                 </button>
               )}
-              <button
-                onClick={handleNext}
-                className="duration-350 flex items-center justify-center rounded-full bg-gradient-to-br from-senja-orange to-[#FF5722] dark:from-[#3b82f6] dark:to-[#1d4ed8] py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:opacity-90 active:opacity-80"
-                {...nextButtonProps}
-              >
-                {nextButtonText}
-              </button>
+              {!isLastStep && (
+                <button
+                  onClick={handleNext}
+                  className="duration-350 flex items-center justify-center rounded-full bg-gradient-to-br from-senja-orange to-[#FF5722] dark:from-[#3b82f6] dark:to-[#1d4ed8] py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:opacity-90 active:opacity-80"
+                  {...nextButtonProps}
+                >
+                  {nextButtonText}
+                </button>
+              )}
             </div>
           </div>
         )}

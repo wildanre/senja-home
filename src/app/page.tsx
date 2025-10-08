@@ -3,6 +3,7 @@ import Partner from "@/components/sections/Partner";
 import WhatIsSenja from "@/components/sections/WhatIsSenja";
 import HowItWorks from "@/components/sections/HowItWorks";
 import ContactAndWaitlist from "@/components/sections/ContactAndWaitlist";
+import TimelineSection from "@/components/sections/TimelineSection";
 import CardNav from "@/components/ui/CardNav";
 import type { CardNavItem } from "@/components/ui/CardNav";
 
@@ -21,6 +22,11 @@ const navigationItems: CardNavItem[] = [
         label: "How It Works",
         href: "#how-it-works", 
         ariaLabel: "See how Senja works"
+      },
+      {
+        label: "Roadmap",
+        href: "#roadmap",
+        ariaLabel: "View our development roadmap"
       }
     ]
   },
@@ -70,6 +76,7 @@ export default function Home() {
       <WhatIsSenja />
       <HowItWorks />
       <Partner />
+      <TimelineSection />
       <ContactAndWaitlist />
     </main>
   );
