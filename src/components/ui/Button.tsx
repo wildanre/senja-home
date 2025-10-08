@@ -40,7 +40,7 @@ export default function Button({
     secondary: `
       bg-white/20 dark:bg-[#2a4165]/30
       backdrop-blur-xl 
-      text-senja-brown dark:text-[#e0e6ed] 
+      text-gray-100 dark:text-[#e0e6ed] 
       border-2 border-senja-orange dark:border-[#3b82f6]/50
       shadow-[0_8px_32px_0_rgba(255,112,67,0.3)]
       dark:shadow-[0_8px_32px_0_rgba(74,111,165,0.3)]

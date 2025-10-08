@@ -7,7 +7,7 @@ export const BACKGROUND_PATTERNS = {
   secondary: 'bg-gray-50 dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950',
   
   // Hero background (special midnight gradient)
-  hero: 'bg-gradient-to-b from-cream-50 via-orange-50 to-senja-orange/20 dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950',
+  hero: 'bg-gradient-to-b from-[#EB5B00] to-[#8B1A00] dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950',
   
   // Card backgrounds
   card: {
