@@ -1,11 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { OrbitingCircles } from "../ui/orbiting-circles";
 import { BACKGROUND_PATTERNS } from "@/utils/styles";
 
 export default function Supports() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const outerRadius = isMobile ? 180 : 240;
+  const innerRadius = isMobile ? 90 : 120;
+
   return (
     <section
       id="supports"
@@ -26,7 +42,7 @@ export default function Supports() {
           <div className="relative h-[600px] w-full max-w-[700px] overflow-visible flex items-center justify-center">
             {/* Inner orbit - Assets */}
             <div className="absolute inset-0">
-              <OrbitingCircles radius={120} duration={20}>
+              <OrbitingCircles radius={innerRadius} duration={20}>
                 <div className="flex h-16 w-16 items-center justify-center">
                   <Image
                     src="/supports/usdc.png"
@@ -68,7 +84,7 @@ export default function Supports() {
 
             {/* Outer orbit - Networks */}
             <div className="absolute inset-0">
-              <OrbitingCircles radius={220} duration={30} reverse>
+              <OrbitingCircles radius={outerRadius} duration={30} reverse>
                 <div className="flex h-20 w-20 items-center justify-center">
                   <Image
                     src="/supports/base.png"

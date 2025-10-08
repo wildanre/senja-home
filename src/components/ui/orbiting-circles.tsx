@@ -19,11 +19,11 @@ export function OrbitingCircles({
   className,
   children,
   reverse,
-  duration = 20,
-  radius = 160,
+  duration = 10,
+  radius = 80,
   path = true,
   iconSize = 50,
-  speed = 1,
+  speed = 1.2,
   ...props
 }: OrbitingCirclesProps) {
   const calculatedDuration = duration / speed
