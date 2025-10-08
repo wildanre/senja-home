@@ -79,17 +79,17 @@ export default function Hero() {
 
         {/* Call-to-Action Buttons */}
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-6 sm:pt-8 px-4"
+          className="flex flex-row gap-4 sm:gap-6 justify-center items-center pt-6 sm:pt-8 px-4"
           style={{ y: buttonY }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
         >
-          <Button href="https://senja-labs.vercel.app/" variant="primary" target="_blank" rel="noopener noreferrer">
+          <Button href="#what-is-senja" variant="primary">
             Get Started
           </Button>
           <Button href="https://senja.gitbook.io/senja-docs" variant="secondary" target="_blank" rel="noopener noreferrer">
-            View Documentation
+            View Docs
           </Button>
         </motion.div>
       </div>

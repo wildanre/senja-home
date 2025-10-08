@@ -6,6 +6,7 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import ContactAndWaitlist from "@/components/sections/ContactAndWaitlist";
 import TimelineSection from "@/components/sections/TimelineSection";
 import CardNav from "@/components/ui/CardNav";
+import ScrollAnimationWrapper from "@/components/ui/ScrollAnimationWrapper";
 import type { CardNavItem } from "@/components/ui/CardNav";
 
 const navigationItems: CardNavItem[] = [
@@ -79,12 +80,30 @@ export default function Home() {
         items={navigationItems}
       />
       <Hero />
-      <WhatIsSenja />
-      <HowItWorks />
-      <Partner />
-      <Supports />
-      <TimelineSection />
-      <ContactAndWaitlist />
+      
+      <ScrollAnimationWrapper direction="up" delay={0.1}>
+        <WhatIsSenja />
+      </ScrollAnimationWrapper>
+      
+      <ScrollAnimationWrapper direction="up" delay={0.2}>
+        <HowItWorks />
+      </ScrollAnimationWrapper>
+      
+      <ScrollAnimationWrapper direction="left" delay={0.1}>
+        <Partner />
+      </ScrollAnimationWrapper>
+      
+      <ScrollAnimationWrapper direction="right" delay={0.2}>
+        <Supports />
+      </ScrollAnimationWrapper>
+      
+      <ScrollAnimationWrapper direction="up" delay={0.1}>
+        <TimelineSection />
+      </ScrollAnimationWrapper>
+      
+      <ScrollAnimationWrapper direction="up" delay={0.2}>
+        <ContactAndWaitlist />
+      </ScrollAnimationWrapper>
     </main>
   );
 }

@@ -16,7 +16,23 @@ export default function Button({
   target,
   rel
 }: ButtonProps) {
-  const baseStyles = "px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 inline-flex items-center justify-center relative overflow-hidden group";
+  const baseStyles = "px-4 py-2 md:px-8 md:py-4 rounded-full font-semibold text-sm md:text-base transition-all duration-300 inline-flex items-center justify-center relative overflow-hidden group";
+
+  // Handle smooth scroll for anchor links
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+  };
   
   const variantStyles = {
     primary: `
@@ -65,6 +81,7 @@ export default function Button({
       className={`${baseStyles} ${variantStyles[variant]}`}
       target={target}
       rel={rel}
+      onClick={handleClick}
     >
       <span className="relative z-10">{children}</span>
     </Link>

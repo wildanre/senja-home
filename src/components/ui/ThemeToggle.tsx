@@ -45,7 +45,7 @@ export default function ThemeToggle() {
       <button
         onClick={toggleTheme}
         className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none cursor-pointer ${
-          theme === "dark" ? "bg-gray-600 hover:bg-gray-700" : "bg-gray-300 hover:bg-gray-400"
+          theme === "dark" ? "bg-gray-300/10 hover:bg-gray-700/40" : "bg-gray-300/30 hover:bg-gray-400/40"
         }`}
         aria-label="Toggle theme"
       >
@@ -64,7 +64,7 @@ export default function ThemeToggle() {
         strokeWidth={2}
         stroke="currentColor"
         className={`w-4 h-4 transition-colors duration-300 ${
-          theme === "dark" ? "text-[#60a5fa]" : "text-gray-400"
+          theme === "dark" ? "text-[#60a5fa]" : "text-gray-600"
         }`}
       >
         <path
