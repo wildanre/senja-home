@@ -33,6 +33,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const authenticated = await isAuthenticated();
       setAuthState(authenticated);
       
+      // If authenticated and on login pages, redirect to dashboard
+      if (authenticated && (pathname === '/admin/auth/login' || pathname === '/admin/auth')) {
+        router.replace('/admin/dashboard');
+        return;
+      }
+      
       // Only redirect if we're on an admin page and not authenticated
       if (!authenticated && pathname.startsWith('/admin') && 
           pathname !== '/admin/auth/login' && pathname !== '/admin/auth') {
