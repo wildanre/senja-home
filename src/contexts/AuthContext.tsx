@@ -28,65 +28,54 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const checkAuth = async () => {
+  const checkAuth = async (): Promise<void> => {
     try {
       const authenticated = await isAuthenticated();
       setAuthState(authenticated);
-      return authenticated;
     } catch (error) {
       console.error('Auth check failed:', error);
       setAuthState(false);
-      return false;
-    }
-  };
-
-  const handleNavigation = async (currentPath: string) => {
-    console.log('🧭 Navigation to:', currentPath, 'Current auth state:', authState);
-    
-    if (!currentPath.startsWith('/admin')) {
-      setAuthState(true); // Non-admin routes don't need auth
-      return;
-    }
-
-    // For admin routes, check if we already have auth state
-    if (authState !== null) {
-      console.log('📋 Using cached auth state for navigation, no fetch needed');
-      // Use cached state for navigation logic
-      if (authState === true && (currentPath === '/admin/auth/login' || currentPath === '/admin/auth')) {
-        console.log('🔄 Authenticated user on login page, redirecting to dashboard');
-        router.replace('/admin/dashboard');
-      } else if (authState === false && currentPath.startsWith('/admin') && 
-                 currentPath !== '/admin/auth/login' && currentPath !== '/admin/auth') {
-        console.log('🔄 Unauthenticated user on protected page, redirecting to login');
-        router.replace('/admin/auth/login');
-      }
-    } else {
-      console.log('🔍 First time check or need fresh verification');
-      // First time or need fresh check
-      const authenticated = await checkAuth();
-      
-      if (authenticated && (currentPath === '/admin/auth/login' || currentPath === '/admin/auth')) {
-        console.log('🔄 First check: authenticated user on login page, redirecting to dashboard');
-        router.replace('/admin/dashboard');
-      } else if (!authenticated && currentPath.startsWith('/admin') && 
-                 currentPath !== '/admin/auth/login' && currentPath !== '/admin/auth') {
-        console.log('🔄 First check: unauthenticated user on protected page, redirecting to login');
-        router.replace('/admin/auth/login');
-      }
     }
   };
 
   useEffect(() => {
-    handleNavigation(pathname);
-  }, [pathname]); // Only depend on pathname
+    if (!pathname.startsWith('/admin')) {
+      setAuthState(true); // Non-admin routes don't need auth
+      return;
+    }
 
-  // Force refresh auth state when explicitly called
-  const forceCheckAuth = async (): Promise<void> => {
-    await checkAuth();
-  };
+    // For admin routes, always check authentication
+    const handleAdminRoute = async () => {
+      try {
+        const authenticated = await isAuthenticated();
+        setAuthState(authenticated);
+        
+        // If authenticated and on login pages, redirect to dashboard
+        if (authenticated && (pathname === '/admin/auth/login' || pathname === '/admin/auth')) {
+          router.replace('/admin/dashboard');
+          return;
+        }
+        
+        // If not authenticated and on protected admin pages, redirect to login
+        if (!authenticated && pathname.startsWith('/admin') && 
+            pathname !== '/admin/auth/login' && pathname !== '/admin/auth') {
+          router.replace('/admin/auth/login');
+        }
+      } catch (error) {
+        console.error('Auth check failed:', error);
+        setAuthState(false);
+        if (pathname.startsWith('/admin') && 
+            pathname !== '/admin/auth/login' && pathname !== '/admin/auth') {
+          router.replace('/admin/auth/login');
+        }
+      }
+    };
+
+    handleAdminRoute();
+  }, [pathname, router]);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated: authState, checkAuth: forceCheckAuth }}>
+    <AuthContext.Provider value={{ isAuthenticated: authState, checkAuth }}>
       {children}
     </AuthContext.Provider>
   );

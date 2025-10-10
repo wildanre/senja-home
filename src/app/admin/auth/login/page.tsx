@@ -1,43 +1,48 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { loginAdmin } from '@/lib/auth';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { loginAdmin } from "@/lib/auth";
 
 export default function AdminLoginPage() {
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  
+  const [error, setError] = useState("");
+
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
-      console.log('🔄 Starting login process with:', { email: credentials.email });
-      
+      console.log("🔄 Starting login process with:", {
+        email: credentials.email,
+      });
+
       // Login directly using auth lib which connects to backend
-      const loginResult = await loginAdmin(credentials.email, credentials.password);
-      
-      console.log('📡 Login result:', loginResult);
-      
+      const loginResult = await loginAdmin(
+        credentials.email,
+        credentials.password
+      );
+
+      console.log("📡 Login result:", loginResult);
+
       if (loginResult.success) {
-        console.log('✅ Login successful, redirecting to dashboard...');
+        console.log("✅ Login successful, redirecting to dashboard...");
         // Token is now stored in localStorage, redirect to dashboard
-        router.push('/admin/dashboard');
+        router.push("/admin/dashboard");
       } else {
-        console.log('❌ Login failed:', loginResult.error);
-        setError(loginResult.error || 'Login failed');
+        console.log("❌ Login failed:", loginResult.error);
+        setError(loginResult.error || "Login failed");
       }
     } catch (error) {
-      console.error('🚨 Login process error:', error);
-      setError('Network error. Please try again.');
+      console.error("🚨 Login process error:", error);
+      setError("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -45,9 +50,9 @@ export default function AdminLoginPage() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setCredentials(prev => ({
+    setCredentials((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -62,11 +67,14 @@ export default function AdminLoginPage() {
             Sign in to access the admin dashboard
           </p>
         </div>
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm space-y-4">
+          <div className="rounded-md space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Email
               </label>
               <input
@@ -81,9 +89,12 @@ export default function AdminLoginPage() {
                 placeholder="Enter email"
               />
             </div>
-            
+
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              >
                 Password
               </label>
               <input
@@ -112,16 +123,10 @@ export default function AdminLoginPage() {
               disabled={isLoading}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? "Signing in..." : "Sign in"}
             </button>
           </div>
         </form>
-
-        <div className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
-          <p>Default credentials:</p>
-          <p>Username: admin</p>
-          <p>Password: admin123</p>
-        </div>
       </div>
     </div>
   );
