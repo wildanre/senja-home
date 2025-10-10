@@ -1,45 +1,32 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { isAuthenticated } from "@/lib/auth";
 import AdminLayout from "@/components/admin/AdminLayout";
+import AdminGuard from "@/components/admin/AdminGuard";
 import SendEmailForm from "@/components/admin/SendEmailForm";
 import { Users } from "lucide-react";
 
 export default function AdminEmailPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = async () => {
-    const authenticated = await isAuthenticated();
-    if (!authenticated) {
-      router.push("/admin/auth/login");
-      return;
-    }
-    setIsLoading(false);
-  };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p>Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <AdminLayout>
-      <div className="space-y-6">
-        <SendEmailForm />
-      </div>
-    </AdminLayout>
+    <AdminGuard>
+      <AdminLayout>
+        <div className="space-y-6">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
+                <Users className="w-6 h-6 text-green-600 dark:text-green-400" />
+              </div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                Send Email Broadcast
+              </h1>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400">
+              Send personalized emails to all waitlist subscribers.
+            </p>
+          </div>
+
+          <SendEmailForm />
+        </div>
+      </AdminLayout>
+    </AdminGuard>
   );
 }

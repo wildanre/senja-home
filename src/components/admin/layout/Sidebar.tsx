@@ -12,7 +12,6 @@ export default function Sidebar({
   onCloseMobile,
   currentPath,
   menuItems,
-  onNavigate,
   onLogout
 }: SidebarProps) {
   return (
@@ -43,7 +42,6 @@ export default function Sidebar({
           menuItems={menuItems}
           currentPath={currentPath}
           isCollapsed={isCollapsed}
-          onNavigate={onNavigate}
           onCloseMobile={onCloseMobile}
         />
         

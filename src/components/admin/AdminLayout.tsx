@@ -25,10 +25,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     }
   };
 
-  const handleNavigate = (path: string) => {
-    router.push(path);
-  };
-
   const handleToggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -50,7 +46,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         onCloseMobile={handleCloseMobile}
         currentPath={pathname}
         menuItems={MENU_ITEMS}
-        onNavigate={handleNavigate}
         onLogout={handleLogout}
       />
 

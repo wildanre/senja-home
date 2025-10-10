@@ -15,7 +15,6 @@ export interface SidebarProps {
   onCloseMobile: () => void;
   currentPath: string;
   menuItems: MenuItem[];
-  onNavigate: (path: string) => void;
   onLogout: () => void;
 }
 
@@ -28,7 +27,6 @@ export interface SidebarNavigationProps {
   menuItems: MenuItem[];
   currentPath: string;
   isCollapsed: boolean;
-  onNavigate: (path: string) => void;
   onCloseMobile: () => void;
 }
 

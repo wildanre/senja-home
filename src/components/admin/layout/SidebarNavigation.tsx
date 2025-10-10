@@ -1,20 +1,23 @@
 'use client';
 
+import Link from 'next/link';
 import { SidebarNavigationProps, MenuItem } from './types';
 
 interface NavigationItemProps {
   item: MenuItem;
   isActive: boolean;
   isCollapsed: boolean;
-  onClick: () => void;
+  onCloseMobile: () => void;
 }
 
-function NavigationItem({ item, isActive, isCollapsed, onClick }: NavigationItemProps) {
+function NavigationItem({ item, isActive, isCollapsed, onCloseMobile }: NavigationItemProps) {
   const IconComponent = item.icon;
   
   return (
-    <button
-      onClick={onClick}
+    <Link
+      href={item.path}
+      onClick={onCloseMobile}
+      prefetch={true}
       className={`
         w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-left
         transition-all duration-200 group
@@ -32,7 +35,7 @@ function NavigationItem({ item, isActive, isCollapsed, onClick }: NavigationItem
           <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{item.description}</p>
         </div>
       )}
-    </button>
+    </Link>
   );
 }
 
@@ -40,14 +43,8 @@ export default function SidebarNavigation({
   menuItems, 
   currentPath, 
   isCollapsed, 
-  onNavigate, 
   onCloseMobile 
 }: SidebarNavigationProps) {
-  const handleItemClick = (path: string) => {
-    onNavigate(path);
-    onCloseMobile();
-  };
-
   return (
     <nav className="flex-1 p-4 space-y-2">
       {menuItems.map((item) => (
@@ -56,7 +53,7 @@ export default function SidebarNavigation({
           item={item}
           isActive={currentPath === item.path}
           isCollapsed={isCollapsed}
-          onClick={() => handleItemClick(item.path)}
+          onCloseMobile={onCloseMobile}
         />
       ))}
     </nav>
