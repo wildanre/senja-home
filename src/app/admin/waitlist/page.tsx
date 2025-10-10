@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { isAuthenticated } from '@/lib/auth';
 import AdminLayout from '@/components/admin/AdminLayout';
 import WaitlistData from '@/components/admin/WaitlistData';
+import { Mail } from 'lucide-react';
 
 export default function AdminWaitlistPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,11 +39,11 @@ export default function AdminWaitlistPage() {
     <AdminLayout>
       <div className="space-y-6">
         {/* Page Header */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                📊 Waitlist Data
+                Waitlist Data
               </h1>
               <p className="text-gray-600 dark:text-gray-400 mt-1">
                 Manage and view all users registered in the waitlist
@@ -51,12 +52,10 @@ export default function AdminWaitlistPage() {
             <div className="flex space-x-3">
               <button
                 onClick={() => router.push('/admin/email')}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors flex items-center"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center space-x-2"
               >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Send Email
+                <Mail className="w-4 h-4" />
+                <span>Send Email</span>
               </button>
             </div>
           </div>
