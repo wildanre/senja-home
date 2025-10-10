@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SidebarHeaderProps } from './types';
+import ThemeToggle from '../../ui/ThemeToggle';
 
 export default function SidebarHeader({ isCollapsed, onToggleCollapse }: SidebarHeaderProps) {
   return (
@@ -28,6 +29,13 @@ export default function SidebarHeader({ isCollapsed, onToggleCollapse }: Sidebar
             <ChevronLeft className="w-4 h-4 text-gray-600 dark:text-gray-400" />
           )}
         </button>
+      </div>
+      
+      {/* Theme toggle below logo - both expanded and collapsed */}
+      <div className={`mt-3 ${isCollapsed ? 'flex justify-center' : 'flex justify-start pl-10'}`}>
+        <div className={isCollapsed ? 'scale-75' : ''}>
+          <ThemeToggle compact={isCollapsed} />
+        </div>
       </div>
     </div>
   );
