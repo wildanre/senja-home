@@ -81,29 +81,29 @@ export default function Home() {
       />
       <Hero />
       
-      <ScrollAnimationWrapper direction="up" delay={0.1}>
+      {/* <ScrollAnimationWrapper direction="up" delay={0.1}> */}
         <WhatIsSenja />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
       
-      <ScrollAnimationWrapper direction="up" delay={0.2}>
+      {/* <ScrollAnimationWrapper direction="up" delay={0.2}> */}
         <HowItWorks />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
       
-      <ScrollAnimationWrapper direction="left" delay={0.1}>
+      {/* <ScrollAnimationWrapper direction="left" delay={0.1}> */}
         <Partner />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
       
-      <ScrollAnimationWrapper direction="right" delay={0.2}>
+      {/* <ScrollAnimationWrapper direction="right" delay={0.2}> */}
         <Supports />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
       
-      <ScrollAnimationWrapper direction="up" delay={0.1}>
+      {/* <ScrollAnimationWrapper direction="up" delay={0.1}> */}
         <TimelineSection />
-      </ScrollAnimationWrapper>
+      {/* // </ScrollAnimationWrapper> */}
       
-      <ScrollAnimationWrapper direction="up" delay={0.2}>
+      {/* <ScrollAnimationWrapper direction="up" delay={0.2}> */}
         <ContactAndWaitlist />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
     </main>
   );
 }

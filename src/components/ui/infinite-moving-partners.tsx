@@ -26,7 +26,7 @@ export const InfiniteMovingPartners = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
-  const [start, setStart] = useState(false);
+  const [start, setStart] = useState(true);
   
   const getDirection = React.useCallback(() => {
     if (containerRef.current) {
@@ -49,9 +49,9 @@ export const InfiniteMovingPartners = ({
       if (speed === "fast") {
         containerRef.current.style.setProperty("--animation-duration", "20s");
       } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
+        containerRef.current.style.setProperty("--animation-duration", "20s");
       } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
+        containerRef.current.style.setProperty("--animation-duration", "30s");
       }
     }
   }, [speed]);
@@ -69,7 +69,6 @@ export const InfiniteMovingPartners = ({
 
       getDirection();
       getSpeed();
-      setStart(true);
     }
   }, [getDirection, getSpeed]);
 
@@ -110,7 +109,12 @@ export const InfiniteMovingPartners = ({
                   alt={item.name}
                   width={120}
                   height={64}
-                  className="max-h-16 w-auto object-contain filter dark:brightness-110"
+                  className={cn(
+                    "max-h-16 w-auto object-contain filter",
+                    item.name === "LayerZero" 
+                      ? "dark:brightness-0 dark:invert" 
+                      : "dark:brightness-110"
+                  )}
                 />
               </div>
               <div className="space-y-2">

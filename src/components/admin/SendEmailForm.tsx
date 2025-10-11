@@ -60,7 +60,7 @@ export default function SendEmailForm() {
         hasMessage: !!emailForm.message
       });
       
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'}/admin/send-email`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/send-email`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

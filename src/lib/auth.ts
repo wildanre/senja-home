@@ -33,7 +33,7 @@ export async function isAuthenticated(): Promise<boolean> {
   }
   
   try {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
     console.log('🔄 Verifying token with:', `${backendUrl}/admin/verify`);
     
     // Verify token with backend
@@ -63,7 +63,7 @@ export async function isAuthenticated(): Promise<boolean> {
 
 export async function loginAdmin(email: string, password: string): Promise<{ success: boolean; error?: string; token?: string; admin?: AdminUser }> {
   try {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
     console.log('🔄 Attempting login to:', `${backendUrl}/admin/login`);
     
     const response = await fetch(`${backendUrl}/admin/login`, {
