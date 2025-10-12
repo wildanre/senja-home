@@ -3,7 +3,8 @@ import Partner from "@/components/sections/Partner";
 import Supports from "@/components/sections/Supports";
 import WhatIsSenja from "@/components/sections/WhatIsSenja";
 import HowItWorks from "@/components/sections/HowItWorks";
-import ContactAndWaitlist from "@/components/sections/ContactAndWaitlist";
+import ContactSection from "@/components/sections/ContactSection";
+import WaitlistSection from "@/components/sections/WaitlistSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import CardNav from "@/components/ui/CardNav";
 import ScrollAnimationWrapper from "@/components/ui/ScrollAnimationWrapper";
@@ -102,7 +103,11 @@ export default function Home() {
       {/* // </ScrollAnimationWrapper> */}
       
       {/* <ScrollAnimationWrapper direction="up" delay={0.2}> */}
-        <ContactAndWaitlist />
+        <ContactSection />
+      {/* </ScrollAnimationWrapper> */}
+      
+      {/* <ScrollAnimationWrapper direction="up" delay={0.3}> */}
+        <WaitlistSection />
       {/* </ScrollAnimationWrapper> */}
     </main>
   );
