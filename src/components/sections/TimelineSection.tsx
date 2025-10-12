@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Timeline } from "../ui/timeline";
+import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 const timelineData = [
   {
@@ -152,7 +153,7 @@ const timelineData = [
 
 export default function TimelineSection() {
   return (
-    <section id="roadmap" className="relative">
+    <section id="roadmap" className={`relative ${BACKGROUND_PATTERNS.primary}`}>
       <Timeline data={timelineData} />
     </section>
   );
