@@ -30,7 +30,7 @@ export default function ContactSection() {
                 Email Us
               </h3>
               <p className="text-gray-100 dark:text-[#d0dce6] mb-4">
-                Have questions? We'd love to hear from you.
+                Have questions? We&#39;d love to hear from you.
               </p>
               <a 
                 href="mailto:senjalend@gmail.com" 
