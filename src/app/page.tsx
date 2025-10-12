@@ -3,7 +3,8 @@ import Partner from "@/components/sections/Partner";
 import Supports from "@/components/sections/Supports";
 import WhatIsSenja from "@/components/sections/WhatIsSenja";
 import HowItWorks from "@/components/sections/HowItWorks";
-import ContactAndWaitlist from "@/components/sections/ContactAndWaitlist";
+import ContactSection from "@/components/sections/ContactSection";
+import WaitlistSection from "@/components/sections/WaitlistSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import CardNav from "@/components/ui/CardNav";
 import ScrollAnimationWrapper from "@/components/ui/ScrollAnimationWrapper";
@@ -12,7 +13,7 @@ import type { CardNavItem } from "@/components/ui/CardNav";
 const navigationItems: CardNavItem[] = [
   {
     label: "Explore",
-    bgColor: "#D97706", // senja-orange
+    bgColor: "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
     textColor: "#FFFFFF",
     links: [
       {
@@ -34,7 +35,7 @@ const navigationItems: CardNavItem[] = [
   },
   {
     label: "Connect",
-    bgColor: "#60A5FA", // senja-blue (light mode blue)
+    bgColor: "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
     textColor: "#FFFFFF",
     links: [
       {
@@ -56,7 +57,7 @@ const navigationItems: CardNavItem[] = [
   },
   {
     label: "Join",
-    bgColor: "#374151", // senja-brown/gray
+    bgColor: "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
     textColor: "#FFFFFF",
     links: [
       {
@@ -81,28 +82,32 @@ export default function Home() {
       />
       <Hero />
       
-      <ScrollAnimationWrapper direction="up" delay={0.1}>
+      {/* <ScrollAnimationWrapper direction="up" delay={0.1}> */}
         <WhatIsSenja />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
       
       <ScrollAnimationWrapper direction="up" delay={0.2}>
         <HowItWorks />
       </ScrollAnimationWrapper>
       
-      <ScrollAnimationWrapper direction="left" delay={0.1}>
+      {/* <ScrollAnimationWrapper direction="left" delay={0.1}> */}
         <Partner />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
       
-      <ScrollAnimationWrapper direction="right" delay={0.2}>
+      {/* <ScrollAnimationWrapper direction="right" delay={0.2}> */}
         <Supports />
-      </ScrollAnimationWrapper>
+      {/* </ScrollAnimationWrapper> */}
       
-      <ScrollAnimationWrapper direction="up" delay={0.1}>
+      {/* <ScrollAnimationWrapper direction="up" delay={0.1}> */}
         <TimelineSection />
+      {/* // </ScrollAnimationWrapper> */}
+      
+      <ScrollAnimationWrapper direction="down" delay={0.3}>
+        <ContactSection />
       </ScrollAnimationWrapper>
       
-      <ScrollAnimationWrapper direction="up" delay={0.2}>
-        <ContactAndWaitlist />
+      <ScrollAnimationWrapper direction="up" delay={0.3}>
+        <WaitlistSection />
       </ScrollAnimationWrapper>
     </main>
   );

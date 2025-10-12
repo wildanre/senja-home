@@ -1,173 +1,154 @@
 'use client';
-import Stepper, { Step } from "../ui/Stepper";
+import Carousel from "../ui/carousel";
 import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
+interface SlideData {
+  title: string;
+  description: string;
+  src: string;
+}
+
+// Data slides untuk How It Works
+const createSlideData = (): SlideData[] => [
+  {
+    title: "Supply Liquidity",
+    description: `
+      <div class="space-y-4 md:space-y-4 text-white/90 dark:text-[#d0dce6]">
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Connect Wallet</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Users connect their wallet on the Senja LINE Mini App.</p>
+        </div>
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Provide Liquidity</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Users provide liquidity to earn yields from lending activities.</p>
+        </div>
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Earn Rewards</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><strong class="text-white dark:text-[#e8f0f7]">Lending Yields:</strong> Earn from borrower interest payments</p>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><strong class="text-white dark:text-[#e8f0f7]">Liquidity Mining:</strong> Additional rewards from protocol incentives</p>
+        </div>
+      </div>
+    `,
+    src: "/how/supply-liquidity.png",
+  },
+  {
+    title: "Supply Collateral",
+    description: `
+      <div class="space-y-3 md:space-y-4 text-white/90 dark:text-[#d0dce6]">
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Connect Wallet</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Users connect their wallet on the Senja LINE Mini App.</p>
+        </div>
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Supply Collateral</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Users supply collateral to secure their borrowing position.</p>
+        </div>
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Select Chain and Token</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><strong class="text-white dark:text-[#e8f0f7]">Kaia Network:</strong> Token directly deposited into Senja's pool, user position created</p>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><strong class="text-white dark:text-[#e8f0f7]">Other Chains:</strong> Token burned and minted into Kaia via LayerZero, then deposited into Senja's pool</p>
+        </div>
+      </div>
+    `,
+    src: "/how/supply-collateral.png",
+  },
+  {
+    title: "Borrow Assets",
+    description: `
+      <div class="space-y-3 md:space-y-4 text-white/90 dark:text-[#d0dce6]">
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Connect & Initiate</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Users connect wallet and initiate borrow process.</p>
+        </div>
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Pool & Collateral Check</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">System checks pool availability and collateral value.</p>
+        </div>
+        <div class="mb-1 md:mb-3">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Cross-Chain Support</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><strong class="text-white dark:text-[#e8f0f7]">Kaia:</strong> Direct loan disbursement</p>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><strong class="text-white dark:text-[#e8f0f7]">Other Chains:</strong> Token locked on Kaia, minted via LayerZero</p>
+        </div>
+      </div>
+    `,
+    src: "/how/borrow.png",
+  },
+  {
+    title: "Repay Loan",
+    description: `
+      <div class="space-y-2 md:space-y-3 text-white/90 dark:text-[#d0dce6]">
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-base mb-1 text-white dark:text-[#e8f0f7]">Same Chain & Token</h4>
+          <p class="text-sm md:text-sm leading-snug">Direct repayment into Senja's Pool.</p>
+        </div>
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-base mb-1 text-white dark:text-[#e8f0f7]">Same Chain & Other Token</h4>
+          <p class="text-sm md:text-sm leading-snug">Token swapped via DragonSwap before deposit.</p>
+        </div>
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-base mb-1 text-white dark:text-[#e8f0f7]">Cross-Chain Repayment</h4>
+          <p class="text-sm md:text-sm leading-snug">Integration with Stargate and LayerZero OFT for seamless cross-chain repayment.</p>
+        </div>
+      </div>
+    `,
+    src: "/how/repay.png",
+  },
+  {
+    title: "Collateral Swap",
+    description: `
+      <div class="space-y-3 md:space-y-4 text-white/90 dark:text-[#d0dce6]">
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Position Management</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Users can swap collateral without closing their position.</p>
+        </div>
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Direct Swap</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Tokens swapped via DragonSwap while maintaining user position.</p>
+        </div>
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Seamless Experience</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">No need to close and reopen positions, saving time and gas fees.</p>
+        </div>
+      </div>
+    `,
+    src: "/how/swap.png",
+  },
+  {
+    title: "Token Buybacks",
+    description: `
+      <div class="space-y-3 md:space-y-4 text-white/90 dark:text-[#d0dce6]">
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Fee Collection</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Fees collected in Senja tokens stored in Assistance Fund.</p>
+        </div>
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Automatic Swap</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><span class="font-semibold">95% of fee tokens</span> automatically swapped to <span class="font-semibold">KAIA via DragonSwap</span>.</p>
+        </div>
+        <div class="mb-1 md:mb-2">
+          <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Ecosystem Growth</h4>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed">Swapped KAIA supports price stability and ecosystem development.</p>
+        </div>
+      </div>
+    `,
+    src: "/how/buy-back.png",
+  },
+];
+
 export default function HowItWorks() {
+  const slideData = createSlideData();
+
   return (
     <section id="how-it-works" className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Title */}
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 dark:text-[#e8f0f7]">
           How It Works
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Supply Liquidity */}
-          <div>
-            <Stepper initialStep={1} title="Supply Liquidity">
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Connect Wallet</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Users connect their wallet on the Senja LINE Mini App.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Supply Collateral</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Users supply collateral.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Select Chain and Token</h4>
-                <ul className="list-disc list-inside space-y-2 ml-2 text-senja-brown/80 dark:text-[#d0dce6]">
-                  <li>
-                    <strong>If a token is selected on Kaia:</strong> It is directly deposited into Senja&apos;s pool, and a user position is created.
-                  </li>
-                  <li>
-                    <strong>If a token is selected on another chain:</strong> It is burned and minted into Kaia via LayerZero, then deposited into Senja&apos;s pool, and a user position is created.
-                  </li>
-                </ul>
-              </Step>
-            </Stepper>
-          </div>
-
-          {/* Supply Collateral */}
-          <div>
-            <Stepper initialStep={1} title="Supply Collateral">
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Connect Wallet</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Users connect their wallet on the Senja LINE Mini App.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Supply Collateral</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Users supply collateral.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Select Chain and Token</h4>
-                <ul className="list-disc list-inside space-y-2 ml-2 text-senja-brown/80 dark:text-[#d0dce6]">
-                  <li>
-                    <strong>If a token is selected on Kaia:</strong> It is directly deposited into Senja&apos;s pool, and a user position is created.
-                  </li>
-                  <li>
-                    <strong>If a token is selected on another chain:</strong> It is burned and minted into Kaia via LayerZero, then deposited into Senja&apos;s pool, and a user position is created.
-                  </li>
-                </ul>
-              </Step>
-            </Stepper>
-          </div>
-
-          {/* Borrow */}
-          <div>
-            <Stepper initialStep={1} title="Borrow">
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Connect Wallet</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Users connect their wallet on the Senja LINE Mini App.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Borrow</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Users initiate borrow.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Check Pool Availability</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Checks if the Senja pool is available.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Check Collateral Value</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Checks the user&apos;s collateral value.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Select Chain and Token</h4>
-                <div className="space-y-3 text-senja-brown/80 dark:text-[#d0dce6]">
-                  <ul className="list-disc list-inside space-y-2 ml-2">
-                    <li>
-                      <strong>If a user selects a token on Kaia:</strong> They receive the loan directly.
-                    </li>
-                    <li>
-                      <strong>If a user selects a token on another chain:</strong> The token is locked on Kaia, minted on another chain via LayerZero, and the user receives a representative token.
-                    </li>
-                  </ul>
-                </div>
-              </Step>
-            </Stepper>
-          </div>
-
-          {/* Repay Loan */}
-          <div>
-            <Stepper initialStep={1} title="Repay Loan">
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Same Chain & Same Token</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">
-                  The repayment token goes directly into Senja&apos;s Pool.
-                </p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Same Chain & Other Token</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">
-                  The user&apos;s token is swapped through DragonSwap from the position token to the borrow token. The swapped token is then sent into Senja&apos;s Pool.
-                </p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Other Chain & Same Token</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">
-                  Integration with Stargate. The token on Chain A is burned and then minted on Chain B (Kaia). The minted token is deposited into Senja&apos;s Pool.
-                </p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Other Chain & Representative Token</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">
-                  Integration with LayerZero OFT. The representative token on Chain A is burned and the real token is released on Chain B (Kaia). The released token is deposited into Senja&apos;s Pool.
-                </p>
-              </Step>
-            </Stepper>
-          </div>
-
-          {/* Collateral Swap */}
-          <div>
-            <Stepper initialStep={1} title="Collateral Swap">
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Connect Wallet</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Users connect their wallet on the Senja LINE Mini App.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Check Position</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">Checks the user&apos;s position.</p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Select Token to Swap</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">The token is swapped via DragonSwap directly, without closing the user&apos;s position.</p>
-              </Step>
-            </Stepper>
-          </div>
-
-          {/* Token Buybacks */}
-          <div>
-            <Stepper initialStep={1} title="Token Buybacks">
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Fee Collection</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">
-                  Fees collected in Senja tokens are stored in the Assistance Fund.
-                </p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Automatic Swap</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">
-                  <strong className="text-senja-orange dark:text-[#60a5fa]">95% of these fee tokens</strong> are automatically swapped into <strong className="text-senja-orange dark:text-[#60a5fa]">KAIA via DragonSwap</strong>.
-                </p>
-              </Step>
-              <Step>
-                <h4 className="text-lg font-semibold mb-2 text-senja-brown dark:text-[#e8f0f7]">Ecosystem Support</h4>
-                <p className="text-senja-brown/80 dark:text-[#d0dce6]">
-                  The swapped KAIA supports price stability and ecosystem growth.
-                </p>
-              </Step>
-            </Stepper>
-          </div>
+        {/* Carousel */}
+        <div className="relative overflow-hidden w-full h-full pb-20">
+          <Carousel slides={slideData} />
         </div>
       </div>
     </section>
