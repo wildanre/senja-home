@@ -20,7 +20,7 @@ export default function ThemeToggle({ compact = false }: ThemeToggleProps) {
           strokeWidth={2}
           stroke="currentColor"
           className={`w-4 h-4 transition-colors duration-300 ${
-            theme === "light" ? "text-senja-orange" : "text-gray-400"
+            theme === "light" ? "text-orange-300" : "text-gray-400"
           }`}
         >
           <path
@@ -40,8 +40,8 @@ export default function ThemeToggle({ compact = false }: ThemeToggleProps) {
         aria-label="Toggle theme"
       >
         <span
-          className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
-            theme === "dark" ? "translate-x-6" : "translate-x-0"
+          className={`absolute top-0.5 left-0.5 w-5 h-5  rounded-full shadow-md transform transition-transform duration-300 ${
+            theme === "dark" ? "translate-x-6 bg-blue-400" : "translate-x-0 bg-orange-200"
           }`}
         />
       </button>

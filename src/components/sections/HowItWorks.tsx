@@ -123,7 +123,7 @@ const createSlideData = (): SlideData[] => [
         </div>
         <div class="mb-1 md:mb-2">
           <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Automatic Swap</h4>
-          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><span class="text-senja-orange dark:text-blue-400 font-semibold">95% of fee tokens</span> automatically swapped to <span class="text-senja-orange dark:text-blue-400 font-semibold">KAIA via DragonSwap</span>.</p>
+          <p class="text-sm md:text-base leading-snug md:leading-relaxed"><span class="font-semibold">95% of fee tokens</span> automatically swapped to <span class="font-semibold">KAIA via DragonSwap</span>.</p>
         </div>
         <div class="mb-1 md:mb-2">
           <h4 class="font-semibold text-base md:text-lg mb-1 md:mb-2 text-white dark:text-[#e8f0f7]">Ecosystem Growth</h4>
@@ -131,7 +131,7 @@ const createSlideData = (): SlideData[] => [
         </div>
       </div>
     `,
-    src: "/how/token-buybacks.svg",
+    src: "/how/buy-back.png",
   },
 ];
 

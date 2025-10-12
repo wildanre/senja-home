@@ -13,7 +13,7 @@ import type { CardNavItem } from "@/components/ui/CardNav";
 const navigationItems: CardNavItem[] = [
   {
     label: "Explore",
-    bgColor: "#D97706", // senja-orange
+    bgColor: "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
     textColor: "#FFFFFF",
     links: [
       {
@@ -35,7 +35,7 @@ const navigationItems: CardNavItem[] = [
   },
   {
     label: "Connect",
-    bgColor: "#60A5FA", // senja-blue (light mode blue)
+    bgColor: "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
     textColor: "#FFFFFF",
     links: [
       {
@@ -57,7 +57,7 @@ const navigationItems: CardNavItem[] = [
   },
   {
     label: "Join",
-    bgColor: "#374151", // senja-brown/gray
+    bgColor: "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
     textColor: "#FFFFFF",
     links: [
       {
@@ -86,9 +86,9 @@ export default function Home() {
         <WhatIsSenja />
       {/* </ScrollAnimationWrapper> */}
       
-      {/* <ScrollAnimationWrapper direction="up" delay={0.2}> */}
+      <ScrollAnimationWrapper direction="up" delay={0.2}>
         <HowItWorks />
-      {/* </ScrollAnimationWrapper> */}
+      </ScrollAnimationWrapper>
       
       {/* <ScrollAnimationWrapper direction="left" delay={0.1}> */}
         <Partner />
@@ -102,13 +102,13 @@ export default function Home() {
         <TimelineSection />
       {/* // </ScrollAnimationWrapper> */}
       
-      {/* <ScrollAnimationWrapper direction="up" delay={0.2}> */}
+      <ScrollAnimationWrapper direction="down" delay={0.3}>
         <ContactSection />
-      {/* </ScrollAnimationWrapper> */}
+      </ScrollAnimationWrapper>
       
-      {/* <ScrollAnimationWrapper direction="up" delay={0.3}> */}
+      <ScrollAnimationWrapper direction="up" delay={0.3}>
         <WaitlistSection />
-      {/* </ScrollAnimationWrapper> */}
+      </ScrollAnimationWrapper>
     </main>
   );
 }
