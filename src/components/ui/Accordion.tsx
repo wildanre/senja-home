@@ -21,7 +21,7 @@ export default function Accordion({
 
   return (
     <motion.div 
-      className="mb-8 bg-white/80 dark:bg-[#003366]/80 backdrop-blur-sm border border-senja-orange/30 dark:border-[#004488] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+      className="mb-8 bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -29,7 +29,7 @@ export default function Accordion({
     >
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between p-6 text-left transition-all duration-300 hover:bg-gradient-to-r hover:from-senja-orange/10 hover:to-transparent dark:hover:from-[#004488]/20 dark:hover:to-transparent ${titleClassName}`}
+        className={`w-full flex items-center justify-between p-6 text-left transition-all duration-300 hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent dark:hover:from-gray-900/20 dark:hover:to-transparent ${titleClassName}`}
         whileHover={{ x: 4 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -84,7 +84,7 @@ export default function Accordion({
             className="overflow-hidden"
           >
             <motion.div 
-              className={`p-6 pt-2 border-t border-senja-orange/20 dark:border-[#004488]/40 bg-gradient-to-b from-transparent to-senja-orange/5 dark:to-[#004488]/10 ${contentClassName}`}
+              className={`p-6 pt-2 bg-gradient-to-b from-transparent to-white/5 dark:to-gray-900/20 ${contentClassName}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.3 }}
