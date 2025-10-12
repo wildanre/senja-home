@@ -56,7 +56,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          Senja
+          Senja - Permissionless DeFi Protocol
         </motion.h1>
         
         {/* Rotating Taglines with Typing Animation */}
@@ -67,14 +67,14 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-200 dark:text-[#d0dce6] transition-colors duration-300 text-center">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-200 dark:text-[#d0dce6] transition-colors duration-300 text-center">
             <RotatingTextType 
               texts={taglines}
               typingSpeed={50}
               deletingSpeed={30}
               pauseDuration={2500}
             />
-          </p>
+          </h2>
         </motion.div>
 
         {/* Call-to-Action Buttons */}

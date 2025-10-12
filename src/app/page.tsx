@@ -75,12 +75,42 @@ const navigationItems: CardNavItem[] = [
 ];
 
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Senja Protocol",
+    "description": "Permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem with cross-chain liquidity aggregation",
+    "url": "https://senja.finance",
+    "logo": "https://senja.finance/senja-logo.png",
+    "foundingDate": "2024",
+    "sameAs": [
+      "https://senja.gitbook.io/senja-docs"
+    ],
+    "offers": {
+      "@type": "Service",
+      "name": "DeFi Lending and Borrowing",
+      "description": "Cross-chain lending and borrowing protocol with isolated pools and LayerZero integration",
+      "provider": {
+        "@type": "Organization",
+        "name": "Senja Protocol"
+      }
+    },
+    "areaServed": "Global",
+    "serviceType": "DeFi Protocol",
+    "category": "Financial Technology"
+  };
+
   return (
-    <main className="relative">
-      <CardNav 
-        items={navigationItems}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <Hero />
+      <main className="relative">
+        <CardNav 
+          items={navigationItems}
+        />
+        <Hero />
       
       {/* <ScrollAnimationWrapper direction="up" delay={0.1}> */}
         <WhatIsSenja />
@@ -109,6 +139,7 @@ export default function Home() {
       <ScrollAnimationWrapper direction="up" delay={0.3}>
         <WaitlistSection />
       </ScrollAnimationWrapper>
-    </main>
+      </main>
+    </>
   );
 }
