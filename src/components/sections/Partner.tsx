@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import { InfiniteMovingPartners } from "../ui/infinite-moving-partners";

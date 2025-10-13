@@ -5,7 +5,7 @@ export default function ContactSection() {
     <section id="contacts" className={`relative min-h-[60vh] w-full py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}>
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
-        <h2 className="text-4xl md:text-6xl font-bold text-center mb-16 text-white dark:text-[#e8f0f7]">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white dark:text-[#e8f0f7]">
           Get in Touch
         </h2>
         

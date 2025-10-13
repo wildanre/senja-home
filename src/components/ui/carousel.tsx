@@ -1,6 +1,7 @@
-"use client";
+'use client';
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useState, useRef, useId, useEffect } from "react";
+import Image from "next/image";
 
 interface SlideData {
   title: string;
@@ -149,9 +150,9 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             </div>
             
             {/* Image Section */}
-            <div className={isMobile ? "flex items-center justify-center order-1 mb-2" : "flex items-center justify-center h-full"}>
-              <img
-                className={imageClasses}
+            <div className={isMobile ? "flex items-center justify-center order-1 mb-2 h-full w-full" : "flex items-center justify-center h-full w-full max-w-[900px] max-h-[600px]"}>
+              <Image
+                className={isMobile ? "w-full max-w-[280px] h-[240px] object-contain rounded-lg opacity-80 mx-auto" : "w-full h-full max-w-[900px] max-h-[600px] object-contain rounded-lg opacity-80"}
                 style={{
                   opacity: current === index ? 1 : 0.7,
                 }}
@@ -160,6 +161,8 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
                 onLoad={imageLoaded}
                 loading="eager"
                 decoding="sync"
+                width={900}
+                height={600}
               />
             </div>
           </div>

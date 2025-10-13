@@ -42,10 +42,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center"
         >
           <motion.h2 
-            className="text-4xl md:text-6xl font-bold text-black dark:text-white mb-6"
+            className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}

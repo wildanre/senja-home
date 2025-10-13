@@ -1,4 +1,3 @@
-'use client';
 import Carousel from "../ui/carousel";
 import { BACKGROUND_PATTERNS } from '@/utils/styles';
 

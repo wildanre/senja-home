@@ -48,15 +48,10 @@ export default function Accordion({
         >
           <div className="relative">
             <motion.div
-              animate={{ 
-                boxShadow: isOpen 
-                  ? "0 0 20px rgba(217, 119, 6, 0.3)" 
-                  : "0 0 0px rgba(217, 119, 6, 0)"
-              }}
-              className="w-8 h-8 rounded-full bg-gradient-to-br from-senja-orange to-orange-600 dark:from-[#60a5fa] dark:to-[#3b82f6] flex items-center justify-center"
+              className="w-10 h-10 bg-transparent flex items-center justify-center rounded-full"
             >
               <svg 
-                className="w-4 h-4 text-white" 
+                className="w-6 h-6 text-senja-orange dark:text-white" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
