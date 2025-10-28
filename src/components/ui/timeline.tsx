@@ -76,9 +76,12 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
-        {data.map((item) => (
+        {data.map((item, idx) => {
+          // Create a unique, stable key for each timeline item
+          const uniqueKey = `timeline-${item.id || item.title}-${idx}`;
+          return (
           <div
-            key={item.id || item.title}
+            key={uniqueKey}
             className="flex justify-start pt-10 md:pt-40 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
@@ -94,10 +97,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
                 {item.title}
               </h3>
-              {item.content}{" "}
+              <div key={`content-${uniqueKey}`}>
+                {item.content}{" "}
+              </div>
             </div>
           </div>
-        ))}
+        );
+        })}
         <div
           style={{
             height: height + "px",

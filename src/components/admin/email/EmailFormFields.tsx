@@ -11,19 +11,15 @@ interface EmailFormFieldsProps {
 export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFieldsProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Handle textarea cursor position
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onFormChange(e);
   };
 
-  // Handle textarea click to update cursor position
+
   const handleTextareaClick = () => {
-    // Update cursor position if needed in future
   };
 
-  // Handle keyboard events to update cursor position
   const handleTextareaKeyUp = () => {
-    // Update cursor position if needed in future
   };
 
   // Insert formatting at cursor position

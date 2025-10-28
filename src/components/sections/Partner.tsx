@@ -1,5 +1,7 @@
+'use client';
 
 import React from "react";
+import { motion } from "motion/react";
 import { InfiniteMovingPartners } from "../ui/infinite-moving-partners";
 import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
@@ -41,21 +43,54 @@ export default function Partner() {
     <section id="partners" className={`py-20 px-4 ${BACKGROUND_PATTERNS.primary}`}>
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-senja-brown dark:text-[#e8f0f7]">
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6 text-senja-brown dark:text-[#e8f0f7]"
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.7, 
+              ease: "easeOut",
+              type: "spring",
+              stiffness: 100
+            }}
+            viewport={{ once: false, amount: 0.5 }}
+          >
             Partnership
-          </h2>
-          <p className="text-lg md:text-xl text-senja-brown/80 dark:text-[#d0dce6] max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-lg md:text-xl text-senja-brown/80 dark:text-[#d0dce6] max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.15,
+              ease: "easeOut"
+            }}
+            viewport={{ once: false, amount: 0.5 }}
+          >
             Working together with leading protocols and communities to build the future of DeFi
-          </p>
+          </motion.p>
         </div>
         
-        <div className="rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden">
+        <motion.div 
+          className="rounded-md flex flex-col antialiased items-center justify-center relative overflow-hidden"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ 
+            duration: 0.8, 
+            delay: 0.3,
+            ease: "easeOut",
+            type: "spring",
+            stiffness: 80
+          }}
+          viewport={{ once: false, amount: 0.3 }}
+        >
           <InfiniteMovingPartners
             items={partners}
             direction="right"
             speed="slow"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
