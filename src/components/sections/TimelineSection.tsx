@@ -22,11 +22,15 @@ const timelineData = [
     expandedContent: (
       <div className="space-y-4">
         <div className="space-y-3">
-          <p className="text-neutral-700 dark:text-blue-300">• Senja live on Kaia Mainnet</p>
-          <p className="text-neutral-700 dark:text-blue-300">• LINE Mini DApp launch for seamless onboarding</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Collateral Swap feature released</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Fee & Buyback Mechanism activated (95% fees into KAIA)</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Isolated Pools available for safer cross-chain lending</p>
+          {[
+            "Senja live on Kaia Mainnet",
+            "LINE Mini DApp launch for seamless onboarding",
+            "Collateral Swap feature released",
+            "Fee & Buyback Mechanism activated (95% fees into KAIA)",
+            "Isolated Pools available for safer cross-chain lending"
+          ].map((item, idx) => (
+            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+          ))}
         </div>
       </div>
     ),
@@ -56,10 +60,14 @@ const timelineData = [
     expandedContent: (
       <div className="space-y-4">
         <div className="space-y-3">
-          <p className="text-neutral-700 dark:text-blue-300">• Full security audit to ensure protocol safety</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Cross-chain TVL growth initiatives with Kaia as origin chain</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Early ecosystem partnership programs</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Airdrop programs to engage community and early adopters</p>
+          {[
+            "Full security audit to ensure protocol safety",
+            "Cross-chain TVL growth initiatives with Kaia as origin chain",
+            "Early ecosystem partnership programs",
+            "Airdrop programs to engage community and early adopters"
+          ].map((item, idx) => (
+            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+          ))}
         </div>
       </div>
     ),
@@ -88,8 +96,12 @@ const timelineData = [
     expandedContent: (
       <div className="space-y-4">
         <div className="space-y-3">
-          <p className="text-neutral-700 dark:text-blue-300">• Expanded asset and chain support for collateral and borrowing</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Integration with additional oracles to strengthen risk management</p>
+          {[
+            "Expanded asset and chain support for collateral and borrowing",
+            "Integration with additional oracles to strengthen risk management"
+          ].map((item, idx) => (
+            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+          ))}
         </div>
       </div>
     ),
@@ -116,8 +128,12 @@ const timelineData = [
     expandedContent: (
       <div className="space-y-4">
         <div className="space-y-3">
-          <p className="text-neutral-700 dark:text-blue-300">• Enhanced dashboard and analytics for user portfolios</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Community and liquidity incentive programs</p>
+          {[
+            "Enhanced dashboard and analytics for user portfolios",
+            "Community and liquidity incentive programs"
+          ].map((item, idx) => (
+            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+          ))}
         </div>
       </div>
     ),
@@ -144,8 +160,12 @@ const timelineData = [
     expandedContent: (
       <div className="space-y-4">
         <div className="space-y-3">
-          <p className="text-neutral-700 dark:text-blue-300">• Mobile app upgrade for iOS and Android</p>
-          <p className="text-neutral-700 dark:text-blue-300">• Developer integrations to support &quot;Money Lego&quot; composability in Kaia DeFi</p>
+          {[
+            "Mobile app upgrade for iOS and Android",
+            "Developer integrations to support \"Money Lego\" composability in Kaia DeFi"
+          ].map((item, idx) => (
+            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+          ))}
         </div>
       </div>
     ),

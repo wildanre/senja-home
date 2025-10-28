@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "motion/react";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 interface MetricItemProps {
@@ -10,34 +10,6 @@ interface MetricItemProps {
   suffix?: string;
   delay: number;
 }
-
-const AnimatedCounter = ({ value, duration = 2 }: { value: string; duration?: number }) => {
-  const [displayValue, setDisplayValue] = useState("0");
-
-  useEffect(() => {
-    // Extract numeric value from string
-    const numericValue = parseInt(value.replace(/[^0-9]/g, ""));
-    const startTime = Date.now();
-
-    const animateCounter = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / (duration * 1000), 1);
-      const current = Math.floor(numericValue * progress);
-      
-      setDisplayValue(current.toLocaleString());
-
-      if (progress < 1) {
-        requestAnimationFrame(animateCounter);
-      } else {
-        setDisplayValue(value);
-      }
-    };
-
-    requestAnimationFrame(animateCounter);
-  }, [value, duration]);
-
-  return displayValue;
-};
 
 const MetricCard = ({ label, value, suffix, delay }: MetricItemProps) => (
   <motion.div
@@ -151,7 +123,7 @@ export default function Metrics() {
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.5 }}
           >
-            Real-time insights into Senja's lending ecosystem growth and adoption
+            Real-time insights into Senja&apos;s lending ecosystem growth and adoption
           </motion.p>
         </motion.div>
 

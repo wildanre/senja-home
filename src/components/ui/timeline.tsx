@@ -97,13 +97,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
                 {item.title}
               </h3>
-              <div key={`content-${uniqueKey}`}>
+              <div>
                 {item.content}{" "}
               </div>
             </div>
           </div>
         );
         })}
+      </div>
+      
+      <div className="relative max-w-7xl mx-auto pb-20">
         <div
           style={{
             height: height + "px",

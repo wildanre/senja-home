@@ -68,7 +68,7 @@ export default function ContactSection() {
             <motion.a
               key={index}
               href={item.href}
-              target={item.target as any}
+              target={item.target}
               rel="noopener noreferrer"
               className="group cursor-pointer"
               initial={{ opacity: 0, y: 40 }}
