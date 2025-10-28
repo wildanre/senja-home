@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion } from "motion/react";
 import { OrbitingCircles } from "../ui/orbiting-circles";
 import { BACKGROUND_PATTERNS } from "@/utils/styles";
 
@@ -29,17 +30,42 @@ export default function Supports() {
       className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-4 lg:mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-100 dark:text-[#e8f0f7]">
+        <motion.div 
+          className="text-center mb-4 lg:mb-12"
+          initial={{ opacity: 0, y: -40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.5 }}
+        >
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6 text-gray-100 dark:text-[#e8f0f7]"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1, type: "spring", stiffness: 80 }}
+            viewport={{ once: false, amount: 0.5 }}
+          >
             Supported Assets & Networks
-          </h2>
-          <p className="text-lg md:text-xl text-gray-100/80 dark:text-[#d0dce6] max-w-3xl mx-auto">
+          </motion.h2>
+          
+          <motion.p 
+            className="text-lg md:text-xl text-gray-100/80 dark:text-[#d0dce6] max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.5 }}
+          >
             Multi-chain support across leading blockchains and top digital
             assets
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="flex justify-center mb-8">
+        <motion.div 
+          className="flex justify-center mb-8"
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 70, damping: 20 }}
+          viewport={{ once: false, amount: 0.3 }}
+        >
           <div className="relative h-[600px] w-full max-w-[700px] overflow-visible flex items-center justify-center">
             {/* Inner orbit - Assets */}
             <div className="absolute inset-0">
@@ -143,7 +169,7 @@ export default function Supports() {
               </OrbitingCircles>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

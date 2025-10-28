@@ -6,6 +6,8 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import ContactSection from "@/components/sections/ContactSection";
 import WaitlistSection from "@/components/sections/WaitlistSection";
 import TimelineSection from "@/components/sections/TimelineSection";
+import Metrics from "@/components/sections/Metrics";
+import Footer from "@/components/Footer";
 import CardNav from "@/components/ui/CardNav";
 import ScrollAnimationWrapper from "@/components/ui/ScrollAnimationWrapper";
 import type { CardNavItem } from "@/components/ui/CardNav";
@@ -139,7 +141,10 @@ export default function Home() {
       <ScrollAnimationWrapper direction="up" delay={0.3}>
         <WaitlistSection />
       </ScrollAnimationWrapper>
+
+      <Metrics />
       </main>
+      <Footer />
     </>
   );
 }
