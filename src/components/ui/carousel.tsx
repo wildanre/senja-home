@@ -107,10 +107,6 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     ? "text-xs text-white/85 dark:text-[#d0dce6] leading-snug text-left"
     : "text-sm md:text-base text-white/90 dark:text-[#d0dce6] leading-relaxed";
 
-  const imageClasses = isMobile
-    ? "w-full max-w-[240px] h-[240px] object-contain rounded-lg opacity-80 mx-auto"
-    : "max-w-full max-h-full w-auto h-auto object-contain rounded-lg opacity-80";
-
   return (
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li

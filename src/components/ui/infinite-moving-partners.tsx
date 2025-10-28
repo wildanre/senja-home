@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,8 +25,6 @@ export const InfiniteMovingPartners = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
-
-  const [start, setStart] = useState(true);
   
   const getDirection = React.useCallback(() => {
     if (containerRef.current) {
@@ -88,7 +86,7 @@ export const InfiniteMovingPartners = ({
         ref={scrollerRef}
         className={cn(
           "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
-          start && "animate-scroll",
+          "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
