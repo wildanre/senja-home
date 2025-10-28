@@ -6,12 +6,12 @@ export default function WhatIsSenja() {
     <section id="what-is-senja" className={`py-20 px-4 ${BACKGROUND_PATTERNS.primary}`}>
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-senja-brown dark:text-[#e8f0f7] tracking-tight">
-          What is Senja?
+          What is Senja Finance?
         </h2>
         
         <div className="text-lg md:text-xl leading-relaxed text-senja-brown/90 dark:text-[#d0dce6] space-y-6 mb-12 tracking-tight">
           <p>
-            Senja is a <strong className="text-senja-orange dark:text-[#60a5fa]">permissionless stablecoin lending and borrowing protocol</strong> built on the Kaia ecosystem. Senja also lives on the LINE Mini DApp, where users can supply collateral from multiple chains via cross-chain messaging, swap collateral seamlessly through DragonSwap, and borrow Kaia-native USDT or other stablecoins across multiple chains, with interest rates that automatically adjust based on utilization and asset risk profiles.
+            <strong className="text-senja-orange dark:text-[#60a5fa]">Senja Finance</strong> is a <strong className="text-senja-orange dark:text-[#60a5fa]">permissionless stablecoin lending and borrowing protocol</strong> built on the Kaia ecosystem. Senja Finance also lives on the LINE Mini DApp, where users can supply collateral from multiple chains via cross-chain messaging, swap collateral seamlessly through DragonSwap, and borrow Kaia-native USDT or other stablecoins across multiple chains, with interest rates that automatically adjust based on utilization and asset risk profiles.
           </p>
           
           <p>

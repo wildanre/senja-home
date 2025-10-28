@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   },
   description: "Senja is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration, isolated pools, and seamless user experience via LINE Mini DApp.",
   keywords: [
+    "Senja Finance",
+    "senja finance",
+    "Senja Finance Protocol",
+    "Senja Protocol",
     "DeFi",
     "lending protocol",
     "borrowing",

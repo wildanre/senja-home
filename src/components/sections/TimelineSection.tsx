@@ -5,6 +5,7 @@ import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 const timelineData = [
   {
+    id: "q3-2025",
     title: "Q3 2025",
     content: (
       <div className="space-y-6">
@@ -38,6 +39,7 @@ const timelineData = [
     ]
   },
   {
+    id: "q4-2025",
     title: "Q4 2025",
     content: (
       <div className="space-y-6">
@@ -69,6 +71,7 @@ const timelineData = [
     ]
   },
   {
+    id: "q1-2026",
     title: "Q1 2026",
     content: (
       <div className="space-y-6">
@@ -96,6 +99,7 @@ const timelineData = [
     ]
   },
   {
+    id: "q2-2026",
     title: "Q2 2026",
     content: (
       <div className="space-y-6">
@@ -123,6 +127,7 @@ const timelineData = [
     ]
   },
   {
+    id: "q3-2026",
     title: "Q3 2026",
     content: (
       <div className="space-y-6">

@@ -78,7 +78,7 @@ export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Senja Protocol",
+    "name": "Senja Finance",
     "description": "Permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem with cross-chain liquidity aggregation",
     "url": "https://senja.finance",
     "logo": "https://senja.finance/senja-logo.png",
@@ -92,7 +92,7 @@ export default function Home() {
       "description": "Cross-chain lending and borrowing protocol with isolated pools and LayerZero integration",
       "provider": {
         "@type": "Organization",
-        "name": "Senja Protocol"
+        "name": "Senja Finance"
       }
     },
     "areaServed": "Global",

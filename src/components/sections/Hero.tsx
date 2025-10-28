@@ -8,8 +8,8 @@ import { WorldMap } from "../ui/world-map";
 
 export default function Hero() {
   const taglines = [
-    "Permissionless Lending and Borrowing",
-    "Trade Your Collateral",
+    "Senja Finance - Permissionless Lending and Borrowing",
+    "Trade Your Collateral on Senja Finance",
     "Crosschain with LayerZero Integrated for Secure and Faster Transactions"
   ];
 
