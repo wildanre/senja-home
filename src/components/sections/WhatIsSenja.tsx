@@ -15,7 +15,7 @@ export default function WhatIsSenja() {
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}
         >
-          What is Senja Finance?
+          What is Senja ?
         </motion.h2>
         
         <motion.div 
@@ -26,7 +26,7 @@ export default function WhatIsSenja() {
           viewport={{ once: false, amount: 0.5 }}
         >
           <p>
-            <strong className="text-senja-orange dark:text-[#60a5fa]">Senja Finance</strong> is a <strong className="text-senja-orange dark:text-[#60a5fa]">permissionless stablecoin lending and borrowing protocol</strong> built on the Kaia ecosystem. Senja Finance also lives on the LINE Mini DApp, where users can supply collateral from multiple chains via cross-chain messaging, swap collateral seamlessly through DragonSwap, and borrow Kaia-native USDT or other stablecoins across multiple chains, with interest rates that automatically adjust based on utilization and asset risk profiles.
+            <strong className="text-senja-orange dark:text-[#60a5fa]">Senja </strong> is a <strong className="text-senja-orange dark:text-[#60a5fa]">permissionless stablecoin lending and borrowing protocol</strong> built on the Kaia ecosystem. Senja Finance also lives on the LINE Mini DApp, where users can supply collateral from multiple chains via cross-chain messaging, swap collateral seamlessly through DragonSwap, and borrow Kaia-native USDT or other stablecoins across multiple chains, with interest rates that automatically adjust based on utilization and asset risk profiles.
           </p>
           
           <p>
