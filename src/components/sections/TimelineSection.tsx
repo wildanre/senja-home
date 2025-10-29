@@ -10,10 +10,10 @@ const timelineData = [
     content: (
       <div className="space-y-6">
         <div className="mb-6">
-          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-blue-200 mb-3">
+          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-gray-200 mb-3">
             Foundation & Launch
           </h4>
-          <p className="text-neutral-600 dark:text-blue-300 text-lg leading-relaxed">
+          <p className="text-neutral-600 dark:text-gray-300 text-lg leading-relaxed">
             Establishing our presence on Kaia blockchain and LINE ecosystem.
           </p>
         </div>
@@ -29,7 +29,7 @@ const timelineData = [
             "Fee & Buyback Mechanism activated (95% fees into KAIA)",
             "Isolated Pools available for safer cross-chain lending"
           ].map((item, idx) => (
-            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+            <p key={idx} className="text-neutral-700 dark:text-gray-300">• {item}</p>
           ))}
         </div>
       </div>
@@ -48,10 +48,10 @@ const timelineData = [
     content: (
       <div className="space-y-6">
         <div className="mb-6">
-          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-blue-200 mb-3">
+          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-gray-200 mb-3">
             Security & Growth
           </h4>
-          <p className="text-neutral-600 dark:text-blue-300 text-lg leading-relaxed">
+          <p className="text-neutral-600 dark:text-gray-300 text-lg leading-relaxed">
             Building robust security infrastructure and expanding cross-chain capabilities.
           </p>
         </div>
@@ -66,7 +66,7 @@ const timelineData = [
             "Early ecosystem partnership programs",
             "Airdrop programs to engage community and early adopters"
           ].map((item, idx) => (
-            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+            <p key={idx} className="text-neutral-700 dark:text-gray-300">• {item}</p>
           ))}
         </div>
       </div>
@@ -84,10 +84,10 @@ const timelineData = [
     content: (
       <div className="space-y-6">
         <div className="mb-6">
-          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-blue-200 mb-3">
+          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-gray-200 mb-3">
             Platform Expansion
           </h4>
-          <p className="text-neutral-600 dark:text-blue-300 text-lg leading-relaxed">
+          <p className="text-neutral-600 dark:text-gray-300 text-lg leading-relaxed">
             Expanding asset support and strengthening risk management capabilities.
           </p>
         </div>
@@ -100,7 +100,7 @@ const timelineData = [
             "Expanded asset and chain support for collateral and borrowing",
             "Integration with additional oracles to strengthen risk management"
           ].map((item, idx) => (
-            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+            <p key={idx} className="text-neutral-700 dark:text-gray-300">• {item}</p>
           ))}
         </div>
       </div>
@@ -116,10 +116,10 @@ const timelineData = [
     content: (
       <div className="space-y-6">
         <div className="mb-6">
-          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-blue-200 mb-3">
+          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-gray-200 mb-3">
             Enhanced User Experience
           </h4>
-          <p className="text-neutral-600 dark:text-blue-300 text-lg leading-relaxed">
+          <p className="text-neutral-600 dark:text-gray-300 text-lg leading-relaxed">
             Improving analytics and community engagement programs.
           </p>
         </div>
@@ -132,7 +132,7 @@ const timelineData = [
             "Enhanced dashboard and analytics for user portfolios",
             "Community and liquidity incentive programs"
           ].map((item, idx) => (
-            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+            <p key={idx} className="text-neutral-700 dark:text-gray-300">• {item}</p>
           ))}
         </div>
       </div>
@@ -148,10 +148,10 @@ const timelineData = [
     content: (
       <div className="space-y-6">
         <div className="mb-6">
-          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-blue-200 mb-3">
+          <h4 className="text-2xl md:text-3xl font-bold text-neutral-800 dark:text-gray-200 mb-3">
             Innovation & Integration
           </h4>
-          <p className="text-neutral-600 dark:text-blue-300 text-lg leading-relaxed">
+          <p className="text-neutral-600 dark:text-gray-300 text-lg leading-relaxed">
             Advanced features and developer ecosystem expansion.
           </p>
         </div>
@@ -164,7 +164,7 @@ const timelineData = [
             "Mobile app upgrade for iOS and Android",
             "Developer integrations to support \"Money Lego\" composability in Kaia DeFi"
           ].map((item, idx) => (
-            <p key={idx} className="text-neutral-700 dark:text-blue-300">• {item}</p>
+            <p key={idx} className="text-neutral-700 dark:text-gray-300">• {item}</p>
           ))}
         </div>
       </div>

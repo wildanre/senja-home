@@ -1,7 +1,7 @@
 // Background patterns 
 export const BACKGROUND_PATTERNS = {
   // Primary background (white/dark)
-  primary: 'bg-white dark:bg-[#1a1a2e]',
+  primary: 'bg-white dark:bg-gray-950',
   
   // Secondary background (light gray/gradient)
   secondary: 'bg-gray-50 dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950',

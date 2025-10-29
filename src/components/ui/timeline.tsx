@@ -76,6 +76,22 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       </div>
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
+        {/* Line container */}
+        <div
+          style={{
+            height: height + "px",
+          }}
+          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px]"
+        >
+          <motion.div
+            style={{
+              height: heightTransform,
+              opacity: opacityTransform,
+            }}
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-senja-orange via-orange-500 to-transparent dark:from-blue-500 dark:via-blue-400 dark:to-transparent rounded-full"
+          />
+        </div>
+
         {data.map((item, idx) => {
           // Create a unique, stable key for each timeline item
           const uniqueKey = `timeline-${item.id || item.title}-${idx}`;
@@ -106,22 +122,6 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         })}
       </div>
       
-      <div className="relative max-w-7xl mx-auto pb-20">
-        <div
-          style={{
-            height: height + "px",
-          }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px]"
-        >
-          <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-senja-orange via-orange-500 to-transparent dark:from-blue-500 dark:via-blue-400 dark:to-transparent rounded-full"
-          />
-        </div>
-      </div>
     </div>
   );
 };
