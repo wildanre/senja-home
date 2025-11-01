@@ -60,14 +60,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://senja.finance'),
+  metadataBase: new URL('https://www.senja.finance'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://senja.finance',
+    url: 'https://www.senja.finance',
     siteName: 'Senja Finance',
     title: 'Senja Finance - Permissionless DeFi Protocol | Cross-Chain Lending & Borrowing',
     description: 'Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration.',

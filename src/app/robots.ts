@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/api/'],
     },
-    sitemap: 'https://senja.finance/sitemap.xml',
+    sitemap: 'https://www.senja.finance/sitemap.xml',
   }
 }
