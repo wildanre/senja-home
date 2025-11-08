@@ -51,7 +51,7 @@ export default function Accordion({
               className="w-10 h-10 bg-transparent flex items-center justify-center rounded-full"
             >
               <svg 
-                className="w-6 h-6 text-senja-orange dark:text-white" 
+                className="w-6 h-6 text-yellow-300 dark:text-white" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"

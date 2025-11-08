@@ -114,6 +114,8 @@ export default function Home() {
       <main className="relative">
         <CardNav items={navigationItems} />
         <Hero />
+        <Supports />
+        
         <WhatIsSenja />
 
         <ScrollAnimationWrapper direction="up" delay={0.2}>
@@ -121,7 +123,6 @@ export default function Home() {
         </ScrollAnimationWrapper>
 
         <Partner />
-        <Supports />
         <TimelineSection />
 
         <ScrollAnimationWrapper direction="down" delay={0.3}>

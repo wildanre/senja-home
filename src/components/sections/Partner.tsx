@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "motion/react";
 import { InfiniteMovingPartners } from "../ui/infinite-moving-partners";
-import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 export default function Partner() {
   const partners = [
@@ -40,11 +39,11 @@ export default function Partner() {
   ];
 
   return (
-    <section id="partners" className={`py-20 px-4 ${BACKGROUND_PATTERNS.primary}`}>
+    <section id="partners" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 text-senja-brown dark:text-[#e8f0f7]"
+            className="text-4xl md:text-5xl font-bold mb-6 text-white dark:text-[#e8f0f7]"
             initial={{ opacity: 0, y: -40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ 
@@ -58,7 +57,7 @@ export default function Partner() {
             Partnership
           </motion.h2>
           <motion.p 
-            className="text-lg md:text-xl text-senja-brown/80 dark:text-[#d0dce6] max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-white/90 dark:text-[#d0dce6] max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ 

@@ -2,7 +2,6 @@
 import Button from "../ui/Button";
 import RotatingTextType from "../ui/RotatingTextType";
 import Image from "next/image";
-import { BACKGROUND_PATTERNS } from '@/utils/styles';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { WorldMap } from "../ui/world-map";
 
@@ -23,7 +22,7 @@ export default function Hero() {
   const buttonY = useTransform(scrollY, [0, 800], [0, -50]);
 
   return (
-    <section className={`flex flex-col items-center justify-center min-h-screen px-4 py-4 sm:py-8 md:py-12 lg:py-16 text-center ${BACKGROUND_PATTERNS.hero} relative overflow-hidden`}>
+    <section className="flex flex-col items-center justify-center min-h-screen px-4 py-4 sm:py-8 md:py-12 lg:py-16 text-center relative overflow-hidden">
       {/* World Map Background */}
       <div className="absolute inset-0 opacity-20 dark:opacity-15">
         <WorldMap/>

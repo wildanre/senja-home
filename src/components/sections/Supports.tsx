@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { OrbitingCircles } from "../ui/orbiting-circles";
-import { BACKGROUND_PATTERNS } from "@/utils/styles";
 
 export default function Supports() {
   const [isMobile, setIsMobile] = useState(false);
@@ -27,7 +26,7 @@ export default function Supports() {
   return (
     <section
       id="supports"
-      className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}
+      className="py-20 px-4"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div 

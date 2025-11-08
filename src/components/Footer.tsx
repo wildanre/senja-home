@@ -4,7 +4,6 @@ import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiDiscord, SiTelegram } from 'react-icons/si';
-import { BACKGROUND_PATTERNS } from '@/utils/styles';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -47,7 +46,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={`relative py-16 md:py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}>
+    <footer className="relative py-16 md:py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Top Section - Logo and Description */}
         <motion.div
@@ -131,7 +130,7 @@ export default function Footer() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white/80 dark:text-[#d0dce6] hover:text-senja-orange dark:hover:text-[#60a5fa] transition-colors duration-200 flex items-center gap-2"
+                        className="text-white/80 dark:text-[#d0dce6] hover:text-yellow-300 dark:hover:text-[#60a5fa] transition-colors duration-200 flex items-center gap-2"
                       >
                         {link.label}
                         <span className="text-xs">↗</span>
@@ -139,7 +138,7 @@ export default function Footer() {
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-white/80 dark:text-[#d0dce6] hover:text-senja-orange dark:hover:text-[#60a5fa] transition-colors duration-200"
+                        className="text-white/80 dark:text-[#d0dce6] hover:text-yellow-300 dark:hover:text-[#60a5fa] transition-colors duration-200"
                       >
                         {link.label}
                       </Link>
@@ -182,7 +181,7 @@ export default function Footer() {
                 href="https://x.com/SenjaLabs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/60 dark:text-[#a0aec0] hover:text-senja-orange dark:hover:text-[#60a5fa] transition-colors duration-200"
+                className="text-white/60 dark:text-[#a0aec0] hover:text-yellow-300 dark:hover:text-[#60a5fa] transition-colors duration-200"
                 whileHover={{ scale: 1.2, rotate: 5 }}
               >
                 <FaXTwitter className="w-5 h-5" />
@@ -190,7 +189,7 @@ export default function Footer() {
               
               <motion.a
                 href="#discord"
-                className="text-white/60 dark:text-[#a0aec0] hover:text-senja-orange dark:hover:text-[#60a5fa] transition-colors duration-200"
+                className="text-white/60 dark:text-[#a0aec0] hover:text-yellow-300 dark:hover:text-[#60a5fa] transition-colors duration-200"
                 whileHover={{ scale: 1.2, rotate: 5 }}
               >
                 <SiDiscord className="w-5 h-5" />
@@ -198,7 +197,7 @@ export default function Footer() {
               
               <motion.a
                 href="#telegram"
-                className="text-white/60 dark:text-[#a0aec0] hover:text-senja-orange dark:hover:text-[#60a5fa] transition-colors duration-200"
+                className="text-white/60 dark:text-[#a0aec0] hover:text-yellow-300 dark:hover:text-[#60a5fa] transition-colors duration-200"
                 whileHover={{ scale: 1.2, rotate: 5 }}
               >
                 <SiTelegram className="w-5 h-5" />
@@ -210,7 +209,7 @@ export default function Footer() {
 
       {/* Background gradient accent */}
       <div className="absolute inset-0 pointer-events-none opacity-50">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-senja-orange/5 dark:bg-blue-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-300/5 dark:bg-blue-500/5 rounded-full blur-3xl" />
       </div>
     </footer>
   );

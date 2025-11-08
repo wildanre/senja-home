@@ -1,7 +1,6 @@
 'use client';
 
 import Carousel from "../ui/carousel";
-import { BACKGROUND_PATTERNS } from '@/utils/styles';
 import { motion } from "motion/react";
 
 interface SlideData {
@@ -141,7 +140,7 @@ export default function HowItWorks() {
   const slideData = createSlideData();
 
   return (
-    <section id="how-it-works" className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}>
+    <section id="how-it-works" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Title with Scale & Rotate Animation */}
         <motion.h2 
