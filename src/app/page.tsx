@@ -1,82 +1,16 @@
 import Hero from "@/components/sections/hero";
+import Partner from "@/components/sections/partner";
 import Supports from "@/components/sections/supports";
 import WhatIsSenja from "@/components/sections/what-is-senja";
 import HowItWorks from "@/components/sections/how-it-works";
 import ContactSection from "@/components/sections/contact";
 import WaitlistSection from "@/components/sections/waitlist";
 import TimelineSection from "@/components/sections/timeline";
+import Footer from "@/components/sections/footer";
 import Metrics from "@/components/sections/metrics/Metrics";
-import Footer from "@/components/Footer";
 import CardNav from "@/components/ui/CardNav";
 import ScrollAnimationWrapper from "@/components/ui/ScrollAnimationWrapper";
-import type { CardNavItem } from "@/components/ui/CardNav";
-
-const navigationItems: CardNavItem[] = [
-  {
-    label: "Explore",
-    bgColor:
-      "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
-    textColor: "#FFFFFF",
-    links: [
-      {
-        label: "What is Senja",
-        href: "#what-is-senja",
-        ariaLabel: "Learn about Senja platform",
-      },
-      {
-        label: "How It Works",
-        href: "#how-it-works",
-        ariaLabel: "See how Senja works",
-      },
-      {
-        label: "Roadmap",
-        href: "#roadmap",
-        ariaLabel: "View our development roadmap",
-      },
-    ],
-  },
-  {
-    label: "Connect",
-    bgColor:
-      "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
-    textColor: "#FFFFFF",
-    links: [
-      {
-        label: "Our Partners",
-        href: "#partners",
-        ariaLabel: "View our partners",
-      },
-      {
-        label: "Supported Assets",
-        href: "#supports",
-        ariaLabel: "View supported assets and networks",
-      },
-      {
-        label: "Contact Us",
-        href: "#contacts",
-        ariaLabel: "Get in touch with us",
-      },
-    ],
-  },
-  {
-    label: "Join",
-    bgColor:
-      "bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20",
-    textColor: "#FFFFFF",
-    links: [
-      {
-        label: "Join Waitlist",
-        href: "#waitlist",
-        ariaLabel: "Join our waitlist",
-      },
-      {
-        label: "Get Started",
-        href: "#get-started",
-        ariaLabel: "Start using Senja",
-      },
-    ],
-  },
-];
+import { navigationItems } from "@/components/sections/navigation";
 
 export default function Home() {
   const structuredData = {
@@ -122,6 +56,7 @@ export default function Home() {
           <section className="snap-start snap-always min-h-screen">
             <ScrollAnimationWrapper direction="up" delay={0.3}>
               <WaitlistSection />
+              <Partner />
             </ScrollAnimationWrapper>
           </section>
 
@@ -129,7 +64,7 @@ export default function Home() {
             <Supports />
           </section>
           
-          <section className="snap-start snap-always min-h-screen">
+          <section className="snap-start snap-always">
             <WhatIsSenja />
           </section>
 
@@ -142,10 +77,13 @@ export default function Home() {
             <TimelineSection />
           </section>
 
-          <section className="snap-start snap-always min-h-screen">
+          <section className="snap-start">
             <ScrollAnimationWrapper direction="down" delay={0.3}>
               <ContactSection />
             </ScrollAnimationWrapper>
+          </section>
+
+          <section className="snap-end">
             <Footer />
           </section>
 
