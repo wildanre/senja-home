@@ -1,16 +1,10 @@
-'use client';
-
-import Carousel from "../ui/carousel";
-import { motion } from "motion/react";
-
-interface SlideData {
+export interface SlideData {
   title: string;
   description: string;
   src: string;
 }
 
-// Data slides untuk How It Works
-const createSlideData = (): SlideData[] => [
+export const slidesData: SlideData[] = [
   {
     title: "Supply Liquidity",
     description: `
@@ -136,43 +130,3 @@ const createSlideData = (): SlideData[] => [
   },
 ];
 
-export default function HowItWorks() {
-  const slideData = createSlideData();
-
-  return (
-    <section id="how-it-works" className="py-20 px-4">
-      <div className="max-w-7xl mt-10 lg:mt-20 mx-auto">
-        {/* Title with Scale & Rotate Animation */}
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 dark:text-[#e8f0f7]"
-          initial={{ opacity: 0, scale: 0.8, rotateY: -90 }}
-          whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ 
-            duration: 0.8, 
-            ease: "easeOut",
-            rotateY: { duration: 0.8 }
-          }}
-          viewport={{ once: false, amount: 0.5 }}
-          style={{ perspective: "1000px" }}
-        >
-          How It Works
-        </motion.h2>
-
-        {/* Carousel with Staggered Fade */}
-        <motion.div 
-          className="relative overflow-hidden w-full h-full pb-20"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.6, 
-            delay: 0.2,
-            ease: "easeOut"
-          }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <Carousel slides={slideData} />
-        </motion.div>
-      </div>
-    </section>
-  );
-}
