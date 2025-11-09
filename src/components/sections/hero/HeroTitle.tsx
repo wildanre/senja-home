@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, MotionValue } from "motion/react";
+import { MotionValue } from "motion/react";
+import { MotionContainer } from "@/components/ui/motion";
 
 interface HeroTitleProps {
   titleY: MotionValue<number>;
@@ -8,7 +9,8 @@ interface HeroTitleProps {
 
 export default function HeroTitle({ titleY }: HeroTitleProps) {
   return (
-    <motion.h1
+    <MotionContainer
+      as="h1"
       className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-300 dark:text-[#e8f0f7] tracking-tight transition-colors duration-300"
       style={{ y: titleY }}
       initial={{ opacity: 0, y: 50 }}
@@ -16,7 +18,7 @@ export default function HeroTitle({ titleY }: HeroTitleProps) {
       transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
     >
       Senja - Permissionless DeFi Protocol
-    </motion.h1>
+    </MotionContainer>
   );
 }
 

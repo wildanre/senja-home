@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { Stagger } from "@/components/ui/motion";
 import { footerSections } from './footerData';
 
 export default function FooterLinks() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 mb-12">
+    <Stagger staggerDelay={0.1} delay={0.2} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 mb-12">
       {footerSections.map((section, index) => (
         <div key={index}>
           <h3 className="text-lg md:text-xl font-bold text-white dark:text-[#e8f0f7] mb-4 flex items-center gap-2">
@@ -41,7 +42,7 @@ export default function FooterLinks() {
           </ul>
         </div>
       ))}
-    </div>
+    </Stagger>
   );
 }
 

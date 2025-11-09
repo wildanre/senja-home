@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, MotionValue } from "motion/react";
+import { MotionValue } from "motion/react";
+import { MotionContainer } from "@/components/ui/motion";
 import Button from "@/components/ui/Button";
 import type { ButtonConfig } from "./heroData";
 
@@ -11,7 +12,7 @@ interface HeroButtonsProps {
 
 export default function HeroButtons({ buttonY, buttons }: HeroButtonsProps) {
   return (
-    <motion.div
+    <MotionContainer
       className="flex flex-row gap-4 sm:gap-6 justify-center items-center pt-6 sm:pt-8 px-4"
       style={{ y: buttonY }}
       initial={{ opacity: 0, y: 20 }}
@@ -29,7 +30,7 @@ export default function HeroButtons({ buttonY, buttons }: HeroButtonsProps) {
           {button.label}
         </Button>
       ))}
-    </motion.div>
+    </MotionContainer>
   );
 }
 

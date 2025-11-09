@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from "motion/react";
+import { MotionContainer } from "@/components/ui/motion";
 
 export default function HowItWorksHeader() {
   return (
-    <motion.h2
+    <MotionContainer
+      as="h2"
       className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 dark:text-[#e8f0f7]"
       initial={{ opacity: 0, scale: 0.8, rotateY: -90 }}
       whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
@@ -17,7 +18,7 @@ export default function HowItWorksHeader() {
       style={{ perspective: "1000px" }}
     >
       How It Works
-    </motion.h2>
+    </MotionContainer>
   );
 }
 

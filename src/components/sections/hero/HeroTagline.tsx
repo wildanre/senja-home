@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, MotionValue } from "motion/react";
+import { MotionValue } from "motion/react";
+import { MotionContainer } from "@/components/ui/motion";
 import RotatingTextType from "@/components/ui/RotatingTextType";
 
 interface HeroTaglineProps {
@@ -10,7 +11,7 @@ interface HeroTaglineProps {
 
 export default function HeroTagline({ subtitleY, taglines }: HeroTaglineProps) {
   return (
-    <motion.div
+    <MotionContainer
       className="min-h-[80px] sm:min-h-[100px] md:min-h-[120px] flex items-center justify-center px-4"
       style={{ y: subtitleY }}
       initial={{ opacity: 0, y: 30 }}
@@ -25,7 +26,7 @@ export default function HeroTagline({ subtitleY, taglines }: HeroTaglineProps) {
           pauseDuration={2500}
         />
       </h2>
-    </motion.div>
+    </MotionContainer>
   );
 }
 

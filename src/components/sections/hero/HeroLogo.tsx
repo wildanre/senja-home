@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, MotionValue } from "motion/react";
+import { MotionValue } from "motion/react";
+import { MotionContainer } from "@/components/ui/motion";
 import Image from "next/image";
 
 interface HeroLogoProps {
@@ -10,7 +11,7 @@ interface HeroLogoProps {
 
 export default function HeroLogo({ logoY, logoScale }: HeroLogoProps) {
   return (
-    <motion.div
+    <MotionContainer
       className="flex justify-center mb-2 sm:mb-4 md:mb-6"
       style={{ y: logoY, scale: logoScale }}
       initial={{ opacity: 0, y: 100 }}
@@ -26,7 +27,7 @@ export default function HeroLogo({ logoY, logoScale }: HeroLogoProps) {
         loading="lazy"
         priority={false}
       />
-    </motion.div>
+    </MotionContainer>
   );
 }
 

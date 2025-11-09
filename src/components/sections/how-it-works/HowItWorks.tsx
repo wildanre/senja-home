@@ -1,7 +1,7 @@
 "use client";
 
 import Carousel from "@/components/ui/carousel";
-import { motion } from "motion/react";
+import { SlideIn } from "@/components/ui/motion";
 import { slidesData } from "./howItWorksData";
 import HowItWorksHeader from "./HowItWorksHeader";
 
@@ -13,19 +13,16 @@ export default function HowItWorks() {
         <HowItWorksHeader />
 
         {/* Carousel with Staggered Fade */}
-        <motion.div
+        <SlideIn
+          direction="up"
+          distance={50}
+          duration={0.6}
+          delay={0.2}
+          amount={0.3}
           className="relative overflow-hidden w-full h-full pb-20"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-            ease: "easeOut"
-          }}
-          viewport={{ once: false, amount: 0.3 }}
         >
           <Carousel slides={slidesData} />
-        </motion.div>
+        </SlideIn>
       </div>
     </section>
   );

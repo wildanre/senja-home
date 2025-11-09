@@ -2,12 +2,13 @@
 
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiDiscord, SiTelegram } from 'react-icons/si';
+import { SlideIn } from "@/components/ui/motion";
 
 export default function FooterBottom() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="border-t border-white/10 dark:border-gray-700/30 pt-8">
+    <SlideIn direction="up" distance={30} delay={0.6} className="border-t border-white/10 dark:border-gray-700/30 pt-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-white/60 dark:text-[#a0aec0] text-sm">
           © {currentYear} Senja Finance. All rights reserved.
@@ -38,7 +39,7 @@ export default function FooterBottom() {
           </a>
         </div>
       </div>
-    </div>
+    </SlideIn>
   );
 }
 
