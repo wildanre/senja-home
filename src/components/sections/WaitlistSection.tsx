@@ -10,10 +10,10 @@ export default function WaitlistSection() {
       className="relative min-h-[80vh] w-full overflow-hidden py-20 px-4"
     >
 
-      <div className="relative z-20 max-w-7xl mx-auto px-4">
+      <div className="relative z-20 mt-10 lg:mt-20 max-w-7xl mx-auto px-4">
         {/* Section Title */}
         <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-center text-white dark:text-[#e8f0f7] mb-16 leading-tight"
+          className="text-4xl md:text-5xl font-bold text-center text-white dark:text-[#e8f0f7] mb-4 lg:mb-16 leading-tight"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
@@ -23,7 +23,7 @@ export default function WaitlistSection() {
         </motion.h2>
 
         {/* Two Column Layout */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-4 lg:gap-12 items-center">
           {/* Left Column - User Counter */}
           <motion.div
             className="text-center md:text-left space-y-6"
@@ -38,9 +38,6 @@ export default function WaitlistSection() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               viewport={{ once: false, amount: 0.5 }}
             >
-              <p className="text-lg md:text-xl text-white/80 dark:text-[#d0dce6] mb-4">
-                Users on Waitlist
-              </p>
               <div className="flex items-center justify-center md:justify-start gap-2">
                 <CountUp 
                   value={10472} 
@@ -48,8 +45,8 @@ export default function WaitlistSection() {
                   className="text-6xl md:text-7xl font-bold text-gray-100 dark:text-cyan-300"
                 />
               </div>
-              <p className="text-sm md:text-base text-white/70 dark:text-[#d0dce6]/70 mt-6 leading-relaxed">
-                Join thousands of users waiting for exclusive early access to Senja Finance.
+              <p className="mt-5 text-base lg:text-xl font-semibold text-white/90 dark:text-[#d0dce6] mb-4">
+                Users on Waitlist
               </p>
             </motion.div>
           </motion.div>
@@ -89,16 +86,6 @@ export default function WaitlistSection() {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: false, amount: 0.3 }}
             >
-              <motion.p 
-                className="text-xl text-white/90 dark:text-[#d0dce6] mb-8 leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: false, amount: 0.5 }}
-              >
-                Be the first to experience Senja when we launch. Join our waitlist
-                for exclusive early access.
-              </motion.p>
               
               {/* Form with Name and Email (Disabled for Now) */}
               <motion.div 
@@ -138,7 +125,7 @@ export default function WaitlistSection() {
                 
                 <motion.button
                   type="submit"
-                  className="w-full bg-white dark:bg-gray-200 text-gray-900 dark:text-gray-900 font-semibold py-4 px-8 rounded-2xl text-lg shadow-lg hover:shadow-xl hover:bg-gray-50 dark:hover:bg-gray-300 transition-all duration-200"
+                  className="w-full bg-white/70 dark:bg-gray-200 text-gray-900 dark:text-gray-900 font-semibold py-4 px-8 rounded-2xl text-lg shadow-lg hover:shadow-xl hover:bg-gray-50 dark:hover:bg-gray-300 transition-all duration-200"
                   disabled
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}

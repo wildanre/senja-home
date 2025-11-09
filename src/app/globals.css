@@ -247,3 +247,22 @@
 .animate-cell-ripple {
   animation: cell-ripple var(--duration, 500ms) ease-in-out var(--delay, 0ms);
 }
+
+/* Custom Scrollbar Styling - Subtle & Blends with Background */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(64, 64, 64, 0.3);
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(82, 82, 82, 0.5);
+}

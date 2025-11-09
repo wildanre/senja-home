@@ -28,7 +28,7 @@ export default function Supports() {
       id="supports"
       className="py-20 px-4"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mt-10 lg:mt-20 mx-auto">
         <motion.div 
           className="text-center mb-4 lg:mb-12"
           initial={{ opacity: 0, y: -40 }}

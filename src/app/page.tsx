@@ -111,31 +111,52 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="relative">
+      <div className="fixed top-0 left-0 right-0 z-[999]">
         <CardNav items={navigationItems} />
-        <Hero />
-        <Supports />
-        
-        <WhatIsSenja />
+      </div>
+      <div className="relative snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
+        <main className="relative">
+          <section className="snap-start snap-always min-h-screen">
+            <Hero />
+          </section>
 
-        <ScrollAnimationWrapper direction="up" delay={0.2}>
-          <HowItWorks />
-        </ScrollAnimationWrapper>
+          <section className="snap-start snap-always min-h-screen">
+            <ScrollAnimationWrapper direction="up" delay={0.3}>
+              <WaitlistSection />
+            </ScrollAnimationWrapper>
+          </section>
 
-        <Partner />
-        <TimelineSection />
+          <section className="snap-start snap-always min-h-screen">
+            <Supports />
+          </section>
+          
+          <section className="snap-start snap-always min-h-screen">
+            <WhatIsSenja />
+          </section>
 
-        <ScrollAnimationWrapper direction="down" delay={0.3}>
-          <ContactSection />
-        </ScrollAnimationWrapper>
+          <section className="snap-start snap-always min-h-screen">
+            <ScrollAnimationWrapper direction="up" delay={0.2}>
+              <HowItWorks />
+            </ScrollAnimationWrapper>
+          </section>
 
-        <ScrollAnimationWrapper direction="up" delay={0.3}>
-          <WaitlistSection />
-        </ScrollAnimationWrapper>
+          <section className="snap-start snap-always min-h-screen">
+            <Partner />
+          </section>
+          <section className="snap-start snap-always min-h-screen">
+            <TimelineSection />
+          </section>
 
-        {/* <Metrics /> */}
-      </main>
-      <Footer />
+          <section className="snap-start snap-always min-h-screen">
+            <ScrollAnimationWrapper direction="down" delay={0.3}>
+              <ContactSection />
+            </ScrollAnimationWrapper>
+            <Footer />
+          </section>
+
+          {/* <Metrics /> */}
+        </main>
+      </div>
     </>
   );
 }

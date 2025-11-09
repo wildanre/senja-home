@@ -116,10 +116,10 @@ export const InfiniteMovingPartners = ({
                 />
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-white dark:text-[#e8f0f7]">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-900">
                   {item.name}
                 </h3>
-                <p className="text-sm text-white/90 dark:text-[#d0dce6] leading-relaxed">
+                <p className="text-sm text-gray-900/90 dark:text-[#d0dce6] leading-relaxed">
                   {item.description}
                 </p>
               </div>

@@ -42,7 +42,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contacts" className="relative min-h-[60vh] w-full py-20 px-4">
+    <section id="contacts" className="relative w-full py-20 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Section Title */}
         <motion.h2 
