@@ -60,10 +60,6 @@ export default function Home() {
             </ScrollAnimationWrapper>
           </section>
 
-          <section className="snap-start snap-always min-h-screen">
-            <Supports />
-          </section>
-          
           <section className="snap-start snap-always">
             <WhatIsSenja />
           </section>
@@ -73,6 +69,11 @@ export default function Home() {
               <HowItWorks />
             </ScrollAnimationWrapper>
           </section>
+
+          <section className="snap-start snap-always min-h-screen">
+            <Supports />
+          </section>
+
           <section className="snap-start snap-always min-h-screen">
             <TimelineSection />
           </section>
