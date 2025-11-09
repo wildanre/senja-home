@@ -21,6 +21,7 @@ export default function OrbitingNetworks({ radius, iconSize }: OrbitingNetworksP
               width={network.size}
               height={network.size}
               className="rounded-full"
+              loading="lazy"
             />
           </div>
         ))}

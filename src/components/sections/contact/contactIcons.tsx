@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export const EmailIcon = () => (
   <svg
     className="w-8 h-8 text-white dark:text-[#0066cc]"
@@ -45,10 +47,13 @@ export const TelegramIcon = () => (
 );
 
 export const FarcasterIcon = () => (
-  <img
+  <Image
     src="/farcaster-logo.png"
     alt="Farcaster"
+    width={80}
+    height={80}
     className="w-20 h-20 object-contain"
+    loading="lazy"
   />
 );
 

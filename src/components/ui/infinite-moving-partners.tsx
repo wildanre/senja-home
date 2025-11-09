@@ -113,6 +113,7 @@ export const InfiniteMovingPartners = ({
                       ? "dark:brightness-0 dark:invert" 
                       : "dark:brightness-110"
                   )}
+                  loading="lazy"
                 />
               </div>
               <div className="space-y-2">

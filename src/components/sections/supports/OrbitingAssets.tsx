@@ -21,6 +21,7 @@ export default function OrbitingAssets({ radius, iconSize }: OrbitingAssetsProps
               width={asset.size}
               height={asset.size}
               className="rounded-full"
+              loading="lazy"
             />
           </div>
         ))}
