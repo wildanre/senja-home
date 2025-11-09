@@ -1,8 +1,12 @@
+export interface TimelineItem {
+  id: string;
+  title: string;
+  content: React.ReactNode;
+  expandedContent: React.ReactNode;
+  features: string[];
+}
 
-import React from "react";
-import { StickyScroll } from "../ui/sticky-scroll-reveal";
-
-const timelineData = [
+export const timelineData: TimelineItem[] = [
   {
     id: "q3-2025",
     title: "Q3 2025",
@@ -175,34 +179,3 @@ const timelineData = [
   },
 ];
 
-// Format data untuk StickyScroll
-const stickyScrollContent = timelineData.map((item) => ({
-  title: item.title,
-  description: item.features.join(" • "),
-  content: (
-    <div className="flex h-full w-full items-center justify-center text-white px-4">
-      <h3 className="text-3xl md:text-4xl font-bold text-center">{item.title}</h3>
-    </div>
-  ),
-}));
-
-export default function TimelineSection() {
-  return (
-    <section id="roadmap" className="relative py-20 px-4">
-      <div className="max-w-7xl mt-10 lg:mt-20 mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Senja Roadmap
-          </h2>
-          <p className="text-lg md:text-xl text-neutral-100 max-w-3xl mx-auto leading-relaxed">
-            Journey with us as we build the future of decentralized finance on Kaia blockchain.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <div className="w-24 h-1 bg-neutral-200 rounded-full" />
-          </div>
-        </div>
-        <StickyScroll content={stickyScrollContent} />
-      </div>
-    </section>
-  );
-}
