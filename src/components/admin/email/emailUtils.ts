@@ -1,4 +1,4 @@
-import { EmailTheme, EmailFormData } from './types';
+import { EmailFormData } from './types';
 import { EMAIL_CONFIG } from '../../../config/email';
 
 // Convert markdown-style formatting to HTML

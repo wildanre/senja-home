@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,8 +25,6 @@ export const InfiniteMovingPartners = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
-
-  const [start, setStart] = useState(true);
   
   const getDirection = React.useCallback(() => {
     if (containerRef.current) {
@@ -80,7 +78,7 @@ export const InfiniteMovingPartners = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]",
         className,
       )}
     >
@@ -88,13 +86,13 @@ export const InfiniteMovingPartners = ({
         ref={scrollerRef}
         className={cn(
           "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
-          start && "animate-scroll",
+          "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[280px] max-w-full shrink-0 rounded-2xl border border-zinc-200/50 bg-white/80 dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-8 md:w-[320px] hover:scale-105 transition-transform duration-300"
+            className="relative w-[350px] max-w-full shrink-0 border border-zinc-200/50 bg-white/80 dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-3 md:w-[420px] hover:scale-105 transition-transform duration-300"
             key={`${item.name}-${idx}`}
           >
             <Link 
@@ -118,10 +116,10 @@ export const InfiniteMovingPartners = ({
                 />
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-senja-brown dark:text-[#e8f0f7]">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-900">
                   {item.name}
                 </h3>
-                <p className="text-sm text-senja-brown/70 dark:text-[#d0dce6] leading-relaxed">
+                <p className="text-sm text-gray-900/90 dark:text-[#d0dce6] leading-relaxed">
                   {item.description}
                 </p>
               </div>

@@ -1,6 +1,7 @@
 'use client';
+
 import Carousel from "../ui/carousel";
-import { BACKGROUND_PATTERNS } from '@/utils/styles';
+import { motion } from "motion/react";
 
 interface SlideData {
   title: string;
@@ -139,17 +140,38 @@ export default function HowItWorks() {
   const slideData = createSlideData();
 
   return (
-    <section id="how-it-works" className={`py-20 px-4 ${BACKGROUND_PATTERNS.hero}`}>
-      <div className="max-w-7xl mx-auto">
-        {/* Title */}
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 dark:text-[#e8f0f7]">
+    <section id="how-it-works" className="py-20 px-4">
+      <div className="max-w-7xl mt-10 lg:mt-20 mx-auto">
+        {/* Title with Scale & Rotate Animation */}
+        <motion.h2 
+          className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 dark:text-[#e8f0f7]"
+          initial={{ opacity: 0, scale: 0.8, rotateY: -90 }}
+          whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+          transition={{ 
+            duration: 0.8, 
+            ease: "easeOut",
+            rotateY: { duration: 0.8 }
+          }}
+          viewport={{ once: false, amount: 0.5 }}
+          style={{ perspective: "1000px" }}
+        >
           How It Works
-        </h2>
+        </motion.h2>
 
-        {/* Carousel */}
-        <div className="relative overflow-hidden w-full h-full pb-20">
+        {/* Carousel with Staggered Fade */}
+        <motion.div 
+          className="relative overflow-hidden w-full h-full pb-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6, 
+            delay: 0.2,
+            ease: "easeOut"
+          }}
+          viewport={{ once: false, amount: 0.3 }}
+        >
           <Carousel slides={slideData} />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

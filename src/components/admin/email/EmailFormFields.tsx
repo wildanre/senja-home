@@ -1,7 +1,7 @@
 'use client';
 
 import { EmailFormData } from './types';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 interface EmailFormFieldsProps {
   emailForm: EmailFormData;
@@ -10,24 +10,16 @@ interface EmailFormFieldsProps {
 
 export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFieldsProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [cursorPosition, setCursorPosition] = useState(0);
 
-  // Handle textarea cursor position
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCursorPosition(e.target.selectionStart || 0);
     onFormChange(e);
   };
 
-  // Handle textarea click to update cursor position
-  const handleTextareaClick = (e: React.MouseEvent<HTMLTextAreaElement>) => {
-    const target = e.target as HTMLTextAreaElement;
-    setCursorPosition(target.selectionStart || 0);
+
+  const handleTextareaClick = () => {
   };
 
-  // Handle keyboard events to update cursor position
-  const handleTextareaKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    const target = e.target as HTMLTextAreaElement;
-    setCursorPosition(target.selectionStart || 0);
+  const handleTextareaKeyUp = () => {
   };
 
   // Insert formatting at cursor position

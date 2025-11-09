@@ -15,8 +15,92 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Senja - Permissionless DeFi Protocol",
-  description: "Home Senja",
+  title: {
+    default: "Senja Finance - Permissionless DeFi Protocol | Cross-Chain Lending & Borrowing",
+    template: "%s | Senja Finance DeFi Protocol"
+  },
+  description: "Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration, isolated pools, and seamless user experience via LINE Mini DApp.",
+  keywords: [
+    "Senja Finance",
+    "senja finance",
+    "senja",
+    "senja finance protocol",
+    "senja protocol",
+    "senja finance lending",
+    "senja finance borrowing",
+    "senja finance lending and borrowing",
+    "senja finance lending and borrowing protocol",
+    "senja finance lending and borrowing protocol on kaia",
+    "senja finance lending and borrowing protocol on kaia ecosystem",
+    "senja finance lending and borrowing protocol on kaia ecosystem with layerzero integration",
+    "Senja Finance Protocol",
+    "Senja Protocol",
+    "DeFi",
+    "lending protocol",
+    "borrowing",
+    "stablecoin",
+    "cross-chain",
+    "Kaia ecosystem",
+    "LayerZero",
+    "LINE Mini DApp",
+    "permissionless",
+    "liquidity",
+    "collateral",
+    "DragonSwap",
+    "Orakl Network",
+    "blockchain",
+    "cryptocurrency",
+    "yield farming"
+  ],
+  authors: [{ name: "Senja Protocol Team" }],
+  creator: "Senja Protocol",
+  publisher: "Senja Protocol",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://www.senja.finance'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://www.senja.finance',
+    siteName: 'Senja Finance',
+    title: 'Senja Finance - Permissionless DeFi Protocol | Cross-Chain Lending & Borrowing',
+    description: 'Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration.',
+    images: [
+      {
+        url: '/senja-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Senja Finance - DeFi Lending Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Senja Finance - Permissionless DeFi Protocol',
+    description: 'Cross-chain lending and borrowing protocol with LayerZero integration on Kaia ecosystem.',
+    images: ['/senja-logo.png'],
+    creator: '@senjafinance',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: '4thNE4JzvndGPzU-px40Nu2S8BYNudg4SswZH_Tc3zU',
+  },
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },

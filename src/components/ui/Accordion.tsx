@@ -48,15 +48,10 @@ export default function Accordion({
         >
           <div className="relative">
             <motion.div
-              animate={{ 
-                boxShadow: isOpen 
-                  ? "0 0 20px rgba(217, 119, 6, 0.3)" 
-                  : "0 0 0px rgba(217, 119, 6, 0)"
-              }}
-              className="w-8 h-8 rounded-full bg-gradient-to-br from-senja-orange to-orange-600 dark:from-[#60a5fa] dark:to-[#3b82f6] flex items-center justify-center"
+              className="w-10 h-10 bg-transparent flex items-center justify-center rounded-full"
             >
               <svg 
-                className="w-4 h-4 text-white" 
+                className="w-6 h-6 text-white dark:text-white" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -72,25 +67,18 @@ export default function Accordion({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0, y: -20 }}
-            animate={{ height: "auto", opacity: 1, y: 0 }}
-            exit={{ height: 0, opacity: 0, y: -20 }}
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
             transition={{ 
-              duration: 0.4, 
-              ease: "easeInOut",
-              opacity: { duration: 0.3 },
-              y: { duration: 0.3 }
+              duration: 0.3, 
+              ease: "easeInOut"
             }}
             className="overflow-hidden"
           >
-            <motion.div 
-              className={`p-6 pt-2 bg-gradient-to-b from-transparent to-white/5 dark:to-gray-900/20 ${contentClassName}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1, duration: 0.3 }}
-            >
+            <div className={`p-6 pt-2 bg-gradient-to-b from-transparent to-white/5 dark:to-gray-900/20 ${contentClassName}`}>
               {children}
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

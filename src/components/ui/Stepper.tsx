@@ -81,11 +81,11 @@ export default function Stepper({
       {...rest}
     >
       <div
-        className={`mx-auto w-full max-w-md min-h-[400px] max-h-[600px] rounded-2xl shadow-xl bg-white/50 dark:bg-[#003366] backdrop-blur-xl border-2 border-senja-orange/50 dark:border-[#004488] overflow-y-auto flex flex-col ${stepCircleContainerClassName}`}
+        className={`mx-auto w-full max-w-md min-h-[400px] max-h-[600px] rounded-2xl shadow-xl bg-white/50 dark:bg-[#003366] backdrop-blur-xl border-2 border-yellow-300/50 dark:border-[#004488] overflow-y-auto flex flex-col ${stepCircleContainerClassName}`}
       >
         {title && (
           <div className="pt-8 px-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-center text-senja-orange dark:text-[#60a5fa]">
+            <h3 className="text-2xl md:text-3xl font-bold text-center text-yellow-300 dark:text-[#60a5fa]">
               {title}
             </h3>
           </div>
@@ -136,7 +136,7 @@ export default function Stepper({
               {currentStep !== 1 && (
                 <button
                   onClick={handleBack}
-                  className={`duration-350 rounded px-2 py-1 transition text-senja-brown dark:text-[#e2e8f0] hover:text-senja-orange dark:hover:text-[#60a5fa] ${
+                  className={`duration-350 rounded px-2 py-1 transition text-white dark:text-[#e2e8f0] hover:text-yellow-300 dark:hover:text-[#60a5fa] ${
                     currentStep === 1 ? 'pointer-events-none opacity-50' : ''
                   }`}
                   {...backButtonProps}
@@ -147,7 +147,7 @@ export default function Stepper({
               {!isLastStep && (
                 <button
                   onClick={handleNext}
-                  className="duration-350 flex items-center justify-center rounded-full bg-gradient-to-br from-senja-orange to-[#FF5722] dark:from-[#3b82f6] dark:to-[#1d4ed8] py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:opacity-90 active:opacity-80"
+                  className="duration-350 flex items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 dark:from-[#3b82f6] dark:to-[#1d4ed8] py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:opacity-90 active:opacity-80"
                   {...nextButtonProps}
                 >
                   {nextButtonText}

@@ -2,14 +2,13 @@
 import Button from "../ui/Button";
 import RotatingTextType from "../ui/RotatingTextType";
 import Image from "next/image";
-import { BACKGROUND_PATTERNS } from '@/utils/styles';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { WorldMap } from "../ui/world-map";
 
 export default function Hero() {
   const taglines = [
-    "Permissionless Lending and Borrowing",
-    "Trade Your Collateral",
+    "Senja Finance - Permissionless Lending and Borrowing",
+    "Trade Your Collateral on Senja Finance",
     "Crosschain with LayerZero Integrated for Secure and Faster Transactions"
   ];
 
@@ -23,7 +22,7 @@ export default function Hero() {
   const buttonY = useTransform(scrollY, [0, 800], [0, -50]);
 
   return (
-    <section className={`flex flex-col items-center justify-center min-h-screen px-4 py-4 sm:py-8 md:py-12 lg:py-16 text-center ${BACKGROUND_PATTERNS.hero} relative overflow-hidden`}>
+    <section className="flex flex-col items-center justify-center min-h-screen px-4 py-4 sm:py-8 md:py-12 lg:py-16  text-center relative overflow-hidden">
       {/* World Map Background */}
       <div className="absolute inset-0 opacity-20 dark:opacity-15">
         <WorldMap/>
@@ -44,7 +43,6 @@ export default function Hero() {
             width={250}
             height={250}
             className="drop-shadow-2xl hover:scale-105 transition-transform duration-300 w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-64 lg:h-64"
-            priority
           />
         </motion.div>
 
@@ -56,7 +54,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          Senja
+          Senja - Permissionless DeFi Protocol
         </motion.h1>
         
         {/* Rotating Taglines with Typing Animation */}
@@ -67,14 +65,14 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-200 dark:text-[#d0dce6] transition-colors duration-300 text-center">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-200 dark:text-[#d0dce6] transition-colors duration-300 text-center">
             <RotatingTextType 
               texts={taglines}
               typingSpeed={50}
               deletingSpeed={30}
               pauseDuration={2500}
             />
-          </p>
+          </h2>
         </motion.div>
 
         {/* Call-to-Action Buttons */}
