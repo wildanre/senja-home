@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import Partner from "../partner";
 import WaitlistCounter from "./WaitlistCounter";
 import WaitlistForm from "./WaitlistForm";
 
@@ -9,7 +8,7 @@ export default function WaitlistSection() {
   return (
     <section
       id="waitlist"
-      className="relative min-h-[80vh] w-full overflow-hidden py-20 px-4"
+      className="relative  w-full overflow-hidden py-8 mb-10 px-4"
     >
       <div className="relative z-20 mt-10 lg:mt-20 mx-auto px-4 max-w-9xl">
         <div className="max-w-7xl mx-auto">
@@ -24,22 +23,13 @@ export default function WaitlistSection() {
             Join the Waitlist
           </motion.h2>
 
-          {/* Two Column Layout */}
           <div className="grid md:grid-cols-2 gap-4 lg:gap-12 items-center">
-            {/* Left Column - User Counter */}
             <WaitlistCounter count={10472} />
 
-            {/* Right Column - Waitlist Form */}
             <WaitlistForm />
           </div>
         </div>
 
-        {/* Partner Component */}
-        <div className="max-w-9xl mx-auto">
-          <div className="mt-8 lg:mt-12 mb-0">
-            <Partner />
-          </div>
-        </div>
       </div>
     </section>
   );

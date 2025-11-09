@@ -8,7 +8,7 @@ import PartnerHeader from "./PartnerHeader";
 
 export default function Partner() {
   return (
-    <section id="partners" className="py-20 px-4">
+    <section id="partners" className="py-0 px-4">
       <div className="max-w-9xl mx-auto">
         <PartnerHeader />
 
