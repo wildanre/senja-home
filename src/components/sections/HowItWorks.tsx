@@ -141,7 +141,7 @@ export default function HowItWorks() {
 
   return (
     <section id="how-it-works" className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mt-10 lg:mt-20 mx-auto">
         {/* Title with Scale & Rotate Animation */}
         <motion.h2 
           className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-100 dark:text-[#e8f0f7]"

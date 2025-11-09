@@ -189,7 +189,7 @@ const stickyScrollContent = timelineData.map((item) => ({
 export default function TimelineSection() {
   return (
     <section id="roadmap" className="relative py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mt-10 lg:mt-20 mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Senja Roadmap

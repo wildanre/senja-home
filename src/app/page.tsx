@@ -1,5 +1,4 @@
 import Hero from "@/components/sections/Hero";
-import Partner from "@/components/sections/Partner";
 import Supports from "@/components/sections/Supports";
 import WhatIsSenja from "@/components/sections/WhatIsSenja";
 import HowItWorks from "@/components/sections/HowItWorks";
@@ -138,10 +137,6 @@ export default function Home() {
             <ScrollAnimationWrapper direction="up" delay={0.2}>
               <HowItWorks />
             </ScrollAnimationWrapper>
-          </section>
-
-          <section className="snap-start snap-always min-h-screen">
-            <Partner />
           </section>
           <section className="snap-start snap-always min-h-screen">
             <TimelineSection />

@@ -43,7 +43,7 @@ export default function ContactSection() {
 
   return (
     <section id="contacts" className="relative w-full py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mt-10 lg:mt-20 mx-auto">
         {/* Section Title */}
         <motion.h2 
           className="text-4xl md:text-5xl font-bold text-center mb-16 text-white dark:text-[#e8f0f7]"

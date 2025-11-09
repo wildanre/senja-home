@@ -78,7 +78,7 @@ export const InfiniteMovingPartners = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]",
         className,
       )}
     >
@@ -92,7 +92,7 @@ export const InfiniteMovingPartners = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[280px] max-w-full shrink-0 rounded-2xl border border-zinc-200/50 bg-white/80 dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-8 md:w-[320px] hover:scale-105 transition-transform duration-300"
+            className="relative w-[350px] max-w-full shrink-0 border border-zinc-200/50 bg-white/80 dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-3 md:w-[420px] hover:scale-105 transition-transform duration-300"
             key={`${item.name}-${idx}`}
           >
             <Link 
