@@ -40,7 +40,7 @@ export const assets: AssetItem[] = [
 
 export const networks: NetworkItem[] = [
   {
-    src: "/supports/base.png",
+    src: "/supports/base-logo.png",
     alt: "Base",
     size: 56,
   },

@@ -24,7 +24,7 @@ export const slidesData: SlideData[] = [
         </div>
       </div>
     `,
-    src: "/how/supply-liquidity.png",
+    src: "/how/supply-liq-new.png",
   },
   {
     title: "Supply Collateral",
@@ -45,7 +45,7 @@ export const slidesData: SlideData[] = [
         </div>
       </div>
     `,
-    src: "/how/supply-collateral.png",
+    src: "/how/supply-col-new.png",
   },
   {
     title: "Borrow Assets",
@@ -66,7 +66,7 @@ export const slidesData: SlideData[] = [
         </div>
       </div>
     `,
-    src: "/how/borrow.png",
+    src: "/how/borrow-new.png",
   },
   {
     title: "Repay Loan",
@@ -86,7 +86,7 @@ export const slidesData: SlideData[] = [
         </div>
       </div>
     `,
-    src: "/how/repay.png",
+    src: "/how/repay-new.png",
   },
   {
     title: "Collateral Swap",
@@ -106,7 +106,7 @@ export const slidesData: SlideData[] = [
         </div>
       </div>
     `,
-    src: "/how/swap.png",
+    src: "/how/swap-new.png",
   },
   {
     title: "Token Buybacks",

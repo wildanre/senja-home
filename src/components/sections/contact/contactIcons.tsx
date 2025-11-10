@@ -52,7 +52,7 @@ export const FarcasterIcon = () => (
     alt="Farcaster"
     width={80}
     height={80}
-    className="w-20 h-20 object-contain"
+    className="w-20 h-20 object-contain dark:[filter:brightness(0)_saturate(100%)_invert(24%)_sepia(99%)_saturate(2047%)_hue-rotate(198deg)_brightness(80%)_contrast(101%)]"
     loading="lazy"
   />
 );
