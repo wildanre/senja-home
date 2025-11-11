@@ -2,7 +2,7 @@
 
 import { Menu } from 'lucide-react';
 import { MobileHeaderProps } from './types';
-import ThemeToggle from '../../ui/ThemeToggle';
+import ThemeToggle from '../../ui/theme-toggle';
 
 export default function MobileHeader({ onOpenMobile }: MobileHeaderProps) {
   return (

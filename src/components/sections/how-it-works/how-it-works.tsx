@@ -3,7 +3,7 @@
 import Carousel from "@/components/ui/carousel";
 import { SlideIn } from "@/components/ui/motion";
 import { slidesData } from "./howItWorksData";
-import HowItWorksHeader from "./HowItWorksHeader";
+import HowItWorksHeader from "./how-It-works-header";
 
 export default function HowItWorks() {
   return (

@@ -1,7 +1,7 @@
-export { default } from './ContactSection';
-export { default as ContactHeader } from './ContactHeader';
-export { default as ContactCard } from './ContactCard';
-export { contactItems } from './contactData';
-export { EmailIcon, TwitterIcon, DiscordIcon, TelegramIcon, FarcasterIcon } from './contactIcons';
-export type { ContactItem } from './contactData';
+export { default } from './contact-section';
+export { default as ContactHeader } from './contact-header';
+export { default as ContactCard } from './contact-card';
+export { contactItems } from './contact-data';
+export { EmailIcon, TwitterIcon, DiscordIcon, TelegramIcon, FarcasterIcon } from './contact-icons';
+export type { ContactItem } from './contact-data';
 

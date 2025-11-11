@@ -1,6 +1,6 @@
-export { default as FadeIn } from './FadeIn';
-export { default as SlideIn } from './SlideIn';
-export { default as ScaleIn } from './ScaleIn';
-export { default as Stagger } from './Stagger';
-export { default as MotionContainer } from './MotionContainer';
+export { default as FadeIn } from './fade-in';
+export { default as SlideIn } from './slide-in';
+export { default as ScaleIn } from './scale-in';
+export { default as Stagger } from './stagger';
+export { default as MotionContainer } from './motion-container';
 

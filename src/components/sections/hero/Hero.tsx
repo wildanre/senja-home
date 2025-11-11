@@ -1,10 +1,10 @@
 "use client";
 
 import { WorldMap } from "@/components/ui/world-map";
-import HeroLogo from "./HeroLogo";
-import HeroTitle from "./HeroTitle";
-import HeroTagline from "./HeroTagline";
-import HeroButtons from "./HeroButtons";
+import HeroLogo from "./hero-logo";
+import HeroTitle from "./hero-title";
+import HeroTagline from "./hero-tagline";
+import HeroButtons from "./hero-buttons";
 import useHeroParallax from "./useHeroParallax";
 import { taglines, heroButtons } from "./heroData";
 

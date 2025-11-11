@@ -7,9 +7,9 @@ import ContactSection from "@/components/sections/contact";
 import WaitlistSection from "@/components/sections/waitlist";
 import TimelineSection from "@/components/sections/timeline";
 import Footer from "@/components/sections/footer";
-import Metrics from "@/components/sections/metrics/Metrics";
-import CardNav from "@/components/ui/CardNav";
-import ScrollAnimationWrapper from "@/components/ui/ScrollAnimationWrapper";
+import Metrics from "@/components/sections/metrics/metrics";
+import CardNav from "@/components/ui/card-nav";
+import ScrollAnimationWrapper from "@/components/ui/scroll-animation-wrapper";
 import { navigationItems } from "@/components/sections/navigation";
 
 export default function Home() {

@@ -1,8 +1,8 @@
 "use client";
 
 import { SlideIn } from "@/components/ui/motion";
-import WaitlistCounter from "./WaitlistCounter";
-import WaitlistForm from "./WaitlistForm";
+import WaitlistCounter from "./waitlist-counter";
+import WaitlistForm from "./waitlist-form";
 
 export default function WaitlistSection() {
   return (

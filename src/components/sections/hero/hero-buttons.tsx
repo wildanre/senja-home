@@ -2,7 +2,7 @@
 
 import { MotionValue } from "motion/react";
 import { MotionContainer } from "@/components/ui/motion";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import type { ButtonConfig } from "./heroData";
 
 interface HeroButtonsProps {

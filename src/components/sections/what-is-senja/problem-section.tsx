@@ -1,8 +1,8 @@
 "use client";
 
 import { SlideIn } from "@/components/ui/motion";
-import Accordion from "@/components/ui/Accordion";
-import ContentItem from "./ContentItem";
+import Accordion from "@/components/ui/accordion";
+import ContentItem from "./content-item";
 import { problems } from "./whatIsSenjaData";
 
 export default function ProblemSection() {

@@ -1,4 +1,4 @@
-import { EmailIcon, TwitterIcon, DiscordIcon, TelegramIcon, FarcasterIcon } from "./contactIcons";
+import { EmailIcon, TwitterIcon, DiscordIcon, TelegramIcon, FarcasterIcon } from "./contact-icons";
 
 export interface ContactItem {
   icon: React.ReactNode;

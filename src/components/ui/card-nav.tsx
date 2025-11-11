@@ -2,7 +2,7 @@
 import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from './theme-toggle';
 
 type CardNavLink = {
   label: string;

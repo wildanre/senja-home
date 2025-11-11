@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import type { ContactItem } from "./contactData";
+import type { ContactItem } from "./contact-data";
 
 interface ContactCardProps {
   item: ContactItem;

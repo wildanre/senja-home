@@ -1,8 +1,8 @@
 'use client';
 
-import FooterHeader from './FooterHeader';
-import FooterLinks from './FooterLinks';
-import FooterBottom from './FooterBottom';
+import FooterHeader from './footer-header';
+import FooterLinks from './footer-links';
+import FooterBottom from './footer-bottom';
 
 export default function Footer() {
   return (

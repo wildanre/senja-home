@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
-import ContactHeader from "./ContactHeader";
-import ContactCard from "./ContactCard";
-import { contactItems } from "./contactData";
+import ContactHeader from "./contact-header";
+import ContactCard from "./contact-card";
+import { contactItems } from "./contact-data";
 
 export default function ContactSection() {
   const gridCells = Array.from({ length: 12 }, (_, i) => i);

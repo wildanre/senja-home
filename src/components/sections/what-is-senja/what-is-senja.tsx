@@ -1,8 +1,8 @@
 "use client";
 
-import WhatIsSenjaHeader from "./WhatIsSenjaHeader";
-import ProblemSection from "./ProblemSection";
-import SolutionSection from "./SolutionSection";
+import WhatIsSenjaHeader from "./what-is-senja-header";
+import ProblemSection from "./problem-section";
+import SolutionSection from "./solution-section";
 
 export default function WhatIsSenja() {
   return (

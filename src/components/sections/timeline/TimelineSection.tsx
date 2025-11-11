@@ -1,8 +1,8 @@
 import React from "react";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
-import { timelineData } from "./timelineData";
+import { timelineData } from "./timeline-data";
 import { formatTimelineForStickyScroll } from "./timelineUtils";
-import TimelineHeader from "./TimelineHeader";
+import TimelineHeader from "./timeline-header";
 
 export default function TimelineSection() {
   const stickyScrollContent = formatTimelineForStickyScroll(timelineData);

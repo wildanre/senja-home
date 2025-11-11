@@ -1,4 +1,4 @@
-import { TimelineItem } from "./timelineData";
+import { TimelineItem } from "./timeline-data";
 
 export const formatTimelineForStickyScroll = (data: TimelineItem[]) => {
   return data.map((item) => ({
