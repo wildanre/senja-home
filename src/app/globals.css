@@ -266,3 +266,13 @@
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background-color: rgba(82, 82, 82, 0.5);
 }
+
+/* Hide Scrollbar Completely */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

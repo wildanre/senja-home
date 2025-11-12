@@ -59,12 +59,8 @@ export const StickyScroll = ({
 
   return (
     <div
-      className="relative flex h-[35rem] justify-center space-x-10 overflow-y-auto rounded-md p-10 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-700/30 hover:scrollbar-thumb-neutral-600/50"
+      className="hide-scrollbar relative flex h-[35rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
       ref={ref}
-      style={{
-        scrollbarWidth: 'thin',
-        scrollbarColor: 'rgba(64, 64, 64, 0.3) transparent'
-      }}
     >
       <div className="div relative flex items-start px-4">
         <div className="max-w-2xl" ref={contentRef}>

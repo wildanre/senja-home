@@ -223,24 +223,55 @@ interface CarouselProps {
 }
 
 export default function Carousel({ slides }: CarouselProps) {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1); // Start at 1 because index 0 is a clone
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const isMobile = useIsMobile();
 
+  // Create extended slides array with clones for infinite effect
+  const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]];
+
   const handlePreviousClick = () => {
-    const previous = current - 1;
-    setCurrent(previous < 0 ? slides.length - 1 : previous);
+    if (!isTransitioning) return;
+    setCurrent((prev) => prev - 1);
   };
 
   const handleNextClick = () => {
-    const next = current + 1;
-    setCurrent(next === slides.length ? 0 : next);
+    if (!isTransitioning) return;
+    setCurrent((prev) => prev + 1);
   };
 
   const handleSlideClick = (index: number) => {
+    // index is from extendedSlides, use it directly
     if (current !== index) {
       setCurrent(index);
     }
   };
+
+  // Handle infinite loop reset
+  useEffect(() => {
+    if (current === 0) {
+      // We're at the clone of the last slide
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(slides.length);
+      }, 1000); // Match the transition duration
+    } else if (current === extendedSlides.length - 1) {
+      // We're at the clone of the first slide
+      setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(1);
+      }, 1000); // Match the transition duration
+    }
+  }, [current, slides.length, extendedSlides.length]);
+
+  // Re-enable transitions after reset
+  useEffect(() => {
+    if (!isTransitioning) {
+      setTimeout(() => {
+        setIsTransitioning(true);
+      }, 50);
+    }
+  }, [isTransitioning]);
 
   const id = useId();
 
@@ -250,8 +281,8 @@ export default function Carousel({ slides }: CarouselProps) {
     : "relative w-[90vmin] h-[55vmin] mx-auto";
 
   const listClasses = isMobile
-    ? "absolute flex mx-[-2vw] transition-transform duration-1000 ease-in-out"
-    : "absolute flex mx-[-3vmin] transition-transform duration-1000 ease-in-out";
+    ? "absolute flex mx-[-2vw]"
+    : "absolute flex mx-[-3vmin]";
 
   const buttonContainerClasses = isMobile
     ? "absolute flex justify-center w-full bottom-[-3rem] z-20"
@@ -265,18 +296,21 @@ export default function Carousel({ slides }: CarouselProps) {
       <ul
         className={listClasses}
         style={{
-          transform: `translateX(-${current * (100 / slides.length)}%)`,
+          transform: `translateX(-${current * (100 / extendedSlides.length)}%)`,
+          transition: isTransitioning ? "transform 1000ms ease-in-out" : "none",
         }}
       >
-        {slides.map((slide, index) => (
-          <Slide
-            key={index}
-            slide={slide}
-            index={index}
-            current={current}
-            handleSlideClick={handleSlideClick}
-          />
-        ))}
+        {extendedSlides.map((slide, index) => {
+          return (
+            <Slide
+              key={index}
+              slide={slide}
+              index={index} // Pass actual index from extendedSlides
+              current={current}
+              handleSlideClick={handleSlideClick}
+            />
+          );
+        })}
       </ul>
 
       <div className={buttonContainerClasses}>
@@ -284,14 +318,12 @@ export default function Carousel({ slides }: CarouselProps) {
           type="previous"
           title="Go to previous slide"
           handleClick={handlePreviousClick}
-          disabled={current === 0}
         />
 
         <CarouselControl
           type="next"
           title="Go to next slide"
           handleClick={handleNextClick}
-          disabled={current === slides.length - 1}
         />
       </div>
     </div>
