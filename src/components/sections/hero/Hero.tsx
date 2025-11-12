@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { WorldMap } from "@/components/ui/world-map";
 import HeroLogo from "./hero-logo";
 import HeroTitle from "./hero-title";
@@ -9,10 +10,13 @@ import useHeroParallax from "./useHeroParallax";
 import { taglines, heroButtons } from "./heroData";
 
 export default function Hero() {
-  const { logoY, logoScale, titleY, subtitleY, buttonY } = useHeroParallax();
+  const { logoY, logoScale, titleY, subtitleY, buttonY, opacity, scale } = useHeroParallax();
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-4 py-4 sm:py-8 md:py-12 lg:py-16 text-center relative overflow-hidden">
+    <motion.section 
+      style={{ opacity, scale }}
+      className="flex flex-col items-center justify-center min-h-screen px-4 py-4 sm:py-8 md:py-12 lg:py-16 text-center relative overflow-hidden"
+    >
       <div className="absolute inset-0 opacity-20 dark:opacity-15">
         <WorldMap />
       </div>
@@ -23,6 +27,6 @@ export default function Hero() {
         <HeroTagline subtitleY={subtitleY} taglines={taglines} />
         <HeroButtons buttonY={buttonY} buttons={heroButtons} />
       </div>
-    </section>
+    </motion.section>
   );
 }

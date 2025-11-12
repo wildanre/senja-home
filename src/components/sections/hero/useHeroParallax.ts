@@ -11,13 +11,19 @@ export default function useHeroParallax() {
   const titleY = useTransform(scrollY, [0, 800], [0, -150]);
   const subtitleY = useTransform(scrollY, [0, 800], [0, -100]);
   const buttonY = useTransform(scrollY, [0, 800], [0, -50]);
+  
+  const opacity = useTransform(scrollY, [0, 400, 600], [1, 0.5, 0]);
+  
+  const scale = useTransform(scrollY, [0, 600], [1, 0.85]);
 
   return {
     logoY,
     logoScale,
     titleY,
     subtitleY,
-    buttonY
+    buttonY,
+    opacity,
+    scale
   };
 }
 

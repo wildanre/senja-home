@@ -49,40 +49,42 @@ export default function Home() {
       </div>
       <div className="relative snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
         <main className="relative">
-          <section className="snap-start snap-always min-h-screen">
+          <section className="snap-start snap-always min-h-screen sticky top-0">
             <Hero />
           </section>
 
-          <section className="snap-start snap-always min-h-screen">
-            <ScrollAnimationWrapper direction="up" delay={0.3}>
-            <WhatIsSenja />
-              <Partner />
-            </ScrollAnimationWrapper>
-          </section>
+          <div className="relative z-10 bg-gradient-to-b from-[#EB5B00] to-[#D84315] dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
+            <section className="snap-start snap-always min-h-screen">
+              <ScrollAnimationWrapper direction="up" delay={0.3}>
+              <WhatIsSenja />
+                <Partner />
+              </ScrollAnimationWrapper>
+            </section>
 
-          <section className="snap-start snap-always min-h-screen">
-            <ScrollAnimationWrapper direction="up" delay={0.2}>
-              <HowItWorks />
-            </ScrollAnimationWrapper>
-          </section>
+            <section className="snap-start snap-always min-h-screen">
+              <ScrollAnimationWrapper direction="up" delay={0.2}>
+                <HowItWorks />
+              </ScrollAnimationWrapper>
+            </section>
 
-          <section className="snap-start snap-always min-h-screen">
-            <Supports />
-          </section>
+            <section className="snap-start snap-always min-h-screen">
+              <Supports />
+            </section>
 
-          <section className="snap-start snap-always min-h-screen">
-            <TimelineSection />
-          </section>
+            <section className="snap-start snap-always min-h-screen">
+              <TimelineSection />
+            </section>
 
-          <section className="snap-start">
-            <ScrollAnimationWrapper direction="down" delay={0.3}>
-              <ContactSection />
-            </ScrollAnimationWrapper>
-          </section>
+            <section className="snap-start">
+              <ScrollAnimationWrapper direction="down" delay={0.3}>
+                <ContactSection />
+              </ScrollAnimationWrapper>
+            </section>
 
-          <section className="snap-end">
-            <Footer />
-          </section>
+            <section className="snap-end">
+              <Footer />
+            </section>
+          </div>
 
           {/* <Metrics /> */}
         </main>
