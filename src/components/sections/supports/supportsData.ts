@@ -45,8 +45,8 @@ export const networks: NetworkItem[] = [
     size: 56,
   },
   {
-    src: "/supports/optimism-logo.svg",
-    alt: "Optimism",
+    src: "/supports/unichain-logo.png",
+    alt: "Unichain",
     size: 56,
   },
   {
@@ -55,8 +55,8 @@ export const networks: NetworkItem[] = [
     size: 56,
   },
   {
-    src: "/supports/ethlogo.webp",
-    alt: "ETH",
+    src: "/supports/arbitrum-logo.png",
+    alt: "Arbitrum",
     size: 56,
   },
   {

@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.senja.finance',
     siteName: 'Senja Finance',
-    title: 'Senja Finance - Permissionless DeFi Protocol | Cross-Chain Lending & Borrowing',
+    title: 'Senja Finance',
     description: 'Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration.',
     images: [
       {

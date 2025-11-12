@@ -16,7 +16,7 @@ export const InfiniteMovingPartners = ({
     name: string;
     logo: string;
     href: string;
-    description: string;
+    description?: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";
@@ -92,14 +92,14 @@ export const InfiniteMovingPartners = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[350px] max-w-full shrink-0 border border-zinc-200/50 bg-white/80 dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-3 md:w-[420px] hover:scale-105 transition-transform duration-300"
+            className="relative w-[280px] max-w-full shrink-0 border border-zinc-200/50 bg-white dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-3 md:w-[280px] hover:scale-105 transition-transform duration-300"
             key={`${item.name}-${idx}`}
           >
             <Link 
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-center space-y-4"
+              className="block text-center"
             >
               <div className="flex justify-center items-center h-16">
                 <Image
@@ -116,14 +116,9 @@ export const InfiniteMovingPartners = ({
                   loading="lazy"
                 />
               </div>
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                  {item.name}
-                </h3>
-                <p className="text-sm text-gray-900/90 dark:text-[#d0dce6] leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mt-3">
+                {item.name}
+              </h3>
             </Link>
           </li>
         ))}

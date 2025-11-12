@@ -6,7 +6,7 @@ export interface SlideData {
 
 export const slidesData: SlideData[] = [
   {
-    title: "Supply Liquidity",
+    title: "Lending Market",
     description: `
       <div class="space-y-4 md:space-y-4 text-white/90 dark:text-[#d0dce6]">
         <div class="mb-1 md:mb-3">

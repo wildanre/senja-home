@@ -55,13 +55,9 @@ export default function Home() {
 
           <section className="snap-start snap-always min-h-screen">
             <ScrollAnimationWrapper direction="up" delay={0.3}>
-              <WaitlistSection />
+            <WhatIsSenja />
               <Partner />
             </ScrollAnimationWrapper>
-          </section>
-
-          <section className="snap-start snap-always">
-            <WhatIsSenja />
           </section>
 
           <section className="snap-start snap-always min-h-screen">

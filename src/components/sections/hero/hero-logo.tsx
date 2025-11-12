@@ -19,7 +19,7 @@ export default function HeroLogo({ logoY, logoScale }: HeroLogoProps) {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <Image
-        src="/senja-logo.png"
+        src="/senja2.gif"
         alt="Senja Logo"
         width={250}
         height={250}
