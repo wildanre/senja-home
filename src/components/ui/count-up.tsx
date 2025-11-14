@@ -6,7 +6,7 @@ import { useInView, useMotionValue, useSpring } from "motion/react";
 export default function CountUp({
   value,
   direction = "up",
-  delay = 0,
+  delay = 0.5,
   className = "",
 }: {
   value: number;
@@ -17,8 +17,8 @@ export default function CountUp({
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(direction === "down" ? value : 0);
   const springValue = useSpring(motionValue, {
-    damping: 100,
-    stiffness: 100,
+    damping: 10,
+    stiffness: 10,
   });
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -26,7 +26,7 @@ export default function CountUp({
     if (isInView) {
       setTimeout(() => {
         motionValue.set(direction === "down" ? 0 : value);
-      }, delay * 1000);
+      }, delay * 100);
     }
   }, [motionValue, isInView, delay, value, direction]);
 

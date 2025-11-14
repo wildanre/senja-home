@@ -16,11 +16,6 @@ export const partners: PartnerItem[] = [
     href: "https://dgswap.io/",
   },
   {
-    name: "DevWeb3 Jogja",
-    logo: "/partners/devweb3jogja.jpg",
-    href: "https://x.com/devweb3jogja",
-  },
-  {
     name: "LayerZero",
     logo: "/partners/layerzerologo.png",
     href: "https://layerzero.network/",

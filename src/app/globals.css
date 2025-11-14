@@ -171,6 +171,80 @@
     background: linear-gradient(to bottom, #0d0d0d, #003366, #191970, #121212);
   }
 
+  /* Enhanced Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+  }
+
+  @supports (scroll-behavior: smooth) {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Smooth scroll with easing for better UX */
+  .smooth-scroll-container {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y mandatory;
+    /* Improve scroll performance */
+    will-change: scroll-position;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Smooth snap scrolling */
+    scroll-padding: 0;
+  }
+
+  /* Make snap points less aggressive for smoother scrolling */
+  .smooth-scroll-container section[class*="snap-start"] {
+    scroll-snap-stop: normal;
+    scroll-snap-align: start;
+  }
+
+  /* Custom scroll easing and smooth transitions */
+  @media (prefers-reduced-motion: no-preference) {
+    .smooth-scroll-container {
+      scroll-behavior: smooth;
+    }
+    
+    /* Smooth transition between snap points */
+    .smooth-scroll-container section {
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .smooth-scroll-container {
+      scroll-behavior: auto;
+    }
+  }
+
+  @keyframes heroFadeIn {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-hero {
+    animation: heroFadeIn 1s ease-out forwards;
+  }
+
+  .font-hero {
+    font-family: var(--font-hero-display), serif;
+  }
+
+  .font-elegant {
+    font-family: var(--font-playfair-display), serif;
+  }
+
   .animation-delay-2000 {
     animation-delay: 2s;
   }
@@ -275,4 +349,95 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Beams Background Animations */
+@keyframes beam-1 {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(-20px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes beam-2 {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes beam-3 {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(-15px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(15px);
+  }
+}
+
+@keyframes beam-h-1 {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateX(-20px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes beam-h-2 {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translateX(10px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes beam-h-3 {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateX(-15px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(15px);
+  }
+}
+
+.animate-beam-1 {
+  animation: beam-1 8s ease-in-out infinite;
+}
+
+.animate-beam-2 {
+  animation: beam-2 10s ease-in-out infinite;
+}
+
+.animate-beam-3 {
+  animation: beam-3 12s ease-in-out infinite;
+}
+
+.animate-beam-h-1 {
+  animation: beam-h-1 9s ease-in-out infinite;
+}
+
+.animate-beam-h-2 {
+  animation: beam-h-2 11s ease-in-out infinite;
+}
+
+.animate-beam-h-3 {
+  animation: beam-h-3 13s ease-in-out infinite;
 }

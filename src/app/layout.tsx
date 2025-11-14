@@ -1,13 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  DM_Serif_Display,
+  Geist,
+  Geist_Mono,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
-import BackgroundWrapper from "@/components/background-wrapper";
+import BackgroundWrapper from "@/components/ui/background-wrapper";
 import { AuthProvider } from "@/contexts/auth-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+
+const heroDisplay = DM_Serif_Display({
+  variable: "--font-hero-display",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["italic"],
+});
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -119,7 +138,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${heroDisplay.variable} ${playfairDisplay.variable} antialiased`}
       >
         <AuthProvider>
           <BackgroundWrapper>{children}</BackgroundWrapper>

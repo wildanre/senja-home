@@ -92,7 +92,7 @@ export const InfiniteMovingPartners = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[280px] max-w-full shrink-0 border border-zinc-200/50 bg-white dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-3 md:w-[280px] hover:scale-105 transition-transform duration-300"
+            className="relative w-[280px] max-w-full shrink-0 bg-black dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-3 md:w-[280px] hover:scale-105 transition-transform duration-300"
             key={`${item.name}-${idx}`}
           >
             <Link 
@@ -116,7 +116,7 @@ export const InfiniteMovingPartners = ({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mt-3">
+              <h3 className="text-lg font-semibold text-[#e7b67c] dark:text-gray-100 mt-3">
                 {item.name}
               </h3>
             </Link>

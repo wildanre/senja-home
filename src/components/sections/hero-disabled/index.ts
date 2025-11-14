@@ -1,4 +1,5 @@
 export { default } from './hero';
+export { default as HeroNew } from '../hero-new/hero-new';
 export { default as HeroLogo } from './hero-logo';
 export { default as HeroTitle } from './hero-title';
 export { default as HeroTagline } from './hero-tagline';
