@@ -110,8 +110,8 @@ export const InfiniteMovingPartners = ({
                   className={cn(
                     "max-h-16 w-auto object-contain filter",
                     item.name === "LayerZero" 
-                      ? "dark:brightness-0 dark:invert" 
-                      : "dark:brightness-110"
+                      ? "brightness-150 invert" 
+                      : "dark:brightness-150"
                   )}
                   loading="lazy"
                 />

@@ -9,7 +9,7 @@ export default function FooterLinks() {
     <Stagger staggerDelay={0.1} delay={0.2} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 mb-12">
       {footerSections.map((section, index) => (
         <div key={index}>
-          <h3 className="text-lg md:text-xl font-bold text-[#e7b67c] dark:text-[#e8f0f7] mb-4 flex items-center gap-2">
+          <h3 className="text-lg md:text-xl font-bold text-gray-100 dark:text-[#e8f0f7] mb-4 flex items-center gap-2">
             {section.title}
           </h3>
           
@@ -24,7 +24,7 @@ export default function FooterLinks() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#e7b67c] dark:text-[#d0dce6] transition-colors duration-200 flex items-center gap-2"
+                    className="text-gray-100 dark:text-[#d0dce6] transition-colors duration-200 flex items-center gap-2"
                   >
                     {link.label}
                     <span className="text-xs">↗</span>
@@ -32,7 +32,7 @@ export default function FooterLinks() {
                 ) : (
                   <Link
                     href={link.href}
-                    className="text-[#e7b67c] dark:text-[#d0dce6] transition-colors duration-200"
+                    className="text-gray-100 dark:text-[#d0dce6] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>

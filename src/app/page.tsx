@@ -91,10 +91,6 @@ export default function Home() {
               </ScrollAnimationWrapper>
             </section>
 
-            <section className="snap-start snap-always min-h-screen">
-              <TimelineSection />
-            </section>
-
             <section className="snap-start">
               <ScrollAnimationWrapper direction="down" delay={0.3}>
                 <ContactSection />
