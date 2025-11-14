@@ -19,21 +19,21 @@ export default function FooterBottom() {
             href="https://x.com/SenjaLabs"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/60 dark:text-[#a0aec0] hover:text-yellow-300 dark:hover:text-[#60a5fa] hover:scale-110 transition-all duration-200"
+            className="text-white/60 dark:text-[#a0aec0]  hover:scale-110 transition-all duration-200"
           >
             <FaXTwitter className="w-5 h-5" />
           </a>
           
           <a
             href="#discord"
-            className="text-white/60 dark:text-[#a0aec0] hover:text-yellow-300 dark:hover:text-[#60a5fa] hover:scale-110 transition-all duration-200"
+            className="text-white/60 dark:text-[#a0aec0]  hover:scale-110 transition-all duration-200"
           >
             <SiDiscord className="w-5 h-5" />
           </a>
           
           <a
             href="#telegram"
-            className="text-white/60 dark:text-[#a0aec0] hover:text-yellow-300 dark:hover:text-[#60a5fa] hover:scale-110 transition-all duration-200"
+            className="text-white/60 dark:text-[#a0aec0]  hover:scale-110 transition-all duration-200"
           >
             <SiTelegram className="w-5 h-5" />
           </a>

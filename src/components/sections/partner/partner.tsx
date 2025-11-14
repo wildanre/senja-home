@@ -1,10 +1,8 @@
 "use client";
 
 import React from "react";
-import { ScaleIn } from "@/components/ui/motion";
 import { InfiniteMovingPartners } from "@/components/ui/infinite-moving-partners";
 import { partners } from "./partnerData";
-import PartnerHeader from "./partner-header";
 
 export default function Partner() {
   return (

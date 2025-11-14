@@ -2,17 +2,20 @@
 
 import AnimatedText from "@/components/ui/animated-text";
 import { heroContent } from "./heroNewData";
+import Image from "next/image";
 
 export default function HeroNewHeader() {
   return (
     <div className="space-y-6 lg:relative lg:min-h-[18rem] lg:-left-36 xl:-left-40">
       <div className="mb-10 hidden lg:absolute lg:-top-28 lg:-left-8 lg:block">
         <div className="w-15">
-          <img
+          <Image
             src={heroContent.logoImage}
             alt={heroContent.logoAlt}
             className="w-full rounded-3xl"
             loading="lazy"
+            width={250}
+            height={250}
           />
         </div>
       </div>

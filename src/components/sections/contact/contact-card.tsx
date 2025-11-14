@@ -30,12 +30,12 @@ export default function ContactCard({ item, index, isLastCol, isLastRow }: Conta
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-semibold text-gray-100 dark:text-gray-100 mb-2 text-center">
+        <h3 className="text-lg font-semibold text-[#f9d5a9] dark:text-gray-100 mb-2 text-center">
           {item.title}
         </h3>
 
         {/* Link */}
-        <div className="text-sm text-gray-300 dark:text-gray-400 group-hover:text-gray-100 dark:group-hover:text-gray-200 transition-colors duration-200 text-center">
+        <div className="text-sm text-[#f9d5a9] dark:text-gray-400 dark:group-hover:text-gray-200 transition-colors duration-200 text-center">
           {item.link}
         </div>
       </div>

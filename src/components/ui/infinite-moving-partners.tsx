@@ -116,9 +116,6 @@ export const InfiniteMovingPartners = ({
                   loading="lazy"
                 />
               </div>
-              <h3 className="text-lg font-semibold text-[#e7b67c] dark:text-gray-100 mt-3">
-                {item.name}
-              </h3>
             </Link>
           </li>
         ))}

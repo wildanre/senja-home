@@ -1,15 +1,12 @@
 import HeroNew from "@/components/sections/hero-new";
-import Partner from "@/components/sections/partner";
 import WhatIsSenja from "@/components/sections/what-is-senja";
-import HowItWorks from "@/components/sections/how-it-works";
 import ContactSection from "@/components/sections/contact";
-import WaitlistSection from "@/components/sections/waitlist";
 import TimelineSection from "@/components/sections/timeline";
 import Footer from "@/components/sections/footer";
-import Metrics from "@/components/sections/metrics/metrics";
 import CardNav from "@/components/ui/card-nav";
 import ScrollAnimationWrapper from "@/components/ui/scroll-animation-wrapper";
 import { navigationItems } from "@/components/sections/navigation";
+import Navbar from "@/components/ui/navbar/navbar";
 
 export default function Home() {
   const structuredData = {
@@ -44,12 +41,10 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="fixed top-0 left-0 right-0 z-[999]">
-        <CardNav items={navigationItems} />
-      </div>
       <div className="relative snap-y snap-mandatory overflow-y-scroll scroll-smooth smooth-scroll-container">
+        <Navbar />
         <main className="relative">
-          <section className="snap-start snap-always  sticky top-0">
+          <section id="hero" className="snap-start snap-always  sticky top-0">
           <HeroNew />
           </section>
 
@@ -57,12 +52,6 @@ export default function Home() {
             <section className="snap-start snap-always ">
               <ScrollAnimationWrapper direction="up" delay={0.3}>
               <WhatIsSenja />
-              </ScrollAnimationWrapper>
-            </section>
-
-            <section className="snap-start snap-always ">
-              <ScrollAnimationWrapper direction="up" delay={0.2}>
-                <HowItWorks />
               </ScrollAnimationWrapper>
             </section>
 

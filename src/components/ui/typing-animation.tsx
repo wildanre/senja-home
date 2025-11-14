@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 interface TypingAnimationProps {
@@ -94,9 +94,8 @@ export default function TypingAnimation({
   }, [text, delay, speed, showCursor, cursorChar]);
 
   // Render based on component type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const ref = containerRef as any;
-  const cursorRefTyped = cursorRef as any;
+  const ref = containerRef as React.RefObject<HTMLElement>;
+  const cursorRefTyped = cursorRef as React.RefObject<HTMLElement>;
   
   if (Component === 'span') {
     return (

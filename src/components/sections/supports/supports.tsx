@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ScaleIn } from "@/components/ui/motion";
-import SupportsHeader from "./supports-header";
 import OrbitingAssets from "./orbiting-assets";
 import OrbitingNetworks from "./orbiting-networks";
 import useResponsiveOrbit from "./useResponsiveOrbit";
