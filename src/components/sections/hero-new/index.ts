@@ -1,0 +1,1 @@
+export { default as HeroNew } from '../hero-new/hero-new';

@@ -171,6 +171,29 @@
     background: linear-gradient(to bottom, #0d0d0d, #003366, #191970, #121212);
   }
 
+  @keyframes heroFadeIn {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-hero {
+    animation: heroFadeIn 1s ease-out forwards;
+  }
+
+  .font-hero {
+    font-family: var(--font-hero-display), serif;
+  }
+
+  .font-elegant {
+    font-family: var(--font-playfair-display), serif;
+  }
+
   .animation-delay-2000 {
     animation-delay: 2s;
   }
