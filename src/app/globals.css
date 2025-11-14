@@ -171,6 +171,57 @@
     background: linear-gradient(to bottom, #0d0d0d, #003366, #191970, #121212);
   }
 
+  /* Enhanced Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+  }
+
+  @supports (scroll-behavior: smooth) {
+    * {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Smooth scroll with easing for better UX */
+  .smooth-scroll-container {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y mandatory;
+    /* Improve scroll performance */
+    will-change: scroll-position;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    /* Smooth snap scrolling */
+    scroll-padding: 0;
+  }
+
+  /* Make snap points less aggressive for smoother scrolling */
+  .smooth-scroll-container section[class*="snap-start"] {
+    scroll-snap-stop: normal;
+    scroll-snap-align: start;
+  }
+
+  /* Custom scroll easing and smooth transitions */
+  @media (prefers-reduced-motion: no-preference) {
+    .smooth-scroll-container {
+      scroll-behavior: smooth;
+    }
+    
+    /* Smooth transition between snap points */
+    .smooth-scroll-container section {
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .smooth-scroll-container {
+      scroll-behavior: auto;
+    }
+  }
+
   @keyframes heroFadeIn {
     from {
       transform: translateY(40px);

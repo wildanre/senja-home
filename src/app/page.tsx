@@ -48,9 +48,9 @@ export default function Home() {
       <div className="fixed top-0 left-0 right-0 z-[999]">
         <CardNav items={navigationItems} />
       </div>
-      <div className="relative snap-y snap-mandatory h-screen overflow-y-scroll scroll-smooth">
+      <div className="relative snap-y snap-mandatory overflow-y-scroll scroll-smooth smooth-scroll-container">
         <main className="relative">
-          <section className="snap-start snap-always min-h-screen sticky top-0">
+          <section className="snap-start snap-always  sticky top-0">
           <HeroNew />
           </section>
 
@@ -62,7 +62,7 @@ export default function Home() {
               </ScrollAnimationWrapper>
             </section>
 
-            <section className="snap-start snap-always min-h-screen">
+            <section className="snap-start snap-always ">
               <ScrollAnimationWrapper direction="up" delay={0.2}>
                 <HowItWorks />
               </ScrollAnimationWrapper>
