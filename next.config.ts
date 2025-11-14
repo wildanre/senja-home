@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Set the correct workspace root for Turbopack
+  turbopack: {
+    root: __dirname,
+  },
+
   // Image optimization for better performance (using Next.js built-in)
   images: {
     formats: ['image/webp', 'image/avif'],
