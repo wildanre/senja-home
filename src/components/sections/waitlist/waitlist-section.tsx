@@ -16,10 +16,10 @@ export default function WaitlistSection() {
         <div className="max-w-2xl mx-auto w-full space-y-8 md:space-y-12">
           <SlideIn direction="left" distance={30} duration={0.7} amount={0.5}>
             <div className="space-y-4 md:space-y-6">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white dark:text-[#e8f0f7] leading-tight">
+              <h2 className="font-hero text-4xl md:text-5xl lg:text-6xl font-normal leading-tight text-[#e7b67c]">
                 Join the Waitlist
               </h2>
-              <p className="text-base md:text-lg lg:text-xl text-white/80 dark:text-[#d0dce6] leading-relaxed max-w-lg">
+              <p className="text-base md:text-lg lg:text-xl text-[#f2cba1]/80 leading-relaxed max-w-lg">
                 Be among the first to experience the future of decentralized finance. Join thousands of users waiting to access Senja.
               </p>
             </div>

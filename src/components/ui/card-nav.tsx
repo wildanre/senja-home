@@ -151,7 +151,7 @@ const CardNav: React.FC<CardNavProps> = ({
     >
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-2xl shadow-lg relative overflow-hidden will-change-[height] bg-gradient-to-r from-gray-400/20 to-gray-300/10 dark:from-gray-900/20 backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50`}
+        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-2xl shadow-lg relative overflow-hidden will-change-[height] bg-gradient-to-r from-gray-400/20 to-gray-300/10 dark:from-gray-900/20 backdrop-blur-md  dark:border-gray-700/50`}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
           <div
