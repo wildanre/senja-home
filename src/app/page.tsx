@@ -53,7 +53,7 @@ export default function Home() {
           <HeroNew />
           </section>
 
-          <div className="relative z-10 bg-gradient-to-b from-[#EB5B00] to-[#D84315] dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
+          <div className="relative z-10 bg-black dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
             <section className="snap-start snap-always ">
               <ScrollAnimationWrapper direction="up" delay={0.3}>
               <WhatIsSenja />

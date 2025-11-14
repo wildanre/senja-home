@@ -33,10 +33,10 @@ export default function WhatIsSenja() {
       <div className="mt-10 lg:mt-20 mx-auto max-w-9xl relative z-10">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start lg:justify-between px-10">
           <div className="w-full lg:w-1/2 ">
-          <div className="lg:pr-46 text-justify ">
+          <div className="text-justify lg:pr-46">
             <WhatIsSenjaHeader />
           </div>
-            <div className="lg:mt-70">
+            <div className="lg:mt-40">
             <Partner />
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import Dither from "@/components/ui/ditcher";
+import Dither from "@/components/ui/dither";
 import HeroNewHeader from "./hero-new-header";
 import HeroNewContent from "./hero-new-content";
 import HeroNewDescription from "./hero-new-description";

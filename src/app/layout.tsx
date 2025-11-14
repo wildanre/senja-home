@@ -6,7 +6,7 @@ import {
   Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
-import BackgroundWrapper from "@/components/background-wrapper";
+import BackgroundWrapper from "@/components/ui/background-wrapper";
 import { AuthProvider } from "@/contexts/auth-context";
 
 const geistSans = Geist({

@@ -1,7 +1,7 @@
 "use client";
 
 import { SlideIn } from "@/components/ui/motion";
-import Beams from "@/components/Beams";
+import Beams from "@/components/ui/Beams";
 import WaitlistCounter from "./waitlist-counter";
 import WaitlistForm from "./waitlist-form";
 
