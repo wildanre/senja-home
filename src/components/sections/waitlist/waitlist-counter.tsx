@@ -11,8 +11,8 @@ export default function WaitlistCounter({ count }: WaitlistCounterProps) {
   return (
     <SlideIn 
       direction="left" 
-      distance={50} 
-      duration={0.8} 
+      distance={30} 
+      duration={0.6} 
       amount={0.5}
       className="text-center md:text-left space-y-6"
     >

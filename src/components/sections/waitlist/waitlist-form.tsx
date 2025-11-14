@@ -5,17 +5,8 @@ import { SlideIn, ScaleIn, FadeIn, Stagger } from "@/components/ui/motion";
 export default function WaitlistForm() {
   return (
     <SlideIn direction="right" distance={50} duration={0.8} amount={0.3} className="relative">
-      {/* Overlay Coming Soon */}
-      <FadeIn delay={0.4} duration={0.6} amount={0.5} className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-        <ScaleIn initialScale={0.9} delay={0.6} duration={0.6} amount={0.5}>
-          <span className="text-gray-200/80 dark:text-gray-200 text-3xl md:text-4xl font-semibold">
-            Coming Soon
-          </span>
-        </ScaleIn>
-      </FadeIn>
 
-      {/* Card Content */}
-      <FadeIn delay={0.1} duration={0.6} amount={0.3} className="bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20 rounded-3xl p-8 md:p-12 shadow-md border border-white/20 dark:border-[#004488]/50 backdrop-blur-2xl filter blur-sm opacity-70">
+      <FadeIn delay={0.1} duration={0.6} amount={0.3} className="bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20 rounded-3xl p-8 md:p-12 shadow-md border border-white/20 dark:border-[#004488]/50 backdrop-blur-2xl ">
         {/* Form with Name and Email (Disabled for Now) */}
         <Stagger staggerDelay={0.1} delay={0.4} className="space-y-6 opacity-50 pointer-events-none">
           <div>
