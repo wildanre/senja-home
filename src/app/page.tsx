@@ -3,10 +3,7 @@ import WhatIsSenja from "@/components/sections/what-is-senja";
 import ContactSection from "@/components/sections/contact";
 import TimelineSection from "@/components/sections/timeline";
 import Footer from "@/components/sections/footer";
-import CardNav from "@/components/ui/card-nav";
 import ScrollAnimationWrapper from "@/components/ui/scroll-animation-wrapper";
-import { navigationItems } from "@/components/sections/navigation";
-import Navbar from "@/components/ui/navbar/navbar";
 
 export default function Home() {
   const structuredData = {
@@ -42,7 +39,6 @@ export default function Home() {
       />
       
       <div className="relative snap-y snap-mandatory overflow-y-scroll scroll-smooth smooth-scroll-container">
-        <Navbar />
         <main className="relative">
           <section id="hero" className="snap-start snap-always  sticky top-0">
           <HeroNew />
