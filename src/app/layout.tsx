@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import {
   DM_Serif_Display,
   Geist,
@@ -140,6 +141,21 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${heroDisplay.variable} ${playfairDisplay.variable} antialiased`}
       >
+        <Script
+          id="prevent-auto-scroll"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+                window.history.scrollRestoration = 'manual';
+              }
+              // Prevent auto-scroll to hash on page load if no hash
+              if (typeof window !== 'undefined' && !window.location.hash) {
+                window.scrollTo(0, 0);
+              }
+            `,
+          }}
+        />
         <AuthProvider>
           <BackgroundWrapper>{children}</BackgroundWrapper>
         </AuthProvider>

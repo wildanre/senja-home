@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import HeroNew from "@/components/sections/hero-new";
 import WhatIsSenja from "@/components/sections/what-is-senja";
 import ContactSection from "@/components/sections/contact";
@@ -6,6 +9,43 @@ import Footer from "@/components/sections/footer";
 import ScrollAnimationWrapper from "@/components/ui/scroll-animation-wrapper";
 
 export default function Home() {
+  useEffect(() => {
+    // Prevent auto-scroll to hash on page load/refresh if no hash in URL
+    if (typeof window !== "undefined") {
+      const scrollContainer = document.querySelector('.smooth-scroll-container') as HTMLElement;
+      
+      // If there's no hash in the URL, ensure we're at the top
+      if (!window.location.hash) {
+        // Reset scroll position immediately
+        window.scrollTo(0, 0);
+        if (scrollContainer) {
+          scrollContainer.scrollTop = 0;
+        }
+        
+        // Also prevent browser's default scroll restoration
+        if ('scrollRestoration' in window.history) {
+          window.history.scrollRestoration = 'manual';
+        }
+      } else {
+        // If there's a hash, wait for the page to render, then scroll to the element
+        const hash = window.location.hash.substring(1);
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element && scrollContainer) {
+            // Scroll within the container, not the window
+            const containerRect = scrollContainer.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            const scrollTop = scrollContainer.scrollTop + elementRect.top - containerRect.top;
+            scrollContainer.scrollTo({
+              top: scrollTop,
+              behavior: 'smooth'
+            });
+          }
+        }, 300);
+      }
+    }
+  }, []);
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
