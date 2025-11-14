@@ -1,6 +1,5 @@
 import HeroNew from "@/components/sections/hero-new";
 import Partner from "@/components/sections/partner";
-import Supports from "@/components/sections/supports";
 import WhatIsSenja from "@/components/sections/what-is-senja";
 import HowItWorks from "@/components/sections/how-it-works";
 import ContactSection from "@/components/sections/contact";
@@ -58,7 +57,6 @@ export default function Home() {
             <section className="snap-start snap-always ">
               <ScrollAnimationWrapper direction="up" delay={0.3}>
               <WhatIsSenja />
-                <Partner />
               </ScrollAnimationWrapper>
             </section>
 
@@ -66,10 +64,6 @@ export default function Home() {
               <ScrollAnimationWrapper direction="up" delay={0.2}>
                 <HowItWorks />
               </ScrollAnimationWrapper>
-            </section>
-
-            <section className="snap-start snap-always min-h-screen">
-              <Supports />
             </section>
 
             <section className="snap-start snap-always min-h-screen">
