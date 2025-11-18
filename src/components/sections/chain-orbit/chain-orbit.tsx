@@ -28,7 +28,7 @@ export default function ChainOrbit() {
           {/* Header Text */}
           <div className="flex flex-col items-center text-center gap-4">
             <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-              <h2 className="text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80 font-normal">
+              <h2 className="text-sm uppercase tracking-[0.35em] text-[#e7b67c]/80 font-normal">
                 Powered by Senja
               </h2>
             </SlideIn>

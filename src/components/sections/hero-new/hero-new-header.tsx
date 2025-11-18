@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function HeroNewHeader() {
   return (
-    <div className="space-y-6 lg:relative lg:min-h-[18rem] lg:-left-36 xl:-left-40">
+    <div className="space-y-8 lg:space-y-6 lg:relative lg:min-h-[18rem] lg:-left-36 xl:-left-40">
       <div className="mb-10 hidden lg:absolute lg:-top-28 lg:-left-8 lg:block">
         <div className="w-15">
           <Image
@@ -26,7 +26,7 @@ export default function HeroNewHeader() {
       </div>
       <AnimatedText
         text={heroContent.title}
-        className="font-hero text-4xl font-normal leading-tight text-[#e7b67c] sm:text-5xl lg:absolute lg:-left-4 lg:top-36 lg:-translate-y-16 lg:text-6xl xl:-left-6"
+        className="font-hero text-5xl font-normal leading-tight text-[#e7b67c] max-w-[90%] sm:max-w-[85%] lg:max-w-none lg:absolute lg:-left-4 lg:top-36 lg:-translate-y-16 lg:text-6xl xl:-left-6"
         delay={0.3}
         stagger={0.08}
         duration={0.6}

@@ -49,31 +49,31 @@ export default function Home() {
         <main className="relative h-screen w-full">
           {/* Main scrollable container - full width */}
           <div className="h-screen w-full overflow-y-auto scrollbar-right-edge" id="main-scroll">
-            <div className="flex min-h-screen">
-              {/* Left Side - Content with fixed 50% width */}
-              <div className="relative z-10 w-1/2 bg-black overflow-hidden">
+            <div className="flex min-h-screen flex-col lg:flex-row">
+              {/* Left Side - Content: full width on mobile, 50% on desktop */}
+              <div className="relative z-10 w-full lg:w-1/2 bg-black overflow-hidden">
                 {/* Hero Content */}
-                <section id="hero" className="min-h-screen">
+                <section id="hero" className="min-h-screen lg:min-h-screen">
                   <HeroNew />
                 </section>
 
                 {/* What is Senja Content */}
-                <section id="what-is-senja" className="min-h-screen">
+                <section id="what-is-senja" className="min-h-screen lg:min-h-screen">
                   <WhatIsSenja />
                 </section>
 
                 {/* Powered by Senja Content */}
-                <section id="powered-by-senja" className="min-h-screen">
+                <section id="powered-by-senja" className="min-h-[80vh] lg:min-h-screen">
                   <PoweredBySenja />
                 </section>
 
                 {/* Partner Section */}
-                <section id="partners" className="min-h-screen flex items-center justify-center">
+                <section id="partners" className="min-h-[60vh] lg:min-h-screen flex items-center justify-center">
                   <Partner />
                 </section>
 
                 {/* Contact Section */}
-                <section id="contact" className="min-h-screen">
+                <section id="contact" className="min-h-[60vh] lg:min-h-screen">
                   <ScrollAnimationWrapper direction="down" delay={0.3}>
                     <ContactSection />
                   </ScrollAnimationWrapper>

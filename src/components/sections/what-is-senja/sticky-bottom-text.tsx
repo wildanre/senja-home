@@ -43,70 +43,140 @@ export default function StickyBottomText() {
   }, []);
 
   return (
-    <div className={`hidden lg:block fixed bottom-7 left-13 w-full max-w-md z-30 transition-all duration-1000 ease-out ${
-      textState === "hidden" ? "opacity-0 translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
-    }`}>
-      <div className="relative">
-        {textState !== "hidden" && (
-          <>
-            {/* First text - incubated by Kaia Chain */}
-            <div
-              className={`transition-all duration-1000 ease-out ${
-                textState === "second" ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
-              }`}
-            >
-              <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
-                <TypingAnimation
-                  text="incubated by Kaia Chain"
-                  delay={0.5}
-                  speed={0.06}
-                  showCursor={false}
-                  as="span"
+    <>
+      {/* Desktop Version */}
+      <div className={`hidden lg:block fixed bottom-7 left-13 w-full max-w-md z-30 transition-all duration-1000 ease-out ${
+        textState === "hidden" ? "opacity-0 translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
+      }`}>
+        <div className="relative">
+          {textState !== "hidden" && (
+            <>
+              {/* First text - incubated by Kaia Chain */}
+              <div
+                className={`transition-all duration-1000 ease-out ${
+                  textState === "second" ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
+                }`}
+              >
+                <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+                  <TypingAnimation
+                    text="incubated by Kaia Chain"
+                    delay={0.5}
+                    speed={0.06}
+                    showCursor={false}
+                    as="span"
+                  />
+                </div>
+                <AnimatedTextVariants
+                  text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
+                  animationType="fadeUp"
+                  delay={0.8}
+                  stagger={0.02}
+                  duration={0.5}
+                  as="p"
+                  className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed"
                 />
               </div>
-              <AnimatedTextVariants
-                text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
-                animationType="fadeUp"
-                delay={0.8}
-                stagger={0.02}
-                duration={0.5}
-                as="p"
-                className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed"
-              />
-            </div>
 
-            {/* Second text - Multifaceted and borderless */}
-            <div
-              className={`absolute top-0 left-0 transition-all duration-1000 ease-out ${
-                textState === "second" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-              }`}
-            >
-              {textState === "second" && (
-                <>
-                  <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
-                    <TypingAnimation
-                      text="Multifaceted and borderless"
-                      delay={0.2}
-                      speed={0.06}
-                      showCursor={false}
-                      as="span"
+              {/* Second text - Multifaceted and borderless */}
+              <div
+                className={`absolute top-0 left-0 transition-all duration-1000 ease-out ${
+                  textState === "second" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                }`}
+              >
+                {textState === "second" && (
+                  <>
+                    <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+                      <TypingAnimation
+                        text="Multifaceted and borderless"
+                        delay={0.2}
+                        speed={0.06}
+                        showCursor={false}
+                        as="span"
+                      />
+                    </div>
+                    <AnimatedTextVariants
+                      text="Designed to meet the needs of modern payment processing, enhancing speed, efficiency, and reliability."
+                      animationType="fadeUp"
+                      delay={0.5}
+                      stagger={0.02}
+                      duration={0.5}
+                      as="p"
+                      className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed"
                     />
-                  </div>
-                  <AnimatedTextVariants
-                    text="Designed to meet the needs of modern payment processing, enhancing speed, efficiency, and reliability."
-                    animationType="fadeUp"
-                    delay={0.5}
-                    stagger={0.02}
-                    duration={0.5}
-                    as="p"
-                    className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed"
-                  />
-                </>
-              )}
-            </div>
-          </>
-        )}
+                  </>
+                )}
+              </div>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+
+      {/* Mobile Version */}
+      <div className={`lg:hidden fixed bottom-6 left-4 right-4 w-auto max-w-md z-30 transition-all duration-1000 ease-out ${
+        textState === "hidden" ? "opacity-0 translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
+      }`}>
+        <div className="relative">
+          {textState !== "hidden" && (
+            <>
+              {/* First text - incubated by Kaia Chain */}
+              <div
+                className={`transition-all duration-1000 ease-out ${
+                  textState === "second" ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
+                }`}
+              >
+                <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+                  <TypingAnimation
+                    text="incubated by Kaia Chain"
+                    delay={0.5}
+                    speed={0.06}
+                    showCursor={false}
+                    as="span"
+                  />
+                </div>
+                <AnimatedTextVariants
+                  text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
+                  animationType="fadeUp"
+                  delay={0.8}
+                  stagger={0.02}
+                  duration={0.5}
+                  as="p"
+                  className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed"
+                />
+              </div>
+
+              {/* Second text - Multifaceted and borderless */}
+              <div
+                className={`absolute top-0 left-0 transition-all duration-1000 ease-out ${
+                  textState === "second" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                }`}
+              >
+                {textState === "second" && (
+                  <>
+                    <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+                      <TypingAnimation
+                        text="Multifaceted and borderless"
+                        delay={0.2}
+                        speed={0.06}
+                        showCursor={false}
+                        as="span"
+                      />
+                    </div>
+                    <AnimatedTextVariants
+                      text="Designed to meet the needs of modern payment processing, enhancing speed, efficiency, and reliability."
+                      animationType="fadeUp"
+                      delay={0.5}
+                      stagger={0.02}
+                      duration={0.5}
+                      as="p"
+                      className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed"
+                    />
+                  </>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

@@ -15,7 +15,7 @@ export default function WhatIsSenja() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="relative z-10 flex h-full w-full flex-col justify-start gap-10 pl-6 pr-6 pt-24 pb-12 sm:pl-8 sm:pr-8 lg:hidden">
+      <div className="relative z-10 flex h-screen w-full flex-col justify-start gap-10 pt-20 pb-8 px-4 sm:px-6 lg:hidden">
         <div className="relative flex w-full flex-col items-start gap-10">
           <WhatIsSenjaHeader />
         </div>

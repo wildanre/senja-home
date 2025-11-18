@@ -34,8 +34,8 @@ export default function Partner() {
   }, [isVisible]);
 
   return (
-    <section id="partners" className="py-0 px-4 overflow-hidden">
-      <div className="w-full pr-8">
+    <section id="partners" className="py-0 px-2 sm:px-4 overflow-hidden">
+      <div className="w-full pr-2 sm:pr-8">
         {/* Integrated with text */}
         <div className="text-center mb-8">
           <div className="text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80 font-normal">

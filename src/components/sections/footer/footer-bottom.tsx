@@ -10,7 +10,7 @@ export default function FooterBottom() {
   return (
     <SlideIn direction="up" distance={30} delay={0.6} className="border-t border-white/10 dark:border-gray-700/30 pt-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-white/60 dark:text-[#a0aec0] text-sm">
+        <p className="text-white/60 dark:text-[#a0aec0] text-xs sm:text-sm">
           © {currentYear} Senja Finance. All rights reserved.
         </p>
         

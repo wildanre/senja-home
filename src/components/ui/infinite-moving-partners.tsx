@@ -85,14 +85,14 @@ export const InfiniteMovingPartners = ({
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
+          "flex w-max min-w-full shrink-0 flex-nowrap gap-2 sm:gap-4 py-4",
           "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[280px] max-w-full shrink-0 bg-black dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-6 py-3 md:w-[280px] hover:scale-105 transition-transform duration-300"
+            className="relative w-[200px] sm:w-[240px] md:w-[280px] max-w-full shrink-0 bg-black dark:border-zinc-700/50 dark:bg-gray-900/80 backdrop-blur-sm px-3 sm:px-4 md:px-6 py-3 hover:scale-105 transition-transform duration-300"
             key={`${item.name}-${idx}`}
           >
             <Link 

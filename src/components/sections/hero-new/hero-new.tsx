@@ -18,16 +18,21 @@ export default function HeroNew() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="relative z-10 flex h-full w-full flex-col justify-start gap-10 pl-6 pr-6 pt-24 pb-12 sm:pl-8 sm:pr-8 lg:hidden">
-        <div className="relative flex w-full flex-col items-start gap-10">
+      <div className="relative z-10 flex h-screen w-full flex-col justify-between pt-20 pb-8 lg:hidden overflow-hidden">
+        {/* Dither Background */}
+        <div className="absolute inset-0 z-0">
+          <Dither {...mobileDitherConfig} />
+        </div>
+        
+        <div className="absolute inset-0 z-[1] bg-black/70" />
+        
+        <div className="relative z-10 flex w-full flex-col items-start gap-10 px-4 sm:px-6">
           <HeroNewHeader />
           <HeroNewContent />
-          <HeroNewDescription />
         </div>
 
-        <div className="relative z-10 mt-12 h-[360px] w-full overflow-hidden rounded-3xl border border-[#e7b67c]/15 bg-black shadow-[0_0_120px_rgba(231,182,124,0.15)]">
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/60 to-black/80 mix-blend-screen" />
-          <Dither {...mobileDitherConfig} />
+        <div className="relative z-10 w-full px-4 sm:px-6">
+          <HeroNewDescription />
         </div>
       </div>
     </div>
