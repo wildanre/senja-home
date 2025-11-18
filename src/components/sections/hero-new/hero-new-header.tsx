@@ -1,6 +1,6 @@
 "use client";
 
-import AnimatedText from "@/components/ui/animated-text";
+import { AnimatedText } from "@/components/ui/text";
 import { heroContent } from "./heroNewData";
 import Image from "next/image";
 

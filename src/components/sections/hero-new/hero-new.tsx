@@ -3,7 +3,7 @@
 import HeroNewHeader from "./hero-new-header";
 import HeroNewContent from "./hero-new-content";
 import HeroNewDescription from "./hero-new-description";
-import Dither from "@/components/ui/dither";
+import { Dither } from "@/components/ui/background";
 import { mobileDitherConfig } from "./heroNewData";
 
 export default function HeroNew() {

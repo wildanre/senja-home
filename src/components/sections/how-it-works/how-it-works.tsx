@@ -1,6 +1,6 @@
 "use client";
 
-import Carousel from "@/components/ui/carousel";
+import { Carousel } from "@/components/ui/data-display";
 import { SlideIn } from "@/components/ui/motion";
 import { slidesData } from "./howItWorksData";
 import HowItWorksHeader from "./how-It-works-header";

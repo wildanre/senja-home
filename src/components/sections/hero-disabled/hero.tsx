@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { WorldMap } from "@/components/ui/world-map";
+import { WorldMap } from "@/components/ui/background";
 import HeroLogo from "./hero-logo";
 import HeroTitle from "./hero-title";
 import HeroTagline from "./hero-tagline";

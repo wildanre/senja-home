@@ -12,16 +12,16 @@ export default function PoweredBySenja() {
   return (
     <div className="relative h-full w-full bg-black text-[#e7b67c]">
       {/* Desktop Layout */}
-      <div className="hidden lg:block h-full w-full relative">
-        {/* Header Text - Left Aligned - Independent Position */}
-        <div className="absolute top-20 left-0 pl-13 pr-12 z-10">
+      <div className="hidden lg:flex h-full w-full relative flex-col items-center justify-center">
+        {/* Header Text - Centered when in full width container */}
+        <div className="w-full max-w-5xl px-8 mb-12 z-10">
           <div className="flex flex-col items-start text-left">
             <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
               <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-normal text-left mb-6 md:mb-8 text-[#e7b67c] leading-tight tracking-tight">
                 Powered by Senja
               </h2>
             </SlideIn>
-            <SlideIn direction="down" distance={20} duration={0.6} delay={0.1} amount={0.5} className="w-full max-w-lg text-sm sm:text-sm md:text-base leading-relaxed text-[#f2cba1]/80 space-y-4 md:space-y-6 tracking-tight">
+            <SlideIn direction="down" distance={20} duration={0.6} delay={0.1} amount={0.5} className="w-full max-w-2xl text-sm sm:text-sm md:text-base leading-relaxed text-[#f2cba1]/80 space-y-4 md:space-y-6 tracking-tight text-left">
               <p>
                 Unlock seamless lending, borrowing, and collateral trading across multiple chains.
               </p>
@@ -29,14 +29,14 @@ export default function PoweredBySenja() {
           </div>
         </div>
 
-        {/* Chain Orbit Visualization - Centered - Independent Position */}
-        <div className="absolute inset-0 flex items-center justify-center w-full pt-170">
+        {/* Chain Orbit Visualization - Centered */}
+        <div className="flex items-start justify-start w-full">
           <ScaleIn
             initialScale={0.85}
             duration={0.8}
             delay={0.3}
             amount={0.3}
-            className="flex justify-center w-full"
+            className="flex justify-start w-full"
           >
             <div className="relative h-[600px] w-full max-w-[700px] overflow-visible flex items-center justify-center">
               <OrbitingAssets radius={innerRadius} iconSize={iconSize} />

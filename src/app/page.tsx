@@ -6,12 +6,16 @@ import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
 import Partner from "@/components/sections/partner";
 import ContactSection from "@/components/sections/contact";
 import Footer from "@/components/sections/footer";
-import ScrollAnimationWrapper from "@/components/ui/scroll-animation-wrapper";
-import Dither from "@/components/ui/dither";
-import { desktopDitherConfig } from "@/components/sections/hero-new/heroNewData";
+import { ScrollAnimationWrapper } from "@/components/ui/animate";
+import { AnimatedDitherBackground } from "@/components/ui/background";
+import { AnimatedDivider } from "@/components/ui/layout";
 import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
+import { useScrollTransition } from "@/hooks/useScrollTransition";
+import { motion } from "motion/react";
+import { AnimatedBeamDemo as AnimatedBeamSection } from "@/components/sections/supports/animated-beam-section";
 
 export default function Home() {
+  const scrollProgress = useScrollTransition();
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -47,64 +51,121 @@ export default function Home() {
       
       <div className="relative h-screen w-full overflow-hidden">
         <main className="relative h-screen w-full">
-          {/* Main scrollable container - full width */}
           <div className="h-screen w-full overflow-y-auto scrollbar-right-edge" id="main-scroll">
             <div className="flex min-h-screen flex-col lg:flex-row">
-              {/* Left Side - Content: full width on mobile, 50% on desktop */}
-              <div className="relative z-10 w-full lg:w-1/2 bg-black overflow-hidden">
-                {/* Hero Content */}
+              <motion.div 
+                className="relative z-10 w-full lg:w-1/2 bg-black overflow-hidden"
+                style={{
+                  width: scrollProgress > 1 ? '100%' : undefined
+                }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+
                 <section id="hero" className="min-h-screen lg:min-h-screen">
                   <HeroNew />
                 </section>
 
-                {/* What is Senja Content */}
                 <section id="what-is-senja" className="min-h-screen lg:min-h-screen">
                   <WhatIsSenja />
                 </section>
 
-                {/* Powered by Senja Content */}
-                <section id="powered-by-senja" className="min-h-[80vh] lg:min-h-screen">
-                  <PoweredBySenja />
+                {/* Powered by Senja Content - full width, centered */}
+                <section 
+                  id="powered-by-senja" 
+                  className="min-h-[80vh] lg:min-h-screen flex items-center justify-center"
+                >
+                  <motion.div 
+                    className="w-full"
+                    style={{
+                      maxWidth: '1200px',
+                      margin: '0 auto',
+                      padding: '0 2rem'
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    <PoweredBySenja />
+                  </motion.div>
                 </section>
 
-                {/* Partner Section */}
-                <section id="partners" className="min-h-[60vh] lg:min-h-screen flex items-center justify-center">
-                  <Partner />
+
+                <section 
+                  id="partners" 
+                  className="min-h-[60vh] lg:min-h-screen flex items-center justify-center"
+                >
+                  <motion.div 
+                    className="w-full"
+                    style={{
+                      maxWidth: '1200px',
+                      margin: '0 auto',
+                      padding: '0 2rem'
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    <Partner />
+                  </motion.div>
                 </section>
 
-                {/* Contact Section */}
-                <section id="contact" className="min-h-[60vh] lg:min-h-screen">
-                  <ScrollAnimationWrapper direction="down" delay={0.3}>
-                    <ContactSection />
-                  </ScrollAnimationWrapper>
+                <section 
+                  id="contact" 
+                  className="min-h-[60vh] lg:min-h-screen flex items-center justify-center"
+                >
+                  <motion.div 
+                    className="w-full"
+                    style={{
+                      maxWidth: '1200px',
+                      margin: '0 auto',
+                      padding: '0 2rem'
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    <ScrollAnimationWrapper direction="down" delay={0.3}>
+                      <ContactSection />
+                    </ScrollAnimationWrapper>
+                  </motion.div>
                 </section>
 
-                {/* Footer */}
-                <section id="footer">
-                  <Footer />
+                {/* Footer - full width, centered */}
+                <section 
+                  id="footer"
+                  className="flex justify-center"
+                >
+                  <motion.div 
+                    className="w-full"
+                    style={{
+                      maxWidth: '1200px',
+                      margin: '0 auto',
+                      padding: '0 2rem'
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    <Footer />
+                  </motion.div>
                 </section>
-              </div>
+              </motion.div>
 
-              {/* Right Side - Fixed Dither */}
-              <div className="hidden lg:block w-1/2" />
+              {/* Right Side - Dither/Beam area: shows dither in hero, beam in what-is-senja, collapses after */}
+              <motion.div 
+                className="hidden lg:block w-1/2 relative bg-black"
+                style={{
+                  width: scrollProgress > 1 ? '0%' : undefined
+                }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                {/* Animated Beam for WhatIsSenja section - show when in what-is-senja section */}
+                {scrollProgress >= 0.5 && scrollProgress <= 1 && (
+                  <div className="absolute inset-0 h-full w-full z-20 flex items-center justify-center bg-black">
+                    <AnimatedBeamSection />
+                  </div>
+                )}
+              </motion.div>
             </div>
           </div>
 
-          {/* Divider - fixed at center */}
-          <div
-            className="pointer-events-none fixed inset-y-0 left-1/2 z-30 hidden lg:block"
-            style={{ transform: 'translateX(-0.5rem)' }}
-          >
-            <div className="border-l border-dashed border-[#8a5a33]/70 h-full" />
-          </div>
+          {/* Animated Divider - slides to right and fades out with dither */}
+          <AnimatedDivider scrollProgress={scrollProgress} />
 
-          {/* Dither on right side - fixed */}
-          <div
-            className="fixed top-0 right-0 z-0 hidden h-screen w-1/2 lg:block pointer-events-none"
-            style={{ margin: 0, padding: 0 }}
-          >
-            <Dither {...desktopDitherConfig} />
-          </div>
+          {/* Animated Dither Background - slides to right and fades out during scroll */}
+          <AnimatedDitherBackground scrollProgress={scrollProgress} />
 
           {/* Sticky Bottom Text - appears in what-is-senja section */}
           <StickyBottomText />

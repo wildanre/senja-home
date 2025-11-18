@@ -2,7 +2,7 @@
 
 import { MotionValue } from "motion/react";
 import { MotionContainer } from "@/components/ui/motion";
-import RotatingTextType from "@/components/ui/rotating-text-type";
+import { RotatingTextType } from "@/components/ui/text";
 
 interface HeroTaglineProps {
   subtitleY: MotionValue<number>;

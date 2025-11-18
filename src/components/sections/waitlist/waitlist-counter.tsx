@@ -1,7 +1,7 @@
 "use client";
 
 import { SlideIn } from "@/components/ui/motion";
-import CountUp from "../../ui/count-up";
+import CountUp from "@/components/ui/data-display/count-up";
 
 interface WaitlistCounterProps {
   count: number;

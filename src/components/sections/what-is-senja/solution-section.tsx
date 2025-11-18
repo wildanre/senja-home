@@ -1,7 +1,7 @@
 "use client";
 
 import { SlideIn } from "@/components/ui/motion";
-import Accordion from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/layout";
 import ContentItem from "./content-item";
 import { solutions } from "./whatIsSenjaData";
 

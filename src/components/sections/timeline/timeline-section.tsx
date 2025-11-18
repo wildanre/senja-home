@@ -1,5 +1,5 @@
 import React from "react";
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import { StickyScroll } from "@/components/ui/effects";
 import { timelineData } from "./timeline-data";
 import { formatTimelineForStickyScroll } from "./timelineUtils";
 import TimelineHeader from "./timeline-header";

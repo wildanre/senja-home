@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import TypingAnimation from "@/components/ui/typing-animation";
-import AnimatedTextVariants from "@/components/ui/animated-text-variants";
+import { TypingAnimation, AnimatedTextVariants } from "@/components/ui/text";
 
 export default function StickyBottomText() {
   const [textState, setTextState] = useState<"first" | "second" | "hidden">("first");

@@ -10,7 +10,7 @@ export default function Supports() {
   const { outerRadius, innerRadius, iconSize } = useResponsiveOrbit();
 
   return (
-    <section id="supports" className="py-20 px-4">
+    <section id="supports" className="py-20">
       <div className="max-w-7xl mt-10 lg:mt-20 mx-auto">
 
         <ScaleIn initialScale={0.85} duration={0.8} delay={0.3} amount={0.3} className="flex justify-center mb-8">

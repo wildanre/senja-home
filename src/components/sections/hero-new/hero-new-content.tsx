@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import AnimatedButton from "@/components/ui/animated-button";
-import AnimatedTextVariants from "@/components/ui/animated-text-variants";
+import { AnimatedButton } from "@/components/ui/animate";
+import { AnimatedTextVariants } from "@/components/ui/text";
 import { heroContent } from "./heroNewData";
 
 export default function HeroNewContent() {

@@ -1,7 +1,6 @@
 "use client";
 
-import AnimatedTextVariants from "@/components/ui/animated-text-variants";
-import TypingAnimation from "@/components/ui/typing-animation";
+import { AnimatedTextVariants, TypingAnimation } from "@/components/ui/text";
 import { heroContent } from "./heroNewData";
 
 export default function HeroNewDescription() {

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { InfiniteMovingPartners } from "@/components/ui/infinite-moving-partners";
+import { InfiniteMovingPartners } from "@/components/ui/effects";
 import { partners } from "./partnerData";
-import TypingAnimation from "@/components/ui/typing-animation";
+import { TypingAnimation } from "@/components/ui/text";
 
 export default function Partner() {
   const [isVisible, setIsVisible] = useState(false);

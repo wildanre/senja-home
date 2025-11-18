@@ -7,7 +7,7 @@ import {
   Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
-import BackgroundWrapper from "@/components/ui/background-wrapper";
+import { BackgroundWrapper } from "@/components/ui/background";
 import { AuthProvider } from "@/contexts/auth-context";
 
 const geistSans = Geist({
@@ -36,7 +36,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Senja Finance - Permissionless DeFi Protocol | Cross-Chain Lending & Borrowing",
+    default: "Senja Finance",
     template: "%s | Senja Finance DeFi Protocol"
   },
   description: "Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration, isolated pools, and seamless user experience via LINE Mini DApp.",
