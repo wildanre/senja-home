@@ -1,50 +1,17 @@
 "use client";
 
-import { useEffect } from "react";
 import HeroNew from "@/components/sections/hero-new";
 import WhatIsSenja from "@/components/sections/what-is-senja";
+import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
+import Partner from "@/components/sections/partner";
 import ContactSection from "@/components/sections/contact";
-import TimelineSection from "@/components/sections/timeline";
 import Footer from "@/components/sections/footer";
 import ScrollAnimationWrapper from "@/components/ui/scroll-animation-wrapper";
+import Dither from "@/components/ui/dither";
+import { desktopDitherConfig } from "@/components/sections/hero-new/heroNewData";
+import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
 
 export default function Home() {
-  useEffect(() => {
-    // Prevent auto-scroll to hash on page load/refresh if no hash in URL
-    if (typeof window !== "undefined") {
-      const scrollContainer = document.querySelector('.smooth-scroll-container') as HTMLElement;
-      
-      // If there's no hash in the URL, ensure we're at the top
-      if (!window.location.hash) {
-        // Reset scroll position immediately
-        window.scrollTo(0, 0);
-        if (scrollContainer) {
-          scrollContainer.scrollTop = 0;
-        }
-        
-        // Also prevent browser's default scroll restoration
-        if ('scrollRestoration' in window.history) {
-          window.history.scrollRestoration = 'manual';
-        }
-      } else {
-        // If there's a hash, wait for the page to render, then scroll to the element
-        const hash = window.location.hash.substring(1);
-        setTimeout(() => {
-          const element = document.getElementById(hash);
-          if (element && scrollContainer) {
-            // Scroll within the container, not the window
-            const containerRect = scrollContainer.getBoundingClientRect();
-            const elementRect = element.getBoundingClientRect();
-            const scrollTop = scrollContainer.scrollTop + elementRect.top - containerRect.top;
-            scrollContainer.scrollTo({
-              top: scrollTop,
-              behavior: 'smooth'
-            });
-          }
-        }, 300);
-      }
-    }
-  }, []);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -78,32 +45,96 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="relative snap-y snap-mandatory overflow-y-scroll scroll-smooth smooth-scroll-container">
-        <main className="relative">
-          <section id="hero" className="snap-start snap-always  sticky top-0">
-          <HeroNew />
-          </section>
+      <div className="relative h-screen w-full overflow-hidden">
+        <main className="relative h-screen w-full">
+          {/* Main scrollable container - full width */}
+          <div className="h-screen w-full overflow-y-auto scrollbar-right-edge" id="main-scroll">
+            <div className="flex min-h-screen">
+              {/* Left Side - Content with fixed 50% width */}
+              <div className="relative z-10 w-1/2 bg-black overflow-hidden">
+                {/* Hero Content */}
+                <section id="hero" className="min-h-screen">
+                  <HeroNew />
+                </section>
 
-          <div className="relative z-10 bg-black dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
-            <section className="snap-start snap-always ">
-              <ScrollAnimationWrapper direction="up" delay={0.3}>
-              <WhatIsSenja />
-              </ScrollAnimationWrapper>
-            </section>
+                {/* What is Senja Content */}
+                <section id="what-is-senja" className="min-h-screen">
+                  <WhatIsSenja />
+                </section>
 
-            <section className="snap-start">
-              <ScrollAnimationWrapper direction="down" delay={0.3}>
-                <ContactSection />
-              </ScrollAnimationWrapper>
-            </section>
+                {/* Powered by Senja Content */}
+                <section id="powered-by-senja" className="min-h-screen">
+                  <PoweredBySenja />
+                </section>
 
-            <section className="snap-end">
-              <Footer />
-            </section>
+                {/* Partner Section */}
+                <section id="partners" className="min-h-screen flex items-center justify-center">
+                  <Partner />
+                </section>
+
+                {/* Contact Section */}
+                <section id="contact" className="min-h-screen">
+                  <ScrollAnimationWrapper direction="down" delay={0.3}>
+                    <ContactSection />
+                  </ScrollAnimationWrapper>
+                </section>
+
+                {/* Footer */}
+                <section id="footer">
+                  <Footer />
+                </section>
+              </div>
+
+              {/* Right Side - Fixed Dither */}
+              <div className="hidden lg:block w-1/2" />
+            </div>
           </div>
 
-          {/* <Metrics /> */}
+          {/* Divider - fixed at center */}
+          <div
+            className="pointer-events-none fixed inset-y-0 left-1/2 z-30 hidden lg:block"
+            style={{ transform: 'translateX(-0.5rem)' }}
+          >
+            <div className="border-l border-dashed border-[#8a5a33]/70 h-full" />
+          </div>
+
+          {/* Dither on right side - fixed */}
+          <div
+            className="fixed top-0 right-0 z-0 hidden h-screen w-1/2 lg:block pointer-events-none"
+            style={{ margin: 0, padding: 0 }}
+          >
+            <Dither {...desktopDitherConfig} />
+          </div>
+
+          {/* Sticky Bottom Text - appears in what-is-senja section */}
+          <StickyBottomText />
         </main>
+
+        {/* Custom Scrollbar Styles */}
+        <style jsx global>{`
+          .scrollbar-right-edge::-webkit-scrollbar {
+            width: 8px;
+          }
+          
+          .scrollbar-right-edge::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          
+          .scrollbar-right-edge::-webkit-scrollbar-thumb {
+            background: rgba(231, 182, 124, 0.2);
+            border-radius: 4px;
+          }
+          
+          .scrollbar-right-edge::-webkit-scrollbar-thumb:hover {
+            background: rgba(231, 182, 124, 0.3);
+          }
+          
+          /* For Firefox */
+          .scrollbar-right-edge {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(231, 182, 124, 0.2) transparent;
+          }
+        `}</style>
       </div>
     </>
   );

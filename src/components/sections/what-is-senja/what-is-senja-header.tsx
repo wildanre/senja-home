@@ -6,18 +6,14 @@ export default function WhatIsSenjaHeader() {
   return (
     <>
       <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-        <h2 className="font-hero text-4xl  md:text-6xl font-normal text-left mb-12 text-[#e7b67c] leading-tight tracking-tight">
-          What is <br></br> Senja ?
+        <h2 className="font-hero text-4xl md:text-6xl font-normal text-left mb-8 text-[#e7b67c] leading-tight tracking-tight">
+          Why design a protocol for <br></br> cross-chain borrowing?
         </h2>
       </SlideIn>
 
-      <SlideIn direction="down" distance={20} duration={0.6} delay={0.1} amount={0.5} className="text-sm md:text-base leading-relaxed text-[#f2cba1]/80 space-y-6 lg:mt-20 tracking-tight">
+      <SlideIn direction="down" distance={20} duration={0.6} delay={0.1} amount={0.5} className="w-full max-w-lg text-sm md:text-base leading-relaxed text-[#f2cba1]/80 space-y-6 tracking-tight">
         <p>
-          <strong className="text-[#e7b67c]">Senja </strong> is a <strong className="text-[#e7b67c]">permissionless stablecoin lending and borrowing protocol</strong> built on the Kaia ecosystem. Senja Finance also lives on the LINE Mini DApp, where users can supply collateral from multiple chains via cross-chain messaging, swap collateral seamlessly through DragonSwap, and borrow Kaia-native USDT or other stablecoins across multiple chains, with interest rates that automatically adjust based on utilization and asset risk profiles.
-        </p>
-
-        <p>
-          Senja is supported by decentralized oracles such as the <strong className="text-[#e7b67c]">Orakl Network</strong> to ensure reliable and secure price feeds for risk management.
+          Permissionless lending and borrowing allows users to access liquidity, earn yield, and manage their assets across different blockchains. Senja is built to support cross-chain lending, borrowing, and collateral trading, giving users complete control over their assets in a seamless and decentralized way.
         </p>
       </SlideIn>
     </>
