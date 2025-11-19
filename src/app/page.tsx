@@ -1,6 +1,6 @@
 "use client";
 
-import HeroNew from "@/components/sections/hero-new";
+import HeroNew from "@/components/sections/hero";
 import WhatIsSenja from "@/components/sections/what-is-senja";
 import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
 import Partner from "@/components/sections/partner";
@@ -16,9 +16,6 @@ import { motion } from "motion/react";
 export default function Home() {
   const scrollProgress = useScrollTransition();
 
-  // Smooth interpolation for left page width expansion
-  // Starts expanding at 0.5 (when what-is-senja section appears)
-  // Fully expanded at 0.8
   const getLeftPageWidth = () => {
     if (scrollProgress < 0.5) return 50;
     if (scrollProgress >= 0.8) return 100;
@@ -75,7 +72,7 @@ export default function Home() {
               <motion.div
                 className="relative w-full bg-black overflow-hidden"
                 style={{
-                  width: `${leftPageWidth}%`,
+                  width: leftPageWidth >= 100 ? '100%' : `${leftPageWidth}%`,
                   zIndex: 2
                 }}
                 transition={{ type: "spring", stiffness: 50, damping: 20 }}

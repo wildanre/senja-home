@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { Dither } from "@/components/ui/background";
-import { desktopDitherConfig } from "@/components/sections/hero-new/heroNewData";
+import { desktopDitherConfig } from "@/components/sections/hero/heroNewData";
 import { useDitherAnimation } from "@/hooks/useDitherAnimation";
 
 interface AnimatedDitherBackgroundProps {

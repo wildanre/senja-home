@@ -4,7 +4,7 @@ import React from "react";
 import { ScaleIn, SlideIn } from "@/components/ui/motion";
 import OrbitingAssets from "../supports/orbiting-assets";
 import OrbitingNetworks from "../supports/orbiting-networks";
-import useResponsiveOrbit from "../supports/useResponsiveOrbit";
+import useResponsiveOrbit from "../../../hooks/useResponsiveOrbit";
 import { AnimatedBeamDemo as AnimatedBeamSection } from "../supports/animated-beam-section";
 
 export default function PoweredBySenja() {
@@ -13,9 +13,9 @@ export default function PoweredBySenja() {
   return (
     <div className="relative h-full w-full bg-black text-[#e7b67c]">
       {/* Desktop Layout */}
-      <div className="hidden lg:flex h-full w-full relative flex-col items-center justify-center">
+      <div className="hidden lg:flex h-full w-full relative flex-col items-center justify-center py-12">
         {/* Header Text - Centered */}
-        <div className="w-full mb-16 z-10 flex justify-center">
+        <div className="w-full mb-12 z-10 flex justify-center">
           <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
             <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-normal text-center text-[#e7b67c] leading-tight tracking-tight">
               Powered by Senja
@@ -24,7 +24,7 @@ export default function PoweredBySenja() {
         </div>
 
         {/* Chain Orbit Visualization with Beam */}
-        <div className="flex items-center justify-start w-full gap-16 px-8">
+        <div className="flex items-center justify-center w-full gap-8 xl:gap-16 2xl:gap-24 px-4 max-w-[1400px] 2xl:max-w-[1800px] mx-auto">
           {/* Chain Orbit */}
           <ScaleIn
             initialScale={0.85}
@@ -33,7 +33,7 @@ export default function PoweredBySenja() {
             amount={0.3}
             className="flex-shrink-0"
           >
-            <div className="relative h-[600px] w-[600px] overflow-visible flex items-center justify-center">
+            <div className="relative h-[500px] w-[500px] lg:h-[550px] lg:w-[550px] xl:h-[600px] xl:w-[600px] 2xl:h-[700px] 2xl:w-[700px] overflow-visible flex items-center justify-center">
               <OrbitingAssets radius={innerRadius} iconSize={iconSize} />
               <OrbitingNetworks radius={outerRadius} iconSize={iconSize} />
             </div>
@@ -47,7 +47,7 @@ export default function PoweredBySenja() {
             amount={0.3}
             className="flex-shrink-0"
           >
-            <div style={{ width: '500px', height: '500px', minWidth: '500px', minHeight: '500px' }} className="flex items-center justify-center">
+            <div className="w-[420px] h-[420px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px] flex items-center justify-center">
               <AnimatedBeamSection />
             </div>
           </ScaleIn>
@@ -55,12 +55,12 @@ export default function PoweredBySenja() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="relative z-10 flex h-full w-full flex-col justify-center items-center gap-10 pl-6 pr-6 pt-24 pb-12 sm:pl-8 sm:pr-8 lg:hidden">
-        <div className="relative flex w-full flex-col items-center justify-center gap-10">
+      <div className="relative z-10 flex h-full w-full flex-col justify-center items-center gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:hidden">
+        <div className="relative flex w-full flex-col items-center justify-center gap-8 max-w-2xl mx-auto">
           {/* Header Text */}
-          <div className="flex flex-col items-center text-center gap-4">
+          <div className="flex flex-col items-center text-center gap-3">
             <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-              <h2 className="text-sm uppercase tracking-[0.35em] text-[#e7b67c]/80 font-normal">
+              <h2 className="font-hero text-3xl sm:text-4xl md:text-5xl font-normal text-[#e7b67c] leading-tight tracking-tight">
                 Powered by Senja
               </h2>
             </SlideIn>
@@ -79,9 +79,22 @@ export default function PoweredBySenja() {
             amount={0.3}
             className="flex justify-center w-full"
           >
-            <div className="relative h-[400px] w-full max-w-[500px] overflow-visible flex items-center justify-center mx-auto">
+            <div className="relative h-[350px] sm:h-[400px] md:h-[450px] w-full max-w-[500px] overflow-visible flex items-center justify-center">
               <OrbitingAssets radius={innerRadius} iconSize={iconSize} />
               <OrbitingNetworks radius={outerRadius} iconSize={iconSize} />
+            </div>
+          </ScaleIn>
+
+          {/* Animated Beam - Mobile */}
+          <ScaleIn
+            initialScale={0.85}
+            duration={0.8}
+            delay={0.5}
+            amount={0.3}
+            className="flex justify-center w-full mt-4"
+          >
+            <div className="w-full max-w-[420px] h-[400px] flex items-center justify-center">
+              <AnimatedBeamSection />
             </div>
           </ScaleIn>
         </div>
