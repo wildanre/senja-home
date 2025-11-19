@@ -25,32 +25,13 @@ export default function PoweredBySenja() {
 
         {/* Chain Orbit Visualization with Beam */}
         <div className="flex items-center justify-center w-full gap-8 xl:gap-16 2xl:gap-24 px-4 max-w-[1400px] 2xl:max-w-[1800px] mx-auto">
-          {/* Chain Orbit */}
-          <ScaleIn
-            initialScale={0.85}
-            duration={0.8}
-            delay={0.3}
-            amount={0.3}
-            className="flex-shrink-0"
-          >
             <div className="relative h-[500px] w-[500px] lg:h-[550px] lg:w-[550px] xl:h-[600px] xl:w-[600px] 2xl:h-[700px] 2xl:w-[700px] overflow-visible flex items-center justify-center">
               <OrbitingAssets radius={innerRadius} iconSize={iconSize} />
               <OrbitingNetworks radius={outerRadius} iconSize={iconSize} />
             </div>
-          </ScaleIn>
-
-          {/* Animated Beam - right side of orbit */}
-          <ScaleIn
-            initialScale={0.85}
-            duration={0.8}
-            delay={0.5}
-            amount={0.3}
-            className="flex-shrink-0"
-          >
             <div className="w-[420px] h-[420px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px] flex items-center justify-center">
               <AnimatedBeamSection />
             </div>
-          </ScaleIn>
         </div>
       </div>
 
@@ -84,19 +65,9 @@ export default function PoweredBySenja() {
               <OrbitingNetworks radius={outerRadius} iconSize={iconSize} />
             </div>
           </ScaleIn>
-
-          {/* Animated Beam - Mobile */}
-          <ScaleIn
-            initialScale={0.85}
-            duration={0.8}
-            delay={0.5}
-            amount={0.3}
-            className="flex justify-center w-full mt-4"
-          >
             <div className="w-full max-w-[420px] h-[400px] flex items-center justify-center">
               <AnimatedBeamSection />
             </div>
-          </ScaleIn>
         </div>
       </div>
     </div>
