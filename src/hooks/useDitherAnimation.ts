@@ -24,31 +24,10 @@ export function useDitherAnimation(scrollProgress: number): DitherAnimationResul
   
   // Update animation based on scroll progress
   useEffect(() => {
-    if (scrollProgress <= 0.5) {
-      // In hero section - dither visible and in place
-      xValue.set(0);
-      opacityValue.set(1);
-    } else {
-      // Transitioning out of hero section
-      // Calculate progress from 0 to 1 over the transition range
-      const transitionProgress = Math.min((scrollProgress - 0.5) / 0.5, 1);
-      
-      // Apply ease out curve for smooth deceleration
-      // Using cubic ease out: 1 - (1 - x)^3
-      const easeOut = 1 - Math.pow(1 - transitionProgress, 3);
-      
-      // Slide to the right (0 to 120%)
-      const targetX = easeOut * 120;
-      
-      // Fade out with same ease out curve
-      const targetOpacity = Math.max(0, 1 - easeOut);
-      
-      // Debug log
-      console.log('Dither Animation:', { scrollProgress, transitionProgress, easeOut, targetX, targetOpacity });
-      
-      xValue.set(targetX);
-      opacityValue.set(targetOpacity);
-    }
+    // Keep dither visible and in place at all times
+    // Let the black left page naturally cover it as it expands (z-index layering)
+    xValue.set(0);
+    opacityValue.set(1);
   }, [scrollProgress, xValue, opacityValue]);
   
   return {

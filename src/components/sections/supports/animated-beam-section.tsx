@@ -34,13 +34,43 @@ export function AnimatedBeamDemo() {
   const div6Ref = useRef<HTMLDivElement>(null)
   const div7Ref = useRef<HTMLDivElement>(null)
 
+  // Prevent hydration issues by ensuring refs are ready
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '400px'
+        }}
+      />
+    )
+  }
+
   return (
     <div
-      className="relative flex h-[300px] w-full items-center justify-center overflow-hidden p-10"
+      className="relative flex items-center justify-center"
+      style={{
+        width: '100%',
+        height: '400px',
+        padding: '50px 30px',
+        overflow: 'visible'
+      }}
       ref={containerRef}
     >
-      <div className="flex size-full max-h-[200px] max-w-lg flex-col items-stretch justify-between gap-10">
-        <div className="flex flex-row items-center justify-between">
+      <div
+        className="flex flex-col items-stretch justify-between"
+        style={{
+          width: '420px',
+          height: '260px'
+        }}
+      >
+        <div className="flex flex-row items-center justify-between" style={{ paddingLeft: '24px', paddingRight: '24px' }}>
           <Circle ref={div1Ref}>
             <Icons.googleDrive />
           </Circle>
@@ -59,7 +89,7 @@ export function AnimatedBeamDemo() {
             <Icons.zapier />
           </Circle>
         </div>
-        <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-between" style={{ paddingLeft: '24px', paddingRight: '24px' }}>
           <Circle ref={div3Ref}>
             <Icons.whatsapp />
           </Circle>

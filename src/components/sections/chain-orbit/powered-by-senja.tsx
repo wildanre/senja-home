@@ -5,6 +5,7 @@ import { ScaleIn, SlideIn } from "@/components/ui/motion";
 import OrbitingAssets from "../supports/orbiting-assets";
 import OrbitingNetworks from "../supports/orbiting-networks";
 import useResponsiveOrbit from "../supports/useResponsiveOrbit";
+import { AnimatedBeamDemo as AnimatedBeamSection } from "../supports/animated-beam-section";
 
 export default function PoweredBySenja() {
   const { outerRadius, innerRadius, iconSize } = useResponsiveOrbit();
@@ -13,34 +14,41 @@ export default function PoweredBySenja() {
     <div className="relative h-full w-full bg-black text-[#e7b67c]">
       {/* Desktop Layout */}
       <div className="hidden lg:flex h-full w-full relative flex-col items-center justify-center">
-        {/* Header Text - Centered when in full width container */}
-        <div className="w-full max-w-5xl px-8 mb-12 z-10">
-          <div className="flex flex-col items-start text-left">
-            <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-              <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-normal text-left mb-6 md:mb-8 text-[#e7b67c] leading-tight tracking-tight">
-                Powered by Senja
-              </h2>
-            </SlideIn>
-            <SlideIn direction="down" distance={20} duration={0.6} delay={0.1} amount={0.5} className="w-full max-w-2xl text-sm sm:text-sm md:text-base leading-relaxed text-[#f2cba1]/80 space-y-4 md:space-y-6 tracking-tight text-left">
-              <p>
-                Unlock seamless lending, borrowing, and collateral trading across multiple chains.
-              </p>
-            </SlideIn>
-          </div>
+        {/* Header Text - Centered */}
+        <div className="w-full mb-16 z-10 flex justify-center">
+          <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
+            <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-normal text-center text-[#e7b67c] leading-tight tracking-tight">
+              Powered by Senja
+            </h2>
+          </SlideIn>
         </div>
 
-        {/* Chain Orbit Visualization - Centered */}
-        <div className="flex items-start justify-start w-full">
+        {/* Chain Orbit Visualization with Beam */}
+        <div className="flex items-center justify-start w-full gap-16 px-8">
+          {/* Chain Orbit */}
           <ScaleIn
             initialScale={0.85}
             duration={0.8}
             delay={0.3}
             amount={0.3}
-            className="flex justify-start w-full"
+            className="flex-shrink-0"
           >
-            <div className="relative h-[600px] w-full max-w-[700px] overflow-visible flex items-center justify-center">
+            <div className="relative h-[600px] w-[600px] overflow-visible flex items-center justify-center">
               <OrbitingAssets radius={innerRadius} iconSize={iconSize} />
               <OrbitingNetworks radius={outerRadius} iconSize={iconSize} />
+            </div>
+          </ScaleIn>
+
+          {/* Animated Beam - right side of orbit */}
+          <ScaleIn
+            initialScale={0.85}
+            duration={0.8}
+            delay={0.5}
+            amount={0.3}
+            className="flex-shrink-0"
+          >
+            <div style={{ width: '500px', height: '500px', minWidth: '500px', minHeight: '500px' }} className="flex items-center justify-center">
+              <AnimatedBeamSection />
             </div>
           </ScaleIn>
         </div>

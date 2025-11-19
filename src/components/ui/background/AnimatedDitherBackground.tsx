@@ -16,22 +16,21 @@ interface AnimatedDitherBackgroundProps {
  * - Uses spring physics for natural movement
  */
 export function AnimatedDitherBackground({ scrollProgress }: AnimatedDitherBackgroundProps) {
-  const { x, opacity } = useDitherAnimation(scrollProgress);
-  
+  // Dither stays visible at all times, left page will naturally cover it
+  // Using absolute positioning within full viewport to avoid any flex/flow issues
+
   return (
-    <motion.div
-      className="fixed top-0 right-0 z-0 hidden h-screen w-1/2 lg:block pointer-events-none"
-      style={{ 
-        translateX: x,
-        opacity
-      }}
-      transition={{
-        type: "tween",
-        ease: "easeOut",
-        duration: 0.6
+    <div
+      className="absolute top-0 bottom-0 hidden lg:block pointer-events-none"
+      style={{
+        left: '50%',
+        right: '0',
+        zIndex: 1,
+        opacity: 1,
+        visibility: 'visible'
       }}
     >
       <Dither {...desktopDitherConfig} />
-    </motion.div>
+    </div>
   );
 }

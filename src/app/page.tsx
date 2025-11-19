@@ -12,10 +12,23 @@ import { AnimatedDivider } from "@/components/ui/layout";
 import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
 import { motion } from "motion/react";
-import { AnimatedBeamDemo as AnimatedBeamSection } from "@/components/sections/supports/animated-beam-section";
 
 export default function Home() {
   const scrollProgress = useScrollTransition();
+
+  // Smooth interpolation for left page width expansion
+  // Starts expanding at 0.5 (when what-is-senja section appears)
+  // Fully expanded at 0.8
+  const getLeftPageWidth = () => {
+    if (scrollProgress < 0.5) return 50;
+    if (scrollProgress >= 0.8) return 100;
+    // Smooth interpolation between 0.5 and 0.8
+    const progress = (scrollProgress - 0.5) / (0.8 - 0.5);
+    return 50 + (progress * 50);
+  };
+
+  const leftPageWidth = getLeftPageWidth();
+  const rightPageWidth = 100 - leftPageWidth;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -49,16 +62,23 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="relative h-screen w-full overflow-hidden">
-        <main className="relative h-screen w-full">
+      <div className="relative h-screen w-full">
+        {/* Animated Dither Background - MUST be outside overflow-hidden container */}
+        <AnimatedDitherBackground scrollProgress={scrollProgress} />
+
+        {/* Animated Divider - follows left page edge */}
+        <AnimatedDivider scrollProgress={scrollProgress} />
+
+        <main className="relative h-screen w-full overflow-hidden" style={{ zIndex: 10 }}>
           <div className="h-screen w-full overflow-y-auto scrollbar-right-edge" id="main-scroll">
             <div className="flex min-h-screen flex-col lg:flex-row">
-              <motion.div 
-                className="relative z-10 w-full lg:w-1/2 bg-black overflow-hidden"
+              <motion.div
+                className="relative w-full bg-black overflow-hidden"
                 style={{
-                  width: scrollProgress > 1 ? '100%' : undefined
+                  width: `${leftPageWidth}%`,
+                  zIndex: 2
                 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
+                transition={{ type: "spring", stiffness: 50, damping: 20 }}
               >
 
                 <section id="hero" className="min-h-screen lg:min-h-screen">
@@ -69,22 +89,14 @@ export default function Home() {
                   <WhatIsSenja />
                 </section>
 
-                {/* Powered by Senja Content - full width, centered */}
-                <section 
-                  id="powered-by-senja" 
+                {/* Powered by Senja Content - full width with orbit + beam */}
+                <section
+                  id="powered-by-senja"
                   className="min-h-[80vh] lg:min-h-screen flex items-center justify-center"
                 >
-                  <motion.div 
-                    className="w-full"
-                    style={{
-                      maxWidth: '1200px',
-                      margin: '0 auto',
-                      padding: '0 2rem'
-                    }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  >
+                  <div className="w-full">
                     <PoweredBySenja />
-                  </motion.div>
+                  </div>
                 </section>
 
 
@@ -143,29 +155,16 @@ export default function Home() {
                 </section>
               </motion.div>
 
-              {/* Right Side - Dither/Beam area: shows dither in hero, beam in what-is-senja, collapses after */}
-              <motion.div 
-                className="hidden lg:block w-1/2 relative bg-black"
+              {/* Right Side - Empty space that collapses */}
+              <div
+                className="hidden lg:block relative bg-transparent"
                 style={{
-                  width: scrollProgress > 1 ? '0%' : undefined
+                  width: `${rightPageWidth}%`,
+                  flexShrink: 0
                 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                {/* Animated Beam for WhatIsSenja section - show when in what-is-senja section */}
-                {scrollProgress >= 0.5 && scrollProgress <= 1 && (
-                  <div className="absolute inset-0 h-full w-full z-20 flex items-center justify-center bg-black">
-                    <AnimatedBeamSection />
-                  </div>
-                )}
-              </motion.div>
+              />
             </div>
           </div>
-
-          {/* Animated Divider - slides to right and fades out with dither */}
-          <AnimatedDivider scrollProgress={scrollProgress} />
-
-          {/* Animated Dither Background - slides to right and fades out during scroll */}
-          <AnimatedDitherBackground scrollProgress={scrollProgress} />
 
           {/* Sticky Bottom Text - appears in what-is-senja section */}
           <StickyBottomText />
