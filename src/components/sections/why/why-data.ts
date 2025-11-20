@@ -8,30 +8,30 @@ export interface WhyFeature {
 export const whyFeatures: WhyFeature[] = [
   {
     id: 1,
-    title: "Security",
+    title: "Cross-chain Borrowing",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    icon: "/why/security.svg",
-  },
-  {
-    id: 2,
-    title: "cross-chain Finality",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Borrow across chains with LayerZero.",
     icon: "/why/swap.svg",
   },
   {
-    id: 3,
-    title: "high speed",
+    id: 2,
+    title: "Trade Collateral",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Trade collateral without closing position.",
+    icon: "/why/security.svg",
+  },
+  {
+    id: 3,
+    title: "High speed",
+    description:
+      "Real-time confirmations for cross-chain borrowing.",
     icon: "/why/speed.svg",
   },
   {
     id: 4,
-    title: "low gas fees",
+    title: "Low gas fees",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Cost-efficient cross-chain execution",
     icon: "/why/low-fee.svg",
   },
 ];

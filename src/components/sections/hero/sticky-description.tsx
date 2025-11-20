@@ -69,10 +69,10 @@ export default function StickyDescription() {
           }`}
         >
           <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
-            <span>Multifaceted and borderless</span>
+            <span>Cross-Chain by Design</span>
           </div>
           <p className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed">
-            Designed to meet the needs of modern payment processing, enhancing speed, efficiency, and reliability.
+          Designed for seamless cross-chain lending flows, delivering speed, flexibility, and dependable capital efficiency.
           </p>
         </div>
       </div>

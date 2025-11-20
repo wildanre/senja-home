@@ -20,21 +20,30 @@ export const WhyCard = ({ feature, index }: WhyCardProps) => {
                  hover:shadow-lg hover:shadow-[#E7B67C]/10"
     >
       {/* Number Badge */}
-      <div className="absolute top-6 left-6 w-10 h-10 rounded-full 
+      <div className="absolute top-6 left-6 w-10 h-10 rounded-full
                       bg-[#E7B67C]/10 border border-[#E7B67C]/30
                       flex items-center justify-center">
-        <span className="text-[#E7B67C] font-semibold text-lg">
+        <span
+          className="text-[#E7B67C] font-semibold text-lg"
+          style={{ fontFamily: "'PP Neue Montreal', sans-serif" }}
+        >
           {feature.id}
         </span>
       </div>
 
       {/* Content */}
       <div className="mt-16 space-y-4">
-        <h3 className="text-2xl font-bold text-[#E7B67C] 
-                       group-hover:text-[#E7B67C]/90 transition-colors">
+        <h3
+          className="text-2xl font-bold text-[#E7B67C]
+                       group-hover:text-[#E7B67C]/90 transition-colors"
+          style={{ fontFamily: "'PP Neue Montreal', sans-serif" }}
+        >
           {feature.title}
         </h3>
-        <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+        <p
+          className="text-gray-300 leading-relaxed text-sm md:text-base"
+          style={{ fontFamily: "'PP Neue Montreal', sans-serif" }}
+        >
           {feature.description}
         </p>
       </div>

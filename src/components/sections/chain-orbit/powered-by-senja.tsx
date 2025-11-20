@@ -17,7 +17,7 @@ export default function PoweredBySenja() {
         {/* Header Text - Centered */}
         <div className="w-full mb-12 z-10 flex justify-center">
           <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-            <h2 className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-normal text-center text-[#e7b67c] leading-tight tracking-tight">
+            <h2 id="powered-by-senja-heading" className="font-hero text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-normal text-center text-[#e7b67c] leading-tight tracking-tight">
               Powered by Senja
             </h2>
           </SlideIn>
@@ -41,7 +41,7 @@ export default function PoweredBySenja() {
           {/* Header Text */}
           <div className="flex flex-col items-center text-center gap-3">
             <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-              <h2 className="font-hero text-3xl sm:text-4xl md:text-5xl font-normal text-[#e7b67c] leading-tight tracking-tight">
+              <h2 id="powered-by-senja-heading" className="font-hero text-3xl sm:text-4xl md:text-5xl font-normal text-[#e7b67c] leading-tight tracking-tight">
                 Powered by Senja
               </h2>
             </SlideIn>

@@ -13,7 +13,7 @@ export default function WhatIsSenjaHeader() {
 
       <SlideIn direction="down" distance={20} duration={0.6} delay={0.1} amount={0.5} className="w-full max-w-lg text-sm sm:text-base md:text-base leading-relaxed text-[#f2cba1]/80 space-y-4 md:space-y-6 tracking-tight">
         <p>
-          Permissionless lending and borrowing allows users to access liquidity, earn yield, and manage their assets across different blockchains. Senja is built to support cross-chain lending, borrowing, and collateral trading, giving users complete control over their assets in a seamless and decentralized way.
+          Permissionless lending and borrowing allows users to access liquidity, earn yield, and manage their assets across chains. Senja is built to support cross-chain lending, borrowing, and collateral trading, giving users complete control over their assets in a seamless and decentralized way.
         </p>
       </SlideIn>
     </>
