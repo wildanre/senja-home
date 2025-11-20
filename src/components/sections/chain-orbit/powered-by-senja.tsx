@@ -29,9 +29,6 @@ export default function PoweredBySenja() {
               <OrbitingAssets radius={innerRadius} iconSize={iconSize} />
               <OrbitingNetworks radius={outerRadius} iconSize={iconSize} />
             </div>
-            <div className="w-[420px] h-[420px] lg:w-[450px] lg:h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px] flex items-center justify-center">
-              <AnimatedBeamSection />
-            </div>
         </div>
       </div>
 
@@ -65,9 +62,6 @@ export default function PoweredBySenja() {
               <OrbitingNetworks radius={outerRadius} iconSize={iconSize} />
             </div>
           </ScaleIn>
-            <div className="w-full max-w-[420px] h-[400px] flex items-center justify-center">
-              <AnimatedBeamSection />
-            </div>
         </div>
       </div>
     </div>
