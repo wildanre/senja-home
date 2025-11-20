@@ -39,34 +39,27 @@ export default function StickyBottomText() {
       const mobileNow = window.innerWidth < 1024;
 
       if (mobileNow) {
-        // Mobile: show in hero (first), show in what-is-senja (second), hide at powered-by
         const heroSection = document.getElementById("hero");
         const poweredBySection = document.getElementById("powered-by-senja");
         
         if (whatIsSenjaSection) {
           const whatIsSenjaTop = whatIsSenjaSection.offsetTop;
           const whatIsSenjaBottom = whatIsSenjaTop + whatIsSenjaSection.offsetHeight;
-          
-          // Determine which section we're in
+
           if (scrollTop < whatIsSenjaTop - windowHeight * 0.3) {
-            // In hero section - show first text
             setTextState("first");
             setHideOpacity(1);
           } else if (scrollTop < whatIsSenjaBottom - windowHeight * 0.3) {
-            // In what-is-senja section - show second text
             setTextState("second");
             setHideOpacity(1);
           } else {
-            // Past what-is-senja - fade out
             setHideOpacity(0);
           }
         } else {
-          // Fallback if section not found
           setTextState("first");
           setHideOpacity(1);
         }
       } else {
-        // Desktop original fade logic relative to powered-by heading
         if (!poweredByHeading) {
           setHideOpacity(1);
         } else {
@@ -95,7 +88,6 @@ export default function StickyBottomText() {
     };
 
     scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
-    // initial
     handleScroll();
     return () => {
       scrollContainer.removeEventListener("scroll", handleScroll);
@@ -105,7 +97,6 @@ export default function StickyBottomText() {
 
   return (
     <>
-      {/* Desktop Version */}
       <div
         className="hidden lg:block fixed bottom-7 left-13 w-full max-w-md transition-all duration-300 ease-out"
         style={{
@@ -116,7 +107,6 @@ export default function StickyBottomText() {
         }}
       >
         <div className="relative">
-          {/* First text - incubated by Kaia Chain */}
           <div
             className={`transition-all duration-1000 ease-out ${
               textState === "second" ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
@@ -142,7 +132,6 @@ export default function StickyBottomText() {
             />
           </div>
 
-          {/* Second text - Cross-Chain by Design */}
           <div
             className={`absolute top-0 left-0 transition-all duration-1000 ease-out ${
               textState === "second" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
@@ -174,7 +163,6 @@ export default function StickyBottomText() {
         </div>
       </div>
 
-      {/* Mobile Version via portal - supports text switching */}
       {mounted && isMobile && createPortal(
         <div
           className="fixed bottom-4 left-4 right-4 w-auto max-w-xl transition-opacity duration-300"
@@ -186,7 +174,6 @@ export default function StickyBottomText() {
         >
           {hideOpacity > 0 && (
             <div className="relative">
-              {/* First text - incubated by Kaia Chain */}
               <div
                 className={`transition-all duration-700 ease-out ${
                   textState === "second" ? "opacity-0 absolute inset-0" : "opacity-100 relative"
