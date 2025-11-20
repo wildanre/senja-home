@@ -13,11 +13,25 @@ import { AnimatedDivider } from "@/components/ui/layout";
 import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const scrollProgress = useScrollTransition();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const getLeftPageWidth = () => {
+    if (isMobile) return 100;
     if (scrollProgress < 0.5) return 50;
     if (scrollProgress >= 0.8) return 100;
     // Smooth interpolation between 0.5 and 0.8
@@ -60,21 +74,22 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="relative h-screen w-full">
+      <div className="relative h-screen w-full overflow-hidden">
         {/* Animated Dither Background - MUST be outside overflow-hidden container */}
         <AnimatedDitherBackground scrollProgress={scrollProgress} />
 
-        {/* Animated Divider - follows left page edge */}
-        <AnimatedDivider scrollProgress={scrollProgress} />
+        {/* Animated Divider - follows left page edge (desktop only) */}
+        {!isMobile && <AnimatedDivider scrollProgress={scrollProgress} />}
 
-        <main className="relative h-screen w-full overflow-hidden" style={{ zIndex: 10 }}>
+        <main className="relative h-screen w-full lg:overflow-hidden" style={{ zIndex: 10 }}>
           <div className="h-screen w-full overflow-y-auto scrollbar-right-edge" id="main-scroll">
             <div className="flex min-h-screen flex-col lg:flex-row">
               <motion.div
-                className="relative w-full bg-black overflow-hidden"
+                className="relative w-full bg-black overflow-hidden min-h-screen"
                 style={{
-                  width: leftPageWidth >= 100 ? '100%' : `${leftPageWidth}%`,
-                  zIndex: 2
+                  width: isMobile ? '100%' : (leftPageWidth >= 100 ? '100%' : `${leftPageWidth}%`),
+                  zIndex: 2,
+                  isolation: 'isolate'
                 }}
                 transition={{ type: "spring", stiffness: 50, damping: 20 }}
               >
@@ -166,9 +181,10 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Sticky Bottom Text - appears in what-is-senja section */}
-          <StickyBottomText />
         </main>
+
+        {/* Sticky Bottom Text - moved outside <main> to avoid clipping */}
+        <StickyBottomText />
 
         {/* Custom Scrollbar Styles */}
         <style jsx global>{`

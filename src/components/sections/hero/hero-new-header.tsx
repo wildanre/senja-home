@@ -6,23 +6,28 @@ import Image from "next/image";
 
 export default function HeroNewHeader() {
   return (
-    <div className="space-y-8 lg:space-y-6 lg:relative lg:min-h-[18rem] lg:-left-36 xl:-left-40">
-      <div className="mb-10 hidden lg:absolute lg:-top-28 lg:-left-8 lg:block">
-        <div className="w-15">
-          <Image
-            src={heroContent.logoImage}
-            alt={heroContent.logoAlt}
-            className="w-full rounded-3xl"
-            loading="lazy"
-            width={250}
-            height={250}
-          />
+    <div className="space-y-8 lg:space-y-6 relative lg:min-h-[18rem] lg:-left-36 xl:-left-40">
+      {/* Logo and Brand name - Side by side on mobile */}
+      <div className="flex items-center gap-3 -mt-16  lg:mb-0">
+        {/* Logo */}
+        <div className="lg:absolute lg:-top-28 lg:-left-8">
+          <div className="w-16 lg:w-15">
+            <Image
+              src={heroContent.logoImage}
+              alt={heroContent.logoAlt}
+              className="w-full rounded-3xl"
+              loading="lazy"
+              width={250}
+              height={250}
+            />
+          </div>
         </div>
-      </div>
-      <div className="mb-6 hidden lg:absolute lg:-top-24 lg:-right-25 lg:block">
-        <span className="font-elegant text-2xl font-semibold italic text-[#e7b67c]">
-          {heroContent.brandName}
-        </span>
+        {/* Brand name */}
+        <div className="lg:absolute lg:-top-24 lg:-right-25">
+          <span className="font-elegant text-xl lg:text-2xl font-semibold italic text-[#e7b67c]">
+            {heroContent.brandName}
+          </span>
+        </div>
       </div>
       <AnimatedText
         text={heroContent.title}

@@ -6,7 +6,7 @@ export default function BackgroundWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen relative bg-black ">
+    <div className="min-h-screen w-full relative bg-black overflow-x-hidden">
       {children}
     </div>
   );
