@@ -36,21 +36,6 @@ export default function Partner() {
   return (
     <section id="partners" className="py-0 px-2 sm:px-4 overflow-hidden">
       <div className="w-full pr-2 sm:pr-8">
-        {/* Integrated with text */}
-        <div className="text-center mb-8">
-          <div className="text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80 font-normal">
-            {isVisible && (
-              <TypingAnimation
-                text="Integrated with"
-                delay={0.1}
-                speed={0.08}
-                showCursor={false}
-                as="span"
-              />
-            )}
-          </div>
-        </div>
-
         <InfiniteMovingPartners
           items={partners}
           direction="right"
