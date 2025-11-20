@@ -34,14 +34,13 @@ export const WhyCard = ({ feature, index }: WhyCardProps) => {
       {/* Content */}
       <div className="mt-16 space-y-4">
         <h3
-          className="text-2xl font-bold text-[#E7B67C]
+          className="font-hero text-2xl font-normal text-[#E7B67C]
                        group-hover:text-[#E7B67C]/90 transition-colors"
-          style={{ fontFamily: "'PP Neue Montreal', sans-serif" }}
         >
           {feature.title}
         </h3>
         <p
-          className="text-gray-300 leading-relaxed text-sm md:text-base"
+          className="text-[#E7B67C]/70 leading-relaxed text-sm md:text-base"
           style={{ fontFamily: "'PP Neue Montreal', sans-serif" }}
         >
           {feature.description}
