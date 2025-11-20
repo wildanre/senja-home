@@ -4,6 +4,7 @@ import HeroNew from "@/components/sections/hero";
 import WhatIsSenja from "@/components/sections/what-is-senja";
 import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
 import { WhySection } from "@/components/sections/why";
+import { PartnersSection } from "@/components/sections/partners/partners-section";
 import ContactSection from "@/components/sections/contact";
 import Footer from "@/components/sections/footer";
 import { ScrollAnimationWrapper } from "@/components/ui/animate";
@@ -97,8 +98,8 @@ export default function Home() {
                 </section>
 
                 {/* Why Section */}
-                <section 
-                  id="why" 
+                <section
+                  id="why"
                   className="min-h-screen flex items-center justify-center"
                 >
                   <ScrollAnimationWrapper direction="up" delay={0.2}>
@@ -106,8 +107,18 @@ export default function Home() {
                   </ScrollAnimationWrapper>
                 </section>
 
-                <section 
-                  id="contact" 
+                {/* Partners Section */}
+                <section
+                  id="partners"
+                  className="flex items-center justify-center"
+                >
+                  <ScrollAnimationWrapper direction="up" delay={0.2}>
+                    <PartnersSection />
+                  </ScrollAnimationWrapper>
+                </section>
+
+                <section
+                  id="contact"
                   className="min-h-[60vh] lg:min-h-screen flex items-center justify-center"
                 >
                   <motion.div 
