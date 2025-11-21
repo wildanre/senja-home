@@ -98,7 +98,7 @@ export default function Home() {
 
       <div className="relative h-screen w-full overflow-hidden">
         {/* Animated Dither Background - MUST be outside overflow-hidden container */}
-        <AnimatedDitherBackground scrollProgress={scrollProgress} />
+        <AnimatedDitherBackground scrollProgress={scrollProgress} leftPageWidth={leftPageWidth} />
 
         {/* Animated Divider - follows left page edge (desktop only) */}
         {!isMobile && <AnimatedDivider scrollProgress={scrollProgress} />}
@@ -110,7 +110,7 @@ export default function Home() {
                 className="relative w-full bg-black overflow-hidden min-h-screen"
                 style={{
                   width: isMobile ? '100%' : (leftPageWidth >= 100 ? '100%' : `${leftPageWidth}%`),
-                  zIndex: 2,
+                  zIndex: 20,
                   isolation: 'isolate'
                 }}
                 transition={{ type: "spring", stiffness: 50, damping: 20 }}
