@@ -40,22 +40,22 @@ export const assets: AssetItem[] = [
 
 export const networks: NetworkItem[] = [
   {
-    src: "/supports/base-logo.png",
+    src: "/supports/base.svg",
     alt: "Base",
     size: 56,
   },
   {
-    src: "/supports/unichain-logo.png",
+    src: "/supports/unichain.svg",
     alt: "Unichain",
     size: 56,
   },
   {
-    src: "/supports/hyper-evm.png",
+    src: "/supports/hyperevm.svg",
     alt: "Hyperliquid",
     size: 56,
   },
   {
-    src: "/supports/arbitrum-logo.png",
+    src: "/supports/arbitrum.svg",
     alt: "Arbitrum",
     size: 56,
   },

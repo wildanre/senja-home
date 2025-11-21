@@ -2,7 +2,7 @@
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SidebarHeaderProps } from './types';
-import ThemeToggle from '../../ui/theme-toggle';
+import ThemeToggle from '../../ui/layout/theme-toggle';
 
 export default function SidebarHeader({ isCollapsed, onToggleCollapse }: SidebarHeaderProps) {
   return (

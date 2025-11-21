@@ -1,50 +1,46 @@
 "use client";
 
-import { useEffect } from "react";
-import HeroNew from "@/components/sections/hero-new";
+import HeroNew from "@/components/sections/hero";
 import WhatIsSenja from "@/components/sections/what-is-senja";
+import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
+import { WhySection } from "@/components/sections/why";
+import { PartnersSection } from "@/components/sections/partners/partners-section";
 import ContactSection from "@/components/sections/contact";
-import TimelineSection from "@/components/sections/timeline";
 import Footer from "@/components/sections/footer";
-import ScrollAnimationWrapper from "@/components/ui/scroll-animation-wrapper";
+import { ScrollAnimationWrapper } from "@/components/ui/animate";
+import { AnimatedDitherBackground } from "@/components/ui/background";
+import { AnimatedDivider } from "@/components/ui/layout";
+import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
+import { useScrollTransition } from "@/hooks/useScrollTransition";
+import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const scrollProgress = useScrollTransition();
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
-    // Prevent auto-scroll to hash on page load/refresh if no hash in URL
-    if (typeof window !== "undefined") {
-      const scrollContainer = document.querySelector('.smooth-scroll-container') as HTMLElement;
-      
-      // If there's no hash in the URL, ensure we're at the top
-      if (!window.location.hash) {
-        // Reset scroll position immediately
-        window.scrollTo(0, 0);
-        if (scrollContainer) {
-          scrollContainer.scrollTop = 0;
-        }
-        
-        // Also prevent browser's default scroll restoration
-        if ('scrollRestoration' in window.history) {
-          window.history.scrollRestoration = 'manual';
-        }
-      } else {
-        // If there's a hash, wait for the page to render, then scroll to the element
-        const hash = window.location.hash.substring(1);
-        setTimeout(() => {
-          const element = document.getElementById(hash);
-          if (element && scrollContainer) {
-            // Scroll within the container, not the window
-            const containerRect = scrollContainer.getBoundingClientRect();
-            const elementRect = element.getBoundingClientRect();
-            const scrollTop = scrollContainer.scrollTop + elementRect.top - containerRect.top;
-            scrollContainer.scrollTo({
-              top: scrollTop,
-              behavior: 'smooth'
-            });
-          }
-        }, 300);
-      }
-    }
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const getLeftPageWidth = () => {
+    if (isMobile) return 100;
+    if (scrollProgress < 0.5) return 50;
+    if (scrollProgress >= 0.8) return 100;
+    // Smooth interpolation between 0.5 and 0.8
+    const progress = (scrollProgress - 0.5) / (0.8 - 0.5);
+    return 50 + (progress * 50);
+  };
+
+  const leftPageWidth = getLeftPageWidth();
+  const rightPageWidth = 100 - leftPageWidth;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -78,32 +74,143 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="relative snap-y snap-mandatory overflow-y-scroll scroll-smooth smooth-scroll-container">
-        <main className="relative">
-          <section id="hero" className="snap-start snap-always  sticky top-0">
-          <HeroNew />
-          </section>
+      <div className="relative h-screen w-full overflow-hidden">
+        {/* Animated Dither Background - MUST be outside overflow-hidden container */}
+        <AnimatedDitherBackground scrollProgress={scrollProgress} />
 
-          <div className="relative z-10 bg-black dark:bg-gradient-to-br dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950">
-            <section className="snap-start snap-always ">
-              <ScrollAnimationWrapper direction="up" delay={0.3}>
-              <WhatIsSenja />
-              </ScrollAnimationWrapper>
-            </section>
+        {/* Animated Divider - follows left page edge (desktop only) */}
+        {!isMobile && <AnimatedDivider scrollProgress={scrollProgress} />}
 
-            <section className="snap-start">
-              <ScrollAnimationWrapper direction="down" delay={0.3}>
-                <ContactSection />
-              </ScrollAnimationWrapper>
-            </section>
+        <main className="relative h-screen w-full lg:overflow-hidden" style={{ zIndex: 10 }}>
+          <div className="h-screen w-full overflow-y-auto scrollbar-right-edge" id="main-scroll">
+            <div className="flex min-h-screen flex-col lg:flex-row">
+              <motion.div
+                className="relative w-full bg-black overflow-hidden min-h-screen"
+                style={{
+                  width: isMobile ? '100%' : (leftPageWidth >= 100 ? '100%' : `${leftPageWidth}%`),
+                  zIndex: 2,
+                  isolation: 'isolate'
+                }}
+                transition={{ type: "spring", stiffness: 50, damping: 20 }}
+              >
 
-            <section className="snap-end">
-              <Footer />
-            </section>
+                <section id="hero" className="min-h-screen lg:min-h-screen">
+                  <HeroNew />
+                </section>
+
+                <section id="what-is-senja" className="min-h-screen lg:min-h-screen">
+                  <WhatIsSenja />
+                </section>
+
+                {/* Powered by Senja Content - full width with orbit + beam */}
+                <section
+                  id="powered-by-senja"
+                  className="min-h-[80vh] lg:min-h-screen flex items-center justify-center"
+                >
+                  <div className="w-full">
+                    <PoweredBySenja />
+                  </div>
+                </section>
+
+                {/* Why Section */}
+                <section
+                  id="why"
+                  className="min-h-screen flex items-center justify-center"
+                >
+                  <ScrollAnimationWrapper direction="up" delay={0.2}>
+                    <WhySection />
+                  </ScrollAnimationWrapper>
+                </section>
+
+                {/* Partners Section */}
+                <section
+                  id="partners"
+                  className="flex items-center justify-center"
+                >
+                  <ScrollAnimationWrapper direction="up" delay={0.2}>
+                    <PartnersSection />
+                  </ScrollAnimationWrapper>
+                </section>
+
+                <section
+                  id="contact"
+                  className="min-h-[60vh] lg:min-h-screen flex items-center justify-center"
+                >
+                  <motion.div 
+                    className="w-full"
+                    style={{
+                      maxWidth: '1200px',
+                      margin: '0 auto',
+                      padding: '0 2rem'
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    <ScrollAnimationWrapper direction="down" delay={0.3}>
+                      <ContactSection />
+                    </ScrollAnimationWrapper>
+                  </motion.div>
+                </section>
+
+                {/* Footer - full width, centered */}
+                <section 
+                  id="footer"
+                  className="flex justify-center"
+                >
+                  <motion.div 
+                    className="w-full"
+                    style={{
+                      maxWidth: '1200px',
+                      margin: '0 auto',
+                      padding: '0 2rem'
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  >
+                    <Footer />
+                  </motion.div>
+                </section>
+              </motion.div>
+
+              {/* Right Side - Empty space that collapses */}
+              <div
+                className="hidden lg:block relative bg-transparent"
+                style={{
+                  width: `${rightPageWidth}%`,
+                  flexShrink: 0
+                }}
+              />
+            </div>
           </div>
 
-          {/* <Metrics /> */}
         </main>
+
+        {/* Sticky Bottom Text - moved outside <main> to avoid clipping */}
+        <StickyBottomText />
+
+        {/* Custom Scrollbar Styles */}
+        <style jsx global>{`
+          .scrollbar-right-edge::-webkit-scrollbar {
+            width: 8px;
+          }
+          
+          .scrollbar-right-edge::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          
+          .scrollbar-right-edge::-webkit-scrollbar-thumb {
+            background: rgba(231, 182, 124, 0.2);
+            border-radius: 4px;
+          }
+          
+          .scrollbar-right-edge::-webkit-scrollbar-thumb:hover {
+            background: rgba(231, 182, 124, 0.3);
+          }
+          
+          /* For Firefox */
+          .scrollbar-right-edge {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(231, 182, 124, 0.2) transparent;
+          }
+        `}</style>
       </div>
     </>
   );

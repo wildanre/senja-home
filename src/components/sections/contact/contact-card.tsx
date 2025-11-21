@@ -8,9 +8,36 @@ interface ContactCardProps {
   index: number;
   isLastCol?: boolean;
   isLastRow?: boolean;
+  isFirstCol?: boolean;
+  isFirstRow?: boolean;
+  mobileOnly?: boolean;
 }
 
-export default function ContactCard({ item, index, isLastCol, isLastRow }: ContactCardProps) {
+export default function ContactCard({ item, index, isLastCol, isLastRow, isFirstCol, isFirstRow, mobileOnly = false }: ContactCardProps) {
+  // Mobile version - only icon
+  if (mobileOnly) {
+    return (
+      <motion.a
+        key={index}
+        href={item.href}
+        target={item.target}
+        rel="noopener noreferrer"
+        className="group cursor-pointer"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: item.delay, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
+        <div className={`relative h-[100px] sm:h-[120px] flex items-center justify-center p-4 sm:p-6 bg-transparent hover:bg-white/5 dark:hover:bg-gray-800/20 transition-all duration-300 border-white/5 dark:border-gray-700/20 ${!isLastCol ? 'border-r' : ''} ${!isLastRow ? 'border-b' : ''} ${!isFirstRow ? 'border-t' : ''} ${!isFirstCol ? 'border-l' : ''}`} style={{ borderWidth: '0.5px' }}>
+          <div className="opacity-70 group-hover:opacity-100 transition-opacity duration-300 scale-110 sm:scale-125">
+            {item.icon}
+          </div>
+        </div>
+      </motion.a>
+    );
+  }
+
+  // Desktop version - full card
   return (
     <motion.a
       key={index}
