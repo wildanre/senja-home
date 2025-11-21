@@ -19,12 +19,6 @@ export const footerSections: FooterSection[] = [
     ],
   },
   {
-    title: "Data & Analytics",
-    links: [
-      { label: "Dune", href: "https://dune.com/", external: true },
-    ],
-  },
-  {
     title: "Community",
     links: [
       { label: "Twitter", href: "https://x.com/SenjaLabs", external: true },

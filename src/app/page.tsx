@@ -5,7 +5,6 @@ import WhatIsSenja from "@/components/sections/what-is-senja";
 import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
 import { WhySection } from "@/components/sections/why";
 import { PartnersSection } from "@/components/sections/partners/partners-section";
-import ContactSection from "@/components/sections/contact";
 import Footer from "@/components/sections/footer";
 import { ScrollAnimationWrapper } from "@/components/ui/animate";
 import { AnimatedDitherBackground } from "@/components/ui/background";
@@ -130,25 +129,6 @@ export default function Home() {
                   <ScrollAnimationWrapper direction="up" delay={0.2}>
                     <PartnersSection />
                   </ScrollAnimationWrapper>
-                </section>
-
-                <section
-                  id="contact"
-                  className="min-h-[60vh] lg:min-h-screen flex items-center justify-center"
-                >
-                  <motion.div 
-                    className="w-full"
-                    style={{
-                      maxWidth: '1200px',
-                      margin: '0 auto',
-                      padding: '0 2rem'
-                    }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  >
-                    <ScrollAnimationWrapper direction="down" delay={0.3}>
-                      <ContactSection />
-                    </ScrollAnimationWrapper>
-                  </motion.div>
                 </section>
 
                 {/* Footer - full width, centered */}
