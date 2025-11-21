@@ -10,6 +10,7 @@ import { ScrollAnimationWrapper } from "@/components/ui/animate";
 import { AnimatedDitherBackground } from "@/components/ui/background";
 import { AnimatedDivider } from "@/components/ui/layout";
 import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
+import { LoadingPage } from "@/components/ui/loading";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
@@ -17,16 +18,35 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const scrollProgress = useScrollTransition();
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Start slide-up animation at 2.2 seconds
+    const fadeTimer = setTimeout(() => {
+      setFadeOut(true);
+    }, 2200);
+
+    // Remove loading page completely at 2.9 seconds (after slide-up completes)
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2900);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(loadingTimer);
+    };
   }, []);
 
   const getLeftPageWidth = () => {
@@ -68,11 +88,14 @@ export default function Home() {
 
   return (
     <>
+      {/* Loading Page */}
+      {isLoading && <LoadingPage fadeOut={fadeOut} />}
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      
+
       <div className="relative h-screen w-full overflow-hidden">
         {/* Animated Dither Background - MUST be outside overflow-hidden container */}
         <AnimatedDitherBackground scrollProgress={scrollProgress} />

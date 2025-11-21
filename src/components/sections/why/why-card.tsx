@@ -1,4 +1,7 @@
-import { motion } from "motion/react";
+"use client";
+
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 import Image from "next/image";
 import { WhyFeature } from "./why-data";
 
@@ -8,14 +11,21 @@ interface WhyCardProps {
 }
 
 export const WhyCard = ({ feature, index }: WhyCardProps) => {
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { amount: 0.2 });
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="group relative bg-gradient-to-br from-[#E7B67C]/10 to-transparent 
-                 border border-[#E7B67C]/20 rounded-2xl p-8 
+      ref={cardRef}
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.95 }}
+      transition={{
+        delay: index * 0.15,
+        duration: 0.7,
+        ease: "easeOut"
+      }}
+      className="group relative bg-gradient-to-br from-[#E7B67C]/10 to-transparent
+                 border border-[#E7B67C]/20 rounded-2xl p-8
                  hover:border-[#E7B67C]/40 transition-all duration-300
                  hover:shadow-lg hover:shadow-[#E7B67C]/10"
     >
