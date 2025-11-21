@@ -16,11 +16,11 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
   const handleLogout = async () => {
     try {
-      logoutAdmin();
+      await logoutAdmin();
       router.push('/admin/auth/login');
     } catch (error) {
       console.error('Logout error:', error);
-      logoutAdmin();
+      // Still redirect even if logout API call fails
       router.push('/admin/auth/login');
     }
   };

@@ -8,98 +8,125 @@ export interface AdminUser {
   email: string;
 }
 
-export function getToken(): string | null {
-  if (typeof window === 'undefined') return null;
-  return localStorage.getItem('admin-token');
-}
+import { getCSRFToken, clearCSRFToken, refreshCSRFToken } from './csrf';
 
-export function setToken(token: string): void {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem('admin-token', token);
-}
-
-export function removeToken(): void {
-  if (typeof window === 'undefined') return;
-  localStorage.removeItem('admin-token');
-}
 
 export async function isAuthenticated(): Promise<boolean> {
-  const token = getToken();
-  console.log('🔍 Checking auth, token exists:', !!token);
-  
-  if (!token) {
-    console.log('❌ No token found');
-    return false;
-  }
-  
   try {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-    console.log('🔄 Verifying token with:', `${backendUrl}/admin/verify`);
-    
-    // Verify token with backend
-    const response = await fetch(`${backendUrl}/admin/verify`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+    const response = await fetch('/api/admin/verify', {
+      method: 'GET',
+      credentials: 'include',
     });
-    
-    console.log('📡 Verify response status:', response.status);
     
     if (response.ok) {
       const data = await response.json();
-      console.log('📡 Verify response data:', data);
-      console.log('✅ Auth verification:', data.success);
-      return data.success;
+      return data.success === true;
     }
     
-    console.log('❌ Auth verification failed');
     return false;
   } catch (error) {
-    console.error('🚨 Auth verification error:', error);
     return false;
   }
 }
 
-export async function loginAdmin(email: string, password: string): Promise<{ success: boolean; error?: string; token?: string; admin?: AdminUser }> {
+
+export async function loginAdmin(email: string, password: string): Promise<{ success: boolean; error?: string; admin?: AdminUser }> {
   try {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-    console.log('🔄 Attempting login to:', `${backendUrl}/admin/login`);
+    // Get CSRF token first
+    const csrfToken = await getCSRFToken();
     
-    const response = await fetch(`${backendUrl}/admin/login`, {
+    const response = await fetch('/api/admin/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-csrf-token': csrfToken,
       },
-      body: JSON.stringify({ email, password })
+      credentials: 'include',
+      body: JSON.stringify({ email, password }),
     });
     
-    console.log('📡 Response status:', response.status);
-    const data = await response.json();
-    console.log('📡 Response data:', data);
-    
-    if (data.success && data.token) {
-      setToken(data.token);
-      console.log('✅ Login successful, token saved');
-      return { success: true, token: data.token, admin: data.admin };
+    // Parse response JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      return { 
+        success: false, 
+        error: response.status === 401 
+          ? 'Invalid email or password' 
+          : 'Server error. Please try again.' 
+      };
     }
     
-    console.log('❌ Login failed:', data.error);
-    return { success: false, error: data.error || 'Login failed' };
+    // Handle CSRF error - refresh token and retry once
+    if (response.status === 403 && data.error?.includes('CSRF')) {
+      try {
+        const newToken = await refreshCSRFToken();
+        const retryResponse = await fetch('/api/admin/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-csrf-token': newToken,
+          },
+          credentials: 'include',
+          body: JSON.stringify({ email, password }),
+        });
+        
+        const retryData = await retryResponse.json();
+        
+        if (retryResponse.ok && retryData.success) {
+          return { success: true, admin: retryData.admin };
+        }
+        
+        return { 
+          success: false, 
+          error: retryData.error || 'Login failed' 
+        };
+      } catch (retryError) {
+        return { 
+          success: false, 
+          error: 'CSRF token error. Please refresh the page and try again.' 
+        };
+      }
+    }
+    
+    if (response.ok && data.success) {
+      return { success: true, admin: data.admin };
+    }
+    
+    return { 
+      success: false, 
+      error: data.error || (response.status === 401 ? 'Invalid email or password' : 'Login failed') 
+    };
   } catch (error) {
-    console.error('🚨 Login error:', error);
-    return { success: false, error: 'Network error' };
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Network error. Please check your connection.' 
+    };
   }
 }
 
-export function logoutAdmin(): void {
-  removeToken();
+export async function logoutAdmin(): Promise<void> {
+  try {
+    await fetch('/api/admin/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+    
+    // Clear CSRF token after logout
+    clearCSRFToken();
+  } catch (error) {
+    // Clear CSRF token even on error
+    clearCSRFToken();
+  }
 }
 
 export function clearAuthCache(): void {
-  // No cache to clear anymore
 }
 
 export function getAuthCacheStatus(): { cached: boolean; age?: number; result?: boolean } {
-  return { cached: false }; // No cache anymore
+  return { cached: false };
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { loginAdmin } from "@/lib/auth";
+import { checkRateLimit, getTimeUntilReset } from "@/lib/rate-limit";
 
 export default function AdminLoginPage() {
   const [credentials, setCredentials] = useState({
@@ -20,9 +21,15 @@ export default function AdminLoginPage() {
     setError("");
 
     try {
-      console.log("🔄 Starting login process with:", {
-        email: credentials.email,
-      });
+      // Check rate limit before attempting login
+      const rateLimit = checkRateLimit(credentials.email, 5, 15 * 60 * 1000); // 5 attempts per 15 minutes
+      
+      if (!rateLimit.allowed) {
+        const timeRemaining = getTimeUntilReset(rateLimit.resetTime);
+        setError(`Too many login attempts. Please try again in ${timeRemaining}.`);
+        setIsLoading(false);
+        return;
+      }
 
       // Login directly using auth lib which connects to backend
       const loginResult = await loginAdmin(
@@ -30,18 +37,21 @@ export default function AdminLoginPage() {
         credentials.password
       );
 
-      console.log("📡 Login result:", loginResult);
-
       if (loginResult.success) {
-        console.log("✅ Login successful, redirecting to dashboard...");
-        // Token is now stored in localStorage, redirect to dashboard
-        router.push("/admin/dashboard");
+        // Wait a bit for cookies to be set, then redirect
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Use window.location for hard navigation to ensure cookies are sent
+        window.location.href = "/admin/dashboard";
       } else {
-        console.log("❌ Login failed:", loginResult.error);
-        setError(loginResult.error || "Login failed");
+        // Show remaining attempts if rate limited
+        if (rateLimit.remaining > 0) {
+          setError(`${loginResult.error || "Login failed"}. ${rateLimit.remaining} attempt${rateLimit.remaining !== 1 ? 's' : ''} remaining.`);
+        } else {
+          setError(loginResult.error || "Login failed");
+        }
       }
     } catch (error) {
-      console.error("🚨 Login process error:", error);
       setError("Network error. Please try again.");
     } finally {
       setIsLoading(false);
