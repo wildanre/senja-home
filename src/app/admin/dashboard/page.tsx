@@ -29,7 +29,6 @@ export default function AdminDashboard() {
         setIsLoading(false);
       }, 1000);
     } catch (error) {
-      console.error('Error loading dashboard data:', error);
       setIsLoading(false);
     }
   };

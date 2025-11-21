@@ -33,7 +33,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const authenticated = await isAuthenticated();
       setAuthState(authenticated);
     } catch (error) {
-      console.error('Auth check failed:', error);
       setAuthState(false);
     }
   };
@@ -62,7 +61,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
           router.replace('/admin/auth/login');
         }
       } catch (error) {
-        console.error('Auth check failed:', error);
         setAuthState(false);
         if (pathname.startsWith('/admin') && 
             pathname !== '/admin/auth/login' && pathname !== '/admin/auth') {

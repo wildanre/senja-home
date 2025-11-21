@@ -19,7 +19,6 @@ export async function fetchWaitlistData(): Promise<WaitlistUser[]> {
       throw new Error(errorData.error || 'Failed to load waitlist data');
     }
   } catch (error) {
-    console.error('Error loading waitlist:', error);
     throw error;
   }
 }

@@ -24,7 +24,7 @@ export default function WaitlistData() {
       const users = await fetchWaitlistData();
       setWaitlistUsers(users);
     } catch (error) {
-      console.error('Failed to load waitlist data:', error);
+      // Error is handled by the component state
     } finally {
       setIsLoading(false);
       setIsRefreshing(false);
