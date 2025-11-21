@@ -1,24 +1,24 @@
-import { getToken } from '@/lib/auth';
 import { WaitlistUser } from './types';
 
+/**
+ * Fetch waitlist data using Next.js API route
+ * Authentication is handled via httpOnly cookie
+ */
 export async function fetchWaitlistData(): Promise<WaitlistUser[]> {
   try {
-    const token = getToken();
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/waitlist`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+    const response = await fetch('/api/admin/waitlist', {
+      method: 'GET',
+      credentials: 'include', // Important: include cookies
     });
 
     if (response.ok) {
       const data = await response.json();
       return data.users || [];
     } else {
-      throw new Error('Failed to load waitlist data');
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || 'Failed to load waitlist data');
     }
   } catch (error) {
-    console.error('Error loading waitlist:', error);
     throw error;
   }
 }

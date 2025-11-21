@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { getToken } from '@/lib/auth';
 import { EmailTheme, EmailFormData } from './email/types';
 import { EMAIL_THEMES } from './email/emailThemes';
 import { generateEmailHTML } from './email/emailUtils';
+import { getCSRFToken, refreshCSRFToken } from '@/lib/csrf';
 import ThemeSelector from './email/ThemeSelector';
 import EmailFormFields from './email/EmailFormFields';
 import EmailPreview from './email/EmailPreview';
@@ -49,23 +49,19 @@ export default function SendEmailForm() {
     setEmailStatus('');
 
     try {
-      const token = getToken();
       const emailHTML = getGeneratedEmailHTML();
       
-      console.log('🔄 Sending email request...');
-      console.log('Token exists:', !!token);
-      console.log('Email data:', {
-        subject: emailForm.subject,
-        senderName: emailForm.senderName,
-        hasMessage: !!emailForm.message
-      });
+      // Get CSRF token
+      const csrfToken = await getCSRFToken();
       
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/send-email`, {
+      // Use Next.js API route which handles authentication via httpOnly cookie
+      const response = await fetch('/api/admin/send-email', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken,
         },
+        credentials: 'include', // Important: include cookies
         body: JSON.stringify({
           subject: emailForm.subject,
           message: emailHTML,
@@ -73,9 +69,43 @@ export default function SendEmailForm() {
         })
       });
 
-      console.log('📡 Response status:', response.status);
       const data = await response.json();
-      console.log('📡 Response data:', data);
+      
+      // Handle CSRF error - refresh token and retry
+      if (response.status === 403 && data.error?.includes('CSRF')) {
+        const newToken = await refreshCSRFToken();
+        const retryResponse = await fetch('/api/admin/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-csrf-token': newToken,
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            subject: emailForm.subject,
+            message: emailHTML,
+            senderName: emailForm.senderName || 'SenjaLabs'
+          })
+        });
+        
+        const retryData = await retryResponse.json();
+        
+        if (retryResponse.ok && retryData.success) {
+          setEmailStatus(`✅ Email successfully sent to ${retryData.count} users!`);
+          setEmailForm({ 
+            senderName: 'SenjaLabs',
+            subject: '', 
+            message: '', 
+            url: '', 
+            date: getTodayDate(),
+            footer: 'Thank you for joining our community!'
+          });
+          return;
+        }
+        
+        setEmailStatus(`❌ Failed to send email: ${retryData.error || 'Unknown error occurred'}`);
+        return;
+      }
 
       if (response.ok && data.success) {
         setEmailStatus(`✅ Email successfully sent to ${data.count} users!`);
@@ -88,11 +118,9 @@ export default function SendEmailForm() {
           footer: 'Thank you for joining our community!'
         });
       } else {
-        console.error('❌ Email sending failed:', data.error);
         setEmailStatus(`❌ Failed to send email: ${data.error || 'Unknown error occurred'}`);
       }
     } catch (error) {
-      console.error('🚨 Email sending error:', error);
       setEmailStatus('❌ Network error occurred while sending email. Please check your connection and try again.');
     } finally {
       setIsSendingEmail(false);

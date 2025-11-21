@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import { BackgroundWrapper } from "@/components/ui/background";
 import { AuthProvider } from "@/contexts/auth-context";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -154,6 +155,18 @@ export default function RootLayout({
                 window.scrollTo(0, 0);
               }
             `,
+          }}
+        />
+        <Toaster 
+          position="top-right" 
+          richColors 
+          closeButton
+          toastOptions={{
+            style: {
+              background: 'rgba(0, 0, 0, 0.9)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              color: 'white',
+            },
           }}
         />
         <AuthProvider>

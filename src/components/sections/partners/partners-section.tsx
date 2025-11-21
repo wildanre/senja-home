@@ -8,7 +8,7 @@ const partners = [
   { name: "LayerZero", logo: "/partners/LayerZero_logo.svg" },
   { name: "DragonSwap", logo: "/partners/dragonswaplogo.png" },
   { name: "Orakl Network", logo: "/partners/orakllogofull.svg" },
-  { name: "Chainlink", logo: "/partners/chainlinklogotg.svg" },
+  { name: "IDRX", logo: "/partners/idrxlogotg.webp" },
   { name: "Stargate", logo: "/partners/stargatelogotg.svg" },
 ];
 
