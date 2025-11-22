@@ -12,28 +12,28 @@ export interface NetworkItem {
 
 export const assets: AssetItem[] = [
   {
-    src: "/supports/usdc.png",
-    alt: "USDC",
+    src: "/supports/optimismlogo.png",
+    alt: "Optimism",
     size: 48,
   },
   {
-    src: "/supports/tether-usdt.png",
-    alt: "USDT",
+    src: "/supports/ethereum.svg",
+    alt: "Ethereum",
     size: 48,
   },
   {
-    src: "/supports/weth.png",
-    alt: "WETH",
+    src: "/supports/bnbchainlogo.png",
+    alt: "BNB",
     size: 48,
   },
   {
-    src: "/supports/wbtc.png",
-    alt: "WBTC",
+    src: "/supports/mantlelogo.svg",
+    alt: "Mantle",
     size: 48,
   },
   {
-    src: "/supports/idrxlogo.png",
-    alt: "IDRX",
+    src: "/supports/megaethlogo.png",
+    alt: "MegaETH",
     size: 48,
   },
 ];

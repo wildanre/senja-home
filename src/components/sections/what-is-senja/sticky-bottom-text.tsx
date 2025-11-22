@@ -115,7 +115,7 @@ export default function StickyBottomText() {
             <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
               <TypingAnimation
                 text="incubated by Kaia Chain"
-                delay={0.5}
+                delay={2.6}
                 speed={0.06}
                 showCursor={false}
                 as="span"
@@ -124,7 +124,7 @@ export default function StickyBottomText() {
             <AnimatedTextVariants
               text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
               animationType="fadeUp"
-              delay={0.8}
+              delay={2.9}
               stagger={0.02}
               duration={0.5}
               as="p"
@@ -182,7 +182,7 @@ export default function StickyBottomText() {
                 <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-[#e7b67c]/80">
                   <TypingAnimation
                     text="incubated by Kaia Chain"
-                    delay={0.2}
+                    delay={2.6}
                     speed={0.06}
                     showCursor={false}
                     as="span"
@@ -191,7 +191,7 @@ export default function StickyBottomText() {
                 <AnimatedTextVariants
                   text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
                   animationType="fadeUp"
-                  delay={0.4}
+                  delay={2.9}
                   stagger={0.02}
                   duration={0.5}
                   as="p"

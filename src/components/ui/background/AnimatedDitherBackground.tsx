@@ -7,27 +7,32 @@ import { useDitherAnimation } from "@/hooks/useDitherAnimation";
 
 interface AnimatedDitherBackgroundProps {
   scrollProgress: number;
+  leftPageWidth: number;
 }
 
 /**
  * Animated Dither Background Component
  * Renders the dither effect with smooth scroll-based animations
- * - Slides to the right and fades out when scrolling past hero section
- * - Uses spring physics for natural movement
+ * - Clips based on left page width to allow mouse interaction
+ * - Uses clip-path to hide area covered by left page
  */
-export function AnimatedDitherBackground({ scrollProgress }: AnimatedDitherBackgroundProps) {
-  // Dither stays visible at all times, left page will naturally cover it
-  // Using absolute positioning within full viewport to avoid any flex/flow issues
+export function AnimatedDitherBackground({ scrollProgress, leftPageWidth }: AnimatedDitherBackgroundProps) {
+  // Calculate clip path based on left page width
+  // When left page is 50%, dither shows from 50% to 100%
+  // When left page is 100%, dither is completely hidden
+  const clipLeft = `${leftPageWidth}%`;
 
   return (
     <div
-      className="absolute top-0 bottom-0 hidden lg:block pointer-events-none"
+      className="absolute top-0 bottom-0 hidden lg:block"
       style={{
-        left: '50%',
+        left: '0',
         right: '0',
-        zIndex: 1,
+        zIndex: 15,
         opacity: 1,
-        visibility: 'visible'
+        visibility: 'visible',
+        clipPath: `polygon(${clipLeft} 0%, 100% 0%, 100% 100%, ${clipLeft} 100%)`,
+        pointerEvents: leftPageWidth >= 100 ? 'none' : 'auto'
       }}
     >
       <Dither {...desktopDitherConfig} />

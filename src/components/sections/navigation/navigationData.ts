@@ -49,11 +49,6 @@ export const navigationItems: NavItem[] = [
         href: "#supports",
         ariaLabel: "View supported assets and networks",
       },
-      {
-        label: "Contact Us",
-        href: "#contacts",
-        ariaLabel: "Get in touch with us",
-      },
     ],
   },
   {

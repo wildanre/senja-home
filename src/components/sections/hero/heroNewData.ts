@@ -6,6 +6,7 @@ export interface DitherConfig {
   colorNum: number;
   pixelSize: number;
   mouseRadius: number;
+  enableMouseInteraction?: boolean;
 }
 
 export const desktopDitherConfig: DitherConfig = {
@@ -15,7 +16,8 @@ export const desktopDitherConfig: DitherConfig = {
   waveSpeed: 0.05,
   colorNum: 4,
   pixelSize: 1.2,
-  mouseRadius: 0.1,
+  mouseRadius: 0.3,
+  enableMouseInteraction: true,
 };
 
 export const mobileDitherConfig: DitherConfig = {

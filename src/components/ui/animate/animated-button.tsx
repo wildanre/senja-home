@@ -23,15 +23,19 @@ export default function AnimatedButton({
 
     const button = buttonRef.current;
 
-    // Set initial border opacity to 0 (text will animate separately)
+    // Set initial state - hide completely
+    button.style.opacity = '0';
+    button.style.transform = 'translateY(10px)';
     button.style.borderColor = 'rgba(231, 182, 124, 0)';
-    button.style.willChange = 'border-color'; // GPU acceleration hint
+    button.style.willChange = 'opacity, transform, border-color'; // GPU acceleration hint
 
-    // Border should animate in sync with text
-    const timeline = gsap.timeline({ delay: 0 });
+    // Border and button should animate with delay
+    const timeline = gsap.timeline({ delay: delay });
 
-    // Animate border color with fadeUp-like effect (same ease as text)
+    // Animate button appearance with border color
     timeline.to(button, {
+      opacity: 1,
+      y: 0,
       borderColor: 'rgba(231, 182, 124, 0.4)',
       duration: duration,
       ease: 'power3.out',
@@ -39,6 +43,8 @@ export default function AnimatedButton({
 
     return () => {
       timeline.kill();
+      button.style.removeProperty('opacity');
+      button.style.removeProperty('transform');
       button.style.removeProperty('border-color');
       button.style.removeProperty('will-change');
     };

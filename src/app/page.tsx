@@ -5,12 +5,12 @@ import WhatIsSenja from "@/components/sections/what-is-senja";
 import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
 import { WhySection } from "@/components/sections/why";
 import { PartnersSection } from "@/components/sections/partners/partners-section";
-import ContactSection from "@/components/sections/contact";
 import Footer from "@/components/sections/footer";
 import { ScrollAnimationWrapper } from "@/components/ui/animate";
 import { AnimatedDitherBackground } from "@/components/ui/background";
 import { AnimatedDivider } from "@/components/ui/layout";
 import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
+import { LoadingPage } from "@/components/ui/loading";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
@@ -18,16 +18,35 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const scrollProgress = useScrollTransition();
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Start slide-up animation at 2.2 seconds
+    const fadeTimer = setTimeout(() => {
+      setFadeOut(true);
+    }, 2200);
+
+    // Remove loading page completely at 2.9 seconds (after slide-up completes)
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2900);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(loadingTimer);
+    };
   }, []);
 
   const getLeftPageWidth = () => {
@@ -69,14 +88,17 @@ export default function Home() {
 
   return (
     <>
+      {/* Loading Page */}
+      {isLoading && <LoadingPage fadeOut={fadeOut} />}
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      
+
       <div className="relative h-screen w-full overflow-hidden">
         {/* Animated Dither Background - MUST be outside overflow-hidden container */}
-        <AnimatedDitherBackground scrollProgress={scrollProgress} />
+        <AnimatedDitherBackground scrollProgress={scrollProgress} leftPageWidth={leftPageWidth} />
 
         {/* Animated Divider - follows left page edge (desktop only) */}
         {!isMobile && <AnimatedDivider scrollProgress={scrollProgress} />}
@@ -88,7 +110,7 @@ export default function Home() {
                 className="relative w-full bg-black overflow-hidden min-h-screen"
                 style={{
                   width: isMobile ? '100%' : (leftPageWidth >= 100 ? '100%' : `${leftPageWidth}%`),
-                  zIndex: 2,
+                  zIndex: 20,
                   isolation: 'isolate'
                 }}
                 transition={{ type: "spring", stiffness: 50, damping: 20 }}
@@ -130,25 +152,6 @@ export default function Home() {
                   <ScrollAnimationWrapper direction="up" delay={0.2}>
                     <PartnersSection />
                   </ScrollAnimationWrapper>
-                </section>
-
-                <section
-                  id="contact"
-                  className="min-h-[60vh] lg:min-h-screen flex items-center justify-center"
-                >
-                  <motion.div 
-                    className="w-full"
-                    style={{
-                      maxWidth: '1200px',
-                      margin: '0 auto',
-                      padding: '0 2rem'
-                    }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  >
-                    <ScrollAnimationWrapper direction="down" delay={0.3}>
-                      <ContactSection />
-                    </ScrollAnimationWrapper>
-                  </motion.div>
                 </section>
 
                 {/* Footer - full width, centered */}

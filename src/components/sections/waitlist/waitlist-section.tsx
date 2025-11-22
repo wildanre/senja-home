@@ -1,7 +1,8 @@
 "use client";
 
 import { SlideIn } from "@/components/ui/motion";
-import { Beams } from "@/components/ui/background";
+import { Dither } from "@/components/ui/background";
+import { desktopDitherConfig } from "@/components/sections/hero/heroNewData";
 import WaitlistCounter from "./waitlist-counter";
 import WaitlistForm from "./waitlist-form";
 
@@ -24,27 +25,18 @@ export default function WaitlistSection() {
               </p>
             </div>
           </SlideIn>
-          
+
           <WaitlistCounter count={10472} />
         </div>
       </div>
 
-      {/* Kolom 2 - Background Beams dengan Form */}
+      {/* Kolom 2 - Background Dither dengan Form */}
       <div className="w-full md:w-1/2 relative py-12 md:py-20 px-4 md:px-8 flex items-center">
-        {/* Beams Background */}
+        {/* Dither Background */}
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
-          <Beams
-            beamWidth={3}
-            beamHeight={25}
-            beamNumber={20}
-            lightColor="#ff9500"
-            speed={2}
-            noiseIntensity={1.75}
-            scale={0.2}
-            rotation={30}
-          />
+          <Dither {...desktopDitherConfig} />
         </div>
-        
+
         {/* Form Content */}
         <div className="relative z-10 w-full flex items-center justify-center">
           <div className="w-full max-w-md">
