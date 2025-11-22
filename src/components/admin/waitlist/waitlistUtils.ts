@@ -1,14 +1,9 @@
 import { WaitlistUser } from './types';
-
-/**
- * Fetch waitlist data using Next.js API route
- * Authentication is handled via httpOnly cookie
- */
 export async function fetchWaitlistData(): Promise<WaitlistUser[]> {
   try {
-    const response = await fetch('/api/admin/waitlist', {
+    const response = await fetch('/api/waitlist', {
       method: 'GET',
-      credentials: 'include', // Important: include cookies
+      credentials: 'include', 
     });
 
     if (response.ok) {

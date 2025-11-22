@@ -1,4 +1,5 @@
 // Waitlist component exports
+export { default as WaitlistPageHeader } from './WaitlistPageHeader';
 export { default as WaitlistHeader } from './WaitlistHeader';
 export { default as WaitlistTable } from './WaitlistTable';
 export { default as WaitlistActions } from './WaitlistActions';
