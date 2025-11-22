@@ -21,32 +21,33 @@ export default function AdminLoginPage() {
     setError("");
 
     try {
-      // Check rate limit before attempting login
       const rateLimit = checkRateLimit(credentials.email, 5, 15 * 60 * 1000); // 5 attempts per 15 minutes
-      
+
       if (!rateLimit.allowed) {
         const timeRemaining = getTimeUntilReset(rateLimit.resetTime);
-        setError(`Too many login attempts. Please try again in ${timeRemaining}.`);
+        setError(
+          `Too many login attempts. Please try again in ${timeRemaining}.`
+        );
         setIsLoading(false);
         return;
       }
 
-      // Login directly using auth lib which connects to backend
       const loginResult = await loginAdmin(
         credentials.email,
         credentials.password
       );
 
       if (loginResult.success) {
-        // Wait a bit for cookies to be set, then redirect
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Use window.location for hard navigation to ensure cookies are sent
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
         window.location.href = "/admin/dashboard";
       } else {
-        // Show remaining attempts if rate limited
         if (rateLimit.remaining > 0) {
-          setError(`${loginResult.error || "Login failed"}. ${rateLimit.remaining} attempt${rateLimit.remaining !== 1 ? 's' : ''} remaining.`);
+          setError(
+            `${loginResult.error || "Login failed"}. ${
+              rateLimit.remaining
+            } attempt${rateLimit.remaining !== 1 ? "s" : ""} remaining.`
+          );
         } else {
           setError(loginResult.error || "Login failed");
         }

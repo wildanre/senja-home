@@ -1,4 +1,5 @@
 // Email component exports
+export { default as EmailPageHeader } from './EmailPageHeader';
 export { default as ThemeSelector } from './ThemeSelector';
 export { default as EmailFormFields } from './EmailFormFields';
 export { default as EmailPreview } from './EmailPreview';

@@ -12,7 +12,6 @@ export default function WaitlistSection() {
       id="waitlist"
       className="relative w-full overflow-hidden min-h-screen flex"
     >
-      {/* Kolom 1 - Background Hitam dengan Tagline dan Counter */}
       <div className="w-full md:w-1/2 bg-black relative py-12 md:py-20 px-4 md:px-8 flex items-center">
         <div className="max-w-2xl mx-auto w-full space-y-8 md:space-y-12">
           <SlideIn direction="left" distance={30} duration={0.7} amount={0.5}>
@@ -30,14 +29,11 @@ export default function WaitlistSection() {
         </div>
       </div>
 
-      {/* Kolom 2 - Background Dither dengan Form */}
       <div className="w-full md:w-1/2 relative py-12 md:py-20 px-4 md:px-8 flex items-center">
-        {/* Dither Background */}
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
           <Dither {...desktopDitherConfig} />
         </div>
 
-        {/* Form Content */}
         <div className="relative z-10 w-full flex items-center justify-center">
           <div className="w-full max-w-md">
             <WaitlistForm />
