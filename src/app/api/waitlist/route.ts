@@ -1,5 +1,43 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export async function GET(request: NextRequest) {
+  try {
+    const backendUrl = process.env.BACKEND_URL;
+    if (!backendUrl) {
+      return NextResponse.json(
+        { success: false, error: 'Backend URL not configured' },
+        { status: 500 }
+      );
+    }
+
+    // Fetch from backend
+    const response = await fetch(`${backendUrl}/api/waitlist`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store', // Disable cache for fresh data
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      return NextResponse.json(
+        { success: false, error: errorData.error || 'Failed to fetch waitlist' },
+        { status: response.status }
+      );
+    }
+
+    const data = await response.json();
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error('Waitlist GET error:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to fetch waitlist data' },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();

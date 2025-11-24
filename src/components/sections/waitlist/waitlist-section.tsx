@@ -34,14 +34,11 @@ export default function WaitlistSection() {
         </div>
       </div>
 
-      {/* Kolom 2 - Background Dither dengan Form */}
       <div className="w-full md:w-1/2 relative py-12 md:py-20 px-4 md:px-8 flex items-center">
-        {/* Dither Background */}
         <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
           <Dither {...desktopDitherConfig} />
         </div>
 
-        {/* Form Content */}
         <div className="relative z-10 w-full flex items-center justify-center">
           <div className="w-full max-w-md">
             <WaitlistForm />

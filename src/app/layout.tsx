@@ -10,6 +10,7 @@ import "./globals.css";
 import { BackgroundWrapper } from "@/components/ui/background";
 import { AuthProvider } from "@/contexts/auth-context";
 import { Toaster } from "sonner";
+import QueryProvider from "@/components/providers/QueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -169,9 +170,11 @@ export default function RootLayout({
             },
           }}
         />
-        <AuthProvider>
-          <BackgroundWrapper>{children}</BackgroundWrapper>
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <BackgroundWrapper>{children}</BackgroundWrapper>
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );
