@@ -74,14 +74,14 @@ export default function WaitlistForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
       <input
         type="text"
         placeholder="Enter your full name"
         value={formData.name}
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         disabled={isSubmitting}
-        className="w-full px-4 py-3 rounded-lg border border-white/20 dark:border-gray-700 bg-white/5 dark:bg-gray-900/30 text-white dark:text-gray-200 text-base placeholder:text-white/50 focus:outline-none focus:border-white/40 disabled:opacity-50"
+        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-white/20 dark:border-gray-700 bg-white/5 dark:bg-gray-900/30 text-white dark:text-gray-200 text-sm sm:text-base placeholder:text-white/50 focus:outline-none focus:border-white/40 disabled:opacity-50"
       />
 
       <input
@@ -92,13 +92,13 @@ export default function WaitlistForm() {
           setFormData({ ...formData, email: e.target.value.toLowerCase() })
         }
         disabled={isSubmitting}
-        className="w-full px-4 py-3 rounded-lg border border-white/20 dark:border-gray-700 bg-white/5 dark:bg-gray-900/30 text-white dark:text-gray-200 text-base placeholder:text-white/50 focus:outline-none focus:border-white/40 disabled:opacity-50"
+        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-white/20 dark:border-gray-700 bg-white/5 dark:bg-gray-900/30 text-white dark:text-gray-200 text-sm sm:text-base placeholder:text-white/50 focus:outline-none focus:border-white/40 disabled:opacity-50"
       />
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-white/20 hover:bg-white/30 dark:bg-gray-700 dark:hover:bg-gray-600 text-white dark:text-gray-200 font-medium py-3 px-6 rounded-lg text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-white/20 hover:bg-white/30 dark:bg-gray-700 dark:hover:bg-gray-600 text-white dark:text-gray-200 font-medium py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg text-sm sm:text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Joining..." : "Join Waitlist"}
       </button>
