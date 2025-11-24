@@ -12,6 +12,7 @@ import {
   SortingState,
   ColumnFiltersState,
   Table as TanstackTable,
+  Column,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { WaitlistUser } from "./types";
@@ -43,7 +44,7 @@ const SortableHeader = ({
   column,
   label,
 }: {
-  column: any;
+  column: Column<WaitlistUser, unknown>;
   label: string;
 }) => (
   <button
