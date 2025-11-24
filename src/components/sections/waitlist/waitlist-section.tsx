@@ -2,6 +2,7 @@
 
 import { SlideIn } from "@/components/ui/motion";
 import { Dither } from "@/components/ui/background";
+import { AnimatedDivider } from "@/components/ui/layout";
 import { desktopDitherConfig } from "@/components/sections/hero/heroNewData";
 import WaitlistCounter from "./waitlist-counter";
 import WaitlistForm from "./waitlist-form";
@@ -12,6 +13,10 @@ export default function WaitlistSection() {
       id="waitlist"
       className="relative w-full overflow-hidden min-h-screen flex"
     >
+      {/* Animated Divider - fixed at 50% */}
+      <AnimatedDivider scrollProgress={0.5} />
+
+      {/* Kolom 1 - Background Hitam dengan Tagline dan Counter */}
       <div className="w-full md:w-1/2 bg-black relative py-12 md:py-20 px-4 md:px-8 flex items-center">
         <div className="max-w-2xl mx-auto w-full space-y-8 md:space-y-12">
           <SlideIn direction="left" distance={30} duration={0.7} amount={0.5}>

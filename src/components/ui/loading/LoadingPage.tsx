@@ -105,7 +105,6 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          animation: fade-in 0.5s ease-out;
         }
 
         /* Logo GIF */
@@ -116,18 +115,6 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
           max-height: 300px;
           object-fit: contain;
           filter: drop-shadow(0 0 30px rgba(231, 182, 124, 0.4));
-        }
-
-        /* Fade In Animation */
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
         }
 
         /* Slide Up Exit Animation */
