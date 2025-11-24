@@ -154,12 +154,12 @@ export default function Home() {
                   </ScrollAnimationWrapper>
                 </section>
 
-                {/* Footer - full width, centered */}
-                <section 
+                {/* Footer - only background text */}
+                <section
                   id="footer"
                   className="flex justify-center"
                 >
-                  <motion.div 
+                  <motion.div
                     className="w-full"
                     style={{
                       maxWidth: '1200px',

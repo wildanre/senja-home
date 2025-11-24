@@ -12,13 +12,13 @@ export interface NetworkItem {
 
 export const assets: AssetItem[] = [
   {
-    src: "/supports/optimismlogo.png",
-    alt: "Optimism",
+    src: "/supports/ethereum.svg",
+    alt: "Ethereum",
     size: 48,
   },
   {
-    src: "/supports/ethereum.svg",
-    alt: "Ethereum",
+    src: "/supports/optimismlogo.png",
+    alt: "Optimism",
     size: 48,
   },
   {
@@ -36,12 +36,27 @@ export const assets: AssetItem[] = [
     alt: "MegaETH",
     size: 48,
   },
+  {
+    src: "/supports/berachainlogo.png",
+    alt: "Berachain",
+    size: 48,
+  },
+  {
+    src: "/supports/coredaologo.png",
+    alt: "CoreDAO",
+    size: 48,
+  },
+  {
+    src: "/supports/educhainlogo.svg",
+    alt: "Educhain",
+    size: 48,
+  },
 ];
 
 export const networks: NetworkItem[] = [
   {
-    src: "/supports/base.svg",
-    alt: "Base",
+    src: "/supports/hyperevm.svg",
+    alt: "Hyperliquid",
     size: 56,
   },
   {
@@ -50,8 +65,13 @@ export const networks: NetworkItem[] = [
     size: 56,
   },
   {
-    src: "/supports/hyperevm.svg",
-    alt: "Hyperliquid",
+    src: "/supports/base.svg",
+    alt: "Base",
+    size: 56,
+  },
+  {
+    src: "/partners/kaia-logo.svg",
+    alt: "Kaia",
     size: 56,
   },
   {
@@ -60,8 +80,28 @@ export const networks: NetworkItem[] = [
     size: 56,
   },
   {
-    src: "/partners/kaia-logo.svg",
-    alt: "Kaia",
+    src: "/supports/inklogo.svg",
+    alt: "Ink",
+    size: 56,
+  },
+  {
+    src: "/supports/monadlogo.png",
+    alt: "Monad",
+    size: 56,
+  },
+  {
+    src: "/supports/polygon.png",
+    alt: "Polygon",
+    size: 56,
+  },
+  {
+    src: "/supports/plasmalogo.svg",
+    alt: "Plasma",
+    size: 56,
+  },
+  {
+    src: "/supports/lisklogo.png",
+    alt: "Lisk",
     size: 56,
   },
 ];

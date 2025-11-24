@@ -1,15 +1,11 @@
 'use client';
 
-import FooterHeader from './footer-header';
-import FooterLinks from './footer-links';
-import FooterBottom from './footer-bottom';
-
 export default function Footer() {
   return (
     <footer className="relative py-16 md:py-20 px-4 overflow-hidden min-h-[600px]">
       {/* Large SENJA Background Text with Fade Effect */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none">
-        <div 
+        <div
           className="text-[12rem] sm:text-[15rem] md:text-[18rem] lg:text-[22rem] xl:text-[25rem] font-black leading-none tracking-tighter select-none whitespace-nowrap"
           style={{
             color: 'rgba(200, 200, 200, 0.15)',
@@ -19,12 +15,6 @@ export default function Footer() {
         >
           SENJA
         </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <FooterHeader />
-        <FooterLinks />
-        <FooterBottom />
       </div>
 
       {/* Background gradient accent */}
