@@ -74,7 +74,7 @@ export default function WaitlistForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 bg-black/30 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/10">
       <input
         type="text"
         placeholder="Enter your full name"

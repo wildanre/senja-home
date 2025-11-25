@@ -22,13 +22,13 @@ export default function WaitlistCounter({ count }: WaitlistCounterProps) {
             value={count}
             delay={0.5}
             duration={2}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-100 dark:text-gray-100"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#e7b67c] dark:text-gray-100"
           />
         </div>
-        <p className="mt-3 sm:mt-4 md:mt-5 text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white/90 dark:text-[#d0dce6] mb-2 sm:mb-3 md:mb-4">
+        <p className="mt-3 sm:mt-4 md:mt-5 text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-[#e7b67c] dark:text-[#d0dce6] mb-2 sm:mb-3 md:mb-4">
           Users on Waitlist
         </p>
-      </SlideIn>
+      </SlideIn>  
     </SlideIn>
   );
 }
