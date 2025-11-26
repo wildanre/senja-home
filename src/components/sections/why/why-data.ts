@@ -32,6 +32,6 @@ export const whyFeatures: WhyFeature[] = [
     title: "Isolated pool",
     description:
       "No unified liquidity, fully isolated",
-    icon: "/why/isolated.svg",
+    icon: "/why/isolated-new.svg",
   },
 ];
