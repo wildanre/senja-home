@@ -22,16 +22,16 @@ export const whyFeatures: WhyFeature[] = [
   },
   {
     id: 3,
-    title: "Permissonless",
+    title: "Permissionless",
     description:
-      "lorem ipsum dolor sit amet",
-    icon: "/why/permissonless.svg",
+      "Open for anyone, anywhere",
+    icon: "/why/permissionless.svg",
   },
   {
     id: 4,
-    title: "Protocol",
+    title: "Isolated pool",
     description:
-      "lorem ipsum dolor sit amet",
-    icon: "/why/protocol.svg",
+      "No unified liquidity, fully isolated",
+    icon: "/why/isolated.svg",
   },
 ];
