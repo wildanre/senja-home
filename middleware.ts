@@ -24,7 +24,7 @@ export async function middleware(request: NextRequest) {
     
     // Verify authentication with backend by forwarding cookies
     try {
-      const backendUrl = process.env.BACKEND_URL || 'http://localhost:8000'
+      const backendUrl = process.env.BACKEND_URL
       
       // Get all cookies to forward to backend
       const cookieHeader = request.headers.get('cookie') || ''

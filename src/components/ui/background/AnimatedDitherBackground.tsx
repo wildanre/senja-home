@@ -32,7 +32,7 @@ export function AnimatedDitherBackground({ scrollProgress, leftPageWidth }: Anim
         opacity: 1,
         visibility: 'visible',
         clipPath: `polygon(${clipLeft} 0%, 100% 0%, 100% 100%, ${clipLeft} 100%)`,
-        pointerEvents: leftPageWidth >= 100 ? 'none' : 'auto'
+        pointerEvents: 'none'
       }}
     >
       <Dither {...desktopDitherConfig} />

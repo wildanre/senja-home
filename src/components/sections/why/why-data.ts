@@ -11,7 +11,7 @@ export const whyFeatures: WhyFeature[] = [
     title: "Crosschain Borrowing",
     description:
       "Borrow across chains with LayerZero",
-    icon: "/why/crosschain.svg",
+    icon: "/why/crosschain-new.svg",
   },
   {
     id: 2,
@@ -22,16 +22,16 @@ export const whyFeatures: WhyFeature[] = [
   },
   {
     id: 3,
-    title: "High Speed",
+    title: "Permissonless",
     description:
-      "Real-time confirmations for cross-chain borrowing",
-    icon: "/why/speed.svg",
+      "lorem ipsum dolor sit amet",
+    icon: "/why/permissonless.svg",
   },
   {
     id: 4,
-    title: "Low Gas Fees",
+    title: "Protocol",
     description:
-      "Cost-efficient cross-chain execution",
-    icon: "/why/low-fee-new.svg",
+      "lorem ipsum dolor sit amet",
+    icon: "/why/protocol.svg",
   },
 ];
