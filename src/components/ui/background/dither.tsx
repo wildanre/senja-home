@@ -335,6 +335,7 @@ export default function Dither({
   return (
     <Canvas
       className="absolute inset-0 h-full w-full"
+      style={{ pointerEvents: 'none' }}
       camera={{ position: [0, 0, 6] }}
       dpr={1}
       gl={{ antialias: true, preserveDrawingBuffer: true }}
