@@ -1,13 +1,4 @@
-export interface AdminCredentials {
-  email: string;
-  password: string;
-}
-
-export interface AdminUser {
-  id: string;
-  email: string;
-}
-
+import type { AdminUser } from "@/types";
 import { getCSRFToken, clearCSRFToken, refreshCSRFToken } from "./csrf";
 
 export async function isAuthenticated(): Promise<boolean> {

@@ -1,52 +1,60 @@
-'use client';
+"use client";
 
-import { EmailFormData } from './types';
-import { useRef } from 'react';
+import type { EmailFormData } from "@/types";
+import { useRef } from "react";
 
 interface EmailFormFieldsProps {
   emailForm: EmailFormData;
-  onFormChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onFormChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 
-export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFieldsProps) {
+export default function EmailFormFields({
+  emailForm,
+  onFormChange,
+}: EmailFormFieldsProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onFormChange(e);
   };
 
+  const handleTextareaClick = () => {};
 
-  const handleTextareaClick = () => {
-  };
-
-  const handleTextareaKeyUp = () => {
-  };
+  const handleTextareaKeyUp = () => {};
 
   // Insert formatting at cursor position
-  const insertFormatting = (startTag: string, endTag: string, placeholder = '') => {
+  const insertFormatting = (
+    startTag: string,
+    endTag: string,
+    placeholder = ""
+  ) => {
     if (!textareaRef.current) return;
-    
+
     const textarea = textareaRef.current;
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
     const selectedText = textarea.value.substring(start, end);
     const textToInsert = selectedText || placeholder;
-    
-    const newText = 
-      textarea.value.substring(0, start) + 
-      startTag + textToInsert + endTag + 
+
+    const newText =
+      textarea.value.substring(0, start) +
+      startTag +
+      textToInsert +
+      endTag +
       textarea.value.substring(end);
-    
+
     // Create synthetic event to trigger form change
     const event = {
       target: {
-        name: 'message',
-        value: newText
-      }
+        name: "message",
+        value: newText,
+      },
     } as React.ChangeEvent<HTMLTextAreaElement>;
-    
+
     onFormChange(event);
-    
+
     // Focus back to textarea and set cursor position
     setTimeout(() => {
       textarea.focus();
@@ -56,18 +64,23 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
   };
 
   // Formatting shortcuts
-  const formatBold = () => insertFormatting('**', '**', 'bold text');
-  const formatItalic = () => insertFormatting('*', '*', 'italic text');
-  const formatUnderline = () => insertFormatting('<u>', '</u>', 'underlined text');
-  const formatLink = () => insertFormatting('[', '](https://example.com)', 'link text');
-  const formatCode = () => insertFormatting('`', '`', 'code');
-  const insertBreak = () => insertFormatting('\n\n', '', '');
+  const formatBold = () => insertFormatting("**", "**", "bold text");
+  const formatItalic = () => insertFormatting("*", "*", "italic text");
+  const formatUnderline = () =>
+    insertFormatting("<u>", "</u>", "underlined text");
+  const formatLink = () =>
+    insertFormatting("[", "](https://example.com)", "link text");
+  const formatCode = () => insertFormatting("`", "`", "code");
+  const insertBreak = () => insertFormatting("\n\n", "", "");
 
   return (
     <div className="space-y-6">
       {/* Sender Name */}
       <div>
-        <label htmlFor="senderName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label
+          htmlFor="senderName"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
           Sender Name
         </label>
         <input
@@ -83,7 +96,10 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
 
       {/* Subject */}
       <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label
+          htmlFor="subject"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
           Email Subject *
         </label>
         <input
@@ -100,7 +116,10 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
 
       {/* Message */}
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label
+          htmlFor="message"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
           Email Message *
         </label>
         <textarea
@@ -116,7 +135,7 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
           className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
           placeholder="Enter your email message..."
         />
-        
+
         {/* Formatting Toolbar */}
         <div className="border border-t-0 border-gray-300 dark:border-gray-600 rounded-b-md bg-gray-50 dark:bg-gray-800 px-3 py-2">
           <div className="flex flex-wrap gap-2">
@@ -170,9 +189,12 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
             </button>
           </div>
           <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-            <strong>Tip:</strong> Select text and click formatting buttons, or use keyboard shortcuts. 
+            <strong>Tip:</strong> Select text and click formatting buttons, or
+            use keyboard shortcuts.
             <span className="block mt-1">
-              <strong>Bold:</strong> **text** | <strong>Italic:</strong> *text* | <strong>Link:</strong> [text](url) | <strong>Code:</strong> `text`
+              <strong>Bold:</strong> **text** | <strong>Italic:</strong> *text*
+              | <strong>Link:</strong> [text](url) | <strong>Code:</strong>{" "}
+              `text`
             </span>
           </div>
         </div>
@@ -180,7 +202,10 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
 
       {/* URL */}
       <div>
-        <label htmlFor="url" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label
+          htmlFor="url"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
           Website URL (Optional)
         </label>
         <input
@@ -196,7 +221,10 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
 
       {/* Date */}
       <div>
-        <label htmlFor="date" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label
+          htmlFor="date"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
           Date (Optional)
         </label>
         <input
@@ -211,7 +239,10 @@ export default function EmailFormFields({ emailForm, onFormChange }: EmailFormFi
 
       {/* Footer */}
       <div>
-        <label htmlFor="footer" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        <label
+          htmlFor="footer"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+        >
           Footer Message (Optional)
         </label>
         <input

@@ -5,6 +5,5 @@ export { default as SidebarNavigation } from "./sidebar-navigation";
 export { default as SidebarFooter } from "./sidebar-footer";
 export { default as MobileHeader } from "./mobile-header";
 
-// Types and configuration
-export * from "./types";
+// Configuration
 export { MENU_ITEMS } from "./menuConfig";

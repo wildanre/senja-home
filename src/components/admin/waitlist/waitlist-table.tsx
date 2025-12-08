@@ -15,7 +15,7 @@ import {
   Column,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { WaitlistUser } from "./types";
+import type { WaitlistUser } from "@/types";
 
 // Constants
 const PAGE_SIZE = 20;
@@ -166,11 +166,7 @@ const SearchInput = ({
   </div>
 );
 
-const TableContent = ({
-  table,
-}: {
-  table: TanstackTable<WaitlistUser>;
-}) => (
+const TableContent = ({ table }: { table: TanstackTable<WaitlistUser> }) => (
   <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
       <TableHeader table={table} />
@@ -179,11 +175,7 @@ const TableContent = ({
   </div>
 );
 
-const TableHeader = ({
-  table,
-}: {
-  table: TanstackTable<WaitlistUser>;
-}) => (
+const TableHeader = ({ table }: { table: TanstackTable<WaitlistUser> }) => (
   <thead className="bg-blue-50 dark:bg-blue-900/20">
     {table.getHeaderGroups().map((headerGroup) => (
       <tr key={headerGroup.id}>
@@ -195,10 +187,7 @@ const TableHeader = ({
           >
             {header.isPlaceholder
               ? null
-              : flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
+              : flexRender(header.column.columnDef.header, header.getContext())}
           </th>
         ))}
       </tr>
@@ -206,11 +195,7 @@ const TableHeader = ({
   </thead>
 );
 
-const TableBody = ({
-  table,
-}: {
-  table: TanstackTable<WaitlistUser>;
-}) => (
+const TableBody = ({ table }: { table: TanstackTable<WaitlistUser> }) => (
   <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
     {table.getRowModel().rows.map((row, rowIndex) => (
       <tr
@@ -232,11 +217,7 @@ const TableBody = ({
   </tbody>
 );
 
-const Pagination = ({
-  table,
-}: {
-  table: TanstackTable<WaitlistUser>;
-}) => {
+const Pagination = ({ table }: { table: TanstackTable<WaitlistUser> }) => {
   const { pagination } = table.getState();
   const filteredRowsLength = table.getFilteredRowModel().rows.length;
   const startRow = pagination.pageIndex * pagination.pageSize + 1;

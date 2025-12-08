@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Menu } from 'lucide-react';
-import { MobileHeaderProps } from './types';
-import ThemeToggle from '../../ui/layout/theme-toggle';
+import { Menu } from "lucide-react";
+import type { MobileHeaderProps } from "@/types";
+import ThemeToggle from "../../ui/layout/theme-toggle";
 
 export default function MobileHeader({ onOpenMobile }: MobileHeaderProps) {
   return (
@@ -16,7 +16,9 @@ export default function MobileHeader({ onOpenMobile }: MobileHeaderProps) {
         </button>
         <div className="flex items-center space-x-2">
           <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded"></div>
-          <span className="font-semibold text-gray-900 dark:text-white">SenjaLabs Admin</span>
+          <span className="font-semibold text-gray-900 dark:text-white">
+            SenjaLabs Admin
+          </span>
         </div>
         <div className="scale-90">
           <ThemeToggle />

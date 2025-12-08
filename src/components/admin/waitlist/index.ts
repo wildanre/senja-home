@@ -6,6 +6,5 @@ export { default as WaitlistActions } from "./waitlist-actions";
 export { default as LoadingState } from "./loading-state";
 export { default as EmptyState } from "./empty-state";
 
-// Types and utilities
-export * from "./types";
+// Utilities
 export * from "./waitlistUtils";

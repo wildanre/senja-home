@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { EmailTheme, EmailFormData } from "./email/types";
+import type { EmailTheme, EmailFormData } from "@/types";
 import { EMAIL_THEMES } from "./email/emailThemes";
 import { generateEmailHTML } from "./email/emailUtils";
 import { getCSRFToken, refreshCSRFToken } from "@/lib/csrf";

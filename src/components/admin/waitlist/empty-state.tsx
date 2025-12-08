@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { Users } from 'lucide-react';
-import { EmptyStateProps } from './types';
+import { Users } from "lucide-react";
+import type { EmptyStateProps } from "@/types";
 
-export default function EmptyState({ 
+export default function EmptyState({
   title = "No users yet",
-  description = "No users have registered for the waitlist yet"
+  description = "No users have registered for the waitlist yet",
 }: EmptyStateProps) {
   return (
     <div className="text-center py-12">
@@ -15,9 +15,7 @@ export default function EmptyState({
       <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
         {title}
       </h3>
-      <p className="text-gray-500 dark:text-gray-400">
-        {description}
-      </p>
+      <p className="text-gray-500 dark:text-gray-400">{description}</p>
     </div>
   );
 }

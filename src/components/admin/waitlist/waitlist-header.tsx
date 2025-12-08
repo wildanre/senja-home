@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { WaitlistHeaderProps } from './types';
+import type { WaitlistHeaderProps } from "@/types";
 
 export default function WaitlistHeader({ userCount }: WaitlistHeaderProps) {
   return (

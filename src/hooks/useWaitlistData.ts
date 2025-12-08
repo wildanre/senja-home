@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { WaitlistUser } from "@/components/admin/waitlist/types";
+import type { WaitlistUser } from "@/types";
 
 const fetchWaitlistData = async (): Promise<WaitlistUser[]> => {
   try {

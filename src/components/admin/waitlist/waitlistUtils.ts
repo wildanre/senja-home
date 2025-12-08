@@ -1,9 +1,9 @@
-import { WaitlistUser } from './types';
+import type { WaitlistUser } from "@/types";
 export async function fetchWaitlistData(): Promise<WaitlistUser[]> {
   try {
-    const response = await fetch('/api/waitlist', {
-      method: 'GET',
-      credentials: 'include', 
+    const response = await fetch("/api/waitlist", {
+      method: "GET",
+      credentials: "include",
     });
 
     if (response.ok) {
@@ -11,7 +11,7 @@ export async function fetchWaitlistData(): Promise<WaitlistUser[]> {
       return data.users || [];
     } else {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.error || 'Failed to load waitlist data');
+      throw new Error(errorData.error || "Failed to load waitlist data");
     }
   } catch (error) {
     throw error;
@@ -19,11 +19,11 @@ export async function fetchWaitlistData(): Promise<WaitlistUser[]> {
 }
 
 export function formatRegistrationDate(dateString: string): string {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 }

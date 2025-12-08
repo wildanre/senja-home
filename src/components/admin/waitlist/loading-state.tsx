@@ -1,8 +1,10 @@
-'use client';
+"use client";
 
-import { LoadingStateProps } from './types';
+import type { LoadingStateProps } from "@/types";
 
-export default function LoadingState({ message = "Loading data..." }: LoadingStateProps) {
+export default function LoadingState({
+  message = "Loading data...",
+}: LoadingStateProps) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
       <div className="flex items-center justify-center py-8">

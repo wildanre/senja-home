@@ -1,13 +1,13 @@
-import { EmailTheme } from './types';
+import type { EmailTheme } from "@/types";
 
 export const EMAIL_THEMES: EmailTheme[] = [
   {
-    id: 'blue',
-    name: 'Blue',
-    color: 'bg-blue-500',
-    primaryColor: '#3B82F6',
-    backgroundColor: '#F8FAFC',
-    textColor: '#1E293B',
+    id: "blue",
+    name: "Blue",
+    color: "bg-blue-500",
+    primaryColor: "#3B82F6",
+    backgroundColor: "#F8FAFC",
+    textColor: "#1E293B",
     template: `
       <div style="max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%); padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
         <div style="background-color: white; border-radius: 16px; padding: 0; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15); overflow: hidden; border: 1px solid rgba(59, 130, 246, 0.1);">
@@ -46,15 +46,15 @@ export const EMAIL_THEMES: EmailTheme[] = [
           50% { transform: scale(1.1); opacity: 0.2; }
         }
       </style>
-    `
+    `,
   },
   {
-    id: 'green',
-    name: 'Green ',
-    color: 'bg-green-500',
-    primaryColor: '#10B981',
-    backgroundColor: '#F0FDF4',
-    textColor: '#1F2937',
+    id: "green",
+    name: "Green ",
+    color: "bg-green-500",
+    primaryColor: "#10B981",
+    backgroundColor: "#F0FDF4",
+    textColor: "#1F2937",
     template: `
       <div style="max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%); padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
         <div style="background-color: white; border-radius: 16px; padding: 0; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15); overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.1);">
@@ -86,15 +86,15 @@ export const EMAIL_THEMES: EmailTheme[] = [
           </div>
         </div>
       </div>
-    `
+    `,
   },
   {
-    id: 'yellow',
-    name: 'Yellow ',
-    color: 'bg-yellow-500',
-    primaryColor: '#F59E0B',
-    backgroundColor: '#FFFBEB',
-    textColor: '#1F2937',
+    id: "yellow",
+    name: "Yellow ",
+    color: "bg-yellow-500",
+    primaryColor: "#F59E0B",
+    backgroundColor: "#FFFBEB",
+    textColor: "#1F2937",
     template: `
       <div style="max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); padding: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
         <div style="background-color: white; border-radius: 16px; padding: 0; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15); overflow: hidden; border: 1px solid rgba(245, 158, 11, 0.1);">
@@ -133,6 +133,6 @@ export const EMAIL_THEMES: EmailTheme[] = [
           50% { opacity: 0.5; transform: scale(1.02); }
         }
       </style>
-    `
-  }
+    `,
+  },
 ];

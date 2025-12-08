@@ -1,6 +1,6 @@
 "use client";
 
-import { SidebarProps } from "./types";
+import type { SidebarProps } from "@/types";
 import SidebarHeader from "./sidebar-header";
 import SidebarNavigation from "./sidebar-navigation";
 import SidebarFooter from "./sidebar-footer";
