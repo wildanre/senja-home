@@ -1,16 +1,27 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface LoadingPageProps {
   fadeOut: boolean;
 }
 
+interface Sparkle {
+  id: number;
+  left: string;
+  top: string;
+  delay: number;
+  duration: number;
+  size: number;
+}
+
 export default function LoadingPage({ fadeOut }: LoadingPageProps) {
-  // Generate random sparkle particles
-  const sparkles = useMemo(() => {
-    return Array.from({ length: 50 }, (_, i) => ({
+  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+
+  // Generate random sparkle particles only on client side
+  useEffect(() => {
+    const generatedSparkles = Array.from({ length: 50 }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
@@ -18,6 +29,7 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
       duration: 2 + Math.random() * 2,
       size: 2 + Math.random() * 4,
     }));
+    setSparkles(generatedSparkles);
   }, []);
 
   return (

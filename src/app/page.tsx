@@ -1,7 +1,7 @@
 "use client";
 
 import HeroNew from "@/components/sections/hero";
-import WhatIsSenja from "@/components/sections/what-is-senja";
+import Overview from "@/components/sections/overview";
 import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
 import { WhySection } from "@/components/sections/why";
 import { PartnersSection } from "@/components/sections/partners/partners-section";
@@ -9,7 +9,7 @@ import Footer from "@/components/sections/footer";
 import { ScrollAnimationWrapper } from "@/components/ui/animate";
 import { AnimatedDitherBackground } from "@/components/ui/background";
 import { AnimatedDivider } from "@/components/ui/layout";
-import StickyBottomText from "@/components/sections/what-is-senja/sticky-bottom-text";
+import StickyBottomText from "@/components/sections/overview/sticky-bottom-text";
 import { LoadingPage } from "@/components/ui/loading";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
 import { motion } from "motion/react";
@@ -121,7 +121,7 @@ export default function Home() {
                 </section>
 
                 <section id="what-is-senja" className="min-h-screen lg:min-h-screen">
-                  <WhatIsSenja />
+                  <Overview />
                 </section>
 
                 {/* Powered by Senja Content - full width with orbit + beam */}
