@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import type { EmailTheme, EmailFormData } from "@/types";
-import { EMAIL_THEMES } from "./email/emailThemes";
-import { generateEmailHTML } from "./email/emailUtils";
+import { EMAIL_THEMES } from "@/config/emailThemes";
+import { generateEmailHTML } from "@/utils/emailUtils";
 import { getCSRFToken, refreshCSRFToken } from "@/lib/csrf";
 import ThemeSelector from "./email/theme-selector";
 import EmailFormFields from "./email/email-form-fields";

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { logoutAdmin } from "@/lib/auth";
 import type { AdminLayoutProps } from "@/types";
-import { MENU_ITEMS } from "./layout/menuConfig";
+import { MENU_ITEMS } from "@/config/menuConfig";
 import Sidebar from "./layout/sidebar";
 import MobileHeader from "./layout/mobile-header";
 

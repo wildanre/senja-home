@@ -5,5 +5,5 @@ export { default as EmailPreview } from "./email-preview";
 export { default as SubmitButton } from "./submit-button";
 export { default as StatusMessage } from "./status-message";
 
-export { EMAIL_THEMES } from "./emailThemes";
-export { generateEmailHTML } from "./emailUtils";
+export { EMAIL_THEMES } from "@/config/emailThemes";
+export { generateEmailHTML } from "@/utils/emailUtils";

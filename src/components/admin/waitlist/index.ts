@@ -7,4 +7,4 @@ export { default as LoadingState } from "./loading-state";
 export { default as EmptyState } from "./empty-state";
 
 // Utilities
-export * from "./waitlistUtils";
+export * from "@/utils/waitlistUtils";

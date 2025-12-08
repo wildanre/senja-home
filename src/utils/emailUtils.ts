@@ -1,5 +1,5 @@
 import type { EmailFormData } from "@/types";
-import { EMAIL_CONFIG } from "../../../config/email";
+import { EMAIL_CONFIG } from "@/config/email";
 
 // Convert markdown-style formatting to HTML
 function formatMessageToHTML(message: string): string {

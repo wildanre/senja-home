@@ -6,4 +6,4 @@ export { default as SidebarFooter } from "./sidebar-footer";
 export { default as MobileHeader } from "./mobile-header";
 
 // Configuration
-export { MENU_ITEMS } from "./menuConfig";
+export { MENU_ITEMS } from "@/config/menuConfig";
