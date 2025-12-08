@@ -1,14 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = await cookies();
-    const token = cookieStore.get('admin-token')?.value;
+    const token = cookieStore.get("admin-token")?.value;
 
     if (!token) {
       return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
+        { success: false, error: "Unauthorized" },
         { status: 401 }
       );
     }
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     if (!subject || !message) {
       return NextResponse.json(
-        { success: false, error: 'Subject and message are required' },
+        { success: false, error: "Subject and message are required" },
         { status: 400 }
       );
     }
@@ -26,36 +26,36 @@ export async function POST(request: NextRequest) {
     const backendUrl = process.env.BACKEND_URL;
     if (!backendUrl) {
       return NextResponse.json(
-        { success: false, error: 'Backend URL not configured' },
+        { success: false, error: "Backend URL not configured" },
         { status: 500 }
       );
     }
 
     // Get CSRF token from request headers
-    const csrfSecretCookie = cookieStore.get('csrf-secret');
-    const csrfToken = request.headers.get('x-csrf-token');
+    const csrfSecretCookie = cookieStore.get("csrf-secret");
+    const csrfToken = request.headers.get("x-csrf-token");
 
     const headers: HeadersInit = {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     };
-    
+
     if (csrfToken) {
-      headers['x-csrf-token'] = csrfToken;
+      headers["x-csrf-token"] = csrfToken;
     }
-    
+
     if (csrfSecretCookie) {
-      headers['Cookie'] = `csrf-secret=${csrfSecretCookie.value}`;
+      headers["Cookie"] = `csrf-secret=${csrfSecretCookie.value}`;
     }
 
     // Forward request to backend
     const response = await fetch(`${backendUrl}/api/admin/send-email`, {
-      method: 'POST',
+      method: "POST",
       headers,
       body: JSON.stringify({
         subject,
         message,
-        senderName: senderName || 'SenjaLabs',
+        senderName: senderName || "SenjaLabs",
       }),
     });
 
@@ -67,18 +67,17 @@ export async function POST(request: NextRequest) {
 
     // If unauthorized, clear the cookie
     if (response.status === 401 || response.status === 403) {
-      cookieStore.delete('admin-token');
+      cookieStore.delete("admin-token");
     }
 
     return NextResponse.json(
-      { success: false, error: data.error || 'Failed to send email' },
+      { success: false, error: data.error || "Failed to send email" },
       { status: response.status }
     );
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
-      { success: false, error: 'Network error' },
+      { success: false, error: "Network error" },
       { status: 500 }
     );
   }
 }
-

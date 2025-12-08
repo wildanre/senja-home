@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { loginAdmin } from "@/lib/auth";
 import { checkRateLimit, getTimeUntilReset } from "@/lib/rate-limit";
 
@@ -13,7 +12,7 @@ export default function AdminLoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +51,7 @@ export default function AdminLoginPage() {
           setError(loginResult.error || "Login failed");
         }
       }
-    } catch (error) {
+    } catch (_error) {
       setError("Network error. Please try again.");
     } finally {
       setIsLoading(false);

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { logoutAdmin } from '@/lib/auth';
-import { AdminLayoutProps } from './layout/types';
-import { MENU_ITEMS } from './layout/menuConfig';
-import Sidebar from './layout/Sidebar';
-import MobileHeader from './layout/MobileHeader';
+import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { logoutAdmin } from "@/lib/auth";
+import { AdminLayoutProps } from "./layout/types";
+import { MENU_ITEMS } from "./layout/menuConfig";
+import Sidebar from "./layout/sidebar";
+import MobileHeader from "./layout/mobile-header";
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const router = useRouter();
@@ -17,10 +17,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const handleLogout = async () => {
     try {
       await logoutAdmin();
-      router.push('/admin/auth/login');
-    } catch (error) {
+      router.push("/admin/auth/login");
+    } catch (_error) {
       // Still redirect even if logout API call fails
-      router.push('/admin/auth/login');
+      router.push("/admin/auth/login");
     }
   };
 
@@ -51,11 +51,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
         <MobileHeader onOpenMobile={handleOpenMobile} />
-        
+
         {/* Page content */}
-        <main className="flex-1 p-4 lg:p-6 overflow-auto">
-          {children}
-        </main>
+        <main className="flex-1 p-4 lg:p-6 overflow-auto">{children}</main>
       </div>
     </div>
   );

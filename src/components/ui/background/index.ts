@@ -4,5 +4,4 @@ export { default as BackgroundWrapper } from "./background-wrapper";
 export { default as Dither } from "./dither";
 export { default as Particles } from "./particles";
 export { WorldMap } from "./world-map";
-export { AnimatedDitherBackground } from "./AnimatedDitherBackground";
-
+export { AnimatedDitherBackground } from "./animated-dither-background";

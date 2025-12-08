@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { InfiniteMovingPartners } from "@/components/ui/effects";
 import { partners } from "./partnerData";
-import { TypingAnimation } from "@/components/ui/text";
 
 export default function Partner() {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +18,10 @@ export default function Partner() {
         const windowHeight = window.innerHeight;
 
         // Trigger typing animation when section enters viewport
-        if (scrollTop + windowHeight * 0.7 >= partnersSectionTop && !isVisible) {
+        if (
+          scrollTop + windowHeight * 0.7 >= partnersSectionTop &&
+          !isVisible
+        ) {
           setIsVisible(true);
         }
       }

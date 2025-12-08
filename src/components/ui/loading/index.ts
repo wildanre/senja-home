@@ -1,2 +1,2 @@
-export { default as LoadingPage } from "./LoadingPage";
-export { default as LoadingSpinner } from "./LoadingSpinner";
+export { default as LoadingPage } from "./loading-page";
+export { default as LoadingSpinner } from "./loading-spinner";

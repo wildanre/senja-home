@@ -1,8 +1,14 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { isAuthenticated } from '@/lib/auth';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { isAuthenticated } from "@/lib/auth";
 
 interface AuthContextType {
   isAuthenticated: boolean | null; // null = loading, boolean = determined
@@ -14,7 +20,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }
@@ -32,13 +38,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       const authenticated = await isAuthenticated();
       setAuthState(authenticated);
-    } catch (error) {
+    } catch (_error) {
       setAuthState(false);
     }
   };
 
   useEffect(() => {
-    if (!pathname.startsWith('/admin')) {
+    if (!pathname.startsWith("/admin")) {
       setAuthState(true); // Non-admin routes don't need auth
       return;
     }
@@ -48,23 +54,33 @@ export function AuthProvider({ children }: AuthProviderProps) {
       try {
         const authenticated = await isAuthenticated();
         setAuthState(authenticated);
-        
+
         // If authenticated and on login pages, redirect to dashboard
-        if (authenticated && (pathname === '/admin/auth/login' || pathname === '/admin/auth')) {
-          router.replace('/admin/dashboard');
+        if (
+          authenticated &&
+          (pathname === "/admin/auth/login" || pathname === "/admin/auth")
+        ) {
+          router.replace("/admin/dashboard");
           return;
         }
-        
+
         // If not authenticated and on protected admin pages, redirect to login
-        if (!authenticated && pathname.startsWith('/admin') && 
-            pathname !== '/admin/auth/login' && pathname !== '/admin/auth') {
-          router.replace('/admin/auth/login');
+        if (
+          !authenticated &&
+          pathname.startsWith("/admin") &&
+          pathname !== "/admin/auth/login" &&
+          pathname !== "/admin/auth"
+        ) {
+          router.replace("/admin/auth/login");
         }
-      } catch (error) {
+      } catch (_error) {
         setAuthState(false);
-        if (pathname.startsWith('/admin') && 
-            pathname !== '/admin/auth/login' && pathname !== '/admin/auth') {
-          router.replace('/admin/auth/login');
+        if (
+          pathname.startsWith("/admin") &&
+          pathname !== "/admin/auth/login" &&
+          pathname !== "/admin/auth"
+        ) {
+          router.replace("/admin/auth/login");
         }
       }
     };

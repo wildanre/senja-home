@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { SidebarProps } from './types';
-import SidebarHeader from './SidebarHeader';
-import SidebarNavigation from './SidebarNavigation';
-import SidebarFooter from './SidebarFooter';
+import { SidebarProps } from "./types";
+import SidebarHeader from "./sidebar-header";
+import SidebarNavigation from "./sidebar-navigation";
+import SidebarFooter from "./sidebar-footer";
 
 export default function Sidebar({
   isCollapsed,
@@ -12,43 +12,42 @@ export default function Sidebar({
   onCloseMobile,
   currentPath,
   menuItems,
-  onLogout
+  onLogout,
 }: SidebarProps) {
   return (
     <>
       {/* Mobile backdrop */}
       {isMobileOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
           onClick={onCloseMobile}
         />
       )}
 
       {/* Sidebar */}
-      <div className={`
+      <div
+        className={`
         fixed lg:relative inset-y-0 left-0 z-30 h-screen
-        ${isCollapsed ? 'w-16' : 'w-64'}
-        ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        ${isCollapsed ? "w-16" : "w-64"}
+        ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700
         transition-all duration-300 ease-in-out
         flex flex-col
-      `}>
-        <SidebarHeader 
+      `}
+      >
+        <SidebarHeader
           isCollapsed={isCollapsed}
           onToggleCollapse={onToggleCollapse}
         />
-        
+
         <SidebarNavigation
           menuItems={menuItems}
           currentPath={currentPath}
           isCollapsed={isCollapsed}
           onCloseMobile={onCloseMobile}
         />
-        
-        <SidebarFooter 
-          isCollapsed={isCollapsed}
-          onLogout={onLogout}
-        />
+
+        <SidebarFooter isCollapsed={isCollapsed} onLogout={onLogout} />
       </div>
     </>
   );

@@ -40,7 +40,7 @@ export default function WaitlistForm() {
 
     try {
       const sanitizedData = {
-        name: formData.name.trim().replace(/\s+/g, " "), 
+        name: formData.name.trim().replace(/\s+/g, " "),
         email: formData.email.trim().toLowerCase(), // Convert email to lowercase
       };
 
@@ -64,7 +64,7 @@ export default function WaitlistForm() {
           description: data.error || "Please try again later.",
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error("Network error", {
         description: "Please check your connection and try again.",
       });
@@ -74,7 +74,10 @@ export default function WaitlistForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 bg-black/30 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/10">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-3 sm:space-y-4 bg-black/30 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/10"
+    >
       <input
         type="text"
         placeholder="Enter your full name"

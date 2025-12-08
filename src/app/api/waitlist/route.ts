@@ -1,28 +1,31 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const backendUrl = process.env.BACKEND_URL;
     if (!backendUrl) {
       return NextResponse.json(
-        { success: false, error: 'Backend URL not configured' },
+        { success: false, error: "Backend URL not configured" },
         { status: 500 }
       );
     }
 
     // Fetch from backend
     const response = await fetch(`${backendUrl}/api/waitlist`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      cache: 'no-store', // Disable cache for fresh data
+      cache: "no-store", // Disable cache for fresh data
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       return NextResponse.json(
-        { success: false, error: errorData.error || 'Failed to fetch waitlist' },
+        {
+          success: false,
+          error: errorData.error || "Failed to fetch waitlist",
+        },
         { status: response.status }
       );
     }
@@ -30,9 +33,9 @@ export async function GET(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Waitlist GET error:', error);
+    console.error("Waitlist GET error:", error);
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch waitlist data' },
+      { success: false, error: "Failed to fetch waitlist data" },
       { status: 500 }
     );
   }
@@ -45,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     if (!name || !email) {
       return NextResponse.json(
-        { success: false, error: 'Name and email are required' },
+        { success: false, error: "Name and email are required" },
         { status: 400 }
       );
     }
@@ -54,7 +57,7 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { success: false, error: 'Invalid email address' },
+        { success: false, error: "Invalid email address" },
         { status: 400 }
       );
     }
@@ -62,16 +65,16 @@ export async function POST(request: NextRequest) {
     const backendUrl = process.env.BACKEND_URL;
     if (!backendUrl) {
       return NextResponse.json(
-        { success: false, error: 'Backend URL not configured' },
+        { success: false, error: "Backend URL not configured" },
         { status: 500 }
       );
     }
 
     // Forward to backend
     const response = await fetch(`${backendUrl}/api/waitlist`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ name, email }),
     });
@@ -79,16 +82,16 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       return NextResponse.json(
-        { success: false, error: errorData.error || 'Failed to join waitlist' },
+        { success: false, error: errorData.error || "Failed to join waitlist" },
         { status: response.status }
       );
     }
 
     const data = await response.json();
     return NextResponse.json({ success: true, data });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
-      { success: false, error: 'Failed to process request' },
+      { success: false, error: "Failed to process request" },
       { status: 500 }
     );
   }

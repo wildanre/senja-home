@@ -132,7 +132,7 @@ export default function SendEmailForm() {
           `❌ Failed to send email: ${data.error || "Unknown error occurred"}`
         );
       }
-    } catch (error) {
+    } catch (_error) {
       setEmailStatus(
         "❌ Network error occurred while sending email. Please check your connection and try again."
       );
