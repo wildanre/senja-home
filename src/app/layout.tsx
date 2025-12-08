@@ -10,7 +10,7 @@ import "./globals.css";
 import { BackgroundWrapper } from "@/components/ui/background";
 import { AuthProvider } from "@/contexts/auth-context";
 import { Toaster } from "sonner";
-import QueryProvider from "@/components/providers/QueryProvider";
+import QueryProvider from "@/components/providers/query-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

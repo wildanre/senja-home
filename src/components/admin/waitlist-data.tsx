@@ -1,11 +1,11 @@
 "use client";
 
 import { useWaitlistData } from "@/hooks/useWaitlistData";
-import WaitlistHeader from "./waitlist/WaitlistHeader";
-import WaitlistTable from "./waitlist/WaitlistTable";
-import WaitlistActions from "./waitlist/WaitlistActions";
+import WaitlistHeader from "./waitlist/waitlist-header";
+import WaitlistTable from "./waitlist/waitlist-table";
+import WaitlistActions from "./waitlist/waitlist-actions";
 import { LoadingSpinner } from "@/components/ui/loading";
-import EmptyState from "./waitlist/EmptyState";
+import EmptyState from "./waitlist/empty-state";
 
 export default function WaitlistData() {
   const { users, isLoading, error, refetch, isFetching } = useWaitlistData();

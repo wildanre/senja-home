@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import AdminLayout from '@/components/admin/AdminLayout';
-import AdminGuard from '@/components/admin/AdminGuard';
-import { DashboardContent } from '@/components/admin/dashboard';
+import AdminLayout from "@/components/admin/admin-layout";
+import AdminGuard from "@/components/admin/admin-guard";
+import { DashboardContent } from "@/components/admin/dashboard";
 
 export default function AdminDashboard() {
   return (

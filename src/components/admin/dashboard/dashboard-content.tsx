@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useDashboardStats } from '@/hooks/useDashboardStats';
-import StatsCards from './StatsCards';
-import QuickActions from './QuickActions';
-import { LoadingSpinner } from '@/components/ui/loading';
-import { RefreshCw } from 'lucide-react';
+import { useDashboardStats } from "@/hooks/useDashboardStats";
+import StatsCards from "./stats-cards";
+import QuickActions from "./quick-actions";
+import { LoadingSpinner } from "@/components/ui/loading";
+import { RefreshCw } from "lucide-react";
 
 export default function DashboardContent() {
   const { stats, isLoading, error, refetch } = useDashboardStats();
@@ -17,8 +17,12 @@ export default function DashboardContent() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 dark:text-red-400 mb-4">Failed to load dashboard data</p>
-          <p className="text-gray-600 dark:text-gray-400 mb-4">{error.message}</p>
+          <p className="text-red-600 dark:text-red-400 mb-4">
+            Failed to load dashboard data
+          </p>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            {error.message}
+          </p>
           <button
             onClick={() => refetch()}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
@@ -39,7 +43,8 @@ export default function DashboardContent() {
               Welcome to Admin Dashboard
             </h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Manage your waitlist, send broadcasts, and monitor system performance.
+              Manage your waitlist, send broadcasts, and monitor system
+              performance.
             </p>
           </div>
           <button
@@ -47,7 +52,9 @@ export default function DashboardContent() {
             className="flex items-center gap-2 px-4 py-2 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
           >
-            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+            <RefreshCw
+              className={`w-4 h-4 ${isLoading ? "animate-spin" : ""}`}
+            />
             Refresh
           </button>
         </div>
