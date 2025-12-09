@@ -11,6 +11,7 @@ import { BackgroundWrapper } from "@/components/ui/background";
 import { AuthProvider } from "@/contexts/auth-context";
 import { Toaster } from "sonner";
 import QueryProvider from "@/components/providers/query-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,6 @@ const playfairDisplay = Playfair_Display({
   style: ["italic"],
 });
 
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -39,9 +39,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Senja Finance",
-    template: "%s | Senja Finance DeFi Protocol"
+    template: "%s | Senja Finance DeFi Protocol",
   },
-  description: "Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration, isolated pools, and seamless user experience via LINE Mini DApp.",
+  description:
+    "Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration, isolated pools, and seamless user experience via LINE Mini DApp.",
   keywords: [
     "Senja Finance",
     "senja finance",
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
     "Orakl Network",
     "blockchain",
     "cryptocurrency",
-    "yield farming"
+    "yield farming",
   ],
   authors: [{ name: "Senja Protocol Team" }],
   creator: "Senja Protocol",
@@ -82,32 +83,34 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.senja.finance'),
+  metadataBase: new URL("https://www.senja.finance"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://www.senja.finance',
-    siteName: 'Senja Finance',
-    title: 'Senja Finance',
-    description: 'Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration.',
+    type: "website",
+    locale: "en_US",
+    url: "https://www.senja.finance",
+    siteName: "Senja Finance",
+    title: "Senja Finance",
+    description:
+      "Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. Cross-chain liquidity aggregation with LayerZero integration.",
     images: [
       {
-        url: '/senja-logo.png',
+        url: "/senja-logo.png",
         width: 1200,
         height: 630,
-        alt: 'Senja Finance - DeFi Lending Platform',
+        alt: "Senja Finance - DeFi Lending Platform",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Senja Finance - Permissionless DeFi Protocol',
-    description: 'Cross-chain lending and borrowing protocol with LayerZero integration on Kaia ecosystem.',
-    images: ['/senja-logo.png'],
-    creator: '@senjafinance',
+    card: "summary_large_image",
+    title: "Senja Finance - Permissionless DeFi Protocol",
+    description:
+      "Cross-chain lending and borrowing protocol with LayerZero integration on Kaia ecosystem.",
+    images: ["/senja-logo.png"],
+    creator: "@senjafinance",
   },
   robots: {
     index: true,
@@ -115,21 +118,21 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
-    google: '4thNE4JzvndGPzU-px40Nu2S8BYNudg4SswZH_Tc3zU',
+    google: "4thNE4JzvndGPzU-px40Nu2S8BYNudg4SswZH_Tc3zU",
   },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/senja-logo.png', type: 'image/png' }
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/senja-logo.png", type: "image/png" },
     ],
-    shortcut: '/favicon.svg',
-    apple: '/senja-logo.png',
+    shortcut: "/favicon.svg",
+    apple: "/senja-logo.png",
   },
 };
 
@@ -158,15 +161,15 @@ export default function RootLayout({
             `,
           }}
         />
-        <Toaster 
-          position="top-right" 
-          richColors 
+        <Toaster
+          position="top-right"
+          richColors
           closeButton
           toastOptions={{
             style: {
-              background: 'rgba(0, 0, 0, 0.9)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              color: 'white',
+              background: "rgba(0, 0, 0, 0.9)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              color: "white",
             },
           }}
         />
@@ -175,6 +178,7 @@ export default function RootLayout({
             <BackgroundWrapper>{children}</BackgroundWrapper>
           </AuthProvider>
         </QueryProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
