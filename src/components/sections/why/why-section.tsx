@@ -10,9 +10,18 @@ export const WhySection = () => {
       <div className="max-w-7xl mx-auto">
         <WhyHeader />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative" style={{ top: '70px' }}>
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative"
+          style={{ top: "70px" }}
+        >
           {whyFeatures.map((feature, index) => (
-            <WhyCard key={feature.id} feature={feature} index={index} />
+            <WhyCard
+              key={feature.id}
+              title={feature.title}
+              description={feature.description}
+              icon={feature.icon}
+              index={index}
+            />
           ))}
         </div>
       </div>
