@@ -1,1 +1,2 @@
-export { PartnersSection } from "./partners-section";
+export { default } from "./partners";
+export * from "./partners-data";

@@ -1,17 +1,17 @@
 "use client";
 
-import HeroNewHeader from "./hero-new-header";
-import HeroNewDescription from "./hero-new-description";
+import HeroHeader from "./hero-header";
+import HeroDescription from "./hero-description";
 import { Dither } from "@/components/ui/background";
-import { mobileDitherConfig } from "./heroNewData";
+import { mobileDitherConfig } from "./hero-data";
 
-export default function HeroNew() {
+export default function Hero() {
   return (
     <div className="relative h-full w-full bg-black text-[#e7b67c]">
       {/* Desktop Layout - Content Only */}
       <div className="hidden lg:flex h-full w-full">
         <div className="flex flex-col items-start justify-center gap-10 pl-60 pr-12 py-28">
-          <HeroNewHeader />
+          <HeroHeader />
         </div>
       </div>
 
@@ -19,18 +19,17 @@ export default function HeroNew() {
         <div className="absolute inset-0 z-0">
           <Dither {...mobileDitherConfig} />
         </div>
-        
+
         <div className="absolute inset-0 z-[1] bg-black/70" />
-        
+
         <div className="relative z-10 flex w-full flex-col items-start gap-10 px-4 sm:px-6">
-          <HeroNewHeader />
+          <HeroHeader />
         </div>
 
         <div className="relative z-10 w-full px-4 sm:px-6">
-          <HeroNewDescription />
+          <HeroDescription />
         </div>
       </div>
     </div>
   );
 }
-

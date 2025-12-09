@@ -1,10 +1,10 @@
 "use client";
 
-import HeroNew from "@/components/sections/hero";
+import Hero from "@/components/sections/hero";
 import Overview from "@/components/sections/overview";
 import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
 import { WhySection } from "@/components/sections/why";
-import { PartnersSection } from "@/components/sections/partners/partners-section";
+import Partners from "@/components/sections/partners";
 import Footer from "@/components/sections/footer";
 import { ScrollAnimationWrapper } from "@/components/ui/animate";
 import { AnimatedDitherBackground } from "@/components/ui/background";
@@ -27,9 +27,9 @@ export default function Home() {
     };
 
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
 
-    return () => window.removeEventListener('resize', checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Home() {
     if (scrollProgress >= 0.8) return 100;
     // Smooth interpolation between 0.5 and 0.8
     const progress = (scrollProgress - 0.5) / (0.8 - 0.5);
-    return 50 + (progress * 50);
+    return 50 + progress * 50;
   };
 
   const leftPageWidth = getLeftPageWidth();
@@ -98,29 +98,44 @@ export default function Home() {
 
       <div className="relative h-screen w-full overflow-hidden">
         {/* Animated Dither Background - MUST be outside overflow-hidden container */}
-        <AnimatedDitherBackground scrollProgress={scrollProgress} leftPageWidth={leftPageWidth} />
+        <AnimatedDitherBackground
+          scrollProgress={scrollProgress}
+          leftPageWidth={leftPageWidth}
+        />
 
         {/* Animated Divider - follows left page edge (desktop only) */}
         {!isMobile && <AnimatedDivider scrollProgress={scrollProgress} />}
 
-        <main className="relative h-screen w-full lg:overflow-hidden" style={{ zIndex: 10 }}>
-          <div className="h-screen w-full overflow-y-auto scrollbar-right-edge" id="main-scroll">
+        <main
+          className="relative h-screen w-full lg:overflow-hidden"
+          style={{ zIndex: 10 }}
+        >
+          <div
+            className="h-screen w-full overflow-y-auto scrollbar-right-edge"
+            id="main-scroll"
+          >
             <div className="flex min-h-screen flex-col lg:flex-row">
               <motion.div
                 className="relative w-full bg-black overflow-hidden min-h-screen"
                 style={{
-                  width: isMobile ? '100%' : (leftPageWidth >= 100 ? '100%' : `${leftPageWidth}%`),
+                  width: isMobile
+                    ? "100%"
+                    : leftPageWidth >= 100
+                    ? "100%"
+                    : `${leftPageWidth}%`,
                   zIndex: 20,
-                  isolation: 'isolate'
+                  isolation: "isolate",
                 }}
                 transition={{ type: "spring", stiffness: 50, damping: 20 }}
               >
-
                 <section id="hero" className="min-h-screen lg:min-h-screen">
-                  <HeroNew />
+                  <Hero />
                 </section>
 
-                <section id="what-is-senja" className="min-h-screen lg:min-h-screen">
+                <section
+                  id="what-is-senja"
+                  className="min-h-screen lg:min-h-screen"
+                >
                   <Overview />
                 </section>
 
@@ -150,26 +165,13 @@ export default function Home() {
                   className="flex items-center justify-center"
                 >
                   <ScrollAnimationWrapper direction="up" delay={0.2}>
-                    <PartnersSection />
+                    <Partners />
                   </ScrollAnimationWrapper>
                 </section>
 
                 {/* Footer - only background text */}
-                <section
-                  id="footer"
-                  className="flex justify-center"
-                >
-                  <motion.div
-                    className="w-full"
-                    style={{
-                      maxWidth: '1200px',
-                      margin: '0 auto',
-                      padding: '0 2rem'
-                    }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  >
-                    <Footer />
-                  </motion.div>
+                <section id="footer" className="w-full">
+                  <Footer />
                 </section>
               </motion.div>
 
@@ -178,12 +180,11 @@ export default function Home() {
                 className="hidden lg:block relative bg-transparent"
                 style={{
                   width: `${rightPageWidth}%`,
-                  flexShrink: 0
+                  flexShrink: 0,
                 }}
               />
             </div>
           </div>
-
         </main>
 
         {/* Sticky Bottom Text - moved outside <main> to avoid clipping */}
@@ -194,20 +195,20 @@ export default function Home() {
           .scrollbar-right-edge::-webkit-scrollbar {
             width: 8px;
           }
-          
+
           .scrollbar-right-edge::-webkit-scrollbar-track {
             background: transparent;
           }
-          
+
           .scrollbar-right-edge::-webkit-scrollbar-thumb {
             background: rgba(231, 182, 124, 0.2);
             border-radius: 4px;
           }
-          
+
           .scrollbar-right-edge::-webkit-scrollbar-thumb:hover {
             background: rgba(231, 182, 124, 0.3);
           }
-          
+
           /* For Firefox */
           .scrollbar-right-edge {
             scrollbar-width: thin;

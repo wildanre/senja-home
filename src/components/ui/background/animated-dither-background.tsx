@@ -1,7 +1,7 @@
 "use client";
 
 import { Dither } from "@/components/ui/background";
-import { desktopDitherConfig } from "@/components/sections/hero/heroNewData";
+import { desktopDitherConfig } from "@/components/sections/hero/hero-data";
 
 interface AnimatedDitherBackgroundProps {
   scrollProgress: number;

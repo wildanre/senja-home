@@ -1,10 +1,10 @@
 "use client";
 
 import { AnimatedText } from "@/components/ui/text";
-import { heroContent } from "./heroNewData";
+import { heroContent } from "./hero-data";
 import Image from "next/image";
 
-export default function HeroNewHeader() {
+export default function HeroHeader() {
   return (
     <div className="space-y-8 lg:space-y-6 relative lg:min-h-[18rem] lg:-left-36 xl:-left-40">
       {/* Logo and Brand name - Side by side on mobile */}
@@ -62,4 +62,3 @@ export default function HeroNewHeader() {
     </div>
   );
 }
-

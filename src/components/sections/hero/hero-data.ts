@@ -40,4 +40,3 @@ export const heroContent = {
   logoAlt: "Senja abstract illustration",
   brandName: "Senja",
 } as const;
-

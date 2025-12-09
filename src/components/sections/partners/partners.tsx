@@ -3,17 +3,15 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
+import { partnersData } from "./partners-data";
 
-const partners = [
-  { name: "Kaia Chain", logo: "/partners/kaialogofull.svg" },
-  { name: "LayerZero", logo: "/partners/LayerZero_logo.svg" },
-  { name: "DragonSwap", logo: "/partners/dragonswaplogo.png" },
-  { name: "Orakl Network", logo: "/partners/orakllogofull.svg" },
-  { name: "IDRX", logo: "/partners/idrxlogotg.webp" },
-  { name: "Stargate", logo: "/partners/stargatelogotg.svg" },
-];
-
-const PartnerCard = ({ partner, index }: { partner: typeof partners[0], index: number }) => {
+const PartnerCard = ({
+  partner,
+  index,
+}: {
+  partner: (typeof partnersData)[0];
+  index: number;
+}) => {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { amount: 0.3 });
 
@@ -21,7 +19,11 @@ const PartnerCard = ({ partner, index }: { partner: typeof partners[0], index: n
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.95 }}
+      animate={
+        isInView
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 30, scale: 0.95 }
+      }
       transition={{ delay: index * 0.08, duration: 0.6, ease: "easeOut" }}
       className="flex items-center justify-center p-8 md:p-12 border-r border-b border-[#E7B67C]/15
                  [&:nth-child(3n)]:border-r-0
@@ -38,7 +40,7 @@ const PartnerCard = ({ partner, index }: { partner: typeof partners[0], index: n
             className="object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
             style={{
               maxWidth: partner.name === "DragonSwap" ? "140%" : "100%",
-              height: "auto"
+              height: "auto",
             }}
           />
         </div>
@@ -47,7 +49,7 @@ const PartnerCard = ({ partner, index }: { partner: typeof partners[0], index: n
   );
 };
 
-export const PartnersSection = () => {
+export default function Partners() {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { amount: 0.3 });
 
@@ -58,7 +60,9 @@ export const PartnersSection = () => {
         <motion.h2
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={
+            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+          }
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="font-hero text-3xl md:text-4xl lg:text-5xl font-normal text-[#e7b67c] text-center mb-16"
         >
@@ -67,11 +71,15 @@ export const PartnersSection = () => {
 
         {/* Partners Grid - 3x2 with borders */}
         <div className="grid grid-cols-3">
-          {partners.map((partner, index) => (
-            <PartnerCard key={`${partner.name}-${index}`} partner={partner} index={index} />
+          {partnersData.map((partner, index) => (
+            <PartnerCard
+              key={`${partner.name}-${index}`}
+              partner={partner}
+              index={index}
+            />
           ))}
         </div>
       </div>
     </section>
   );
-};
+}

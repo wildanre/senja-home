@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 export default function WaitlistForm() {
   const [formData, setFormData] = useState({
@@ -98,13 +99,14 @@ export default function WaitlistForm() {
         className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-white/20 dark:border-gray-700 bg-white/5 dark:bg-gray-900/30 text-white dark:text-gray-200 text-sm sm:text-base placeholder:text-white/50 focus:outline-none focus:border-white/40 disabled:opacity-50"
       />
 
-      <button
+      <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-white/20 hover:bg-white/30 dark:bg-gray-700 dark:hover:bg-gray-600 text-white dark:text-gray-200 font-medium py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg text-sm sm:text-base transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        variant="glass"
+        className="w-full text-sm sm:text-base font-medium"
       >
         {isSubmitting ? "Joining..." : "Join Waitlist"}
-      </button>
+      </Button>
     </form>
   );
 }

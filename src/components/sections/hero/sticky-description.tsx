@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatedTextVariants, TypingAnimation } from "@/components/ui/text";
-import { heroContent } from "./heroNewData";
+import { heroContent } from "./hero-data";
 
 export default function StickyDescription() {
   const [isChanged, setIsChanged] = useState(false);
@@ -72,7 +72,8 @@ export default function StickyDescription() {
             <span>Cross-Chain by Design</span>
           </div>
           <p className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed">
-          Designed for seamless cross-chain lending flows, delivering speed, flexibility, and dependable capital efficiency.
+            Designed for seamless cross-chain lending flows, delivering speed,
+            flexibility, and dependable capital efficiency.
           </p>
         </div>
       </div>

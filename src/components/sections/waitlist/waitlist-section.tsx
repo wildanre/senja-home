@@ -3,7 +3,7 @@
 import { SlideIn } from "@/components/ui/motion";
 import { Dither } from "@/components/ui/background";
 import { AnimatedDivider } from "@/components/ui/layout";
-import { desktopDitherConfig } from "@/components/sections/hero/heroNewData";
+import { desktopDitherConfig } from "@/components/sections/hero/hero-data";
 import WaitlistCounter from "./waitlist-counter";
 import WaitlistForm from "./waitlist-form";
 
@@ -25,7 +25,8 @@ export default function WaitlistSection() {
                 Join the Waitlist
               </h2>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#f2cba1]/80 leading-relaxed max-w-lg">
-                Be among the first to experience the future of decentralized finance. Join thousands of users waiting to access Senja.
+                Be among the first to experience the future of decentralized
+                finance. Join thousands of users waiting to access Senja.
               </p>
             </div>
           </SlideIn>
@@ -35,7 +36,16 @@ export default function WaitlistSection() {
       </div>
 
       <div className="w-full lg:w-1/2 relative py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 flex items-center min-h-[50vh] lg:min-h-screen">
-        <div style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 0 }}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 0,
+          }}
+        >
           <Dither {...desktopDitherConfig} />
         </div>
 
