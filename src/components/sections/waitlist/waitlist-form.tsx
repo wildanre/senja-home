@@ -16,14 +16,14 @@ export default function WaitlistForm() {
 
     if (!formData.name || !formData.email) {
       toast.error("Missing information", {
-        description: "Please fill in all fields.",
+        description: "Please fill in all fields to continue.",
       });
       return;
     }
 
     const nameRegex = /^[a-zA-Z\s]+$/;
     if (!nameRegex.test(formData.name)) {
-      toast.error("Invalid name", {
+      toast.error("Invalid name format", {
         description: "Name should only contain letters and spaces.",
       });
       return;
@@ -31,7 +31,7 @@ export default function WaitlistForm() {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      toast.error("Invalid email", {
+      toast.error("Invalid email address", {
         description: "Please enter a valid email address.",
       });
       return;
@@ -42,7 +42,7 @@ export default function WaitlistForm() {
     try {
       const sanitizedData = {
         name: formData.name.trim().replace(/\s+/g, " "),
-        email: formData.email.trim().toLowerCase(), // Convert email to lowercase
+        email: formData.email.trim().toLowerCase(),
       };
 
       const response = await fetch("/api/waitlist", {
@@ -56,18 +56,18 @@ export default function WaitlistForm() {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        toast.success("Successfully joined the waitlist!", {
-          description: "We'll notify you when we launch.",
+        toast.success("Welcome aboard", {
+          description: "You have been added to the waitlist.",
         });
         setFormData({ name: "", email: "" });
       } else {
-        toast.error("Failed to join waitlist", {
-          description: data.error || "Please try again later.",
+        toast.error("Unable to join", {
+          description: data.error || "Please try again shortly.",
         });
       }
     } catch (_error) {
-      toast.error("Network error", {
-        description: "Please check your connection and try again.",
+      toast.error("Connection error", {
+        description: "Please check your internet connection.",
       });
     } finally {
       setIsSubmitting(false);
@@ -77,35 +77,62 @@ export default function WaitlistForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-3 sm:space-y-4 bg-black/30 backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-white/10"
+      className="space-y-5 bg-white/5 backdrop-blur-md p-8 sm:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden group"
     >
-      <input
-        type="text"
-        placeholder="Enter your full name"
-        value={formData.name}
-        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        disabled={isSubmitting}
-        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-white/20 dark:border-gray-700 bg-white/5 dark:bg-gray-900/30 text-white dark:text-gray-200 text-sm sm:text-base placeholder:text-white/50 focus:outline-none focus:border-white/40 disabled:opacity-50"
-      />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-      <input
-        type="email"
-        placeholder="Enter your email address"
-        value={formData.email}
-        onChange={(e) =>
-          setFormData({ ...formData, email: e.target.value.toLowerCase() })
-        }
-        disabled={isSubmitting}
-        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border border-white/20 dark:border-gray-700 bg-white/5 dark:bg-gray-900/30 text-white dark:text-gray-200 text-sm sm:text-base placeholder:text-white/50 focus:outline-none focus:border-white/40 disabled:opacity-50"
-      />
+      <div className="space-y-1.5 relative z-10">
+        <label
+          htmlFor="name"
+          className="text-xs font-medium text-neutral-400 uppercase tracking-wider ml-1"
+        >
+          Full Name
+        </label>
+        <input
+          id="name"
+          type="text"
+          placeholder="ex. Alex Morgan"
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          disabled={isSubmitting}
+          className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-black/40 text-white text-base placeholder:text-neutral-600 focus:outline-none focus:border-[#e7b67c]/50 focus:ring-1 focus:ring-[#e7b67c]/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:border-white/20"
+        />
+      </div>
+
+      <div className="space-y-1.5 relative z-10">
+        <label
+          htmlFor="email"
+          className="text-xs font-medium text-neutral-400 uppercase tracking-wider ml-1"
+        >
+          Email Address
+        </label>
+        <input
+          id="email"
+          type="email"
+          placeholder="alex@example.com"
+          value={formData.email}
+          onChange={(e) =>
+            setFormData({ ...formData, email: e.target.value.toLowerCase() })
+          }
+          disabled={isSubmitting}
+          className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-black/40 text-white text-base placeholder:text-neutral-600 focus:outline-none focus:border-[#e7b67c]/50 focus:ring-1 focus:ring-[#e7b67c]/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:border-white/20"
+        />
+      </div>
 
       <Button
         type="submit"
         disabled={isSubmitting}
-        variant="glass"
-        className="w-full text-sm sm:text-base font-medium"
+        variant="senja-solid"
+        className="w-full cursor-pointer py-6 text-base font-semibold mt-2 shadow-[0_0_20px_-5px_rgba(231,182,124,0.3)] hover:shadow-[0_0_25px_-5px_rgba(231,182,124,0.5)] relative z-10"
       >
-        {isSubmitting ? "Joining..." : "Join Waitlist"}
+        {isSubmitting ? (
+          <span className="flex items-center gap-2">
+            <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+            Processing...
+          </span>
+        ) : (
+          "Secure Your Spot"
+        )}
       </Button>
     </form>
   );

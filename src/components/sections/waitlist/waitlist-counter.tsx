@@ -9,27 +9,32 @@ interface WaitlistCounterProps {
 
 export default function WaitlistCounter({ count }: WaitlistCounterProps) {
   return (
-    <SlideIn 
-      direction="left" 
-      distance={30} 
-      duration={0.6} 
+    <SlideIn
+      direction="left"
+      distance={30}
+      duration={0.6}
       amount={0.5}
-      className="text-center lg:text-left space-y-4 sm:space-y-5 md:space-y-6"
+      className="space-y-2"
     >
-      <SlideIn direction="up" distance={20} duration={0.8} delay={0.2} amount={0.5}>
-        <div className="flex items-center justify-center lg:justify-start gap-2">
+      <SlideIn
+        direction="up"
+        distance={20}
+        duration={0.8}
+        delay={0.2}
+        amount={0.5}
+      >
+        <div className="flex items-center gap-2">
           <CountUp
             value={count}
             delay={0.5}
             duration={2}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#e7b67c] dark:text-gray-100"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-[#e7b67c] to-[#b38855] leading-tight tracking-tighter"
           />
         </div>
-        <p className="mt-3 sm:mt-4 md:mt-5 text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-[#e7b67c] dark:text-[#d0dce6] mb-2 sm:mb-3 md:mb-4">
-          Users on Waitlist
+        <p className="text-base sm:text-lg md:text-xl font-medium text-neutral-500 tracking-wide uppercase">
+          People waiting for access
         </p>
-      </SlideIn>  
+      </SlideIn>
     </SlideIn>
   );
 }
-
