@@ -6,3 +6,5 @@ export { VerifiedBadge } from "./verified-badge";
 export { JoinDiscordCTA } from "./join-discord-cta";
 export { StepsIndicator } from "./steps-indicator";
 export { LoadingState } from "./loading-state";
+export { WaitlistSuccessState } from "./success-state";
+export { FormInput } from "./form-input";

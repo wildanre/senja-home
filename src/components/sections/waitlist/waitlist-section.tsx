@@ -22,7 +22,8 @@ export default function WaitlistSection({ initialAuth }: WaitlistSectionProps) {
       </div>
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 pointer-events-none" />
 
-      <div className="w-full lg:w-1/2 relative z-10 py-12 px-6 sm:px-12 md:px-16 flex items-center justify-center min-h-[40vh] lg:min-h-screen border-b lg:border-b-0 lg:border-r border-white/5">
+      {/* Content Side - Hidden on mobile */}
+      <div className="hidden lg:flex w-full lg:w-1/2 relative z-10 py-12 px-6 sm:px-12 md:px-16 items-center justify-center min-h-[40vh] lg:min-h-screen border-b lg:border-b-0 lg:border-r border-white/5">
         <div className="max-w-xl mx-auto w-full space-y-10">
           <SlideIn direction="left" distance={40} duration={0.8}>
             <div className="space-y-6">
@@ -39,7 +40,8 @@ export default function WaitlistSection({ initialAuth }: WaitlistSectionProps) {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 relative z-10 py-12 px-6 sm:px-12 md:px-16 flex items-center justify-center min-h-[60vh] lg:min-h-screen bg-black/20 backdrop-blur-sm">
+      {/* Form Side - Full width on mobile */}
+      <div className="w-full lg:w-1/2 relative z-10 py-8 lg:py-12 px-4 sm:px-6 md:px-12 lg:px-16 flex items-center justify-center min-h-screen bg-black/20 backdrop-blur-sm">
         <div className="w-full max-w-md">
           <WaitlistForm initialAuth={initialAuth} />
         </div>
