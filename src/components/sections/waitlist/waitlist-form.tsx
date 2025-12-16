@@ -42,7 +42,9 @@ async function submitWaitlist(data: WaitlistFormData) {
   return result;
 }
 
-export default function WaitlistForm({ initialAuth }: WaitlistFormProps) {
+export default function WaitlistForm({
+  initialAuth: _initialAuth,
+}: WaitlistFormProps) {
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
   const { user, isAuthenticated, loading, login, checkAuth } = useAuth();
@@ -75,7 +77,7 @@ export default function WaitlistForm({ initialAuth }: WaitlistFormProps) {
 
   const waitlistMutation = useMutation({
     mutationFn: submitWaitlist,
-    onSuccess: (data) => {
+    onSuccess: (_data) => {
       toast.success("Welcome aboard!", {
         description: "You've been added to the waitlist.",
       });

@@ -1,4 +1,5 @@
 import { FaDiscord } from "react-icons/fa";
+import Image from "next/image";
 
 interface VerifiedBadgeProps {
   username: string;
@@ -15,10 +16,13 @@ export function VerifiedBadge({
     <div className="relative z-10 flex items-center gap-3 p-3 rounded-lg bg-[#5865F2]/10 border border-[#5865F2]/20">
       <div className="w-10 h-10 bg-[#5865F2] rounded-full flex items-center justify-center overflow-hidden">
         {avatar ? (
-          <img
+          <Image
             src={`https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png?size=128`}
             alt={username}
+            width={128}
+            height={128}
             className="w-full h-full object-cover"
+            unoptimized
           />
         ) : (
           <FaDiscord className="w-5 h-5 text-white" />

@@ -3,7 +3,6 @@
 import { SlideIn } from "@/components/ui/motion";
 import { Dither } from "@/components/ui/background";
 import { desktopDitherConfig } from "@/components/sections/hero/hero-data";
-import WaitlistCounter from "./waitlist-counter";
 import WaitlistForm from "./waitlist-form";
 import type { AuthStatus } from "@/lib/server-auth";
 

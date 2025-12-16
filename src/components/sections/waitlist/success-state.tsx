@@ -1,4 +1,5 @@
 import { FaDiscord } from "react-icons/fa";
+import Image from "next/image";
 import { JoinDiscordCTA } from "./join-discord-cta";
 
 interface SuccessStateProps {
@@ -26,10 +27,13 @@ export function WaitlistSuccessState({ user }: SuccessStateProps) {
       <div className="relative z-10 flex items-center gap-3 p-2.5 sm:p-3 rounded-lg bg-[#5865F2]/10 border border-[#5865F2]/20">
         <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#5865F2] rounded-full flex items-center justify-center overflow-hidden">
           {user.discordAvatar ? (
-            <img
+            <Image
               src={`https://cdn.discordapp.com/avatars/${user.discordId}/${user.discordAvatar}.png?size=128`}
               alt={user.discordUsername}
+              width={128}
+              height={128}
               className="w-full h-full object-cover"
+              unoptimized
             />
           ) : (
             <FaDiscord className="w-6 h-6 text-white" />
