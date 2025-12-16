@@ -1,0 +1,48 @@
+import { FaDiscord } from "react-icons/fa";
+
+interface VerifiedBadgeProps {
+  username: string;
+  avatar: string | null;
+  discordId: string;
+}
+
+export function VerifiedBadge({
+  username,
+  avatar,
+  discordId,
+}: VerifiedBadgeProps) {
+  return (
+    <div className="relative z-10 flex items-center gap-3 p-3 rounded-lg bg-[#5865F2]/10 border border-[#5865F2]/20">
+      <div className="w-10 h-10 bg-[#5865F2] rounded-full flex items-center justify-center overflow-hidden">
+        {avatar ? (
+          <img
+            src={`https://cdn.discordapp.com/avatars/${discordId}/${avatar}.png?size=128`}
+            alt={username}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <FaDiscord className="w-5 h-5 text-white" />
+        )}
+      </div>
+      <div className="flex-1">
+        <p className="text-sm font-medium text-white">@{username}</p>
+        <p className="text-xs text-green-400 flex items-center gap-1">
+          <svg
+            className="w-3 h-3"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          Verified
+        </p>
+      </div>
+    </div>
+  );
+}

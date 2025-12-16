@@ -1,21 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL ;
+
 export async function GET(_request: NextRequest) {
   try {
-    const backendUrl = process.env.BACKEND_URL;
-    if (!backendUrl) {
-      return NextResponse.json(
-        { success: false, error: "Backend URL not configured" },
-        { status: 500 }
-      );
-    }
-
-    // Fetch from backend
-    const response = await fetch(`${backendUrl}/api/waitlist`, {
+    // Proxy to backend
+    const response = await fetch(`${BACKEND_URL}/api/waitlist`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       cache: "no-store", // Disable cache for fresh data
     });
 
@@ -62,19 +58,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const backendUrl = process.env.BACKEND_URL;
-    if (!backendUrl) {
-      return NextResponse.json(
-        { success: false, error: "Backend URL not configured" },
-        { status: 500 }
-      );
-    }
-
-    // Forward to backend
-    const response = await fetch(`${backendUrl}/api/waitlist`, {
+    // Forward to backend with session cookie
+    const response = await fetch(`${BACKEND_URL}/api/waitlist`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        // Forward cookies from the request
+        Cookie: request.headers.get("cookie") || "",
       },
       body: JSON.stringify({ name, email }),
     });
