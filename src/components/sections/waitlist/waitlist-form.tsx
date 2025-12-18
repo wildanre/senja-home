@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { FaDiscord } from "react-icons/fa";
@@ -46,34 +46,50 @@ export default function WaitlistForm({
   initialAuth: _initialAuth,
 }: WaitlistFormProps) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const { user, isAuthenticated, loading, login, checkAuth } = useAuth();
   const [formData, setFormData] = useState({ email: "", address: "" });
 
+  const authStatus = searchParams.get("auth");
+  const registered = searchParams.get("registered");
+
+  // In dev, React StrictMode can run effects more than once. Also, router.replace + refetch can cause rerenders
+  // while the query param is still present. Guard toasts so they only fire once per param value.
+  const handledRef = useRef<{ auth?: string | null; registered?: string | null }>({
+    auth: undefined,
+    registered: undefined,
+  });
+
   useEffect(() => {
-    const authStatus = searchParams.get("auth");
-    const registered = searchParams.get("registered");
+    if (authStatus && handledRef.current.auth !== authStatus) {
+      handledRef.current.auth = authStatus;
 
-    if (authStatus === "success") {
-      toast.success("Discord verified!", {
-        description: "Now fill in your details to complete registration.",
-      });
-      checkAuth();
-      window.history.replaceState({}, "", "/waitlist");
-    } else if (authStatus === "failed") {
-      toast.error("Discord Error", {
-        description: "Failed to connect Discord. Please try again.",
-      });
-      window.history.replaceState({}, "", "/waitlist");
+      if (authStatus === "success") {
+        toast.success("Discord verified!", {
+          description: "Now fill in your details to complete registration.",
+        });
+        checkAuth();
+        router.replace("/waitlist");
+      } else if (authStatus === "failed") {
+        toast.error("Discord Error", {
+          description: "Failed to connect Discord. Please try again.",
+        });
+        router.replace("/waitlist");
+      }
     }
 
-    if (registered === "true") {
-      toast.success("Registration complete!", {
-        description: "You're now on the waitlist!",
-      });
-      window.history.replaceState({}, "", "/waitlist");
+    if (registered && handledRef.current.registered !== registered) {
+      handledRef.current.registered = registered;
+
+      if (registered === "true") {
+        toast.success("Registration complete!", {
+          description: "You're now on the waitlist!",
+        });
+        router.replace("/waitlist");
+      }
     }
-  }, [searchParams, checkAuth]);
+  }, [authStatus, registered, checkAuth, router]);
 
   const waitlistMutation = useMutation({
     mutationFn: submitWaitlist,
@@ -85,8 +101,8 @@ export default function WaitlistForm({
       // Invalidate and refetch auth status to update user data
       queryClient.invalidateQueries({ queryKey: ["auth-status"] });
 
-      // Redirect
-      window.location.href = "/waitlist?registered=true";
+      // Redirect (client-side navigation; avoids full reload)
+      router.replace("/waitlist?registered=true");
     },
     onError: (error: Error) => {
       toast.error("Unable to join", {

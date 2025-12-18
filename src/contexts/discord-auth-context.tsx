@@ -52,8 +52,8 @@ export function DiscordAuthProvider({
   const { data, isLoading, refetch } = useQuery<AuthStatus>({
     queryKey: ["auth-status"],
     queryFn: fetchAuthStatus,
-    staleTime: 60 * 1000,
-    gcTime: 5 * 60 * 1000,
+    staleTime: 10 * 60 * 1000, // 10 minutes
+    gcTime: 15 * 60 * 1000,
     retry: 1,
     initialData,
   });
