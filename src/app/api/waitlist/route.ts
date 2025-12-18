@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL ;
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-export async function GET(_request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    // Proxy to backend
+    // Proxy to backend with authentication cookies
     const response = await fetch(`${BACKEND_URL}/api/waitlist`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        // Forward cookies from the request to backend
+        Cookie: request.headers.get("cookie") || "",
       },
-      credentials: "include",
       cache: "no-store", // Disable cache for fresh data
     });
 
@@ -40,11 +40,11 @@ export async function GET(_request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email } = body;
+    const { address, email } = body;
 
-    if (!name || !email) {
+    if (!address || !email) {
       return NextResponse.json(
-        { success: false, error: "Name and email are required" },
+        { success: false, error: "Wallet address and email are required" },
         { status: 400 }
       );
     }
@@ -58,6 +58,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Wallet address validation (Ethereum format: 0x + 40 hex characters)
+    const addressRegex = /^0x[a-fA-F0-9]{40}$/;
+    if (!addressRegex.test(address)) {
+      return NextResponse.json(
+        { success: false, error: "Invalid wallet address format" },
+        { status: 400 }
+      );
+    }
+
     // Forward to backend with session cookie
     const response = await fetch(`${BACKEND_URL}/api/waitlist`, {
       method: "POST",
@@ -66,7 +75,7 @@ export async function POST(request: NextRequest) {
         // Forward cookies from the request
         Cookie: request.headers.get("cookie") || "",
       },
-      body: JSON.stringify({ name, email }),
+      body: JSON.stringify({ address, email }),
     });
 
     if (!response.ok) {

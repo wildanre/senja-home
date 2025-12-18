@@ -9,6 +9,15 @@ const fetchWaitlistData = async (): Promise<WaitlistUser[]> => {
       cache: "no-store",
     });
 
+    // Handle 401 - Authentication required
+    if (response.status === 401) {
+      // Redirect to admin login page
+      if (typeof window !== "undefined") {
+        window.location.href = "/admin/login";
+      }
+      throw new Error("Authentication required. Redirecting to login...");
+    }
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(errorData.error || "Failed to load waitlist data");

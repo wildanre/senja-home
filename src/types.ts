@@ -82,7 +82,7 @@ export interface EmailFormData {
 
 export interface WaitlistUser {
   id: string;
-  name: string;
+  address: string;
   email: string;
   createdAt: string;
 }
