@@ -82,7 +82,7 @@ export interface EmailFormData {
 
 export interface WaitlistUser {
   id: string;
-  name: string;
+  address: string;
   email: string;
   createdAt: string;
 }
@@ -134,4 +134,23 @@ export interface OrbitSizes {
   outerRadius: number;
   innerRadius: number;
   iconSize: number;
+}
+
+// Discord Integration
+
+export interface DiscordUser {
+  id: string;
+  username: string;
+  discriminator: string;
+  globalName: string | null;
+  avatar: string | null;
+  email?: string;
+}
+
+export interface DiscordTokenResponse {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  refresh_token: string;
+  scope: string;
 }

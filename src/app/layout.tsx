@@ -8,11 +8,11 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { BackgroundWrapper } from "@/components/ui/background";
-import { AuthProvider } from "@/contexts/auth-context";
+import { AuthProvider } from "@/contexts/discord-auth-context";
 import { Toaster } from "sonner";
 import QueryProvider from "@/components/providers/query-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

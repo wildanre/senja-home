@@ -75,10 +75,12 @@ const createColumns = (): ColumnDef<WaitlistUser>[] => [
     size: ROW_NUMBER_COLUMN_SIZE,
   },
   {
-    accessorKey: "name",
-    header: ({ column }) => <SortableHeader column={column} label="Name" />,
+    accessorKey: "address",
+    header: ({ column }) => (
+      <SortableHeader column={column} label="Wallet Address" />
+    ),
     cell: ({ getValue }) => (
-      <div className="font-medium text-gray-900 dark:text-white">
+      <div className="font-medium text-gray-900 dark:text-white font-mono text-sm">
         {getValue() as string}
       </div>
     ),

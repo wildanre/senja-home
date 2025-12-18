@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useAuth } from '@/contexts/auth-context';
-import { ReactNode } from 'react';
-import { LoadingSpinner } from '@/components/ui/loading';
+import { useAuth } from "@/contexts/auth-context";
+import { ReactNode } from "react";
+import { LoadingSpinner } from "@/components/ui/loading";
 
 interface AdminGuardProps {
   children: ReactNode;

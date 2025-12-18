@@ -17,10 +17,10 @@ export default function WaitlistActions({
     if (users.length === 0) return;
 
     // Create CSV content
-    const headers = ["No", "Name", "Email", "Registration Date"];
+    const headers = ["No", "Wallet Address", "Email", "Registration Date"];
     const rows = users.map((user, index) => [
       index + 1,
-      user.name,
+      user.address,
       user.email,
       new Date(user.createdAt).toLocaleString(),
     ]);
