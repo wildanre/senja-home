@@ -10,32 +10,30 @@ export function StepsIndicator() {
       {steps.map((step) => (
         <div
           key={step.number}
-          className={`flex items-center gap-3 p-3 rounded-lg ${
+          className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
             step.active
-              ? "bg-[#5865F2]/10 border-[#5865F2]/30"
-              : "bg-white/5 border-white/5"
+              ? "bg-[#e7b67c]/10 border-[#e7b67c]/30"
+              : "bg-white/5 border-white/10 opacity-50"
           } border`}
         >
           <div
-            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium ${
+            className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 ${
               step.active
-                ? "bg-[#5865F2] text-white"
-                : "bg-white/10 text-neutral-500"
+                ? "bg-[#e7b67c] text-[#120a06]"
+                : "bg-white/10 text-neutral-600"
             }`}
           >
             {step.number}
           </div>
           <span
-            className={`text-sm ${
-              step.active ? "text-white font-medium" : "text-neutral-500"
+            className={`text-sm font-medium flex-1 ${
+              step.active ? "text-white" : "text-neutral-500"
             }`}
           >
             {step.label}
           </span>
           {step.active && (
-            <span className="ml-auto text-xs text-[#5865F2] uppercase tracking-wider">
-              Current
-            </span>
+            <span className="text-xs text-[#e7b67c] font-medium">Active</span>
           )}
         </div>
       ))}
