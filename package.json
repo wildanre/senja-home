@@ -12,6 +12,7 @@
     "@base-org/account": "^2.5.1",
     "@coinbase/wallet-sdk": "^4.3.7",
     "@metamask/sdk": "^0.34.0",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@rainbow-me/rainbowkit": "^2.2.10",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.0",

@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { FaDiscord } from "react-icons/fa";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount } from "wagmi";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/discord-auth-context";
 import { LoadingState } from "./loading-state";
@@ -15,6 +13,8 @@ import { useWalletMutation } from "@/hooks/useWalletMutation";
 import { useWaitlistMutation } from "@/hooks/useWaitlistMutation";
 import { useWaitlistStatus } from "@/hooks/useWaitlistStatus";
 import Image from "next/image";
+import { useConnection } from "wagmi";
+import { CustomWalletButton } from "@/providers/wallet-custom";
 
 interface WaitlistFormProps {
   initialAuth: AuthStatus;
@@ -28,7 +28,7 @@ export default function WaitlistForm({
   const searchParams = useSearchParams();
   const router = useRouter();
   const { user, isAuthenticated, loading, login, checkAuth } = useAuth();
-  const { address, isConnected } = useAccount();
+  const { address, isConnected } = useConnection();
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [currentWallet, setCurrentWallet] = useState<string | undefined>(
     user?.walletAddress || undefined
@@ -333,68 +333,7 @@ export default function WaitlistForm({
           )}
         </div>
 
-        {!isWalletDone ? (
-          <ConnectButton.Custom>
-            {({ openConnectModal, mounted }) => {
-              const ready = mounted;
-
-              return (
-                <button
-                  onClick={openConnectModal}
-                  disabled={!isInGuild || !ready}
-                  className="flex-1 flex items-center justify-between group disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <span className="text-sm font-medium text-white">
-                    Connect Wallet
-                  </span>
-                  <svg
-                    className="w-5 h-5 text-[#e7b67c] group-hover:scale-110 transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                    />
-                  </svg>
-                </button>
-              );
-            }}
-          </ConnectButton.Custom>
-        ) : (
-          <ConnectButton.Custom>
-            {({ openAccountModal, mounted }) => {
-              const ready = mounted;
-
-              return (
-                <div className="flex-1 flex items-center justify-between">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-white font-mono truncate">
-                      {currentWallet
-                        ? `${currentWallet.slice(0, 6)}...${currentWallet.slice(
-                            -4
-                          )}`
-                        : "Connecting..."}
-                    </p>
-                    <p className="text-xs text-[#e7b67c]">
-                      {isWalletFromCache ? "Wallet Cached" : "Wallet Connected"}
-                    </p>
-                  </div>
-                  <button
-                    onClick={openAccountModal}
-                    disabled={!ready}
-                    className="ml-3 px-3 py-1.5 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Change
-                  </button>
-                </div>
-              );
-            }}
-          </ConnectButton.Custom>
-        )}
+        <CustomWalletButton cachedWallet={currentWallet} />
       </div>
 
       {/* Complete Registration Button */}
