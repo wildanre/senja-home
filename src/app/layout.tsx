@@ -11,6 +11,7 @@ import { BackgroundWrapper } from "@/components/ui/background";
 import { AuthProvider } from "@/contexts/discord-auth-context";
 import { Toaster } from "sonner";
 import QueryProvider from "@/components/providers/query-provider";
+import { WalletProvider } from "@/providers/wallet-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -175,9 +176,11 @@ export default function RootLayout({
           }}
         />
         <QueryProvider>
-          <AuthProvider>
-            <BackgroundWrapper>{children}</BackgroundWrapper>
-          </AuthProvider>
+          <WalletProvider>
+            <AuthProvider>
+              <BackgroundWrapper>{children}</BackgroundWrapper>
+            </AuthProvider>
+          </WalletProvider>
         </QueryProvider>
         <SpeedInsights />
         <Analytics />

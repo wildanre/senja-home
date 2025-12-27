@@ -11,6 +11,8 @@ interface User {
   discordAvatar: string | null;
   email: string | null;
   walletAddress: string | null;
+  discordGuilds?: string[]; // Array of guild IDs user is a member of
+  isOnWaitlist?: boolean; // Whether user has completed waitlist registration
 }
 
 interface AuthStatus {

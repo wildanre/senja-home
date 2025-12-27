@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { WaitlistSection } from "@/components/sections/waitlist";
 import { getServerAuthStatus } from "@/lib/server-auth";
+import { CustomWalletButton } from "@/providers/wallet-custom";
 
 function WaitlistLoading() {
   return (

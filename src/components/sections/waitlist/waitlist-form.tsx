@@ -2,72 +2,64 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { FaDiscord } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/discord-auth-context";
-import { VerifiedBadge } from "./verified-badge";
-import { JoinDiscordCTA } from "./join-discord-cta";
-import { StepsIndicator } from "./steps-indicator";
 import { LoadingState } from "./loading-state";
-import { WaitlistSuccessState } from "./success-state";
-import { FormInput } from "./form-input";
 import type { AuthStatus } from "@/lib/server-auth";
-import { config } from "@/lib/config";
+import { useGuildMembership } from "@/hooks/useGuildMembership";
+import { useWalletMutation } from "@/hooks/useWalletMutation";
+import { useWaitlistMutation } from "@/hooks/useWaitlistMutation";
+import { useWaitlistStatus } from "@/hooks/useWaitlistStatus";
+import Image from "next/image";
+import { useConnection } from "wagmi";
+import { CustomWalletButton } from "@/providers/wallet-custom";
 
 interface WaitlistFormProps {
   initialAuth: AuthStatus;
 }
 
-interface WaitlistFormData {
-  email: string;
-  address: string;
-}
-
-async function submitWaitlist(data: WaitlistFormData) {
-  const response = await fetch(`${config.backendUrl}/api/waitlist`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify(data),
-  });
-
-  const result = await response.json();
-
-  if (!response.ok || !result.success) {
-    throw new Error(result.error || "Failed to join waitlist");
-  }
-
-  return result;
-}
+const DISCORD_INVITE_URL = "https://discord.gg/83RPu9KQ";
 
 export default function WaitlistForm({
   initialAuth: _initialAuth,
 }: WaitlistFormProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const queryClient = useQueryClient();
   const { user, isAuthenticated, loading, login, checkAuth } = useAuth();
-  const [formData, setFormData] = useState({ email: "", address: "" });
+  const { address, isConnected } = useConnection();
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [currentWallet, setCurrentWallet] = useState<string | undefined>(
+    user?.walletAddress || undefined
+  );
+  const [isWalletFromCache, setIsWalletFromCache] = useState(false);
 
-  const authStatus = searchParams.get("auth");
-  const registered = searchParams.get("registered");
+  const handledAuthRef = useRef<string | null>(null);
 
-  // In dev, React StrictMode can run effects more than once. Also, router.replace + refetch can cause rerenders
-  // while the query param is still present. Guard toasts so they only fire once per param value.
-  const handledRef = useRef<{ auth?: string | null; registered?: string | null }>({
-    auth: undefined,
-    registered: undefined,
-  });
+  // Initialize wallet from cached DB value
+  useEffect(() => {
+    if (user?.walletAddress && !currentWallet) {
+      setCurrentWallet(user.walletAddress);
+      setIsWalletFromCache(true);
+    }
+  }, [user?.walletAddress]);
+
+  const walletMutation = useWalletMutation();
+  const { isInGuild, refetchGuildCheck } = useGuildMembership();
+  const waitlistMutation = useWaitlistMutation();
+  const { data: waitlistStatus, refetch: refetchWaitlistStatus } =
+    useWaitlistStatus();
 
   useEffect(() => {
-    if (authStatus && handledRef.current.auth !== authStatus) {
-      handledRef.current.auth = authStatus;
+    const authStatus = searchParams.get("auth");
+
+    if (authStatus && handledAuthRef.current !== authStatus) {
+      handledAuthRef.current = authStatus;
 
       if (authStatus === "success") {
         toast.success("Discord verified!", {
-          description: "Now fill in your details to complete registration.",
+          description: "Step 1 complete. Now connect your wallet.",
         });
         checkAuth();
         router.replace("/waitlist");
@@ -78,176 +70,315 @@ export default function WaitlistForm({
         router.replace("/waitlist");
       }
     }
+  }, [searchParams, checkAuth, router]);
 
-    if (registered && handledRef.current.registered !== registered) {
-      handledRef.current.registered = registered;
+  useEffect(() => {
+    if (address && address !== currentWallet && isAuthenticated) {
+      setCurrentWallet(address);
+      setIsWalletFromCache(false);
+      walletMutation.mutate({ address });
 
-      if (registered === "true") {
-        toast.success("Registration complete!", {
-          description: "You're now on the waitlist!",
+      if (currentWallet) {
+        toast.info("Wallet updated", {
+          description: `Now using ${address.slice(0, 6)}...${address.slice(
+            -4
+          )}`,
         });
-        router.replace("/waitlist");
       }
+    } else if (!address && currentWallet && !isWalletFromCache) {
+      setCurrentWallet(undefined);
     }
-  }, [authStatus, registered, checkAuth, router]);
+  }, [
+    address,
+    isAuthenticated,
+    currentWallet,
+    isWalletFromCache,
+    walletMutation,
+  ]);
 
-  const waitlistMutation = useMutation({
-    mutationFn: submitWaitlist,
-    onSuccess: (_data) => {
-      toast.success("Welcome aboard!", {
-        description: "You've been added to the waitlist.",
-      });
+  const isDiscordDone = isAuthenticated && !!user;
+  const isWalletDone = (isConnected && !!address) || !!currentWallet;
+  const isOnWaitlist =
+    waitlistStatus?.isOnWaitlist || waitlistMutation.isSuccess || hasSubmitted;
+  const canComplete =
+    isDiscordDone && isInGuild && isWalletDone && !isOnWaitlist;
 
-      // Invalidate and refetch auth status to update user data
-      queryClient.invalidateQueries({ queryKey: ["auth-status"] });
+  const handleComplete = () => {
+    if (!user?.discordId) return;
 
-      // Redirect (client-side navigation; avoids full reload)
-      router.replace("/waitlist?registered=true");
-    },
-    onError: (error: Error) => {
-      toast.error("Unable to join", {
-        description: error.message || "Please try again shortly.",
-      });
-    },
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!formData.email || !formData.address) {
-      toast.error("Missing information", {
-        description: "Please fill in all fields to continue.",
-      });
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast.error("Invalid email address", {
-        description: "Please enter a valid email address.",
-      });
-      return;
-    }
-
-    const addressRegex = /^0x[a-fA-F0-9]{40}$/;
-    if (
-      !addressRegex.test(formData.address) ||
-      formData.address.length !== 42
-    ) {
-      toast.error("Invalid wallet address", {
-        description: "Please enter a valid Ethereum wallet address.",
-      });
-      return;
-    }
-
-    const sanitizedData = {
-      email: formData.email.trim().toLowerCase(),
-      address: formData.address.trim(),
-    };
-
-    waitlistMutation.mutate(sanitizedData);
+    waitlistMutation.mutate(
+      {
+        discordId: user.discordId,
+      },
+      {
+        onSuccess: () => {
+          setHasSubmitted(true);
+          refetchWaitlistStatus(); // Refresh waitlist status from backend
+        },
+      }
+    );
   };
 
-  if (loading) return <LoadingState />;
-
-  // Check if user already registered (has both email and walletAddress)
-  if (isAuthenticated && user && user.email && user.walletAddress) {
-    return <WaitlistSuccessState user={user} />;
+  if (loading) {
+    return <LoadingState />;
   }
 
-  if (isAuthenticated && user) {
-    return (
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4 bg-white/5 backdrop-blur-md p-6 sm:p-8 lg:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden group"
+  // Users stay on the same page, no redirect to success state
+
+  return (
+    <div className="space-y-4 bg-white/5 backdrop-blur-md p-6 sm:p-8 lg:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+      <div className="relative z-10 text-center space-y-2 mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-white">
+          Join the Waitlist
+        </h2>
+        <p className="text-sm text-neutral-400">
+          Complete all steps below to secure your spot
+        </p>
+      </div>
+
+      {/* Step 1: Discord - Shows button or verified badge */}
+      <div
+        className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
+          isDiscordDone
+            ? "bg-[#e7b67c]/10 border-[#e7b67c]/30"
+            : "bg-white/5 border-white/10"
+        } border`}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-        <VerifiedBadge
-          username={user.discordUsername}
-          avatar={user.discordAvatar}
-          discordId={user.discordId}
-        />
-
-        <JoinDiscordCTA />
-
-        <div className="relative z-10 text-center py-2">
-          <h3 className="text-base sm:text-lg font-medium text-white">
-            Complete Your Registration
-          </h3>
-          <p className="text-xs sm:text-sm text-neutral-400">
-            Fill in your details below
-          </p>
+        <div
+          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 flex-shrink-0 ${
+            isDiscordDone
+              ? "bg-[#e7b67c] text-[#120a06]"
+              : "bg-white/10 text-neutral-600"
+          }`}
+        >
+          {isDiscordDone ? (
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          ) : (
+            "1"
+          )}
         </div>
 
-        <FormInput
-          id="email"
-          label="Email Address"
-          type="email"
-          placeholder="your@email.com"
-          value={formData.email}
-          onChange={(val) =>
-            setFormData({ ...formData, email: val.toLowerCase() })
-          }
-          disabled={waitlistMutation.isPending}
-        />
+        {!isDiscordDone ? (
+          <button
+            onClick={login}
+            className="flex-1 flex items-center justify-between group"
+          >
+            <span className="text-sm font-medium text-white">
+              Verify Discord
+            </span>
+            <FaDiscord className="w-5 h-5 text-[#5865F2] group-hover:scale-110 transition-transform" />
+          </button>
+        ) : (
+          <div className="flex items-center gap-3 flex-1">
+            <div className="w-8 h-8 bg-[#5865F2] rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
+              {user?.discordAvatar ? (
+                <Image
+                  src={`https://cdn.discordapp.com/avatars/${user.discordId}/${user.discordAvatar}.png?size=128`}
+                  alt={user.discordUsername}
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-cover"
+                  unoptimized
+                />
+              ) : (
+                <FaDiscord className="w-4 h-4 text-white" />
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-white truncate">
+                @{user?.discordUsername}
+              </p>
+              <p className="text-xs text-[#e7b67c]">Discord Verified</p>
+            </div>
+          </div>
+        )}
+      </div>
 
-        <FormInput
-          id="address"
-          label="Wallet Address"
-          type="text"
-          placeholder="0x..."
-          value={formData.address}
-          onChange={(val) => setFormData({ ...formData, address: val })}
-          disabled={waitlistMutation.isPending}
-          helpText="Must be a valid Ethereum address (42 characters)"
-          className="font-mono"
-        />
+      {/* Step 2: Join Discord Channel */}
+      <div
+        className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
+          isInGuild
+            ? "bg-[#e7b67c]/10 border-[#e7b67c]/30"
+            : isDiscordDone
+            ? "bg-white/5 border-white/10"
+            : "bg-white/5 border-white/10 opacity-50"
+        } border`}
+      >
+        <div
+          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 ${
+            isInGuild
+              ? "bg-[#e7b67c] text-[#120a06]"
+              : "bg-white/10 text-neutral-600"
+          }`}
+        >
+          {isInGuild ? (
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          ) : (
+            "2"
+          )}
+        </div>
 
+        {!isInGuild ? (
+          <div className="flex-1 space-y-2">
+            <a
+              href={DISCORD_INVITE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between group"
+            >
+              <span className="text-sm font-medium text-white">
+                Join Discord Channel
+              </span>
+              <svg
+                className="w-5 h-5 text-[#e7b67c] group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+            <button
+              onClick={async () => {
+                const { data: freshData } = await refetchGuildCheck();
+
+                if (freshData?.isMember) {
+                  toast.success("Verified!", {
+                    description: "You've joined the Discord server!",
+                  });
+                } else {
+                  toast.error("Not verified", {
+                    description: "Please join the Discord server first.",
+                  });
+                }
+              }}
+              disabled={!isDiscordDone}
+              className="w-full px-3 py-2 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Verify Channel Membership
+            </button>
+          </div>
+        ) : (
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-white">Discord Member</p>
+            <p className="text-xs text-[#e7b67c]">Server Joined</p>
+          </div>
+        )}
+      </div>
+
+      {/* Step 3: Wallet - Shows button or verified badge */}
+      <div
+        className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
+          isWalletDone
+            ? "bg-[#e7b67c]/10 border-[#e7b67c]/30"
+            : isInGuild
+            ? "bg-white/5 border-white/10"
+            : "bg-white/5 border-white/10 opacity-50"
+        } border`}
+      >
+        <div
+          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 flex-shrink-0 ${
+            isWalletDone
+              ? "bg-[#e7b67c] text-[#120a06]"
+              : "bg-white/10 text-neutral-600"
+          }`}
+        >
+          {isWalletDone ? (
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          ) : (
+            "3"
+          )}
+        </div>
+
+        <CustomWalletButton cachedWallet={currentWallet} />
+      </div>
+
+      {/* Complete Registration Button */}
+      <div className="relative z-10 pt-2">
         <Button
-          type="submit"
-          disabled={waitlistMutation.isPending}
-          variant="senja-solid"
-          className="w-full cursor-pointer py-4 sm:py-6 text-sm sm:text-base font-semibold mt-2 shadow-[0_0_20px_-5px_rgba(231,182,124,0.3)] hover:shadow-[0_0_25px_-5px_rgba(231,182,124,0.5)] relative z-10"
+          onClick={handleComplete}
+          disabled={!canComplete || waitlistMutation.isPending || isOnWaitlist}
+          variant={isOnWaitlist ? "default" : "senja-solid"}
+          className={`w-full py-6 text-base font-semibold transition-all duration-300 ${
+            isOnWaitlist
+              ? "bg-[#e7b67c]/20 border-[#e7b67c] text-[#e7b67c] cursor-default hover:bg-[#e7b67c]/20"
+              : "shadow-[0_0_20px_-5px_rgba(231,182,124,0.3)] hover:shadow-[0_0_25px_-5px_rgba(231,182,124,0.5)]"
+          } disabled:opacity-50 disabled:cursor-not-allowed`}
         >
           {waitlistMutation.isPending ? (
             <span className="flex items-center gap-2">
               <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-              Processing...
+              Completing...
+            </span>
+          ) : isOnWaitlist ? (
+            <span className="flex items-center gap-2">
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              You're on Waitlist
             </span>
           ) : (
-            "Join Waitlist"
+            "Complete Registration"
           )}
         </Button>
-      </form>
-    );
-  }
-
-  return (
-    <div className="space-y-6 bg-white/5 backdrop-blur-md p-8 sm:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden group">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#5865F2]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-      <div className="relative z-10 text-center space-y-3">
-        <div className="w-16 h-16 mx-auto bg-[#5865F2]/10 rounded-full flex items-center justify-center border border-[#5865F2]/20">
-          <FaDiscord className="w-8 h-8 text-[#5865F2]" />
-        </div>
-        <h3 className="text-xl font-semibold text-white">Join the Waitlist</h3>
-        <p className="text-sm text-neutral-400">
-          Verify with Discord to continue registration
-        </p>
-      </div>
-
-      <StepsIndicator />
-
-      <div className="relative z-10 pt-2">
-        <button
-          onClick={login}
-          className="w-full px-6 py-6 bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 group/btn relative overflow-hidden"
-        >
-          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-700" />
-          <FaDiscord className="w-5 h-5" />
-          <span>Verify with Discord</span>
-        </button>
+        {!canComplete && !isOnWaitlist && (
+          <p className="text-xs text-neutral-500 text-center mt-2">
+            Complete all steps above to join the waitlist
+          </p>
+        )}
       </div>
     </div>
   );
