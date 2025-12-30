@@ -14,6 +14,7 @@ import QueryProvider from "@/components/providers/query-provider";
 import { WalletProvider } from "@/providers/wallet-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { LaunchVideoModal } from "@/components/launch-video-modal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -182,6 +183,7 @@ export default function RootLayout({
             </AuthProvider>
           </WalletProvider>
         </QueryProvider>
+        <LaunchVideoModal />
         <SpeedInsights />
         <Analytics />
       </body>
