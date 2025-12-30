@@ -1,3 +1,5 @@
+"use client";
+
 import { AnimatedText } from "@/components/ui/text";
 import { heroContent } from "./hero-data";
 import Image from "next/image";
@@ -79,7 +81,7 @@ export default function HeroHeader() {
 
       {/* Join Waitlist Button */}
       <div
-        className={`animate-fade-in-delayed-button mt-7 lg:mt-20 lg:absolute lg:-left-4 lg:top-80 xl:-left-6 transition-opacity duration-300 ${
+        className={`animate-fade-in-delayed-button mt-16 lg:mt-32 lg:absolute lg:-left-4 lg:top-80 xl:-left-6 transition-opacity duration-300 ${
           isNavigating ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -88,6 +90,7 @@ export default function HeroHeader() {
           size="senja-lg"
           onClick={handleNavigate}
           disabled={isNavigating}
+          className="cursor-pointer hover:cursor-pointer"
         >
           {heroContent.buttonText}
         </Button>

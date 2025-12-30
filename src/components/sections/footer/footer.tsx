@@ -5,9 +5,9 @@ export default function Footer() {
     <footer className="relative py-16 md:py-20 overflow-hidden min-h-[600px] w-full flex justify-center">
       <div className="relative w-full">
         {/* Large SENJA Background Text with Fade Effect */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none">
+        <div className="absolute bottom-0 left-[53.3%] -translate-x-1/2 pointer-events-none">
           <div
-            className="text-[10rem] md:text-[16rem] lg:text-[20rem] xl:text-[24rem] 2xl:text-[28rem] font-black leading-none select-none whitespace-nowrap"
+            className="text-[7rem] md:text-[16rem] lg:text-[20rem] xl:text-[24rem] 2xl:text-[28rem] font-black leading-none select-none whitespace-nowrap"
             style={{
               color: "rgba(200, 200, 200, 0.15)",
               letterSpacing: "0.2em",
