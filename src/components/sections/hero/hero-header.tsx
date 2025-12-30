@@ -3,10 +3,22 @@
 import { AnimatedText } from "@/components/ui/text";
 import { heroContent } from "./hero-data";
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function HeroHeader() {
+  const router = useRouter();
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  const handleNavigate = () => {
+    setIsNavigating(true);
+    // Add small delay for fade out animation
+    setTimeout(() => {
+      router.push("/waitlist");
+    }, 300);
+  };
+
   return (
     <div className="space-y-8 lg:space-y-6 relative lg:min-h-72 lg:-left-36 xl:-left-40">
       {/* Logo and Brand name - Side by side on mobile */}
@@ -66,14 +78,21 @@ export default function HeroHeader() {
         stagger={0.08}
         duration={0.6}
       />
-      
+
       {/* Join Waitlist Button */}
-      <div className="animate-fade-in-delayed-button mt-7 lg:mt-20 lg:absolute lg:-left-4 lg:top-80 xl:-left-6">
-        <Link href="/waitlist">
-          <Button variant="senja" size="senja-lg">
-            {heroContent.buttonText}
-          </Button>
-        </Link>
+      <div
+        className={`animate-fade-in-delayed-button mt-7 lg:mt-20 lg:absolute lg:-left-4 lg:top-80 xl:-left-6 transition-opacity duration-300 ${
+          isNavigating ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <Button
+          variant="senja"
+          size="senja-lg"
+          onClick={handleNavigate}
+          disabled={isNavigating}
+        >
+          {heroContent.buttonText}
+        </Button>
       </div>
     </div>
   );

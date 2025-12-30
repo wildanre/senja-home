@@ -15,6 +15,7 @@ import { WalletProvider } from "@/providers/wallet-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { LaunchVideoModal } from "@/components/launch-video-modal";
+import { PageTransition } from "@/components/page-transition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -179,7 +180,9 @@ export default function RootLayout({
         <QueryProvider>
           <WalletProvider>
             <AuthProvider>
-              <BackgroundWrapper>{children}</BackgroundWrapper>
+              <BackgroundWrapper>
+                <PageTransition>{children}</PageTransition>
+              </BackgroundWrapper>
             </AuthProvider>
           </WalletProvider>
         </QueryProvider>
