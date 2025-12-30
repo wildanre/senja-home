@@ -175,7 +175,7 @@ export default function WaitlistForm({
         {!isDiscordDone ? (
           <button
             onClick={login}
-            className="flex-1 flex items-center justify-between group"
+            className="flex-1 flex items-center justify-between group cursor-pointer"
           >
             <span className="text-sm font-medium text-white">
               Verify Discord

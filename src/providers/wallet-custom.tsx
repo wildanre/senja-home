@@ -95,7 +95,7 @@ export const CustomWalletButton = ({
                     <button
                       onClick={openAccountModal}
                       type="button"
-                      className="px-3 py-1.5 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 flex-shrink-0"
+                      className="px-3 py-1.5 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 flex-shrink-0 cursor-pointer"
                     >
                       Change
                     </button>
@@ -118,7 +118,7 @@ export const CustomWalletButton = ({
                     <button
                       onClick={openConnectModal}
                       type="button"
-                      className="px-3 py-1.5 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 flex-shrink-0"
+                      className="px-3 py-1.5 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 flex-shrink-0 cursor-pointer"
                     >
                       Change
                     </button>
