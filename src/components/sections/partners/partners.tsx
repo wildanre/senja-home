@@ -15,7 +15,7 @@ const PartnerCard = ({
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { amount: 0.3 });
 
-  return (
+  const content = (
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -28,7 +28,8 @@ const PartnerCard = ({
       className="flex items-center justify-center p-8 md:p-12 border-r border-b border-[#E7B67C]/15
                  [&:nth-child(3n)]:border-r-0
                  [&:nth-last-child(-n+3)]:border-b-0
-                 min-h-[120px] md:min-h-[160px]"
+                 min-h-[120px] md:min-h-[160px]
+                 group"
     >
       {partner.logo && (
         <div className="relative w-full h-16 flex items-center justify-center">
@@ -37,7 +38,8 @@ const PartnerCard = ({
             alt={partner.name}
             width={150}
             height={60}
-            className="object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
+            className="object-contain grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 
+                       transition-all duration-300 group-hover:scale-110 group-hover:brightness-110"
             style={{
               maxWidth: partner.name === "DragonSwap" ? "140%" : "100%",
               height: "auto",
@@ -47,6 +49,22 @@ const PartnerCard = ({
       )}
     </motion.div>
   );
+
+  // If partner has href, wrap in link
+  if (partner.href) {
+    return (
+      <a
+        href={partner.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="cursor-pointer"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 };
 
 export default function Partners() {

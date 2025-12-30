@@ -27,12 +27,11 @@ export default function WaitlistSection({ initialAuth }: WaitlistSectionProps) {
           <SlideIn direction="left" distance={40} duration={0.8}>
             <div className="space-y-6">
               <h2 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[0.9]">
-                Join the <br />
-                <span className="text-[#e7b67c]">Revolution</span>
+                Get<br />
+                <span className="text-[#e7b67c]">Early Access</span>
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-neutral-400 leading-relaxed max-w-lg font-light">
-                Secure your spot in the future of decentralized finance.
-                Experience permissionless lending and borrowing with Senja.
+                Be first to access permissionless cross-chain lending with Senja.
               </p>
             </div>
           </SlideIn>

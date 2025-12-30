@@ -134,7 +134,7 @@ export default function WaitlistForm({
           Join the Waitlist
         </h2>
         <p className="text-sm text-neutral-400">
-          Complete all steps below to secure your spot
+          Be first to access permissionless cross-chain lending with Senja.
         </p>
       </div>
 

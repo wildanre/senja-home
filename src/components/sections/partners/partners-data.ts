@@ -5,10 +5,32 @@ export interface PartnerItem {
 }
 
 export const partnersData: PartnerItem[] = [
-  { name: "Kaia Chain", logo: "/partners/kaialogofull.svg" },
-  { name: "LayerZero", logo: "/partners/LayerZero_logo.svg" },
-  { name: "DragonSwap", logo: "/partners/dragonswaplogo.png" },
-  { name: "Orakl Network", logo: "/partners/orakllogofull.svg" },
-  { name: "IDRX", logo: "/partners/idrxlogotg.webp" },
-  { name: "Stargate", logo: "/partners/stargatelogotg.svg" },
+  {
+    name: "Kaia Chain",
+    logo: "/partners/kaialogofull.svg",
+    href: "https://kaia.io",
+  },
+  {
+    name: "LayerZero",
+    logo: "/partners/LayerZero_logo.svg",
+    href: "https://layerzero.network",
+  },
+  {
+    name: "DragonSwap",
+    logo: "/partners/dragonswaplogo.png",
+    href: "https://dgswap.io",
+  },
+  {
+    name: "Orakl Network",
+    logo: "/partners/orakllogofull.svg",
+    href: "https://orakl.network",
+  },
+  { name: "IDRX", 
+    logo: "/partners/idrxlogotg.webp", 
+    href: "https://idrx.co" },
+  {
+    name: "Stargate",
+    logo: "/partners/stargatelogotg.svg",
+    href: "https://stargate.finance",
+  },
 ];
