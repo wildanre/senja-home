@@ -3,6 +3,8 @@
 import { AnimatedText } from "@/components/ui/text";
 import { heroContent } from "./hero-data";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function HeroHeader() {
   return (
@@ -51,6 +53,11 @@ export default function HeroHeader() {
           opacity: 0;
           animation: fade-in-up 0.6s ease-out 2.7s forwards;
         }
+
+        :global(.animate-fade-in-delayed-button) {
+          opacity: 0;
+          animation: fade-in-up 0.6s ease-out 3.4s forwards;
+        }
       `}</style>
       <AnimatedText
         text={heroContent.title}
@@ -59,6 +66,15 @@ export default function HeroHeader() {
         stagger={0.08}
         duration={0.6}
       />
+      
+      {/* Join Waitlist Button */}
+      <div className="animate-fade-in-delayed-button mt-7 lg:mt-20 lg:absolute lg:-left-4 lg:top-80 xl:-left-6">
+        <Link href="/waitlist">
+          <Button variant="senja" size="senja-lg">
+            {heroContent.buttonText}
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

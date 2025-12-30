@@ -286,7 +286,7 @@ export default function WaitlistForm({
               disabled={!isDiscordDone}
               className="w-full px-3 py-2 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Verify Channel Membership
+              Verify
             </button>
           </div>
         ) : (
@@ -371,7 +371,7 @@ export default function WaitlistForm({
               You're on Waitlist
             </span>
           ) : (
-            "Complete Registration"
+            "Join Waitlist"
           )}
         </Button>
         {!canComplete && !isOnWaitlist && (
