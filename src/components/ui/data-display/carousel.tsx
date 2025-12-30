@@ -108,7 +108,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     : "text-sm md:text-base text-white/90 dark:text-[#d0dce6] leading-relaxed";
 
   return (
-    <div className="[perspective:1200px] [transform-style:preserve-3d]">
+    <div className="perspective-distant transform-3d">
       <li
         ref={slideRef}
         className={slideClasses}
@@ -163,7 +163,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
           </div>
           
           {current === index && (
-            <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20 dark:to-transparent transition-all duration-1000 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-r from-white/5 to-transparent dark:from-gray-900/20 dark:to-transparent transition-all duration-1000 pointer-events-none" />
           )}
         </div>
       </li>

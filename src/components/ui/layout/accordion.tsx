@@ -21,7 +21,7 @@ export default function Accordion({
 
   return (
     <motion.div 
-      className="mb-8 bg-gradient-to-r from-white/5 to-transparent dark:from-gray-900/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+      className="mb-8 bg-linear-to-r from-white/5 to-transparent dark:from-gray-900/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -29,7 +29,7 @@ export default function Accordion({
     >
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between p-6 text-left transition-all duration-300 hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent dark:hover:from-gray-900/20 dark:hover:to-transparent ${titleClassName}`}
+        className={`w-full flex items-center justify-between p-6 text-left transition-all duration-300 hover:bg-linear-to-r hover:from-white/10 hover:to-transparent dark:hover:from-gray-900/20 dark:hover:to-transparent ${titleClassName}`}
         whileHover={{ x: 4 }}
         whileTap={{ scale: 0.98 }}
       >
@@ -44,7 +44,7 @@ export default function Accordion({
             ease: "easeInOut",
             scale: { duration: 0.2 }
           }}
-          className="flex-shrink-0 ml-4"
+          className="shrink-0 ml-4"
         >
           <div className="relative">
             <motion.div
@@ -76,7 +76,7 @@ export default function Accordion({
             }}
             className="overflow-hidden"
           >
-            <div className={`p-6 pt-2 bg-gradient-to-b from-transparent to-white/5 dark:to-gray-900/20 ${contentClassName}`}>
+            <div className={`p-6 pt-2 bg-linear-to-b from-transparent to-white/5 dark:to-gray-900/20 ${contentClassName}`}>
               {children}
             </div>
           </motion.div>

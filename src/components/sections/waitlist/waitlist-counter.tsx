@@ -28,7 +28,7 @@ export default function WaitlistCounter({ count }: WaitlistCounterProps) {
             value={count}
             delay={0.5}
             duration={2}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-[#e7b67c] to-[#b38855] leading-tight tracking-tighter"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-clip-text text-transparent bg-linear-to-b from-senja-primary to-[#b38855] leading-tight tracking-tighter"
           />
         </div>
         <p className="text-base sm:text-lg md:text-xl font-medium text-neutral-500 tracking-wide uppercase">

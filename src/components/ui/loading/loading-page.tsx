@@ -34,7 +34,7 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black overflow-hidden ${
+      className={`fixed inset-0 z-9999 flex items-center justify-center bg-black overflow-hidden ${
         fadeOut ? 'animate-slide-up' : ''
       }`}
     >

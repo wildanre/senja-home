@@ -19,7 +19,7 @@ export default function WaitlistSection({ initialAuth }: WaitlistSectionProps) {
       <div className="absolute inset-0 z-0 opacity-40">
         <Dither {...desktopDitherConfig} />
       </div>
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-black/20 to-black/80 pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-transparent via-black/20 to-black/80 pointer-events-none" />
 
       {/* Content Side - Hidden on mobile */}
       <div className="hidden lg:flex w-full lg:w-1/2 relative z-10 py-12 px-6 sm:px-12 md:px-16 items-center justify-center min-h-[40vh] lg:min-h-screen border-b lg:border-b-0 lg:border-r border-white/5">
@@ -28,7 +28,7 @@ export default function WaitlistSection({ initialAuth }: WaitlistSectionProps) {
             <div className="space-y-6">
               <h2 className="font-hero text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[0.9]">
                 Get<br />
-                <span className="text-[#e7b67c]">Early Access</span>
+                <span className="text-senja-primary">Early Access</span>
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-neutral-400 leading-relaxed max-w-lg font-light">
                 Be first to access permissionless cross-chain lending with Senja.

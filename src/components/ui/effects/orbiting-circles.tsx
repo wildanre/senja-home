@@ -59,7 +59,7 @@ export function OrbitingCircles({
               } as React.CSSProperties
             }
             className={cn(
-              `animate-orbit absolute flex size-[var(--icon-size)] transform-gpu items-center justify-center z-10`,
+              `animate-orbit absolute flex size-(--icon-size) transform-gpu items-center justify-center z-10`,
               className
             )}
             {...props}

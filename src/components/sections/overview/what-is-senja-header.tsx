@@ -6,7 +6,7 @@ export default function WhatIsSenjaHeader() {
   return (
     <>
       <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-        <h2 className="font-hero text-4xl sm:text-5xl md:text-4xl lg:text-6xl font-normal text-left mb-6 md:mb-8 text-[#e7b67c] leading-tight tracking-tight max-w-[90%] sm:max-w-[85%] lg:max-w-none">
+        <h2 className="font-hero text-4xl sm:text-5xl md:text-4xl lg:text-6xl font-normal text-left mb-6 md:mb-8 text-senja-primary leading-tight tracking-tight max-w-[90%] sm:max-w-[85%] lg:max-w-none">
           Why design a protocol for <br></br> cross-chain borrowing?
         </h2>
       </SlideIn>

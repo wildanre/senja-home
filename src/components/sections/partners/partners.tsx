@@ -25,9 +25,9 @@ const PartnerCard = ({
           : { opacity: 0, y: 30, scale: 0.95 }
       }
       transition={{ delay: index * 0.08, duration: 0.6, ease: "easeOut" }}
-      className="flex items-center justify-center p-8 md:p-12 border-r border-b border-[#E7B67C]/15
-                 [&:nth-child(3n)]:border-r-0
-                 [&:nth-last-child(-n+3)]:border-b-0
+      className="flex items-center justify-center p-8 md:p-12 border-r border-b border-senja-primary/15
+                 nth-[3n]:border-r-0
+                 nth-last-[-n+3]:border-b-0
                  min-h-[120px] md:min-h-[160px]
                  group"
     >
@@ -82,7 +82,7 @@ export default function Partners() {
             isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
           }
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-hero text-3xl md:text-4xl lg:text-5xl font-normal text-[#e7b67c] text-center mb-16"
+          className="font-hero text-3xl md:text-4xl lg:text-5xl font-normal text-senja-primary text-center mb-16"
         >
           Integrated With
         </motion.h2>

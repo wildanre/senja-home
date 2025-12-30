@@ -117,7 +117,7 @@ export default function StickyBottomText() {
                 : "opacity-100 translate-y-0"
             }`}
           >
-            <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+            <div className="mb-4 text-xs uppercase tracking-[0.35em] text-senja-primary/80">
               <TypingAnimation
                 text="incubated by Kaia Chain"
                 delay={2.6}
@@ -146,7 +146,7 @@ export default function StickyBottomText() {
           >
             {textState === "second" && (
               <>
-                <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+                <div className="mb-4 text-xs uppercase tracking-[0.35em] text-senja-primary/80">
                   <TypingAnimation
                     text="Cross-Chain by Design"
                     delay={0.2}
@@ -190,7 +190,7 @@ export default function StickyBottomText() {
                       : "opacity-100 relative"
                   }`}
                 >
-                  <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-[#e7b67c]/80">
+                  <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-senja-primary/80">
                     <TypingAnimation
                       text="incubated by Kaia Chain"
                       delay={2.6}
@@ -220,7 +220,7 @@ export default function StickyBottomText() {
                 >
                   {textState === "second" && (
                     <>
-                      <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-[#e7b67c]/80">
+                      <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-senja-primary/80">
                         <TypingAnimation
                           text="Cross-Chain by Design"
                           delay={0.2}

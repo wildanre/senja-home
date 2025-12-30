@@ -6,7 +6,7 @@ import Supports from "../supports";
 
 export default function ChainOrbit() {
   return (
-    <div className="relative h-full w-full bg-black text-[#e7b67c]">
+    <div className="relative h-full w-full bg-black text-senja-primary/70">
       {/* Desktop Layout - Content Only */}
       <div className="hidden lg:flex h-full w-full items-center justify-center">
         <ScaleIn
@@ -28,7 +28,7 @@ export default function ChainOrbit() {
           {/* Header Text */}
           <div className="flex flex-col items-center text-center gap-4">
             <SlideIn direction="down" distance={30} duration={0.6} amount={0.5}>
-              <h2 className="text-sm uppercase tracking-[0.35em] text-[#e7b67c]/80 font-normal">
+              <h2 className="text-sm uppercase tracking-[0.35em] text-senja-primary/80 font-normal">
                 Powered by Senja
               </h2>
             </SlideIn>

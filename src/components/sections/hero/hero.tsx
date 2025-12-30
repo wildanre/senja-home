@@ -7,7 +7,7 @@ import { mobileDitherConfig } from "./hero-data";
 
 export default function Hero() {
   return (
-    <div className="relative h-full w-full bg-black text-[#e7b67c]">
+    <div className="relative h-full w-full bg-black text-senja-primary">
       {/* Desktop Layout - Content Only */}
       <div className="hidden lg:flex h-full w-full">
         <div className="flex flex-col items-start justify-center gap-10 pl-60 pr-12 py-28">
@@ -20,7 +20,7 @@ export default function Hero() {
           <Dither {...mobileDitherConfig} />
         </div>
 
-        <div className="absolute inset-0 z-[1] bg-black/70" />
+        <div className="absolute inset-0 z-1 bg-black/70" />
 
         <div className="relative z-10 flex w-full flex-col items-start gap-10 px-4 sm:px-6">
           <HeroHeader />

@@ -9,12 +9,12 @@ import { useAuth } from "@/contexts/discord-auth-context";
 import { LoadingState } from "./loading-state";
 import type { AuthStatus } from "@/lib/server-auth";
 import { useGuildMembership } from "@/hooks/useGuildMembership";
-import { useWalletMutation } from "@/hooks/useWalletMutation";
 import { useWaitlistMutation } from "@/hooks/useWaitlistMutation";
 import { useWaitlistStatus } from "@/hooks/useWaitlistStatus";
 import Image from "next/image";
-import { useConnection } from "wagmi";
 import { CustomWalletButton } from "@/providers/wallet-custom";
+import WaitlistCountdown from "./waitlist-countdown";
+import { config } from "@/lib/config";
 
 interface WaitlistFormProps {
   initialAuth: AuthStatus;
@@ -28,24 +28,10 @@ export default function WaitlistForm({
   const searchParams = useSearchParams();
   const router = useRouter();
   const { user, isAuthenticated, loading, login, checkAuth } = useAuth();
-  const { address, isConnected } = useConnection();
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [currentWallet, setCurrentWallet] = useState<string | undefined>(
-    user?.walletAddress || undefined
-  );
-  const [isWalletFromCache, setIsWalletFromCache] = useState(false);
 
   const handledAuthRef = useRef<string | null>(null);
 
-  // Initialize wallet from cached DB value
-  useEffect(() => {
-    if (user?.walletAddress && !currentWallet) {
-      setCurrentWallet(user.walletAddress);
-      setIsWalletFromCache(true);
-    }
-  }, [user?.walletAddress]);
-
-  const walletMutation = useWalletMutation();
   const { isInGuild, refetchGuildCheck } = useGuildMembership();
   const waitlistMutation = useWaitlistMutation();
   const { data: waitlistStatus, refetch: refetchWaitlistStatus } =
@@ -59,7 +45,7 @@ export default function WaitlistForm({
 
       if (authStatus === "success") {
         toast.success("Discord verified!", {
-          description: "Step 1 complete. Now connect your wallet.",
+          description: "Step 1 complete. Now join Discord and connect wallet.",
         });
         checkAuth();
         router.replace("/waitlist");
@@ -72,36 +58,20 @@ export default function WaitlistForm({
     }
   }, [searchParams, checkAuth, router]);
 
-  useEffect(() => {
-    if (address && address !== currentWallet && isAuthenticated) {
-      setCurrentWallet(address);
-      setIsWalletFromCache(false);
-      walletMutation.mutate({ address });
-
-      if (currentWallet) {
-        toast.info("Wallet updated", {
-          description: `Now using ${address.slice(0, 6)}...${address.slice(
-            -4
-          )}`,
-        });
-      }
-    } else if (!address && currentWallet && !isWalletFromCache) {
-      setCurrentWallet(undefined);
-    }
-  }, [
-    address,
-    isAuthenticated,
-    currentWallet,
-    isWalletFromCache,
-    walletMutation,
-  ]);
-
   const isDiscordDone = isAuthenticated && !!user;
-  const isWalletDone = (isConnected && !!address) || !!currentWallet;
+  const isGuildDone = isDiscordDone && isInGuild;
+  // Wallet is only shown when Discord session is active
+  const walletAddress = isDiscordDone ? user?.walletAddress : null;
+  const isWalletDone = isDiscordDone && !!walletAddress;
   const isOnWaitlist =
     waitlistStatus?.isOnWaitlist || waitlistMutation.isSuccess || hasSubmitted;
+  // Can complete only if all required fields are filled (email + walletAddress)
   const canComplete =
-    isDiscordDone && isInGuild && isWalletDone && !isOnWaitlist;
+    isDiscordDone &&
+    isGuildDone &&
+    !!user?.email &&
+    !!user?.walletAddress &&
+    !isOnWaitlist;
 
   const handleComplete = () => {
     if (!user?.discordId) return;
@@ -123,17 +93,27 @@ export default function WaitlistForm({
     return <LoadingState />;
   }
 
+  // Check if waitlist has launched
+  const now = Date.now();
+  const launchTime = new Date(config.waitlistLaunchDate).getTime();
+  const hasLaunched = now >= launchTime;
+
+  // Show countdown if not launched yet
+  if (!hasLaunched) {
+    return <WaitlistCountdown launchDate={config.waitlistLaunchDate} />;
+  }
+
   // Users stay on the same page, no redirect to success state
 
   return (
     <div className="space-y-4 bg-white/5 backdrop-blur-md p-6 sm:p-8 lg:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       <div className="relative z-10 text-center space-y-2 mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-white">
+        <h2 className="text-xl sm:text-2xl font-bold text-senja-primary">
           Join the Waitlist
         </h2>
-        <p className="text-sm text-neutral-400">
+        <p className="text-sm text-senja-primary/50">
           Be first to access permissionless cross-chain lending with Senja.
         </p>
       </div>
@@ -142,14 +122,14 @@ export default function WaitlistForm({
       <div
         className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
           isDiscordDone
-            ? "bg-[#e7b67c]/10 border-[#e7b67c]/30"
+            ? "bg-senja-primary/10 border-senja-primary/30"
             : "bg-white/5 border-white/10"
         } border`}
       >
         <div
-          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 flex-shrink-0 ${
+          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 shrink-0 ${
             isDiscordDone
-              ? "bg-[#e7b67c] text-[#120a06]"
+              ? "bg-senja-primary text-[#120a06]"
               : "bg-white/10 text-neutral-600"
           }`}
         >
@@ -184,7 +164,7 @@ export default function WaitlistForm({
           </button>
         ) : (
           <div className="flex items-center gap-3 flex-1">
-            <div className="w-8 h-8 bg-[#5865F2] rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
+            <div className="w-8 h-8 bg-[#5865F2] rounded-full flex items-center justify-center overflow-hidden shrink-0">
               {user?.discordAvatar ? (
                 <Image
                   src={`https://cdn.discordapp.com/avatars/${user.discordId}/${user.discordAvatar}.png?size=128`}
@@ -202,7 +182,7 @@ export default function WaitlistForm({
               <p className="text-sm font-medium text-white truncate">
                 @{user?.discordUsername}
               </p>
-              <p className="text-xs text-[#e7b67c]">Discord Verified</p>
+              <p className="text-xs text-senja-primary">Discord Verified</p>
             </div>
           </div>
         )}
@@ -212,16 +192,16 @@ export default function WaitlistForm({
       <div
         className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
           isInGuild
-            ? "bg-[#e7b67c]/10 border-[#e7b67c]/30"
+            ? "bg-senja-primary/10 border-senja-primary/30"
             : isDiscordDone
             ? "bg-white/5 border-white/10"
             : "bg-white/5 border-white/10 opacity-50"
         } border`}
       >
         <div
-          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0 ${
+          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold shrink-0 ${
             isInGuild
-              ? "bg-[#e7b67c] text-[#120a06]"
+              ? "bg-senja-primary text-[#120a06]"
               : "bg-white/10 text-neutral-600"
           }`}
         >
@@ -256,7 +236,7 @@ export default function WaitlistForm({
                 Join Discord Channel
               </span>
               <svg
-                className="w-5 h-5 text-[#e7b67c] group-hover:translate-x-1 transition-transform"
+                className="w-5 h-5 text-senja-primary group-hover:translate-x-1 transition-transform"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -284,7 +264,7 @@ export default function WaitlistForm({
                 }
               }}
               disabled={!isDiscordDone}
-              className="w-full px-3 py-2 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 text-xs font-medium text-senja-primary hover:text-white border border-senja-primary/30 hover:border-senja-primary hover:bg-senja-primary/10 rounded-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Verify
             </button>
@@ -292,7 +272,7 @@ export default function WaitlistForm({
         ) : (
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-white">Discord Member</p>
-            <p className="text-xs text-[#e7b67c]">Server Joined</p>
+            <p className="text-xs text-senja-primary">Server Joined</p>
           </div>
         )}
       </div>
@@ -301,16 +281,16 @@ export default function WaitlistForm({
       <div
         className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
           isWalletDone
-            ? "bg-[#e7b67c]/10 border-[#e7b67c]/30"
+            ? "bg-senja-primary/10 border-senja-primary/30"
             : isInGuild
             ? "bg-white/5 border-white/10"
             : "bg-white/5 border-white/10 opacity-50"
         } border`}
       >
         <div
-          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 flex-shrink-0 ${
+          className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-200 shrink-0 ${
             isWalletDone
-              ? "bg-[#e7b67c] text-[#120a06]"
+              ? "bg-senja-primary text-[#120a06]"
               : "bg-white/10 text-neutral-600"
           }`}
         >
@@ -333,7 +313,10 @@ export default function WaitlistForm({
           )}
         </div>
 
-        <CustomWalletButton cachedWallet={currentWallet} />
+        <CustomWalletButton
+          cachedWallet={walletAddress || undefined}
+          isDisabled={!isInGuild}
+        />
       </div>
 
       {/* Complete Registration Button */}
@@ -344,7 +327,7 @@ export default function WaitlistForm({
           variant={isOnWaitlist ? "default" : "senja-solid"}
           className={`w-full py-6 text-base font-semibold transition-all duration-300 ${
             isOnWaitlist
-              ? "bg-[#e7b67c]/20 border-[#e7b67c] text-[#e7b67c] cursor-default hover:bg-[#e7b67c]/20"
+              ? "bg-senja-primary/20 border-senja-primary text-senja-primary cursor-default hover:bg-senja-primary/20"
               : "shadow-[0_0_20px_-5px_rgba(231,182,124,0.3)] hover:shadow-[0_0_25px_-5px_rgba(231,182,124,0.5)]"
           } disabled:opacity-50 disabled:cursor-not-allowed`}
         >
@@ -368,7 +351,7 @@ export default function WaitlistForm({
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              You're on Waitlist
+              You&apos;re on Waitlist
             </span>
           ) : (
             "Join Waitlist"

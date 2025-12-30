@@ -21,7 +21,7 @@ function truncateAddress(address: string | null): string {
 export function WaitlistSuccessState({ user }: SuccessStateProps) {
   return (
     <div className="space-y-4 sm:space-y-5 bg-white/5 backdrop-blur-md p-6 sm:p-8 lg:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#e7b67c]/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-senja-primary/10 to-transparent pointer-events-none" />
 
       {/* Discord Profile Badge */}
       <div className="relative z-10 flex items-center gap-3 p-2.5 sm:p-3 rounded-lg bg-[#5865F2]/10 border border-[#5865F2]/20">
@@ -63,7 +63,7 @@ export function WaitlistSuccessState({ user }: SuccessStateProps) {
       </div>
 
       <div className="relative z-10 text-center space-y-4">
-        <div className="w-20 h-20 mx-auto bg-gradient-to-br from-[#e7b67c] to-[#d4a574] rounded-full flex items-center justify-center shadow-lg shadow-[#e7b67c]/20">
+        <div className="w-20 h-20 mx-auto bg-linear-to-br from-senja-primary to-[#d4a574] rounded-full flex items-center justify-center shadow-lg shadow-senja-primary/20">
           <svg
             className="w-10 h-10 text-black"
             fill="none"
@@ -85,7 +85,7 @@ export function WaitlistSuccessState({ user }: SuccessStateProps) {
           </h3>
           <p className="text-neutral-400">
             Welcome back,{" "}
-            <span className="text-[#e7b67c] font-medium">
+            <span className="text-senja-primary font-medium">
               @{user.discordUsername}
             </span>
           </p>

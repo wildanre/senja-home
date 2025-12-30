@@ -9,7 +9,7 @@ export function JoinDiscordCTA() {
         href={DISCORD_INVITE_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-3 p-3 rounded-lg bg-[#e7b67c]/10 hover:bg-[#e7b67c]/20 border border-[#e7b67c]/30 transition-all duration-200 group/discord"
+        className="flex items-center justify-center gap-3 p-3 rounded-lg bg-senja-primary/10 hover:bg-senja-primary/20 border border-senja-primary/30 transition-all duration-200 group/discord"
       >
         <div className="w-8 h-8 rounded-full bg-[#5865F2] flex items-center justify-center">
           <FaDiscord className="w-5 h-5 text-white" />
@@ -18,7 +18,7 @@ export function JoinDiscordCTA() {
           Join Our Discord Server
         </span>
         <svg
-          className="w-4 h-4 text-[#e7b67c] group-hover/discord:translate-x-1 transition-transform"
+          className="w-4 h-4 text-senja-primary group-hover/discord:translate-x-1 transition-transform"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

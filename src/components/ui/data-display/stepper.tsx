@@ -147,7 +147,7 @@ export default function Stepper({
               {!isLastStep && (
                 <button
                   onClick={handleNext}
-                  className="duration-350 flex items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 dark:from-[#3b82f6] dark:to-[#1d4ed8] py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:opacity-90 active:opacity-80"
+                  className="duration-350 flex items-center justify-center rounded-full bg-linear-to-br from-yellow-400 to-amber-500 dark:from-[#3b82f6] dark:to-[#1d4ed8] py-1.5 px-3.5 font-medium tracking-tight text-white transition hover:opacity-90 active:opacity-80"
                   {...nextButtonProps}
                 >
                   {nextButtonText}
@@ -280,7 +280,7 @@ function StepIndicator({ step, currentStep, onClickStep, disableStepIndicators =
           complete: { scale: 1, backgroundColor: '#FF7043', color: '#FF5722' }
         }}
         transition={{ duration: 0.3 }}
-        className="flex h-8 w-8 items-center justify-center rounded-full font-semibold dark:[&[style*='background']]:!bg-[#3b82f6]"
+        className="flex h-8 w-8 items-center justify-center rounded-full font-semibold dark:[[style*='background']]:bg-[#3b82f6]!"
       >
         {status === 'complete' ? (
           <CheckIcon className="h-4 w-4 text-white" />
@@ -307,7 +307,7 @@ function StepConnector({ isComplete }: StepConnectorProps) {
   return (
     <div className="relative mx-2 h-0.5 flex-1 overflow-hidden rounded bg-neutral-300 dark:bg-neutral-600">
       <motion.div
-        className="absolute left-0 top-0 h-full dark:!bg-[#3b82f6]"
+        className="absolute left-0 top-0 h-full dark:bg-[#3b82f6]!"
         variants={lineVariants}
         initial={false}
         animate={isComplete ? 'complete' : 'incomplete'}

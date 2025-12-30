@@ -5,10 +5,12 @@ import { Wallet } from "lucide-react";
 
 interface CustomWalletButtonProps {
   cachedWallet?: string;
+  isDisabled?: boolean;
 }
 
 export const CustomWalletButton = ({
   cachedWallet,
+  isDisabled = false,
 }: CustomWalletButtonProps) => {
   return (
     <ConnectButton.Custom>
@@ -41,7 +43,36 @@ export const CustomWalletButton = ({
             className="flex-1"
           >
             {(() => {
-              // If wallet is actively connected via RainbowKit
+              // Prioritize cachedWallet - only show wallet if it exists (Discord session active)
+              // If no cachedWallet, always show connect button (even if RainbowKit is connected)
+
+              if (!cachedWallet) {
+                // No wallet from API (Discord session expired or not set yet)
+                return (
+                  <button
+                    onClick={isDisabled ? undefined : openConnectModal}
+                    type="button"
+                    disabled={isDisabled}
+                    className={`w-full flex items-center justify-between group rounded-md p-3 transition-all duration-200 ${
+                      isDisabled
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-senja-primary/10 cursor-pointer"
+                    }`}
+                  >
+                    <span className="text-sm font-medium text-white">
+                      Connect Wallet
+                    </span>
+                    <Wallet
+                      className={`w-4 h-4 text-senja-primary ${
+                        !isDisabled && "group-hover:scale-110"
+                      } transition-transform`}
+                    />
+                  </button>
+                );
+              }
+
+              // cachedWallet exists - show wallet address
+              // Check if actively connected for chain info
               if (connected) {
                 if (chain.unsupported) {
                   return (
@@ -69,75 +100,39 @@ export const CustomWalletButton = ({
                 }
 
                 return (
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex-1 min-w-0 flex items-center gap-3">
-                      {chain.hasIcon && chain.iconUrl && (
-                        <div
-                          className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0"
-                          style={{ background: chain.iconBackground }}
-                        >
-                          <Image
-                            alt={chain.name ?? "Chain icon"}
-                            src={chain.iconUrl}
-                            width={32}
-                            height={32}
-                            className="w-full h-full"
-                          />
-                        </div>
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-white font-mono truncate">
-                          {account.displayName}
-                        </p>
-                        <p className="text-xs text-[#e7b67c]">{chain.name}</p>
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    {chain.hasIcon && chain.iconUrl && (
+                      <div
+                        className="w-8 h-8 rounded-full overflow-hidden shrink-0"
+                        style={{ background: chain.iconBackground }}
+                      >
+                        <Image
+                          alt={chain.name ?? "Chain icon"}
+                          src={chain.iconUrl}
+                          width={32}
+                          height={32}
+                          className="w-full h-full"
+                        />
                       </div>
-                    </div>
-                    <button
-                      onClick={openAccountModal}
-                      type="button"
-                      className="px-3 py-1.5 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 flex-shrink-0 cursor-pointer"
-                    >
-                      Change
-                    </button>
-                  </div>
-                );
-              }
-
-              // If wallet exists in cache but not actively connected
-              if (cachedWallet) {
-                return (
-                  <div className="flex items-center justify-between gap-3">
+                    )}
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-white font-mono truncate">
-                        {`${cachedWallet.slice(0, 6)}...${cachedWallet.slice(
-                          -4
-                        )}`}
+                        {account.displayName}
                       </p>
-                      <p className="text-xs text-[#e7b67c]">Wallet Connected</p>
+                      <p className="text-xs text-senja-primary">{chain.name}</p>
                     </div>
-                    <button
-                      onClick={openConnectModal}
-                      type="button"
-                      className="px-3 py-1.5 text-xs font-medium text-[#e7b67c] hover:text-white border border-[#e7b67c]/30 hover:border-[#e7b67c] hover:bg-[#e7b67c]/10 rounded-md transition-all duration-200 flex-shrink-0 cursor-pointer"
-                    >
-                      Change
-                    </button>
                   </div>
                 );
               }
 
-              // No wallet connected and no cache
+              // cachedWallet exists but not actively connected
               return (
-                <button
-                  onClick={openConnectModal}
-                  type="button"
-                  className="w-full flex items-center justify-between group hover:bg-[#e7b67c]/10 transition-all duration-200 rounded-md p-3"
-                >
-                  <span className="text-sm font-medium text-white">
-                    Connect Wallet
-                  </span>
-                  <Wallet className="w-4 h-4 text-[#e7b67c] group-hover:scale-110 transition-transform" />
-                </button>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-white font-mono truncate">
+                    {`${cachedWallet.slice(0, 6)}...${cachedWallet.slice(-4)}`}
+                  </p>
+                  <p className="text-xs text-senja-primary">Wallet Connected</p>
+                </div>
               );
             })()}
           </div>

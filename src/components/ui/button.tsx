@@ -17,9 +17,9 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         senja:
-          "rounded-full border border-dashed border-[#e7b67c]/40 text-[#e7b67c] transition-all duration-300 hover:bg-[#e7b67c] hover:text-[#120a06] focus-visible:ring-[#e7b67c]/70 focus-visible:ring-offset-[#120a06] hover:scale-105 active:scale-95",
+          "rounded-full border border-dashed border-senja-primary/40 text-senja-primary transition-all duration-300 hover:bg-senja-primary hover:text-[#120a06] focus-visible:ring-senja-primary/70 focus-visible:ring-offset-[#120a06] hover:scale-105 active:scale-95",
         "senja-solid":
-          "rounded-full bg-[#e7b67c] text-[#120a06] hover:bg-[#e7b67c]/90 transition-all duration-300 hover:scale-105 active:scale-95",
+          "rounded-full bg-senja-primary text-[#120a06] hover:bg-senja-primary/90 transition-all duration-300 hover:scale-105 active:scale-95",
         glass:
           "bg-white/20 text-white hover:bg-white/30 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200",
       },

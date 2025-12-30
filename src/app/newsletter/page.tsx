@@ -7,15 +7,15 @@ import { newsletterItems } from "@/components/sections/newsletter/newsletter-dat
 
 export default function NewsletterPage() {
   return (
-    <div className="min-h-screen bg-black text-[#e7b67c] font-sans selection:bg-[#e7b67c] selection:text-black flex flex-col">
+    <div className="min-h-screen bg-black text-senja-primary font-sans selection:bg-senja-primary selection:text-black flex flex-col">
       <NewsletterHeader />
 
-      <main className="container mx-auto px-6 py-12 lg:py-20 flex-grow">
+      <main className="container mx-auto px-6 py-12 lg:py-20 grow">
         <div className="mb-20 text-center">
-          <h1 className="font-hero text-5xl md:text-7xl lg:text-8xl text-[#e7b67c] mb-6">
+          <h1 className="font-hero text-5xl md:text-7xl lg:text-8xl text-senja-primary mb-6">
             Newsletter
           </h1>
-          <p className="text-[#e7b67c]/70 text-lg md:text-xl max-w-2xl mx-auto font-light">
+          <p className="text-senja-primary/70 text-lg md:text-xl max-w-2xl mx-auto font-light">
             Stay updated with the latest news, developments, and insights from
             the Senja ecosystem.
           </p>

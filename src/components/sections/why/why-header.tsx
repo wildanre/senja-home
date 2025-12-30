@@ -14,7 +14,7 @@ export const WhyHeader = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="font-hero text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-[#e7b67c] leading-tight relative"
+        className="font-hero text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-normal text-senja-primary leading-tight relative"
         style={{ top: '40px' }}
       >
         What cross-chain lending has always needed but never had

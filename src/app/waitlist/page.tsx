@@ -6,7 +6,7 @@ import { CustomWalletButton } from "@/providers/wallet-custom";
 function WaitlistLoading() {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-[#e7b67c]/30 border-t-[#e7b67c] rounded-full animate-spin" />
+      <div className="w-8 h-8 border-2 border-senja-primary/30 border-t-senja-primary rounded-full animate-spin" />
     </div>
   );
 }

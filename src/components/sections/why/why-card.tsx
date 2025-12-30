@@ -39,19 +39,19 @@ export const WhyCard = ({
       }}
       className={cn(
         "group relative flex flex-col justify-between",
-        "border border-[#E7B67C]/20 rounded-2xl p-8 md:p-10",
+        "border border-senja-primary/20 rounded-2xl p-8 md:p-10",
         "h-full min-h-[320px] bg-black/40",
-        "hover:border-[#E7B67C]/50 transition-colors duration-300",
+        "hover:border-senja-primary/50 transition-colors duration-300",
         className
       )}
     >
       {/* Content */}
       <div className="space-y-6">
-        <h3 className="font-hero text-3xl font-normal text-[#E7B67C]">
+        <h3 className="font-hero text-3xl font-normal text-senja-primary">
           {title}
         </h3>
         <p
-          className="text-[#E7B67C]/70 leading-relaxed text-base md:text-lg"
+          className="text-senja-primary/70 leading-relaxed text-base md:text-lg"
           style={{ fontFamily: "'PP Neue Montreal', sans-serif" }}
         >
           {description}
@@ -59,7 +59,7 @@ export const WhyCard = ({
       </div>
 
       {/* Icon at bottom */}
-      <div className="mt-10 pt-6 border-t border-[#E7B67C]/10 flex justify-start opacity-60 group-hover:opacity-100 transition-opacity">
+      <div className="mt-10 pt-6 border-t border-senja-primary/10 flex justify-start opacity-60 group-hover:opacity-100 transition-opacity">
         <Image
           src={icon}
           alt={title}

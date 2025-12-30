@@ -59,7 +59,7 @@ export const StickyScroll = ({
 
   return (
     <div
-      className="hide-scrollbar relative flex h-[35rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
+      className="hide-scrollbar relative flex h-140 justify-center space-x-10 overflow-y-auto rounded-md p-10"
       ref={ref}
     >
       <div className="div relative flex items-start px-4">
@@ -94,7 +94,7 @@ export const StickyScroll = ({
               </motion.p>
             </div>
           ))}
-          <div className="h-[10rem]" />
+          <div className="h-40" />
         </div>
       </div>
       <div

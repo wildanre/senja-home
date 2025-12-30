@@ -13,13 +13,13 @@ export default function NewsletterHeader() {
             className="object-cover"
           />
         </div>
-        <span className="font-elegant text-2xl font-semibold italic text-[#e7b67c] group-hover:opacity-90 transition-opacity">
+        <span className="font-elegant text-2xl font-semibold italic text-senja-primary group-hover:opacity-90 transition-opacity">
           Senja
         </span>
       </Link>
       <Link
         href="/"
-        className="text-sm font-medium text-[#e7b67c]/80 hover:text-[#e7b67c] transition-colors"
+        className="text-sm font-medium text-senja-primary/80 hover:text-senja-primary transition-colors"
       >
         Back to Home
       </Link>

@@ -63,7 +63,7 @@ export default function PoweredBySenja() {
   }, []);
 
   return (
-    <div className="relative h-full w-full bg-black text-[#e7b67c]">
+    <div className="relative h-full w-full bg-black text-senja-primary">
       {/* Desktop Layout */}
       <div
         className="hidden lg:flex h-full w-full relative flex-col items-center justify-center py-12 transition-all duration-700 ease-out"
@@ -83,7 +83,7 @@ export default function PoweredBySenja() {
               <SlideIn direction="up" distance={30} duration={0.6} amount={0.5}>
                 <h2
                   id="powered-by-senja-heading"
-                  className="font-hero text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-normal text-center text-[#e7b67c] leading-tight tracking-tight mb-3"
+                  className="font-hero text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-normal text-center text-senja-primary leading-tight tracking-tight mb-3"
                 >
                   Powered by Senja
                 </h2>
@@ -136,7 +136,7 @@ export default function PoweredBySenja() {
                 >
                   <h2
                     id="powered-by-senja-heading"
-                    className="font-hero text-xl sm:text-2xl md:text-3xl font-normal text-center text-[#e7b67c] leading-tight tracking-tight mb-2"
+                    className="font-hero text-xl sm:text-2xl md:text-3xl font-normal text-center text-senja-primary leading-tight tracking-tight mb-2"
                   >
                     Powered by Senja
                   </h2>

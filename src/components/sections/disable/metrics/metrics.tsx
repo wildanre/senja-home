@@ -20,7 +20,7 @@ const MetricCard = ({ label, value, suffix, delay }: MetricItemProps) => (
   >
     <div className="relative p-8 md:p-10 rounded-2xl overflow-hidden">
       {/* Background gradient blur effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/10 via-transparent to-transparent dark:from-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-linear-to-br from-yellow-300/10 via-transparent to-transparent dark:from-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       
       {/* Border animation on hover */}
       <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-yellow-300/30 dark:group-hover:border-blue-400/30 transition-colors duration-300" />
@@ -46,7 +46,7 @@ const MetricCard = ({ label, value, suffix, delay }: MetricItemProps) => (
           transition={{ duration: 0.6, delay: delay + 0.4, type: "spring", stiffness: 80 }}
           viewport={{ once: false, amount: 0.3 }}
         >
-          <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-300 to-yellow-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
+          <span className="text-3xl md:text-4xl font-bold bg-linear-to-r from-yellow-300 to-yellow-400 dark:from-blue-400 dark:to-blue-300 bg-clip-text text-transparent">
             {value}
           </span>
           {suffix && (
@@ -154,7 +154,7 @@ export default function Metrics() {
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.5 }}
         >
-          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-yellow-300 to-transparent dark:via-blue-400" />
+          <div className="w-32 h-1 bg-linear-to-r from-transparent via-yellow-300 to-transparent dark:via-blue-400" />
         </motion.div>
       </div>
     </section>

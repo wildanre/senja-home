@@ -34,7 +34,7 @@ export default function StickyDescription() {
   }, []);
 
   return (
-    <div className="fixed bottom-[8rem] left-[5rem] xl:left-[3.5rem] w-full max-w-md z-30">
+    <div className="fixed bottom-32 left-20 xl:left-14 w-full max-w-md z-30">
       <div className="relative">
         {/* First text - with typing animation */}
         <div
@@ -42,7 +42,7 @@ export default function StickyDescription() {
             isChanged ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
-          <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+          <div className="mb-4 text-xs uppercase tracking-[0.35em] text-senja-primary/80">
             <TypingAnimation
               text={heroContent.incubatedBy}
               delay={1.0}
@@ -68,7 +68,7 @@ export default function StickyDescription() {
             isChanged ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="mb-4 text-xs uppercase tracking-[0.35em] text-[#e7b67c]/80">
+          <div className="mb-4 text-xs uppercase tracking-[0.35em] text-senja-primary/80">
             <span>Cross-Chain by Design</span>
           </div>
           <p className="text-sm text-[#f2cba1]/80 sm:text-base leading-relaxed">
