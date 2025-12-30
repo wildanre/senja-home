@@ -1,22 +1,20 @@
-"use client";
-
 import { AnimatedText } from "@/components/ui/text";
 import { heroContent } from "./hero-data";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ParticleTransition } from "@/components/ui/effects/particle-transition";
 
 export default function HeroHeader() {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
+  const [showTransition, setShowTransition] = useState(false);
 
   const handleNavigate = () => {
     setIsNavigating(true);
-    // Add small delay for fade out animation
-    setTimeout(() => {
-      router.push("/waitlist");
-    }, 300);
+    // Start transition
+    setShowTransition(true);
   };
 
   return (
@@ -94,6 +92,12 @@ export default function HeroHeader() {
           {heroContent.buttonText}
         </Button>
       </div>
+
+      <ParticleTransition
+        trigger={showTransition}
+        text="Senja"
+        redirectTo="/waitlist"
+      />
     </div>
   );
 }
