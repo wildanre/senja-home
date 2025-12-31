@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { WaitlistSection } from "@/components/sections/waitlist";
 import { getServerAuthStatus } from "@/lib/server-auth";
 import { CustomWalletButton } from "@/providers/wallet-custom";
+import { WaitlistIntro } from "@/components/sections/waitlist/waitlist-intro";
 
 function WaitlistLoading() {
   return (
@@ -16,6 +17,7 @@ export default async function WaitlistPage() {
 
   return (
     <div className="min-h-screen">
+      <WaitlistIntro />
       <Suspense fallback={<WaitlistLoading />}>
         <WaitlistSection initialAuth={initialAuth} />
       </Suspense>

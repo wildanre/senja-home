@@ -22,6 +22,7 @@ export function ParticleTransition({
   const containerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
+  const [containerOpacity, setContainerOpacity] = useState(1);
 
   // Refs to keep track of heavy objects cleanup
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -33,6 +34,7 @@ export function ParticleTransition({
     let startTimer: NodeJS.Timeout;
     if (trigger) {
       setIsActive(true);
+      setContainerOpacity(1);
 
       // Run animation with minimal delay to ensure DOM is ready
       // 0ms or requestAnimationFrame might be too fast for Ref to attach in Portal
@@ -349,7 +351,12 @@ export function ParticleTransition({
             if (redirectTo) {
               router.push(redirectTo);
             }
-            if (onComplete) onComplete();
+            if (onComplete) {
+              setContainerOpacity(0);
+              setTimeout(() => {
+                onComplete();
+              }, 500); // Wait for fade out
+            }
           },
         });
       },
@@ -416,7 +423,7 @@ export function ParticleTransition({
     <div
       ref={containerRef}
       className="fixed inset-0 z-99999 bg-black"
-      style={{ opacity: 1, transition: "opacity 0.5s" }}
+      style={{ opacity: containerOpacity, transition: "opacity 0.5s ease-out" }}
     />,
     document.body
   );

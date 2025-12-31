@@ -6,12 +6,10 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { ParticleTransition } from "@/components/ui/effects/particle-transition";
 
 export default function HeroHeader() {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
-  const [showTransition, setShowTransition] = useState(false);
 
   // Prefetch waitlist page for instant transition
   useEffect(() => {
@@ -20,8 +18,7 @@ export default function HeroHeader() {
 
   const handleNavigate = () => {
     setIsNavigating(true);
-    // Start transition
-    setShowTransition(true);
+    router.push("/waitlist");
   };
 
   return (
@@ -100,12 +97,6 @@ export default function HeroHeader() {
           {heroContent.buttonText}
         </Button>
       </div>
-
-      <ParticleTransition
-        trigger={showTransition}
-        text="Senja"
-        redirectTo="/waitlist"
-      />
     </div>
   );
 }
