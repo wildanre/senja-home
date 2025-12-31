@@ -81,7 +81,7 @@ export default function HeroHeader() {
 
       {/* Join Waitlist Button */}
       <div
-        className={`animate-fade-in-delayed-button mt-16 lg:mt-32 lg:absolute lg:-left-4 lg:top-80 xl:-left-6 transition-opacity duration-300 ${
+        className={`animate-fade-in-delayed-button mt-16 lg:mt-40 lg:absolute lg:-left-4 lg:top-80 xl:-left-6 transition-opacity duration-300 ${
           isNavigating ? "opacity-0" : "opacity-100"
         }`}
       >

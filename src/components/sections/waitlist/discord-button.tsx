@@ -29,7 +29,7 @@ export default function DiscordButton({
         onClick={handleJoinServer}
         className={`group relative overflow-hidden bg-[#5865F2] hover:bg-[#4752C4] text-white transition-all duration-300 ${className}`}
       >
-        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+        <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
         <FaDiscord className="w-5 h-5 mr-2" />
         <span>Join Our Discord</span>
       </Button>
@@ -43,7 +43,7 @@ export default function DiscordButton({
       disabled={isLoading}
       className={`group relative overflow-hidden bg-[#5865F2] hover:bg-[#4752C4] text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
     >
-      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+      <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
       {isLoading ? (
         <span className="flex items-center gap-2">
           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
