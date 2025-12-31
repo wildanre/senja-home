@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="relative py-16 md:py-20 overflow-hidden min-h-[600px] w-full flex justify-center">
+    <footer className="relative  lg:py-20 overflow-hidden min-h-[100px] lg:min-h-[600px] w-full flex justify-center">
       <div className="relative w-full">
         {/* Large SENJA Background Text with Fade Effect */}
         <div className="absolute bottom-0 left-[53.3%] -translate-x-1/2 pointer-events-none">

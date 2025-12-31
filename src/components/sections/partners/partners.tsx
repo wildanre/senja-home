@@ -3,14 +3,17 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { partnersData } from "./partners-data";
 
 const PartnerCard = ({
   partner,
   index,
+  total,
 }: {
   partner: (typeof partnersData)[0];
   index: number;
+  total: number;
 }) => {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { amount: 0.3 });
@@ -25,11 +28,15 @@ const PartnerCard = ({
           : { opacity: 0, y: 30, scale: 0.95 }
       }
       transition={{ delay: index * 0.08, duration: 0.6, ease: "easeOut" }}
-      className="flex items-center justify-center p-8 md:p-12 border-r border-b border-senja-primary/15
-                 nth-[3n]:border-r-0
-                 nth-last-[-n+3]:border-b-0
-                 min-h-[120px] md:min-h-[160px]
-                 group"
+      className={cn(
+        "flex items-center justify-center p-8 md:p-12 border-senja-primary/15",
+        "min-h-[120px] md:min-h-[160px] group",
+        // Right border: if NOT the last item in the row (3 items per row)
+        (index + 1) % 3 !== 0 && "border-r",
+        // Bottom border: if NOT in the last row
+        // Last row starts at index: total - (total % 3 || 3)
+        index < total - (total % 3 || 3) && "border-b"
+      )}
     >
       {partner.logo && (
         <div className="relative w-full h-16 flex items-center justify-center">
@@ -87,13 +94,14 @@ export default function Partners() {
           Integrated With
         </motion.h2>
 
-        {/* Partners Grid - 3x2 with borders */}
+        {/* Partners Grid - 3x3 with inner borders only */}
         <div className="grid grid-cols-3">
           {partnersData.map((partner, index) => (
             <PartnerCard
               key={`${partner.name}-${index}`}
               partner={partner}
               index={index}
+              total={partnersData.length}
             />
           ))}
         </div>

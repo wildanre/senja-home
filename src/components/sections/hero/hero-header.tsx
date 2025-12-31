@@ -5,13 +5,18 @@ import { heroContent } from "./hero-data";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ParticleTransition } from "@/components/ui/effects/particle-transition";
 
 export default function HeroHeader() {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
   const [showTransition, setShowTransition] = useState(false);
+
+  // Prefetch waitlist page for instant transition
+  useEffect(() => {
+    router.prefetch("/waitlist");
+  }, [router]);
 
   const handleNavigate = () => {
     setIsNavigating(true);

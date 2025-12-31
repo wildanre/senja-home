@@ -39,19 +39,19 @@ export const WhyCard = ({
       }}
       className={cn(
         "group relative flex flex-col justify-between",
-        "border border-senja-primary/20 rounded-2xl p-8 md:p-10",
-        "h-full min-h-[320px] bg-black/40",
+        "border border-senja-primary/20 rounded-2xl p-5 md:p-10",
+        "h-full min-h-[160px] md:min-h-[320px] bg-black/40",
         "hover:border-senja-primary/50 transition-colors duration-300",
         className
       )}
     >
       {/* Content */}
-      <div className="space-y-6">
-        <h3 className="font-hero text-3xl font-normal text-senja-primary">
+      <div className="space-y-4 md:space-y-6">
+        <h3 className="font-hero text-xl md:text-3xl font-normal text-senja-primary">
           {title}
         </h3>
         <p
-          className="text-senja-primary/70 leading-relaxed text-base md:text-lg"
+          className="text-senja-primary/70 leading-relaxed text-sm md:text-lg"
           style={{ fontFamily: "'PP Neue Montreal', sans-serif" }}
         >
           {description}
@@ -59,13 +59,13 @@ export const WhyCard = ({
       </div>
 
       {/* Icon at bottom */}
-      <div className="mt-10 pt-6 border-t border-senja-primary/10 flex justify-start opacity-60 group-hover:opacity-100 transition-opacity">
+      <div className="mt-6 md:mt-10 pt-6 border-t border-senja-primary/10 flex justify-center md:justify-start opacity-60 group-hover:opacity-100 transition-opacity">
         <Image
           src={icon}
           alt={title}
           width={200}
           height={200}
-          className="w-64  object-contain"
+          className="w-50 md:w-64 object-contain"
         />
       </div>
     </motion.div>

@@ -116,7 +116,7 @@ export default function Home() {
           >
             <div className="flex min-h-screen flex-col lg:flex-row">
               <motion.div
-                className="relative w-full bg-black overflow-hidden min-h-screen"
+                className="relative  bg-black overflow-hidden "
                 style={{
                   width: isMobile
                     ? "100%"
