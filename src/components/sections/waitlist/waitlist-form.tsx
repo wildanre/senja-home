@@ -9,6 +9,8 @@ import { useAuth } from "@/contexts/discord-auth-context";
 import { LoadingState } from "./loading-state";
 import type { AuthStatus } from "@/lib/server-auth";
 import { useGuildMembership } from "@/hooks/useGuildMembership";
+import { useAccount } from "wagmi";
+import { useWalletMutation } from "@/hooks/useWalletMutation";
 import { useWaitlistMutation } from "@/hooks/useWaitlistMutation";
 import { useWaitlistStatus } from "@/hooks/useWaitlistStatus";
 import Image from "next/image";
@@ -34,6 +36,28 @@ export default function WaitlistForm({
 
   const { isInGuild, refetchGuildCheck } = useGuildMembership();
   const waitlistMutation = useWaitlistMutation();
+  const walletMutation = useWalletMutation();
+  const { address: connectedAddress, isConnected } = useAccount();
+
+  const walletSyncAttemptedRef = useRef<string | null>(null);
+
+  // Sync wallet address to backend when connected
+  useEffect(() => {
+    // Skip if not connected or no address
+    if (!isConnected || !connectedAddress || !user) return;
+
+    // Skip if we already attempted to sync this address
+    if (walletSyncAttemptedRef.current === connectedAddress) return;
+
+    // Skip if wallet is already synced in user object
+    if (user.walletAddress === connectedAddress) return;
+
+    console.log("[WaitlistForm] Syncing wallet address:", connectedAddress);
+    walletSyncAttemptedRef.current = connectedAddress;
+    walletMutation.mutate({ address: connectedAddress });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected, connectedAddress, user]);
+
   const { data: waitlistStatus, refetch: refetchWaitlistStatus } =
     useWaitlistStatus();
 
@@ -58,13 +82,23 @@ export default function WaitlistForm({
     }
   }, [searchParams, checkAuth, router]);
 
-  const isDiscordDone = isAuthenticated && !!user;
-  const isGuildDone = isDiscordDone && isInGuild;
-  // Wallet is only shown when Discord session is active
-  const walletAddress = isDiscordDone ? user?.walletAddress : null;
-  const isWalletDone = isDiscordDone && !!walletAddress;
-  const isOnWaitlist =
+  const isWaitlistConfirmed =
     waitlistStatus?.isOnWaitlist || waitlistMutation.isSuccess || hasSubmitted;
+
+  // Only consider user "on waitlist" if they have BOTH email and wallet address
+  // This ensures Step 3 (Wallet) remains active if wallet is missing, even if backend says they are on waitlist
+  const isOnWaitlist =
+    isWaitlistConfirmed && !!user?.email && !!user?.walletAddress;
+
+  const isDiscordDone = (isAuthenticated && !!user) || isOnWaitlist;
+  const isInGuildLocal = isInGuild;
+  const isGuildDone = (isDiscordDone && isInGuildLocal) || isOnWaitlist;
+
+  // Wallet is only shown when Discord session is active
+  // If on waitlist, we consider wallet done even if we don't have the address locally immediately
+  const walletAddress = isDiscordDone ? user?.walletAddress : null;
+  const isWalletDone = (isDiscordDone && !!walletAddress) || isOnWaitlist;
+
   // Can complete only if all required fields are filled (email + walletAddress)
   const canComplete =
     isDiscordDone &&
@@ -191,7 +225,7 @@ export default function WaitlistForm({
       {/* Step 2: Join Discord Channel */}
       <div
         className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
-          isInGuild
+          isGuildDone
             ? "bg-senja-primary/10 border-senja-primary/30"
             : isDiscordDone
             ? "bg-white/5 border-white/10"
@@ -200,12 +234,12 @@ export default function WaitlistForm({
       >
         <div
           className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold shrink-0 ${
-            isInGuild
+            isGuildDone
               ? "bg-senja-primary text-[#120a06]"
               : "bg-white/10 text-neutral-600"
           }`}
         >
-          {isInGuild ? (
+          {isGuildDone ? (
             <svg
               className="w-4 h-4"
               fill="none"
@@ -224,7 +258,7 @@ export default function WaitlistForm({
           )}
         </div>
 
-        {!isInGuild ? (
+        {!isGuildDone ? (
           <div className="flex-1 space-y-2">
             <a
               href={DISCORD_INVITE_URL}
@@ -282,7 +316,7 @@ export default function WaitlistForm({
         className={`relative z-10 flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${
           isWalletDone
             ? "bg-senja-primary/10 border-senja-primary/30"
-            : isInGuild
+            : isGuildDone
             ? "bg-white/5 border-white/10"
             : "bg-white/5 border-white/10 opacity-50"
         } border`}
@@ -315,7 +349,8 @@ export default function WaitlistForm({
 
         <CustomWalletButton
           cachedWallet={walletAddress || undefined}
-          isDisabled={!isInGuild}
+          isDisabled={!isGuildDone}
+          isOnWaitlist={isOnWaitlist}
         />
       </div>
 

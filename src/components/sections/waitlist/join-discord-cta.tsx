@@ -1,6 +1,6 @@
 import { FaDiscord } from "react-icons/fa";
 
-const DISCORD_INVITE_URL = "https://discord.gg/83RPu9KQ";
+const DISCORD_INVITE_URL = "https://bit.ly/senjadiscord";
 
 export function JoinDiscordCTA() {
   return (

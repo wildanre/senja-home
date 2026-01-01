@@ -6,11 +6,13 @@ import { Wallet } from "lucide-react";
 interface CustomWalletButtonProps {
   cachedWallet?: string;
   isDisabled?: boolean;
+  isOnWaitlist?: boolean;
 }
 
 export const CustomWalletButton = ({
   cachedWallet,
   isDisabled = false,
+  isOnWaitlist = false,
 }: CustomWalletButtonProps) => {
   return (
     <ConnectButton.Custom>
@@ -47,6 +49,20 @@ export const CustomWalletButton = ({
               // If no cachedWallet, always show connect button (even if RainbowKit is connected)
 
               if (!cachedWallet) {
+                // If on waitlist but no cached wallet locally, show generic success state
+                if (isOnWaitlist) {
+                  return (
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-white font-mono truncate">
+                        Linked Wallet
+                      </p>
+                      <p className="text-xs text-senja-primary">
+                        Wallet Connected
+                      </p>
+                    </div>
+                  );
+                }
+
                 // No wallet from API (Discord session expired or not set yet)
                 return (
                   <button
