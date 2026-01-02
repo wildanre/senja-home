@@ -2,6 +2,7 @@
 
 import { FaDiscord } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import { DISCORD_INVITE_URL } from "@/config";
 
 interface DiscordButtonProps {
   variant?: "oauth" | "join";
@@ -19,7 +20,7 @@ export default function DiscordButton({
   };
 
   const handleJoinServer = () => {
-    window.open("https://discord.gg/83RPu9KQ", "_blank", "noopener,noreferrer");
+    window.open(DISCORD_INVITE_URL, "_blank", "noopener,noreferrer");
   };
 
   if (variant === "join") {

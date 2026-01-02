@@ -17,12 +17,11 @@ import Image from "next/image";
 import { CustomWalletButton } from "@/providers/wallet-custom";
 import WaitlistCountdown from "./waitlist-countdown";
 import { config } from "@/lib/config";
+import { DISCORD_INVITE_URL } from "@/config";
 
 interface WaitlistFormProps {
   initialAuth: AuthStatus;
 }
-
-const DISCORD_INVITE_URL = "https://discord.gg/83RPu9KQ";
 
 export default function WaitlistForm({
   initialAuth: _initialAuth,
