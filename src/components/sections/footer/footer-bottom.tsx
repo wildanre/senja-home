@@ -10,7 +10,7 @@ export default function FooterBottom() {
   return (
     <SlideIn direction="up" distance={30} delay={0.3} className="border-t border-white/10 dark:border-gray-700/30 pt-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-white/60 dark:text-[#a0aec0] text-xs sm:text-sm">
+        <p className="text-senja-primary/60 text-xs sm:text-sm">
           © {currentYear} Senja Finance. All rights reserved.
         </p>
         
@@ -19,14 +19,14 @@ export default function FooterBottom() {
             href="https://x.com/SenjaLabs"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white/60 dark:text-[#a0aec0]  hover:scale-110 transition-all duration-200"
+            className="text-senja-primary/60 hover:scale-110 transition-all duration-200"
           >
             <FaXTwitter className="w-5 h-5" />
           </a>
           
           <a
             href="https://discord.gg/Yuf8n7rf9B"
-            className="text-white/60 dark:text-[#a0aec0]  hover:scale-110 transition-all duration-200"
+            className="text-senja-primary/60 hover:scale-110 transition-all duration-200"
           >
             <SiDiscord className="w-5 h-5" />
           </a>
