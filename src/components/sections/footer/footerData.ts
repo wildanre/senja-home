@@ -14,30 +14,20 @@ export const footerSections: FooterSection[] = [
     title: "Resources",
     links: [
       { label: "Documentation", href: "https://senja.gitbook.io/senja-docs", external: true },
-      { label: "Terms of Use", href: "#terms", external: false },
-      { label: "Privacy Policy", href: "#privacy", external: false },
+      { label: "Waitlist", href: "/waitlist", external: false },
     ],
   },
   {
     title: "Community",
     links: [
       { label: "Twitter", href: "https://x.com/SenjaLabs", external: true },
-      { label: "Discord", href: "#discord", external: true },
-      { label: "Farcaster", href: "#farcaster", external: true },
-      { label: "Telegram", href: "#telegram", external: true },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { label: "Email", href: "mailto:senjalend@gmail.com", external: false },
+      { label: "Discord", href: "https://discord.gg/Yuf8n7rf9B", external: true },
     ],
   },
 ];
 
 export const socialLinks = [
   { href: "https://x.com/SenjaLabs", icon: "twitter", label: "Twitter" },
-  { href: "#discord", icon: "discord", label: "Discord" },
-  { href: "#telegram", icon: "telegram", label: "Telegram" },
+  { href: "https://discord.gg/Yuf8n7rf9B", icon: "discord", label: "Discord" },
 ];
 

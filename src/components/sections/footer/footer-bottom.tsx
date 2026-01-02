@@ -8,7 +8,7 @@ export default function FooterBottom() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <SlideIn direction="up" distance={30} delay={0.6} className="border-t border-white/10 dark:border-gray-700/30 pt-8">
+    <SlideIn direction="up" distance={30} delay={0.3} className="border-t border-white/10 dark:border-gray-700/30 pt-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-white/60 dark:text-[#a0aec0] text-xs sm:text-sm">
           © {currentYear} Senja Finance. All rights reserved.
@@ -25,18 +25,12 @@ export default function FooterBottom() {
           </a>
           
           <a
-            href="#discord"
+            href="https://discord.gg/Yuf8n7rf9B"
             className="text-white/60 dark:text-[#a0aec0]  hover:scale-110 transition-all duration-200"
           >
             <SiDiscord className="w-5 h-5" />
           </a>
           
-          <a
-            href="#telegram"
-            className="text-white/60 dark:text-[#a0aec0]  hover:scale-110 transition-all duration-200"
-          >
-            <SiTelegram className="w-5 h-5" />
-          </a>
         </div>
       </div>
     </SlideIn>

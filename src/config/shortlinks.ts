@@ -2,6 +2,7 @@ export const SHORTLINKS = {
   discord: "https://discord.gg/Yuf8n7rf9B",
   x: "https://x.com/SenjaLabs",
   twitter: "https://x.com/SenjaLabs",
+  docs: "https://senja.gitbook.io/senja-docs",
 } as const;
 
 export type ShortlinkSlug = keyof typeof SHORTLINKS;
