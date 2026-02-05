@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatedTextVariants, TypingAnimation } from "@/components/ui/text";
+import AnimatedTextVariants from "@/components/ui/text/animated-text-variants";
+import TypingAnimation from "@/components/ui/text/typing-animation";
 import { heroContent } from "./hero-data";
 
 export default function StickyDescription() {

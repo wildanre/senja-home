@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { ScaleIn, SlideIn } from "@/components/ui/motion";
+import ScaleIn from "@/components/ui/motion/scale-in";
+import SlideIn from "@/components/ui/motion/slide-in";
 import Supports from "../supports";
 
 export default function ChainOrbit() {

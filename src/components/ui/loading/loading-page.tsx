@@ -18,9 +18,14 @@ interface Sparkle {
 
 export default function LoadingPage({ fadeOut }: LoadingPageProps) {
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Generate random sparkle particles only on client side
   useEffect(() => {
+    // Add small delay to prevent flash on refresh before parent unmounts it
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 100);
+
     const generatedSparkles = Array.from({ length: 50 }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
@@ -30,43 +35,51 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
       size: 2 + Math.random() * 4,
     }));
     setSparkles(generatedSparkles);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div
-      className={`fixed inset-0 z-9999 flex items-center justify-center bg-black overflow-hidden ${
-        fadeOut ? 'animate-slide-up' : ''
+      className={`fixed inset-0 z-9999 flex items-center justify-center bg-black overflow-hidden transition-opacity duration-500 ${
+        fadeOut ? "animate-slide-up" : ""
       }`}
     >
-      {/* Sparkle Particles */}
-      <div className="sparkles-container">
-        {sparkles.map((sparkle) => (
-          <div
-            key={sparkle.id}
-            className="sparkle"
-            style={{
-              left: sparkle.left,
-              top: sparkle.top,
-              animationDelay: `${sparkle.delay}s`,
-              animationDuration: `${sparkle.duration}s`,
-              width: `${sparkle.size}px`,
-              height: `${sparkle.size}px`,
-            }}
-          />
-        ))}
-      </div>
+      <div
+        className={`relative w-full h-full flex items-center justify-center transition-opacity duration-300 ${
+          isMounted ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {/* Sparkle Particles */}
+        <div className="sparkles-container">
+          {sparkles.map((sparkle) => (
+            <div
+              key={sparkle.id}
+              className="sparkle"
+              style={{
+                left: sparkle.left,
+                top: sparkle.top,
+                animationDelay: `${sparkle.delay}s`,
+                animationDuration: `${sparkle.duration}s`,
+                width: `${sparkle.size}px`,
+                height: `${sparkle.size}px`,
+              }}
+            />
+          ))}
+        </div>
 
-      {/* Center Senja GIF Logo */}
-      <div className="logo-container">
-        <Image
-          src="/senja2.gif"
-          alt="Senja Loading"
-          width={300}
-          height={300}
-          priority
-          unoptimized
-          className="logo-gif"
-        />
+        {/* Center Senja GIF Logo */}
+        <div className="logo-container">
+          <Image
+            src="/senja2.gif"
+            alt="Senja Loading"
+            width={300}
+            height={300}
+            priority
+            unoptimized
+            className="logo-gif"
+          />
+        </div>
       </div>
 
       <style jsx>{`
@@ -96,7 +109,8 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
 
         /* Sparkle Animation - Fade in/out with scale */
         @keyframes sparkle-animate {
-          0%, 100% {
+          0%,
+          100% {
             opacity: 0;
             transform: scale(0);
           }

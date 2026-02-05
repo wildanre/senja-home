@@ -3,7 +3,7 @@
 import { useDashboardStats } from "@/hooks/useDashboardStats";
 import StatsCards from "./stats-cards";
 import QuickActions from "./quick-actions";
-import { LoadingSpinner } from "@/components/ui/loading";
+import LoadingSpinner from "@/components/ui/loading/loading-spinner";
 import { RefreshCw } from "lucide-react";
 
 export default function DashboardContent() {

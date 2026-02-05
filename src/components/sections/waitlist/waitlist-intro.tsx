@@ -1,16 +1,26 @@
 "use client";
 
 import { ParticleTransition } from "@/components/ui/effects/particle-transition";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 export function WaitlistIntro() {
   const [showIntro, setShowIntro] = useState(true);
 
+  const useIsomorphicLayoutEffect =
+    typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+  useIsomorphicLayoutEffect(() => {
+    const hasSeen = sessionStorage.getItem("hasSeenWaitlistIntro");
+    if (hasSeen) {
+      setShowIntro(false);
+    }
+  }, []);
+
   const handleComplete = () => {
+    sessionStorage.setItem("hasSeenWaitlistIntro", "true");
     setShowIntro(false);
   };
 
-  // If intro is finished, return null to unmount the heavy canvas/listeners
   if (!showIntro) return null;
 
   return (

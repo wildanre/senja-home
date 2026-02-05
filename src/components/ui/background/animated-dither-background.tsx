@@ -1,6 +1,6 @@
 "use client";
 
-import { Dither } from "@/components/ui/background";
+import Dither from "@/components/ui/background/dither";
 import { desktopDitherConfig } from "@/components/sections/hero/hero-data";
 
 interface AnimatedDitherBackgroundProps {
@@ -8,19 +8,10 @@ interface AnimatedDitherBackgroundProps {
   leftPageWidth: number;
 }
 
-/**
- * Animated Dither Background Component
- * Renders the dither effect with smooth scroll-based animations
- * - Clips based on left page width to allow mouse interaction
- * - Uses clip-path to hide area covered by left page
- */
 export function AnimatedDitherBackground({
   scrollProgress: _scrollProgress,
   leftPageWidth,
 }: AnimatedDitherBackgroundProps) {
-  // Calculate clip path based on left page width
-  // When left page is 50%, dither shows from 50% to 100%
-  // When left page is 100%, dither is completely hidden
   const clipLeft = `${leftPageWidth}%`;
 
   return (
@@ -34,6 +25,8 @@ export function AnimatedDitherBackground({
         visibility: "visible",
         clipPath: `polygon(${clipLeft} 0%, 100% 0%, 100% 100%, ${clipLeft} 100%)`,
         pointerEvents: "none",
+        willChange: "transform",
+        transform: "translateZ(0)",
       }}
     >
       <Dither {...desktopDitherConfig} />

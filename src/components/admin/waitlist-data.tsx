@@ -4,7 +4,7 @@ import { useWaitlistData } from "@/hooks/useWaitlistData";
 import WaitlistHeader from "./waitlist/waitlist-header";
 import WaitlistTable from "./waitlist/waitlist-table";
 import WaitlistActions from "./waitlist/waitlist-actions";
-import { LoadingSpinner } from "@/components/ui/loading";
+import LoadingSpinner from "@/components/ui/loading/loading-spinner";
 import EmptyState from "./waitlist/empty-state";
 
 export default function WaitlistData() {

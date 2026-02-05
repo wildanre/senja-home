@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { TypingAnimation, AnimatedTextVariants } from "@/components/ui/text";
+import TypingAnimation from "@/components/ui/text/typing-animation";
+import AnimatedTextVariants from "@/components/ui/text/animated-text-variants";
 
 export default function StickyBottomText() {
   const [textState, setTextState] = useState<"first" | "second">("first");

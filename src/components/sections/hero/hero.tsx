@@ -1,9 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import HeroHeader from "./hero-header";
 import HeroDescription from "./hero-description";
-import { Dither } from "@/components/ui/background";
 import { mobileDitherConfig } from "./hero-data";
+
+const Dither = dynamic(() => import("@/components/ui/background/dither"), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-black" />,
+});
 
 export default function Hero() {
   return (

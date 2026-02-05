@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/contexts/auth-context";
 import { ReactNode } from "react";
-import { LoadingSpinner } from "@/components/ui/loading";
+import LoadingSpinner from "@/components/ui/loading/loading-spinner";
 
 interface AdminGuardProps {
   children: ReactNode;

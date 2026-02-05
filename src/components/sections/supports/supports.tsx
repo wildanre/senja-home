@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ScaleIn } from "@/components/ui/motion";
+import ScaleIn from "@/components/ui/motion/scale-in";
 import OrbitingAssets from "./orbiting-assets";
 import OrbitingNetworks from "./orbiting-networks";
 import useResponsiveOrbit from "../../../hooks/useResponsiveOrbit";

@@ -1,6 +1,6 @@
 'use client';
 
-import { FadeIn } from "@/components/ui/motion";
+import FadeIn from "@/components/ui/motion/fade-in";
 
 export default function FooterHeader() {
   return (

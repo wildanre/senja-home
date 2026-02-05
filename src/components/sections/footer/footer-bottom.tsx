@@ -2,7 +2,7 @@
 
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiDiscord, SiTelegram } from 'react-icons/si';
-import { SlideIn } from "@/components/ui/motion";
+import SlideIn from "@/components/ui/motion/slide-in";
 
 export default function FooterBottom() {
   const currentYear = new Date().getFullYear();

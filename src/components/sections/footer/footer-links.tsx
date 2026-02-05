@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Stagger } from "@/components/ui/motion";
+import Stagger from "@/components/ui/motion/stagger";
 import { footerSections } from './footerData';
 
 export default function FooterLinks() {

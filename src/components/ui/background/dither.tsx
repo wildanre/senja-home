@@ -61,7 +61,7 @@ float cnoise(vec2 P) {
   return 2.3 * mix(n_x.x, n_x.y, fade_xy.y);
 }
 
-const int OCTAVES = 4;
+const int OCTAVES = 2;
 float fbm(vec2 p) {
   float value = 0.0;
   float amp = 1.0;
@@ -272,7 +272,7 @@ function DitheredWaves({
       const dpr = gl.getPixelRatio();
       mouseRef.current.set(
         (event.clientX - rect.left) * dpr,
-        (event.clientY - rect.top) * dpr
+        (event.clientY - rect.top) * dpr,
       );
     };
 
@@ -304,7 +304,6 @@ function DitheredWaves({
       <EffectComposer>
         <RetroEffect colorNum={colorNum} pixelSize={pixelSize} />
       </EffectComposer>
-
     </>
   );
 }
@@ -323,22 +322,30 @@ interface DitherProps {
 
 export default function Dither({
   waveSpeed = 0.05,
-  waveFrequency = 3,
+  waveFrequency = 1,
   waveAmplitude = 0.3,
   waveColor = [0.5, 0.5, 0.5],
   colorNum = 4,
-  pixelSize = 2,
+  pixelSize = 3,
   disableAnimation = false,
-  enableMouseInteraction = true,
+  enableMouseInteraction = false,
   mouseRadius = 1,
 }: DitherProps) {
   return (
     <Canvas
       className="absolute inset-0 h-full w-full"
-      style={{ pointerEvents: 'none' }}
+      style={{
+        pointerEvents: "none",
+        willChange: "transform",
+        transform: "translateZ(0)",
+      }}
       camera={{ position: [0, 0, 6] }}
       dpr={1}
-      gl={{ antialias: true, preserveDrawingBuffer: true }}
+      gl={{
+        antialias: false,
+        preserveDrawingBuffer: false,
+        powerPreference: "low-power",
+      }}
     >
       <DitheredWaves
         waveSpeed={waveSpeed}

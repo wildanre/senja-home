@@ -1,6 +1,6 @@
 "use client";
 
-import { SlideIn } from "@/components/ui/motion";
+import SlideIn from "@/components/ui/motion/slide-in";
 
 export default function WhatIsSenjaHeader() {
   return (

@@ -1,6 +1,7 @@
 "use client";
 
-import { SlideIn, ScaleIn } from "@/components/ui/motion";
+import SlideIn from "@/components/ui/motion/slide-in";
+import ScaleIn from "@/components/ui/motion/scale-in";
 
 export default function SupportsHeader() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { OrbitingCircles } from "@/components/ui/effects";
+import { OrbitingCircles } from "@/components/ui/effects/orbiting-circles";
 import { networks } from "./supportsData";
 
 interface OrbitingNetworksProps {

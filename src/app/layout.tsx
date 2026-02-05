@@ -7,7 +7,7 @@ import {
   Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
-import { BackgroundWrapper } from "@/components/ui/background";
+import BackgroundWrapper from "@/components/ui/background/background-wrapper";
 import { AuthProvider } from "@/contexts/discord-auth-context";
 import { Toaster } from "sonner";
 import QueryProvider from "@/components/providers/query-provider";

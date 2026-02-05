@@ -1,7 +1,7 @@
 "use client";
 
-import { SlideIn } from "@/components/ui/motion";
-import { Dither } from "@/components/ui/background";
+import SlideIn from "@/components/ui/motion/slide-in";
+import Dither from "@/components/ui/background/dither";
 import { desktopDitherConfig } from "@/components/sections/hero/hero-data";
 import WaitlistForm from "./waitlist-form";
 import type { AuthStatus } from "@/lib/server-auth";

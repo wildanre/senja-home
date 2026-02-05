@@ -1,19 +1,19 @@
 "use client";
 
-import Hero from "@/components/sections/hero";
-import Overview from "@/components/sections/overview";
+import Hero from "@/components/sections/hero/hero";
+import Overview from "@/components/sections/overview/what-is-senja";
 import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
-import { WhySection } from "@/components/sections/why";
-import Partners from "@/components/sections/partners";
+import { WhySection } from "@/components/sections/why/why-section";
+import Partners from "@/components/sections/partners/partners";
 import Footer from "@/components/sections/footer";
-import { ScrollAnimationWrapper } from "@/components/ui/animate";
-import { AnimatedDitherBackground } from "@/components/ui/background";
-import { AnimatedDivider } from "@/components/ui/layout";
+import ScrollAnimationWrapper from "@/components/ui/animate/scroll-animation-wrapper";
+import { AnimatedDitherBackground } from "@/components/ui/background/animated-dither-background";
+import { AnimatedDivider } from "@/components/ui/layout/animated-divider";
 import StickyBottomText from "@/components/sections/overview/sticky-bottom-text";
-import { LoadingPage } from "@/components/ui/loading";
+import LoadingPage from "@/components/ui/loading/loading-page";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
 import { motion } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 export default function Home() {
   const scrollProgress = useScrollTransition();
@@ -32,15 +32,23 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  useEffect(() => {
-    // Start slide-up animation at 2.2 seconds
+  const useIsomorphicLayoutEffect =
+    typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+  useIsomorphicLayoutEffect(() => {
+    const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
+
+    if (hasSeenSplash) {
+      setIsLoading(false);
+      return;
+    }
+
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
     }, 2200);
-
-    // Remove loading page completely at 2.9 seconds (after slide-up completes)
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
+      sessionStorage.setItem("hasSeenSplash", "true");
     }, 2900);
 
     return () => {
@@ -69,7 +77,7 @@ export default function Home() {
       "Permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem with cross-chain liquidity aggregation",
     url: "https://senja.finance",
     logo: "https://senja.finance/senja-logo.png",
-    foundingDate: "2024",
+    foundingDate: "2026",
     sameAs: ["https://senja.gitbook.io/senja-docs"],
     offers: {
       "@type": "Service",
@@ -88,7 +96,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Loading Page */}
       {isLoading && <LoadingPage fadeOut={fadeOut} />}
 
       <script
@@ -97,13 +104,11 @@ export default function Home() {
       />
 
       <div className="relative h-screen w-full overflow-hidden">
-        {/* Animated Dither Background - MUST be outside overflow-hidden container */}
         <AnimatedDitherBackground
           scrollProgress={scrollProgress}
           leftPageWidth={leftPageWidth}
         />
 
-        {/* Animated Divider - follows left page edge (desktop only) */}
         {!isMobile && <AnimatedDivider scrollProgress={scrollProgress} />}
 
         <main
@@ -121,8 +126,8 @@ export default function Home() {
                   width: isMobile
                     ? "100%"
                     : leftPageWidth >= 100
-                    ? "100%"
-                    : `${leftPageWidth}%`,
+                      ? "100%"
+                      : `${leftPageWidth}%`,
                   zIndex: 20,
                   isolation: "isolate",
                 }}
@@ -139,7 +144,6 @@ export default function Home() {
                   <Overview />
                 </section>
 
-                {/* Powered by Senja Content - full width with orbit + beam */}
                 <section
                   id="powered-by-senja"
                   className="min-h-[80vh] lg:min-h-screen flex items-center justify-center"
@@ -149,7 +153,6 @@ export default function Home() {
                   </div>
                 </section>
 
-                {/* Why Section */}
                 <section
                   id="why"
                   className="min-h-screen flex items-center justify-center"
@@ -159,7 +162,6 @@ export default function Home() {
                   </ScrollAnimationWrapper>
                 </section>
 
-                {/* Partners Section */}
                 <section
                   id="partners"
                   className="flex items-center justify-center"
@@ -169,13 +171,10 @@ export default function Home() {
                   </ScrollAnimationWrapper>
                 </section>
 
-                {/* Footer - only background text */}
                 <section id="footer" className="w-full">
                   <Footer />
                 </section>
               </motion.div>
-
-              {/* Right Side - Empty space that collapses */}
               <div
                 className="hidden lg:block relative bg-transparent"
                 style={{
@@ -187,10 +186,8 @@ export default function Home() {
           </div>
         </main>
 
-        {/* Sticky Bottom Text - moved outside <main> to avoid clipping */}
         <StickyBottomText />
 
-        {/* Custom Scrollbar Styles */}
         <style jsx global>{`
           .scrollbar-right-edge::-webkit-scrollbar {
             width: 8px;
