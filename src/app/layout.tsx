@@ -18,12 +18,14 @@ import { Analytics } from "@vercel/analytics/next";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const heroDisplay = DM_Serif_Display({
   variable: "--font-hero-display",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 const playfairDisplay = Playfair_Display({
@@ -31,11 +33,13 @@ const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   style: ["italic"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

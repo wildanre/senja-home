@@ -1,7 +1,11 @@
 "use client";
 
-import Dither from "@/components/ui/background/dither";
 import { desktopDitherConfig } from "@/components/sections/hero/hero-data";
+import dynamic from "next/dynamic";
+
+const Dither = dynamic(() => import("@/components/ui/background/dither"), {
+  ssr: false,
+});
 
 interface AnimatedDitherBackgroundProps {
   scrollProgress: number;

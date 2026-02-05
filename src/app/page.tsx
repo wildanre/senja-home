@@ -1,17 +1,27 @@
 "use client";
 
 import Hero from "@/components/sections/hero/hero";
-import Overview from "@/components/sections/overview/what-is-senja";
-import PoweredBySenja from "@/components/sections/chain-orbit/powered-by-senja";
-import { WhySection } from "@/components/sections/why/why-section";
-import Partners from "@/components/sections/partners/partners";
-import Footer from "@/components/sections/footer";
 import ScrollAnimationWrapper from "@/components/ui/animate/scroll-animation-wrapper";
 import { AnimatedDitherBackground } from "@/components/ui/background/animated-dither-background";
 import { AnimatedDivider } from "@/components/ui/layout/animated-divider";
 import StickyBottomText from "@/components/sections/overview/sticky-bottom-text";
 import LoadingPage from "@/components/ui/loading/loading-page";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
+import dynamic from "next/dynamic";
+
+const Overview = dynamic(
+  () => import("@/components/sections/overview/what-is-senja"),
+);
+const PoweredBySenja = dynamic(
+  () => import("@/components/sections/chain-orbit/powered-by-senja"),
+);
+const WhySection = dynamic(() =>
+  import("@/components/sections/why/why-section").then((mod) => mod.WhySection),
+);
+const Partners = dynamic(
+  () => import("@/components/sections/partners/partners"),
+);
+const Footer = dynamic(() => import("@/components/sections/footer"));
 import { motion } from "motion/react";
 import { useState, useEffect, useLayoutEffect } from "react";
 

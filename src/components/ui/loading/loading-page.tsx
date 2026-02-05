@@ -68,10 +68,9 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
           ))}
         </div>
 
-        {/* Center Senja GIF Logo */}
         <div className="logo-container">
           <Image
-            src="/senja2.gif"
+            src="/senja.webp"
             alt="Senja Loading"
             width={300}
             height={300}

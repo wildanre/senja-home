@@ -62,4 +62,19 @@ const nextConfig: NextConfig = {
   },
 };
 
+// Polyfill for indexedDB in build environment
+if (typeof window === "undefined") {
+  (global as any).indexedDB = {
+    open: () => ({
+      result: {
+        objectStoreNames: { contains: () => false },
+        createObjectStore: () => {},
+        close: () => {},
+      },
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    }),
+  };
+}
+
 export default bundleAnalyzer(nextConfig);
