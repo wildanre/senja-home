@@ -36,7 +36,7 @@ export const heroContent = {
   incubatedBy: "incubated by Kaia Chain",
   description:
     "Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries.",
-  logoImage: "/senja2.gif",
+  logoImage: "/senja-logo.png",
   logoAlt: "Senja abstract illustration",
   brandName: "Senja",
 } as const;
