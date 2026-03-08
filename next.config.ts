@@ -47,17 +47,6 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
-      {
-        source: "/:path*",
-        destination: "/:path*",
-        permanent: true,
-        has: [
-          {
-            type: "host",
-            value: "senja.finance",
-          },
-        ],
-      },
     ];
   },
 };
