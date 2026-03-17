@@ -79,39 +79,9 @@ export default function Home() {
   const leftPageWidth = getLeftPageWidth();
   const rightPageWidth = 100 - leftPageWidth;
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Senja Finance",
-    description:
-      "Permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem with cross-chain liquidity aggregation",
-    url: "https://senja.finance",
-    logo: "https://senja.finance/senja-logo.png",
-    foundingDate: "2026",
-    sameAs: ["https://senja.gitbook.io/senja-docs"],
-    offers: {
-      "@type": "Service",
-      name: "DeFi Lending and Borrowing",
-      description:
-        "Cross-chain lending and borrowing protocol with isolated pools and LayerZero integration",
-      provider: {
-        "@type": "Organization",
-        name: "Senja Finance",
-      },
-    },
-    areaServed: "Global",
-    serviceType: "DeFi Protocol",
-    category: "Financial Technology",
-  };
-
   return (
     <>
       {isLoading && <LoadingPage fadeOut={fadeOut} />}
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
 
       <div className="relative h-screen w-full overflow-hidden">
         <AnimatedDitherBackground

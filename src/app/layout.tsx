@@ -186,6 +186,61 @@ export default function RootLayout({
             </AuthProvider>
           </WalletProvider>
         </QueryProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "Senja Finance",
+                alternateName: "Senja Protocol",
+                description:
+                  "Senja Finance is a permissionless stablecoin lending and borrowing protocol built on Kaia ecosystem. It features cross-chain liquidity aggregation via LayerZero, isolated pools, decentralized oracle integration with Orakl Network, and seamless user experience via LINE Mini DApp.",
+                url: "https://www.senja.finance",
+                logo: "https://www.senja.finance/senja-logo.png",
+                foundingDate: "2026",
+                sameAs: [
+                  "https://x.com/SenjaLabs",
+                  "https://discord.gg/Yuf8n7rf9B",
+                  "https://senja.gitbook.io/senja-docs",
+                ],
+                knowsAbout: [
+                  "DeFi",
+                  "Cross-chain lending",
+                  "Stablecoin borrowing",
+                  "LayerZero",
+                  "Kaia blockchain",
+                ],
+                offers: {
+                  "@type": "Service",
+                  name: "DeFi Lending and Borrowing",
+                  description:
+                    "Cross-chain lending and borrowing protocol with isolated pools, decentralized oracles by Orakl Network, collateral swaps via DragonSwap, and LayerZero interoperability.",
+                  provider: {
+                    "@type": "Organization",
+                    name: "Senja Finance",
+                  },
+                  areaServed: "Worldwide",
+                  serviceType: "DeFi Protocol",
+                  category: "Financial Technology",
+                },
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "Senja Finance",
+                url: "https://www.senja.finance",
+                description:
+                  "Permissionless stablecoin lending and borrowing protocol on Kaia ecosystem with cross-chain liquidity via LayerZero.",
+                publisher: {
+                  "@type": "Organization",
+                  name: "Senja Finance",
+                },
+              },
+            ]),
+          }}
+        />
         <SpeedInsights />
         <Analytics />
       </body>
