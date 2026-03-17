@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { config } from "./config";
+import { buildBackendUrl } from "./backend";
 
 export interface User {
   id: number;
@@ -24,7 +24,7 @@ export async function getServerAuthStatus(): Promise<AuthStatus> {
       return { authenticated: false };
     }
 
-    const res = await fetch(`${config.backendUrl}/api/auth/status`, {
+    const res = await fetch(buildBackendUrl("/api/auth/status"), {
       headers: {
         Cookie: `connect.sid=${sessionCookie.value}`,
       },

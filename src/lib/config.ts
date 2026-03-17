@@ -1,5 +1,4 @@
 export const config = {
-  backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL,
   discordGuildId:
     process.env.NEXT_PUBLIC_DISCORD_GUILD_ID,
   // Waitlist opens on 1 January 2026 UTC 00:00

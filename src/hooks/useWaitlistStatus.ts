@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { config } from "@/lib/config";
 
 interface WaitlistStatusResponse {
   isOnWaitlist: boolean;
@@ -7,7 +6,7 @@ interface WaitlistStatusResponse {
 }
 
 async function fetchWaitlistStatus(): Promise<WaitlistStatusResponse> {
-  const response = await fetch(`${config.backendUrl}/api/waitlist/status`, {
+  const response = await fetch("/api/waitlist/status", {
     credentials: "include",
   });
 

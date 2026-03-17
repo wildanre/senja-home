@@ -9,12 +9,9 @@ export function useGuildMembership() {
     queryKey: ["guild-membership", user?.discordId],
     queryFn: async () => {
       try {
-        const response = await fetch(
-          `${config.backendUrl}/api/auth/check-guild`,
-          {
-            credentials: "include",
-          }
-        );
+        const response = await fetch("/api/auth/check-guild", {
+          credentials: "include",
+        });
 
         if (!response.ok) {
           return { isMember: false, source: "api" };

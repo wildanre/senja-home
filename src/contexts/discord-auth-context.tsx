@@ -2,7 +2,6 @@
 
 import { createContext, useContext, ReactNode } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { config } from "@/lib/config";
 
 interface User {
   id: number;
@@ -34,7 +33,7 @@ const DiscordAuthContext = createContext<AuthContextType | undefined>(
 );
 
 async function fetchAuthStatus(): Promise<AuthStatus> {
-  const res = await fetch(`${config.backendUrl}/api/auth/status`, {
+  const res = await fetch("/api/auth/status", {
     credentials: "include",
   });
   return res.json();
@@ -62,7 +61,7 @@ export function DiscordAuthProvider({
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      await fetch(`${config.backendUrl}/api/auth/logout`, {
+      await fetch("/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });
@@ -73,7 +72,7 @@ export function DiscordAuthProvider({
   });
 
   const login = () => {
-    window.location.href = `${config.backendUrl}/api/auth/discord`;
+    window.location.href = "/api/auth/discord";
   };
 
   const logout = async () => {

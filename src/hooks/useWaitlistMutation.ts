@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { config } from "@/lib/config";
 import { toast } from "sonner";
 
 interface SubmitWaitlistParams {
@@ -8,7 +7,7 @@ interface SubmitWaitlistParams {
 }
 
 async function submitWaitlist(data: SubmitWaitlistParams) {
-  const response = await fetch(`${config.backendUrl}/api/waitlist`, {
+  const response = await fetch("/api/waitlist", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",

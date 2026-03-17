@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-
-const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3001";
+import { buildBackendUrl, createProxyResponse } from "@/lib/backend";
 
 export async function GET(_request: NextRequest) {
   try {
@@ -12,8 +11,7 @@ export async function GET(_request: NextRequest) {
       return NextResponse.json({ isOnWaitlist: false }, { status: 200 });
     }
 
-    // Forward request to backend to check waitlist status
-    const response = await fetch(`${BACKEND_URL}/api/waitlist/status`, {
+    const response = await fetch(buildBackendUrl("/api/waitlist/status"), {
       method: "GET",
       headers: {
         Cookie: `connect.sid=${sessionCookie.value}`,
@@ -24,11 +22,10 @@ export async function GET(_request: NextRequest) {
       if (response.status === 404) {
         return NextResponse.json({ isOnWaitlist: false }, { status: 200 });
       }
-      throw new Error("Failed to fetch waitlist status");
+      return createProxyResponse(response);
     }
 
-    const data = await response.json();
-    return NextResponse.json(data, { status: 200 });
+    return createProxyResponse(response);
   } catch (error) {
     console.error("Error fetching waitlist status:", error);
     return NextResponse.json({ isOnWaitlist: false }, { status: 200 });
