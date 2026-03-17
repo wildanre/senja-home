@@ -76,5 +76,9 @@ export default function AnimatedText({
     };
   }, [text, delay, stagger, duration]);
 
-  return <h1 ref={containerRef} className={className} />;
+  return (
+    <h1 ref={containerRef} className={className}>
+      {text}
+    </h1>
+  );
 }
