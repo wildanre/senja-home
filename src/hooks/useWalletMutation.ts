@@ -26,6 +26,7 @@ export function useWalletMutation() {
     mutationFn: updateWalletAddress,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["auth-status"] });
+      queryClient.invalidateQueries({ queryKey: ["waitlist-status"] });
     },
     onError: (error: Error) => {
       console.error("Failed to update wallet:", error);

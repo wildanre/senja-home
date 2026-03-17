@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 interface SubmitWaitlistParams {
-  discordId: string;
-  email?: string;
+  email: string;
+  address: string;
 }
 
 async function submitWaitlist(data: SubmitWaitlistParams) {
@@ -16,7 +16,9 @@ async function submitWaitlist(data: SubmitWaitlistParams) {
 
   if (!response.ok) {
     const error = await response.json();
-    throw new Error(error.message || "Failed to submit waitlist");
+    throw new Error(
+      error.error || error.message || "Failed to submit waitlist"
+    );
   }
 
   return response.json();

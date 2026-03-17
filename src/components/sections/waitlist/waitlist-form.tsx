@@ -82,12 +82,16 @@ export default function WaitlistForm({
   }, [searchParams, checkAuth, router]);
 
   const isWaitlistConfirmed =
-    waitlistStatus?.isOnWaitlist || waitlistMutation.isSuccess || hasSubmitted;
+    waitlistStatus?.isOnWaitlist ||
+    walletMutation.isSuccess ||
+    waitlistMutation.isSuccess ||
+    hasSubmitted;
+
+  const currentWalletAddress = user?.walletAddress || connectedAddress || null;
 
   // Only consider user "on waitlist" if they have BOTH email and wallet address
   // This ensures Step 3 (Wallet) remains active if wallet is missing, even if backend says they are on waitlist
-  const isOnWaitlist =
-    isWaitlistConfirmed && !!user?.email && !!user?.walletAddress;
+  const isOnWaitlist = isWaitlistConfirmed && !!user?.email && !!currentWalletAddress;
 
   const isDiscordDone = (isAuthenticated && !!user) || isOnWaitlist;
   const isInGuildLocal = isInGuild;
@@ -95,23 +99,26 @@ export default function WaitlistForm({
 
   // Wallet is only shown when Discord session is active
   // If on waitlist, we consider wallet done even if we don't have the address locally immediately
-  const walletAddress = isDiscordDone ? user?.walletAddress : null;
-  const isWalletDone = (isDiscordDone && !!walletAddress) || isOnWaitlist;
+  const walletAddress = isDiscordDone ? currentWalletAddress : null;
+  const isWalletDone =
+    (isDiscordDone && (!!walletAddress || walletMutation.isSuccess)) ||
+    isOnWaitlist;
 
   // Can complete only if all required fields are filled (email + walletAddress)
   const canComplete =
     isDiscordDone &&
     isGuildDone &&
     !!user?.email &&
-    !!user?.walletAddress &&
+    !!currentWalletAddress &&
     !isOnWaitlist;
 
   const handleComplete = () => {
-    if (!user?.discordId) return;
+    if (!user?.email || !currentWalletAddress) return;
 
     waitlistMutation.mutate(
       {
-        discordId: user.discordId,
+        email: user.email,
+        address: currentWalletAddress,
       },
       {
         onSuccess: () => {

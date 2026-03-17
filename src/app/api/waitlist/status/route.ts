@@ -1,21 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
-import { buildBackendUrl, createProxyResponse } from "@/lib/backend";
+import {
+  buildBackendUrl,
+  createForwardHeaders,
+  createProxyResponse,
+} from "@/lib/backend";
 
-export async function GET(_request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get("connect.sid");
+    const cookieHeader = request.headers.get("cookie");
 
-    if (!sessionCookie) {
+    if (!cookieHeader) {
       return NextResponse.json({ isOnWaitlist: false }, { status: 200 });
     }
 
     const response = await fetch(buildBackendUrl("/api/waitlist/status"), {
       method: "GET",
-      headers: {
-        Cookie: `connect.sid=${sessionCookie.value}`,
-      },
+      headers: createForwardHeaders(request),
     });
 
     if (!response.ok) {

@@ -18,15 +18,18 @@ export interface AuthStatus {
 export async function getServerAuthStatus(): Promise<AuthStatus> {
   try {
     const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get("connect.sid");
+    const cookieHeader = cookieStore
+      .getAll()
+      .map(({ name, value }) => `${name}=${value}`)
+      .join("; ");
 
-    if (!sessionCookie) {
+    if (!cookieHeader) {
       return { authenticated: false };
     }
 
     const res = await fetch(buildBackendUrl("/api/auth/status"), {
       headers: {
-        Cookie: `connect.sid=${sessionCookie.value}`,
+        Cookie: cookieHeader,
       },
       cache: "no-store",
     });
