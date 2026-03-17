@@ -118,6 +118,8 @@ export default function WaitlistTable({ users }: WaitlistTableProps) {
 
   const columns = useMemo<ColumnDef<WaitlistUser>[]>(() => createColumns(), []);
 
+  // React Compiler can't safely memoize TanStack Table's returned API.
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data: users,
     columns,

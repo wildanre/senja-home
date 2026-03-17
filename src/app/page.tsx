@@ -5,7 +5,6 @@ import ScrollAnimationWrapper from "@/components/ui/animate/scroll-animation-wra
 import { AnimatedDitherBackground } from "@/components/ui/background/animated-dither-background";
 import { AnimatedDivider } from "@/components/ui/layout/animated-divider";
 import StickyBottomText from "@/components/sections/overview/sticky-bottom-text";
-import LoadingPage from "@/components/ui/loading/loading-page";
 import { useScrollTransition } from "@/hooks/useScrollTransition";
 import dynamic from "next/dynamic";
 
@@ -23,13 +22,12 @@ const Partners = dynamic(
 );
 const Footer = dynamic(() => import("@/components/sections/footer"));
 import { motion } from "motion/react";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const scrollProgress = useScrollTransition();
   const [isMobile, setIsMobile] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [fadeOut, setFadeOut] = useState(false);
+  const [showEnhancements, setShowEnhancements] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -42,28 +40,39 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const useIsomorphicLayoutEffect =
-    typeof window !== "undefined" ? useLayoutEffect : useEffect;
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    let idleCallbackId: number | undefined;
+    const browserWindow = globalThis as typeof globalThis & {
+      requestIdleCallback?: (
+        callback: IdleRequestCallback,
+        options?: IdleRequestOptions
+      ) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
 
-  useIsomorphicLayoutEffect(() => {
-    const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
+    const enableEnhancements = () => {
+      setShowEnhancements(true);
+    };
 
-    if (hasSeenSplash) {
-      setIsLoading(false);
-      return;
+    if (typeof browserWindow.requestIdleCallback === "function") {
+      idleCallbackId = browserWindow.requestIdleCallback(enableEnhancements, {
+        timeout: 1200,
+      });
+    } else {
+      timeoutId = globalThis.setTimeout(enableEnhancements, 250);
     }
 
-    const fadeTimer = setTimeout(() => {
-      setFadeOut(true);
-    }, 2200);
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(false);
-      sessionStorage.setItem("hasSeenSplash", "true");
-    }, 2900);
-
     return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(loadingTimer);
+      if (
+        idleCallbackId !== undefined &&
+        typeof browserWindow.cancelIdleCallback === "function"
+      ) {
+        browserWindow.cancelIdleCallback(idleCallbackId);
+      }
+      if (timeoutId !== undefined) {
+        globalThis.clearTimeout(timeoutId);
+      }
     };
   }, []);
 
@@ -81,15 +90,17 @@ export default function Home() {
 
   return (
     <>
-      {isLoading && <LoadingPage fadeOut={fadeOut} />}
-
       <div className="relative h-screen w-full overflow-hidden">
-        <AnimatedDitherBackground
-          scrollProgress={scrollProgress}
-          leftPageWidth={leftPageWidth}
-        />
+        {showEnhancements && (
+          <AnimatedDitherBackground
+            scrollProgress={scrollProgress}
+            leftPageWidth={leftPageWidth}
+          />
+        )}
 
-        {!isMobile && <AnimatedDivider scrollProgress={scrollProgress} />}
+        {!isMobile && showEnhancements && (
+          <AnimatedDivider scrollProgress={scrollProgress} />
+        )}
 
         <main
           className="relative h-screen w-full lg:overflow-hidden"
@@ -120,6 +131,10 @@ export default function Home() {
                 <section
                   id="what-is-senja"
                   className="min-h-screen lg:min-h-screen"
+                  style={{
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "100vh",
+                  }}
                 >
                   <Overview />
                 </section>
@@ -127,6 +142,10 @@ export default function Home() {
                 <section
                   id="powered-by-senja"
                   className="min-h-[80vh] lg:min-h-screen flex items-center justify-center"
+                  style={{
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "100vh",
+                  }}
                 >
                   <div className="w-full">
                     <PoweredBySenja />
@@ -136,6 +155,10 @@ export default function Home() {
                 <section
                   id="why"
                   className="min-h-screen flex items-center justify-center"
+                  style={{
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "100vh",
+                  }}
                 >
                   <ScrollAnimationWrapper direction="up" delay={0.2}>
                     <WhySection />
@@ -145,13 +168,24 @@ export default function Home() {
                 <section
                   id="partners"
                   className="flex items-center justify-center"
+                  style={{
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "60vh",
+                  }}
                 >
                   <ScrollAnimationWrapper direction="up" delay={0.2}>
                     <Partners />
                   </ScrollAnimationWrapper>
                 </section>
 
-                <section id="footer" className="w-full">
+                <section
+                  id="footer"
+                  className="w-full"
+                  style={{
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "40vh",
+                  }}
+                >
                   <Footer />
                 </section>
               </motion.div>
@@ -166,7 +200,7 @@ export default function Home() {
           </div>
         </main>
 
-        <StickyBottomText />
+        {showEnhancements && <StickyBottomText />}
 
         <style jsx global>{`
           .scrollbar-right-edge::-webkit-scrollbar {

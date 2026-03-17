@@ -56,9 +56,21 @@ const nextConfig: NextConfig = {
   },
 };
 
+type IndexedDBPolyfill = {
+  open: () => {
+    result: {
+      objectStoreNames: { contains: () => boolean };
+      createObjectStore: () => void;
+      close: () => void;
+    };
+    addEventListener: () => void;
+    removeEventListener: () => void;
+  };
+};
+
 // Polyfill for indexedDB in build environment
 if (typeof window === "undefined") {
-  (global as any).indexedDB = {
+  const indexedDBPolyfill: IndexedDBPolyfill = {
     open: () => ({
       result: {
         objectStoreNames: { contains: () => false },
@@ -69,6 +81,12 @@ if (typeof window === "undefined") {
       removeEventListener: () => {},
     }),
   };
+
+  Object.defineProperty(globalThis, "indexedDB", {
+    value: indexedDBPolyfill,
+    configurable: true,
+    writable: true,
+  });
 }
 
 export default bundleAnalyzer(nextConfig);

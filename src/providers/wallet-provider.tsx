@@ -5,22 +5,37 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
+import type { Config } from "wagmi";
 import { kaia } from "viem/chains";
-import { config } from "@/config/wallet-config";
 
 const wagmiQueryClient = new QueryClient();
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = React.useState(false);
+  const [walletConfig, setWalletConfig] = React.useState<Config | null>(null);
 
   React.useEffect(() => {
     setMounted(true);
-    // @ts-ignore
-    import("@rainbow-me/rainbowkit/styles.css");
+
+    let isCancelled = false;
+
+    void import("@/config/wallet-config").then((module) => {
+      if (!isCancelled) {
+        setWalletConfig(module.config);
+      }
+    });
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
+  if (!mounted || !walletConfig) {
+    return null;
+  }
+
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={walletConfig}>
       <QueryClientProvider client={wagmiQueryClient}>
         <RainbowKitProvider
           coolMode
@@ -32,7 +47,7 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
             borderRadius: "medium",
           })}
         >
-          {mounted && children}
+          {children}
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

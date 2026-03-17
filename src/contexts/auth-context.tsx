@@ -30,7 +30,11 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [authState, setAuthState] = useState<boolean | null>(null);
+  const [authState, setAuthState] = useState<boolean | null>(() =>
+    typeof window !== "undefined" && !window.location.pathname.startsWith("/admin")
+      ? true
+      : null
+  );
   const router = useRouter();
   const pathname = usePathname();
 
@@ -45,7 +49,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     if (!pathname.startsWith("/admin")) {
-      setAuthState(true); // Non-admin routes don't need auth
       return;
     }
 
@@ -89,7 +92,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [pathname, router]);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated: authState, checkAuth }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated: pathname.startsWith("/admin") ? authState : true,
+        checkAuth,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -17,34 +17,34 @@ interface Sparkle {
 }
 
 export default function LoadingPage({ fadeOut }: LoadingPageProps) {
-  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    // Add small delay to prevent flash on refresh before parent unmounts it
-    const timer = setTimeout(() => {
-      setIsMounted(true);
-    }, 100);
-
-    const generatedSparkles = Array.from({ length: 50 }, (_, i) => ({
+  const [sparkles] = useState<Sparkle[]>(() =>
+    Array.from({ length: 50 }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       delay: Math.random() * 3,
       duration: 2 + Math.random() * 2,
       size: 2 + Math.random() * 4,
-    }));
-    setSparkles(generatedSparkles);
+    }))
+  );
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div
-      className={`fixed inset-0 z-9999 flex items-center justify-center bg-black overflow-hidden transition-opacity duration-500 ${
+      className={`fixed inset-0 z-9999 flex items-center justify-center overflow-hidden pointer-events-none transition-opacity duration-500 ${
         fadeOut ? "animate-slide-up" : ""
       }`}
     >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(231,182,124,0.16)_0%,rgba(0,0,0,0.08)_28%,transparent_65%)]" />
+
       <div
         className={`relative w-full h-full flex items-center justify-center transition-opacity duration-300 ${
           isMounted ? "opacity-100" : "opacity-0"
@@ -136,38 +136,41 @@ export default function LoadingPage({ fadeOut }: LoadingPageProps) {
         .logo-gif {
           width: auto;
           height: auto;
-          max-width: 300px;
-          max-height: 300px;
+          max-width: 180px;
+          max-height: 180px;
           object-fit: contain;
-          filter: drop-shadow(0 0 30px rgba(231, 182, 124, 0.4));
+          opacity: 0.92;
+          filter: drop-shadow(0 0 24px rgba(231, 182, 124, 0.35));
         }
 
         /* Slide Up Exit Animation */
         :global(.animate-slide-up) {
-          animation: slide-up 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          animation: slide-up 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         @keyframes slide-up {
           from {
-            transform: translateY(0);
+            opacity: 1;
+            transform: translateY(0) scale(1);
           }
           to {
-            transform: translateY(-100%);
+            opacity: 0;
+            transform: translateY(-8%) scale(0.96);
           }
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
           .logo-gif {
-            max-width: 200px;
-            max-height: 200px;
+            max-width: 140px;
+            max-height: 140px;
           }
         }
 
         @media (max-width: 480px) {
           .logo-gif {
-            max-width: 150px;
-            max-height: 150px;
+            max-width: 110px;
+            max-height: 110px;
           }
         }
       `}</style>

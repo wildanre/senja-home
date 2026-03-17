@@ -4,6 +4,8 @@ import WaitlistSection from "@/components/sections/waitlist/waitlist-section";
 import { getServerAuthStatus } from "@/lib/server-auth";
 import { WaitlistIntro } from "@/components/sections/waitlist/waitlist-intro";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Waitlist",
   description:

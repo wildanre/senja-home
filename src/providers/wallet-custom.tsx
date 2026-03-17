@@ -19,7 +19,6 @@ export const CustomWalletButton = ({
       {({
         account,
         chain,
-        openAccountModal,
         openChainModal,
         openConnectModal,
         authenticationStatus,

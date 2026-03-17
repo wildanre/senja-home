@@ -12,7 +12,6 @@ export default function SplashHandler() {
     typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
   useIsomorphicLayoutEffect(() => {
-    // Check if user has seen splash screen in this session
     const hasSeenSplash = sessionStorage.getItem("hasSeenSplash");
 
     if (hasSeenSplash) {
@@ -20,16 +19,14 @@ export default function SplashHandler() {
       return;
     }
 
-    // Start slide-up animation at 2.2 seconds
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
-    }, 2200);
+    }, 650);
 
-    // Remove loading page completely at 2.9 seconds (after slide-up completes)
     const loadingTimer = setTimeout(() => {
       setIsLoading(false);
       sessionStorage.setItem("hasSeenSplash", "true");
-    }, 2900);
+    }, 1100);
 
     return () => {
       clearTimeout(fadeTimer);

@@ -1,31 +1,27 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Start invisible
-    setIsVisible(false);
-
-    // Fade in after a small delay
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 50);
-
-    return () => clearTimeout(timer);
-  }, [pathname]);
 
   return (
-    <div
-      className={`transition-opacity duration-300 ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
-    >
+    <div key={pathname} className="animate-page-transition-in">
       {children}
+      <style jsx>{`
+        .animate-page-transition-in {
+          animation: page-transition-in 0.3s ease-out both;
+        }
+
+        @keyframes page-transition-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 }

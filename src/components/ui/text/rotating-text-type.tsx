@@ -20,30 +20,23 @@ export default function RotatingTextType({
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (isPaused) {
+    const currentText = texts[currentTextIndex];
+
+    if (!isDeleting && displayedText === currentText) {
       const pauseTimeout = setTimeout(() => {
-        setIsPaused(false);
         setIsDeleting(true);
       }, pauseDuration);
       return () => clearTimeout(pauseTimeout);
     }
 
-    const currentText = texts[currentTextIndex];
-
-    if (!isDeleting && displayedText === currentText) {
-      // Finished typing, pause before deleting
-      setIsPaused(true);
-      return;
-    }
-
     if (isDeleting && displayedText === "") {
-      // Finished deleting, move to next text
-      setIsDeleting(false);
-      setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-      return;
+      const nextTimeout = setTimeout(() => {
+        setIsDeleting(false);
+        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
+      }, 0);
+      return () => clearTimeout(nextTimeout);
     }
 
     const timeout = setTimeout(() => {
@@ -55,7 +48,7 @@ export default function RotatingTextType({
     }, isDeleting ? deletingSpeed : typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [displayedText, isDeleting, isPaused, currentTextIndex, texts, typingSpeed, deletingSpeed, pauseDuration]);
+  }, [currentTextIndex, deletingSpeed, displayedText, isDeleting, pauseDuration, texts, typingSpeed]);
 
   return (
     <span className={className}>

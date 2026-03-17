@@ -1,42 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import TypingAnimation from "@/components/ui/text/typing-animation";
 import AnimatedTextVariants from "@/components/ui/text/animated-text-variants";
+
+function subscribeToViewport(callback: () => void) {
+  window.addEventListener("resize", callback);
+  return () => window.removeEventListener("resize", callback);
+}
+
+function getIsMobileSnapshot() {
+  return window.innerWidth < 1024;
+}
 
 export default function StickyBottomText() {
   const [textState, setTextState] = useState<"first" | "second">("first");
   const [hideOpacity, setHideOpacity] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const isMobile = useSyncExternalStore(
+    subscribeToViewport,
+    getIsMobileSnapshot,
+    () => false
+  );
 
   useEffect(() => {
-    setMounted(true);
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    console.log("[StickyBottomText] mounted");
     const scrollContainer = document.getElementById("main-scroll");
     if (!scrollContainer) {
-      console.warn("[StickyBottomText] #main-scroll not found");
       return;
     }
 
     const whatIsSenjaSection = document.getElementById("what-is-senja");
-    if (!whatIsSenjaSection) {
-      console.warn("[StickyBottomText] #what-is-senja not found");
-    }
-
     const poweredByHeading = document.getElementById(
       "powered-by-senja-heading"
     );
-    if (!poweredByHeading) {
-      console.warn(
-        "[StickyBottomText] #powered-by-senja-heading not found — will keep text visible"
-      );
-    }
 
     const handleScroll = () => {
       const scrollTop = scrollContainer.scrollTop;
@@ -95,7 +90,6 @@ export default function StickyBottomText() {
     handleScroll();
     return () => {
       scrollContainer.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -121,7 +115,7 @@ export default function StickyBottomText() {
             <div className="mb-4 text-xs uppercase tracking-[0.35em] text-senja-primary/80">
               <TypingAnimation
                 text="incubated by Kaia Chain"
-                delay={2.6}
+                delay={0.25}
                 speed={0.06}
                 showCursor={false}
                 as="span"
@@ -130,7 +124,7 @@ export default function StickyBottomText() {
             <AnimatedTextVariants
               text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
               animationType="fadeUp"
-              delay={2.9}
+              delay={0.45}
               stagger={0.02}
               duration={0.5}
               as="p"
@@ -171,82 +165,78 @@ export default function StickyBottomText() {
         </div>
       </div>
 
-      {mounted &&
-        isMobile &&
-        createPortal(
-          <div
-            className="fixed bottom-4 left-4 right-4 w-auto max-w-xl transition-opacity duration-300"
-            style={{
-              opacity: hideOpacity,
-              zIndex: 2000,
-              pointerEvents: hideOpacity === 0 ? "none" : "auto",
-            }}
-          >
-            {hideOpacity > 0 && (
-              <div className="relative">
-                <div
-                  className={`transition-all duration-700 ease-out ${
-                    textState === "second"
-                      ? "opacity-0 absolute inset-0"
-                      : "opacity-100 relative"
-                  }`}
-                >
-                  <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-senja-primary/80">
-                    <TypingAnimation
-                      text="incubated by Kaia Chain"
-                      delay={2.6}
-                      speed={0.06}
-                      showCursor={false}
-                      as="span"
-                    />
-                  </div>
-                  <AnimatedTextVariants
-                    text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
-                    animationType="fadeUp"
-                    delay={2.9}
-                    stagger={0.02}
-                    duration={0.5}
-                    as="p"
-                    className="text-[11px] leading-relaxed text-[#f2cba1]/85"
+      {isMobile && (
+        <div
+          className="fixed bottom-4 left-4 right-4 w-auto max-w-xl transition-opacity duration-300"
+          style={{
+            opacity: hideOpacity,
+            zIndex: 2000,
+            pointerEvents: hideOpacity === 0 ? "none" : "auto",
+          }}
+        >
+          {hideOpacity > 0 && (
+            <div className="relative">
+              <div
+                className={`transition-all duration-700 ease-out ${
+                  textState === "second"
+                    ? "opacity-0 absolute inset-0"
+                    : "opacity-100 relative"
+                }`}
+              >
+                <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-senja-primary/80">
+                  <TypingAnimation
+                    text="incubated by Kaia Chain"
+                    delay={0.25}
+                    speed={0.06}
+                    showCursor={false}
+                    as="span"
                   />
                 </div>
-
-                {/* Second text - Cross-Chain by Design */}
-                <div
-                  className={`transition-all duration-700 ease-out ${
-                    textState === "second"
-                      ? "opacity-100 relative"
-                      : "opacity-0 absolute inset-0"
-                  }`}
-                >
-                  {textState === "second" && (
-                    <>
-                      <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-senja-primary/80">
-                        <TypingAnimation
-                          text="Cross-Chain by Design"
-                          delay={0.2}
-                          speed={0.06}
-                          showCursor={false}
-                          as="span"
-                        />
-                      </div>
-                      <AnimatedTextVariants
-                        text="Designed for seamless cross-chain lending flows, delivering speed, flexibility, and dependable capital efficiency."
-                        animationType="fadeUp"
-                        delay={0.4}
-                        stagger={0.02}
-                        duration={0.5}
-                        as="p"
-                        className="text-[11px] leading-relaxed text-[#f2cba1]/85"
-                      />
-                    </>
-                  )}
-                </div>
+                <AnimatedTextVariants
+                  text="Permissionless by design, Senja unites cross-chain lending, borrowing, and collateral trading without boundaries."
+                  animationType="fadeUp"
+                  delay={0.45}
+                  stagger={0.02}
+                  duration={0.5}
+                  as="p"
+                  className="text-[11px] leading-relaxed text-[#f2cba1]/85"
+                />
               </div>
-            )}
-          </div>,
-          document.body
-        )}
+
+              <div
+                className={`transition-all duration-700 ease-out ${
+                  textState === "second"
+                    ? "opacity-100 relative"
+                    : "opacity-0 absolute inset-0"
+                }`}
+              >
+                {textState === "second" && (
+                  <>
+                    <div className="mb-2 text-[10px] uppercase tracking-[0.35em] text-senja-primary/80">
+                      <TypingAnimation
+                        text="Cross-Chain by Design"
+                        delay={0.2}
+                        speed={0.06}
+                        showCursor={false}
+                        as="span"
+                      />
+                    </div>
+                    <AnimatedTextVariants
+                      text="Designed for seamless cross-chain lending flows, delivering speed, flexibility, and dependable capital efficiency."
+                      animationType="fadeUp"
+                      delay={0.4}
+                      stagger={0.02}
+                      duration={0.5}
+                      as="p"
+                      className="text-[11px] leading-relaxed text-[#f2cba1]/85"
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 }

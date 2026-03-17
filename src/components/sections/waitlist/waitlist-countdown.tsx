@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 interface TimeLeft {
   days: number;
@@ -31,18 +31,16 @@ function calculateTimeLeft(targetDate: string): TimeLeft {
 export default function WaitlistCountdown({
   launchDate,
 }: WaitlistCountdownProps) {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-  const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
+    calculateTimeLeft(launchDate)
+  );
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
-    setMounted(true);
-    setTimeLeft(calculateTimeLeft(launchDate));
-
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft(launchDate));
     }, 1000);
@@ -50,7 +48,6 @@ export default function WaitlistCountdown({
     return () => clearInterval(timer);
   }, [launchDate]);
 
-  // Prevent hydration mismatch
   if (!mounted) {
     return (
       <div className="space-y-6 bg-white/5 backdrop-blur-md p-6 sm:p-8 lg:p-10 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden">
@@ -70,7 +67,7 @@ export default function WaitlistCountdown({
     timeLeft.seconds === 0;
 
   if (isLaunched) {
-    return null; // Let parent component show the form
+    return null;
   }
 
   return (

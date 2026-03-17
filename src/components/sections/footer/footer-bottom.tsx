@@ -1,7 +1,7 @@
 'use client';
 
 import { FaXTwitter } from 'react-icons/fa6';
-import { SiDiscord, SiTelegram } from 'react-icons/si';
+import { SiDiscord } from 'react-icons/si';
 import SlideIn from "@/components/ui/motion/slide-in";
 
 export default function FooterBottom() {
@@ -36,4 +36,3 @@ export default function FooterBottom() {
     </SlideIn>
   );
 }
-

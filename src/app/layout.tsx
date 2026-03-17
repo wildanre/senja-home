@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import "@rainbow-me/rainbowkit/styles.css";
 import {
   DM_Serif_Display,
   Geist,

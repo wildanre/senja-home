@@ -24,7 +24,7 @@ export function useGuildMembership() {
         const isMember = data.guilds?.includes(config.discordGuildId) || false;
 
         return { isMember, source: "api" };
-      } catch (error) {
+      } catch {
         return { isMember: false, source: "error" };
       }
     },
