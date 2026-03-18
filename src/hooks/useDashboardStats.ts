@@ -1,27 +1,27 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
+import { fetchAllAdminWaitlistUsers } from "@/lib/admin-waitlist";
+import type { DashboardStats } from "@/types";
 
-export interface DashboardStats {
-  totalUsers: number;
-  emailsSent: number;
-  activeUsers: number;
+function mapDashboardStats(
+  users: Awaited<ReturnType<typeof fetchAllAdminWaitlistUsers>>
+): DashboardStats {
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
+
+  return {
+    totalUsers: users.length,
+    newUsersToday: users.filter((user) => new Date(user.createdAt) >= startOfToday)
+      .length,
+    connectedWallets: users.filter((user) => Boolean(user.address)).length,
+    latestSignupAt: users[0]?.createdAt ?? null,
+  };
 }
-
-const fetchDashboardData = async (): Promise<DashboardStats> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        totalUsers: 1250,
-        emailsSent: 45,
-        activeUsers: 892,
-      });
-    }, 1000);
-  });
-};
 
 export function useDashboardStats() {
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['dashboardStats'],
-    queryFn: fetchDashboardData,
+    queryKey: ["admin", "waitlist", "all"],
+    queryFn: fetchAllAdminWaitlistUsers,
+    select: mapDashboardStats,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: true,
   });
@@ -29,8 +29,9 @@ export function useDashboardStats() {
   return {
     stats: data ?? {
       totalUsers: 0,
-      emailsSent: 0,
-      activeUsers: 0,
+      newUsersToday: 0,
+      connectedWallets: 0,
+      latestSignupAt: null,
     },
     isLoading,
     error: error as Error | null,

@@ -1,14 +1,19 @@
 "use client";
 
+import { useMemo } from "react";
 import { useWaitlistData } from "@/hooks/useWaitlistData";
 import WaitlistHeader from "./waitlist/waitlist-header";
 import WaitlistTable from "./waitlist/waitlist-table";
-import WaitlistActions from "./waitlist/waitlist-actions";
 import LoadingSpinner from "@/components/ui/loading/loading-spinner";
 import EmptyState from "./waitlist/empty-state";
 
 export default function WaitlistData() {
   const { users, isLoading, error, refetch, isFetching } = useWaitlistData();
+
+  const connectedWalletCount = useMemo(
+    () => users.filter((user) => Boolean(user.address)).length,
+    [users]
+  );
 
   if (isLoading) {
     return <LoadingSpinner message="Loading waitlist data..." fullScreen />;
@@ -35,20 +40,22 @@ export default function WaitlistData() {
     );
   }
 
-  const hasUsers = users.length > 0;
-
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-      <WaitlistHeader userCount={users.length} />
-
-      {hasUsers ? <WaitlistTable users={users} /> : <EmptyState />}
-
-      <WaitlistActions
-        onRefresh={refetch}
+      <WaitlistHeader
         userCount={users.length}
-        isLoading={isFetching}
-        users={users}
+        connectedWalletCount={connectedWalletCount}
       />
+
+      {users.length > 0 ? (
+        <WaitlistTable
+          users={users}
+          onRefresh={refetch}
+          isRefreshing={isFetching}
+        />
+      ) : (
+        <EmptyState />
+      )}
     </div>
   );
 }

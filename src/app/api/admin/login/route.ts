@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { appendSetCookieHeaders, buildBackendUrl } from "@/lib/backend";
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,20 +23,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const backendUrl = process.env.BACKEND_URL;
-    if (!backendUrl) {
-      return NextResponse.json(
-        {
-          success: false,
-          error:
-            "Backend URL not configured. Please set BACKEND_URL environment variable.",
-        },
-        { status: 500 }
-      );
-    }
-
-    const backendEndpoint = `${backendUrl}/api/admin/login`;
-
     // Get CSRF cookie from request to forward to backend
     const cookieStore = await cookies();
     const csrfSecretCookie = cookieStore.get("csrf-secret");
@@ -54,7 +41,7 @@ export async function POST(request: NextRequest) {
       headers["Cookie"] = `csrf-secret=${csrfSecretCookie.value}`;
     }
 
-    const response = await fetch(backendEndpoint, {
+    const response = await fetch(buildBackendUrl("/api/admin/login"), {
       method: "POST",
       headers,
       body: JSON.stringify({ email, password }),
@@ -111,12 +98,12 @@ export async function POST(request: NextRequest) {
 
     if (!token) {
       // Backend sends token via Set-Cookie, extract it
-      const adminTokenCookie = backendCookies.find((cookie) =>
-        cookie.includes("admin-token=")
+      const authTokenCookie = backendCookies.find((cookie) =>
+        cookie.includes("authToken=")
       );
 
-      if (adminTokenCookie) {
-        const match = adminTokenCookie.match(/admin-token=([^;]+)/);
+      if (authTokenCookie) {
+        const match = authTokenCookie.match(/authToken=([^;]+)/);
         if (match) {
           token = match[1];
         }
@@ -125,33 +112,21 @@ export async function POST(request: NextRequest) {
 
     if (token) {
       // Set httpOnly cookie with the token from backend
-      const cookieStore = await cookies();
-      cookieStore.set("admin-token", token, {
+      cookieStore.set("authToken", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-        maxAge: 60 * 60 * 24 * 7, // 7 days
+        sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+        maxAge: 60 * 60 * 2,
         path: "/",
       });
-    } else {
-      // Forward all cookies from backend (including session cookies)
-      const nextResponse = NextResponse.json({
-        success: true,
-        admin: data.admin,
-      });
-
-      backendCookies.forEach((cookie) => {
-        nextResponse.headers.append("Set-Cookie", cookie);
-      });
-
-      return nextResponse;
     }
 
-    // Return success without exposing token in response
-    return NextResponse.json({
+    const nextResponse = NextResponse.json({
       success: true,
       admin: data.admin,
     });
+    appendSetCookieHeaders(response, nextResponse);
+    return nextResponse;
   } catch (_error) {
     return NextResponse.json(
       { success: false, error: "Network error" },

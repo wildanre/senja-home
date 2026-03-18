@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
 
     // Clear the httpOnly cookies
     cookieStore.delete("authToken");
+    cookieStore.delete("admin-token");
     cookieStore.delete("csrf-secret");
 
     return NextResponse.json({ success: true });

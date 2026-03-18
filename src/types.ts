@@ -81,8 +81,8 @@ export interface EmailFormData {
 // Admin - Waitlist
 
 export interface WaitlistUser {
-  id: string;
-  address: string;
+  id: number;
+  address: string | null;
   email: string;
   createdAt: string;
 }
@@ -94,6 +94,8 @@ export interface WaitlistDataState {
 
 export interface WaitlistTableProps {
   users: WaitlistUser[];
+  onRefresh: () => void;
+  isRefreshing?: boolean;
 }
 
 export interface LoadingStateProps {
@@ -107,12 +109,15 @@ export interface EmptyStateProps {
 
 export interface WaitlistHeaderProps {
   userCount: number;
+  connectedWalletCount?: number;
 }
 
 export interface WaitlistActionsProps {
   onRefresh: () => void;
   userCount: number;
   isLoading?: boolean;
+  filteredCount?: number;
+  onExport?: () => void;
 }
 
 // Library - Rate Limiting
@@ -127,7 +132,22 @@ export interface RateLimitResult {
 export interface DashboardStats {
   totalUsers: number;
   newUsersToday: number;
-  conversionRate: number;
+  connectedWallets: number;
+  latestSignupAt: string | null;
+}
+
+export interface WaitlistListResponse {
+  success: boolean;
+  users: WaitlistUser[];
+  count: number;
+  total: number;
+  page: number;
+  totalPages: number;
+}
+
+export interface WaitlistQueryParams {
+  page?: number;
+  limit?: number;
 }
 
 export interface OrbitSizes {

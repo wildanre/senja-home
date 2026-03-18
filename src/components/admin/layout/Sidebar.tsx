@@ -27,7 +27,7 @@ export default function Sidebar({
       {/* Sidebar */}
       <div
         className={`
-        fixed lg:relative inset-y-0 left-0 z-30 h-screen
+        fixed inset-y-0 left-0 z-30 h-screen
         ${isCollapsed ? "w-16" : "w-64"}
         ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
         bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700

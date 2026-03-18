@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { buildBackendUrl, createForwardHeaders } from "@/lib/backend";
 
 export async function POST(request: NextRequest) {
   try {
     const cookieStore = await cookies();
-    const token = cookieStore.get("admin-token")?.value;
+    const cookieHeader = request.headers.get("cookie");
 
-    if (!token) {
+    if (!cookieHeader || !cookieHeader.includes("authToken=")) {
       return NextResponse.json(
         { success: false, error: "Unauthorized" },
         { status: 401 }
@@ -23,33 +24,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const backendUrl = process.env.BACKEND_URL;
-    if (!backendUrl) {
-      return NextResponse.json(
-        { success: false, error: "Backend URL not configured" },
-        { status: 500 }
-      );
-    }
-
     // Get CSRF token from request headers
     const csrfSecretCookie = cookieStore.get("csrf-secret");
     const csrfToken = request.headers.get("x-csrf-token");
 
-    const headers: HeadersInit = {
-      Authorization: `Bearer ${token}`,
+    const headers = createForwardHeaders(request, {
       "Content-Type": "application/json",
-    };
+    });
 
     if (csrfToken) {
-      headers["x-csrf-token"] = csrfToken;
+      headers.set("x-csrf-token", csrfToken);
     }
 
     if (csrfSecretCookie) {
-      headers["Cookie"] = `csrf-secret=${csrfSecretCookie.value}`;
+      headers.set(
+        "Cookie",
+        `${cookieHeader}; csrf-secret=${csrfSecretCookie.value}`
+      );
     }
 
     // Forward request to backend
-    const response = await fetch(`${backendUrl}/api/admin/send-email`, {
+    const response = await fetch(buildBackendUrl("/api/admin/send-email"), {
       method: "POST",
       headers,
       body: JSON.stringify({
@@ -67,7 +62,7 @@ export async function POST(request: NextRequest) {
 
     // If unauthorized, clear the cookie
     if (response.status === 401 || response.status === 403) {
-      cookieStore.delete("admin-token");
+      cookieStore.delete("authToken");
     }
 
     return NextResponse.json(
