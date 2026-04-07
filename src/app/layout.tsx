@@ -9,10 +9,8 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import BackgroundWrapper from "@/components/ui/background/background-wrapper";
-import { AuthProvider } from "@/contexts/discord-auth-context";
+import AppProviders from "@/app/providers";
 import { Toaster } from "sonner";
-import QueryProvider from "@/components/providers/query-provider";
-import { WalletProvider } from "@/providers/wallet-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -151,6 +149,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} ${heroDisplay.variable} ${playfairDisplay.variable} antialiased`}
       >
         <Script
@@ -180,13 +179,9 @@ export default function RootLayout({
             },
           }}
         />
-        <QueryProvider>
-          <WalletProvider>
-            <AuthProvider>
-              <BackgroundWrapper>{children}</BackgroundWrapper>
-            </AuthProvider>
-          </WalletProvider>
-        </QueryProvider>
+        <AppProviders>
+          <BackgroundWrapper>{children}</BackgroundWrapper>
+        </AppProviders>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

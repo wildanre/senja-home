@@ -1,6 +1,6 @@
 "use client";
 
-import { desktopDitherConfig } from "@/components/sections/hero/hero-data";
+import { desktopDitherConfig } from "@/config/dither-config";
 import dynamic from "next/dynamic";
 
 const Dither = dynamic(() => import("@/components/ui/background/dither"), {

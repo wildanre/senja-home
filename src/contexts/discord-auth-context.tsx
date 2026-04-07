@@ -2,25 +2,10 @@
 
 import { createContext, useContext, ReactNode } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
-interface User {
-  id: number;
-  discordId: string;
-  discordUsername: string;
-  discordAvatar: string | null;
-  email: string | null;
-  walletAddress: string | null;
-  discordGuilds?: string[]; // Array of guild IDs user is a member of
-  isOnWaitlist?: boolean; // Whether user has completed waitlist registration
-}
-
-interface AuthStatus {
-  authenticated: boolean;
-  user?: User;
-}
+import type { DiscordAuthStatus, DiscordAuthUser } from "@/types/auth";
 
 interface AuthContextType {
-  user: User | null;
+  user: DiscordAuthUser | null;
   loading: boolean;
   isAuthenticated: boolean;
   login: () => void;
@@ -32,16 +17,16 @@ const DiscordAuthContext = createContext<AuthContextType | undefined>(
   undefined
 );
 
-async function fetchAuthStatus(): Promise<AuthStatus> {
+async function fetchAuthStatus(): Promise<DiscordAuthStatus> {
   const res = await fetch("/api/auth/status", {
     credentials: "include",
   });
-  return res.json();
+  return (await res.json()) as DiscordAuthStatus;
 }
 
 interface AuthProviderProps {
   children: ReactNode;
-  initialData?: AuthStatus;
+  initialData?: DiscordAuthStatus;
 }
 
 export function DiscordAuthProvider({
@@ -50,7 +35,7 @@ export function DiscordAuthProvider({
 }: AuthProviderProps) {
   const queryClient = useQueryClient();
 
-  const { data, isLoading, refetch } = useQuery<AuthStatus>({
+  const { data, isLoading, refetch } = useQuery<DiscordAuthStatus>({
     queryKey: ["auth-status"],
     queryFn: fetchAuthStatus,
     staleTime: 10 * 60 * 1000, // 10 minutes
@@ -106,7 +91,3 @@ export function useDiscordAuth() {
   }
   return context;
 }
-
-// Alias for backwards compatibility
-export const AuthProvider = DiscordAuthProvider;
-export const useAuth = useDiscordAuth;
